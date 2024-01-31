@@ -87,7 +87,7 @@ const Header = () => {
                 </Link>
             </nav>
         </div>
-        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg mx-8 flex items-center justify-between max-[720px]:hidden`}>
+        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg mx-8 max-[720px]:hidden`}>
             <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold  text-[13px]`}>Для багатоповерхівок</Link>
             <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold  text-[13px]`}>Приватним будинкам</Link>
             <Link href='#'  className={`max-[1420px]:m-1 text-white font-semibold  text-[13px] `}>Для бізнеса</Link>
