@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
+import localFont from '@next/font/local'
 
-const montserrat = Montserrat({
-  weight: ['400', '500', '600', '700', '800', '900'],
-  subsets: ["cyrillic-ext", "cyrillic"],
+
+const montserrat = localFont({
+  src: [
+    {
+      path: '../public/fonts/Montserrat/Montserrat-Light.ttf'
+    }
+  ],
   variable: '--font-montserrat'
-});
-
+})
 
 export const metadata: Metadata = {
   title: "Батиївка для бізнесу",
@@ -20,7 +24,7 @@ export default function RootLayout({ children }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="uk-uk" className={montserrat.variable}>
+    <html lang="uk-uk" className={montserrat.className}>
       <body className={`bg-[#0E2D43]`}>{children}</body>
     </html>
   );
