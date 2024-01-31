@@ -133,9 +133,8 @@ const Body = () => {
             <h1 className={`text-center w-[913px] flex items-center justify-center`}>Підключаємо ОПТИЧНИЙ кабель</h1>
         </div>
         <div className={`font-['Montserrat'] text-[24px] font-bold text-white flex items-center justify-center w-[1110px]`}>
-            <h1 className={`text-center w-[913px] flex items-center justify-center`}>Всього за<span className={` text-[#56AABF] px-[6px]`}>699</span>тугрикоф</ h1>
+            <h1 className={`text-center w-[913px] flex items-center justify-center`}>Всього за<span className={` text-[#56AABF] px-[6px]`}>699</span>грн</h1>
         </div>
-
 
         <div className={`flex justify-center box-border pt-[60px]`}>
             <div className={`h-[573px] w-[350px] rounded-md bg-[#123853] mr-5`}>
@@ -166,7 +165,7 @@ const Body = () => {
                     Одинакові
                 </h2>
                 <div className={`flex justify-center mb-[30px]`}>
-                    <input type={`checkbox`} className={`peer relative h-5 w-5 shrink-0 appearance-none rounded-md border after:absolute after:left-0 after:top-0 after:h-full after:w-full checked:bg-[url('img/galochka.svg')] checked:bg-no-repeat after:bg-center after:bg-no-repeat after:content-[''] hover:ring hover:ring-gray-300 focus:outline-none`} name={`staticIp`} id={``}><label className={`text-white pl-[10px] font-['Montserrat'] font-normal`} for={`staticIp`}>Хочу Прямий IP</label>
+                <WhiteGreyIpCheck/>
                 </div>
                 <div className={`flex justify-center`}>
                     <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-['Montserrat'] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
