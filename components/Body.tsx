@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import infinity from '../public/img/infinity.png';
-import Link from 'next/link';
 import cable from '../public/img/cable.png';
 import sign from '../public/img/sign.png';
 import money from '../public/img/money.svg';
@@ -9,9 +8,13 @@ import docks from '../public/img/docks.svg';
 import speed from '../public/img/speed.svg';
 import oper from '../public/img/oper.svg';
 import green_galochka from '../public/img/green_galochka.svg';
-import galochka from '../public/img/galochka.svg';
 import vector from '../public/img/Vector.svg';
 import flash from '../public/img/flash.svg';
+import WhiteGreyIpCheck from './ihorradetskyi/WhiteGreyIpCheck';
+import _1 from '../public/img/1.svg';
+import _2 from '../public/img/2.svg';
+import _3 from '../public/img/3.svg';
+import _4 from '../public/img/4.svg';
 
 
 const Body = () => {
@@ -136,96 +139,10 @@ const Body = () => {
             <h1 className={`text-center w-[913px] flex items-center justify-center`}>Всього за<span className={` text-[#56AABF] px-[6px]`}>699</span>грн</h1>
         </div>
 
-        <div className={`flex justify-center box-border pt-[60px]`}>
-            <div className={`h-[573px] w-[350px] rounded-md bg-[#123853] mr-5`}>
-                <h2 className={`text-[#DC662D] font-['MontserratBold'] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]`}>
-                    1999
-                </h2>
-                <h2 className={`text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]`}>
-                    грн/міс
-                </h2>
-
-                <h2 className={`text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]`}>
-                    Швидкість
-                </h2>
-                <h2 className={`text-white font-['MontserratBold'] font-bold text-[36px] justify-center flex pb-[10px]`}>
-                    2000 Мегабіт
-                </h2>
-                <div className={`flex justify-center text-white text-[18px]`}>
-                    <span className={`flex mr-[20px] `}>
-                        <Image src={galochka} alt={`galochka`} className={`mr-2 `}/>
-                        УКРАЇНА
-                    </span>
-                    <span className={`flex ml-1.5`}>
-                    <Image src={galochka} alt={`galochka`} className={`mr-2`}/>
-                        СВІТ
-                    </span>
-                </div>
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[40px]`}>
-                    Одинакові
-                </h2>
-                <div className={`flex justify-center mb-[30px]`}>
-                <WhiteGreyIpCheck/>
-                </div>
-                <div className={`flex justify-center`}>
-                    <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-['Montserrat'] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
-                </div>
-            </div>
-            <div className={`h-[573px] w-[350px] rounded-md bg-[#123853] mr-5`}>
-                <h2 className={`text-[#DC662D] font-['MontserratBold'] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]`}>
-                    1999
-                </h2>
-                <h2 className={`text-[#DC662D] font-['Montserrat'] font-normal text-[20px] justify-center flex pb-[72px]`}>
-                    грн/міс
-                </h2>
-
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[7px]`}>
-                    Швидкість
-                </h2>
-                <h2 className={`text-white font-['MontserratBold'] font-bold text-[36px] justify-center flex pb-[10px]`}>
-                    2000 Мегабіт
-                </h2>
-                <div className={`flex justify-center font-['Montserrat'] text-white text-[18px]`}><span className={`flex mr-[20px] `}><img src={`img/galochka.svg`} alt={``} className={`mr-2 `}>УКРАЇНА</span><span className={`flex ml-1.5`}><img src={`img/galochka.svg`} alt={``} className={`mr-2`}>СВІТ</span></div>
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[40px]`}>
-                    Одинакові
-                </h2>
-                <div className={`flex justify-center mb-[30px]`}>
-                    <input type={`checkbox`} className={`peer relative h-5 w-5 shrink-0 appearance-none rounded-md border after:absolute after:left-0 after:top-0 after:h-full after:w-full checked:bg-[url('img/galochka.svg')] checked:bg-no-repeat after:bg-center after:bg-no-repeat after:content-[''] hover:ring hover:ring-gray-300 focus:outline-none`} name={`staticIp`} id={``}><label className={`text-white pl-[10px] font-['Montserrat'] font-normal`} for={`staticIp`}>Хочу Прямий IP</label>
-                </div>
-                <div className={`flex justify-center`}>
-                    <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-['Montserrat'] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
-                </div>
-            </div>
-            <div className={`h-[573px] w-[350px] rounded-md bg-[#123853] mr-5`}>
-                <h2 className={`text-[#DC662D] font-['MontserratBold'] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]`}>
-                    1999
-                </h2>
-                <h2 className={`text-[#DC662D] font-['Montserrat'] font-normal text-[20px] justify-center flex pb-[72px]`}>
-                    грн/міс
-                </h2>
-
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[7px]`}>
-                    Швидкість
-                </h2>
-                <h2 className={`text-white font-['MontserratBold'] font-bold text-[36px] justify-center flex pb-[10px]`}>
-                    2000 Мегабіт
-                </h2>
-                <div className={`flex justify-center font-['Montserrat'] text-white text-[18px]`}><span className={`flex mr-[20px] `}><img src={`img/galochka.svg`} alt={``} className={`mr-2 `}>УКРАЇНА</span><span className={`flex ml-1.5`}><img src={`img/galochka.svg`} alt={``} className={`mr-2`}>СВІТ</span></div>
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[40px]`}>
-                    Одинакові
-                </h2>
-                <div className={`flex justify-center mb-[30px]`}>
-                    <input type={`checkbox`} className={`peer relative h-5 w-5 shrink-0 appearance-none rounded-md border after:absolute after:left-0 after:top-0 after:h-full after:w-full checked:bg-[url('img/galochka.svg')] checked:bg-no-repeat after:bg-center after:bg-no-repeat after:content-[''] hover:ring hover:ring-gray-300 focus:outline-none`} name={`staticIp`} id={``}><label className={`text-white pl-[10px] font-['Montserrat'] font-normal`} for={`staticIp`}>Хочу Прямий IP</label>
-                </div>
-                <div className={`flex justify-center`}>
-                    <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-['Montserrat'] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
-                </div>
-            </div>
-        </div>
-
+       
         
 
-        <div className={`font-['MontserratBold'] font-semibold text-[42px] font-bold text-white flex items-center justify-center w-[1110px] mt-[120px]`}>
+        <div className={`font-['MontserratBold'] text-[42px] font-bold text-white flex items-center justify-center w-[1110px] mt-[120px]`}>
             <h1 className={`text-center w-[913px] flex items-center justify-center`}>Бизнес тарифы {`XG-PON`}</h1>
         </div>
 
@@ -244,91 +161,43 @@ const Body = () => {
                 <h2 className={`text-white font-['MontserratBold'] font-bold text-[36px] justify-center flex pb-[10px]`}>
                     2000 Мегабіт
                 </h2>
-                <div className={`flex justify-center font-['Montserrat'] text-white text-[18px]`}><span className={`flex mr-[20px] `}><img src={`img/galochka.svg`} alt={``} className={`mr-2 `}>УКРАЇНА</span><span className={`flex ml-1.5`}><img src={`img/galochka.svg`} alt={``} className={`mr-2`}>СВІТ</span></div>
+                <div className={`flex justify-center font-['Montserrat'] text-white text-[18px]`}>
                 <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[40px]`}>
                     Одинакові
                 </h2>
                 <div className={`flex justify-center mb-[30px]`}>
-                    <input type={`checkbox`} className={`peer relative h-5 w-5 shrink-0 appearance-none rounded-md border after:absolute after:left-0 after:top-0 after:h-full after:w-full checked:bg-[url('img/galochka.svg')] checked:bg-no-repeat after:bg-center after:bg-no-repeat after:content-[''] hover:ring hover:ring-gray-300 focus:outline-none`} name={`staticIp`} id={``}><label className={`text-white pl-[10px] font-['Montserrat'] font-normal`} for={`staticIp`}>Хочу Прямий IP</label>
-                </div>
-                <div className={`flex justify-center`}>
-                    <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-['Montserrat'] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
-                </div>
-            </div>
-            <div className={`h-[573px] w-[350px] rounded-md bg-[#123853] mr-5`}>
-                <h2 className={`text-[#DC662D] font-['MontserratBold'] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]`}>
-                    1999
-                </h2>
-                <h2 className={`text-[#DC662D] font-['Montserrat'] font-normal text-[20px] justify-center flex pb-[72px]`}>
-                    грн/міс
-                </h2>
-
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[7px]`}>
-                    Швидкість
-                </h2>
-                <h2 className={`text-white font-['MontserratBold'] font-bold text-[36px] justify-center flex pb-[10px]`}>
-                    2000 Мегабіт
-                </h2>
-                <div className={`flex justify-center font-['Montserrat'] text-white text-[18px]`}><span className={`flex mr-[20px] `}><img src={`img/galochka.svg`} alt={``} className={`mr-2 `}>УКРАЇНА</span><span className={`flex ml-1.5`}><img src={`img/galochka.svg`} alt={``} className={`mr-2`}>СВІТ</span></div>
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[40px]`}>
-                    Одинакові
-                </h2>
-                <div className={`flex justify-center mb-[30px]`}>
-                    <input type={`checkbox`} className={`peer relative h-5 w-5 shrink-0 appearance-none rounded-md border after:absolute after:left-0 after:top-0 after:h-full after:w-full checked:bg-[url('img/galochka.svg')] checked:bg-no-repeat after:bg-center after:bg-no-repeat after:content-[''] hover:ring hover:ring-gray-300 focus:outline-none`} name={`staticIp`} id={``}><label className={`text-white pl-[10px] font-['Montserrat'] font-normal`} for={`staticIp`}>Хочу Прямий IP</label>
-                </div>
-                <div className={`flex justify-center`}>
-                    <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-['Montserrat'] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
-                </div>
-            </div>
-            <div className={`h-[573px] w-[350px] rounded-md bg-[#123853] mr-5`}>
-                <h2 className={`text-[#DC662D] font-['MontserratBold'] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]`}>
-                    1999
-                </h2>
-                <h2 className={`text-[#DC662D] font-['Montserrat'] font-normal text-[20px] justify-center flex pb-[72px]`}>
-                    грн/міс
-                </h2>
-
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[7px]`}>
-                    Швидкість
-                </h2>
-                <h2 className={`text-white font-['MontserratBold'] font-bold text-[36px] justify-center flex pb-[10px]`}>
-                    2000 Мегабіт
-                </h2>
-                <div className={`flex justify-center font-['Montserrat'] text-white text-[18px]`}><span className={`flex mr-[20px] `}><img src={`img/galochka.svg`} alt={``} className={`mr-2 `}>УКРАЇНА</span><span className={`flex ml-1.5`}><img src={`img/galochka.svg`} alt={``} className={`mr-2`}>СВІТ</span></div>
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[40px]`}>
-                    Одинакові
-                </h2>
-                <div className={`flex justify-center mb-[30px]`}>
-                    <input type={`checkbox`} className={`peer relative h-5 w-5 shrink-0 appearance-none rounded-md border after:absolute after:left-0 after:top-0 after:h-full after:w-full checked:bg-[url('img/galochka.svg')] checked:bg-no-repeat after:bg-center after:bg-no-repeat after:content-[''] hover:ring hover:ring-gray-300 focus:outline-none`} name={`staticIp`} id={``}><label className={`text-white pl-[10px] font-['Montserrat'] font-normal`} for={`staticIp`}>Хочу Прямий IP</label>
+                    <WhiteGreyIpCheck/>
                 </div>
                 <div className={`flex justify-center`}>
                     <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-['Montserrat'] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
                 </div>
             </div>
 
+            </div>
         </div>
 
 
 
-        <div className={`font-['MontserratBold'] font-semibold text-[42px] font-bold text-white flex items-center justify-center w-[1110px] mt-[120px]`}>
+        <div className={`font-['MontserratBold'] text-[42px] font-bold text-white flex items-center justify-center w-[1110px] mt-[120px]`}>
             <h1 className={`text-center w-[913px] flex items-center justify-center`}>Механіка тарифів та розрахунків</h1>
         </div>
 
         <div className={`font-['Montserrat'] font-normal text-white flex flex-col items-center justify-center w-[1110px] mt-[120px] mb-[120px]`}>
             <div className={`flex mb-[10px]`}>
-                <img src={`img/green_galochka.svg`} className={`shrink-0 self-start mr-[8px] mt-[2px]`}><p>При підключенні, Абоненту за замовчуванням надається внутрішня ІР-адреса.
-                    Всі тарифи безлімітні по трафіку Мир та Україна – немає поділу. Швидкість Входу та Виходу однакові.</p>
+                <Image src={green_galochka} alt='green_checkArrow' className={`shrink-0 self-start mr-[8px] mt-[2px]`}/>
+                <p>При підключенні, Абоненту за замовчуванням надається внутрішня ІР-адреса. Всі тарифи безлімітні по трафіку Мир та Україна – немає поділу. Швидкість Входу та Виходу однакові.</p>
             </div>
             <div className={`flex mb-[10px]`}>
-                <img src={`img/green_galochka.svg`} className={`shrink-0 self-start mr-[8px] mt-[2px]`}><p>Абонентна плата нараховується за календарний місяць та оплачується шляхом передоплати. Для безперервного користування послугою Абонент до 1-го числа кожного місяця вносить на свій особовий рахунок суму в розмірі абонентної плати та всіх замовлених додаткових послуг (рекомендуємо внести гроші за 3 дні до вказаної дати).</p>
+                <Image src={green_galochka} alt='green_checkArrow' className={`shrink-0 self-start mr-[8px] mt-[2px]`}/>
+                <p>Абонентна плата нараховується за календарний місяць та оплачується шляхом передоплати. Для безперервного користування послугою Абонент до 1-го числа кожного місяця вносить на свій особовий рахунок суму в розмірі абонентної плати та всіх замовлених додаткових послуг (рекомендуємо внести гроші за 3 дні до вказаної дати).</p>
             </div>
             <div className={`flex mb-[10px]`}>
-                <img src={`img/green_galochka.svg`} className={`shrink-0 self-start mr-[8px] mt-[2px]`}><p>Якщо Абонент не сплатив більше 40 днів від останнього дня надання послуг, його договір /ликовий рахунок блокується (дія тарифу, акцій, у яких Абонент брав участь, припиняється). Повторна активація договору платна - у розмірі вартості підключення на обраному тарифі.</p>
+                <Image src={green_galochka} alt='green_checkArrow' className={`shrink-0 self-start mr-[8px] mt-[2px]`}/>
+                <p>Якщо Абонент не сплатив більше 40 днів від останнього дня надання послуг, його договір /ликовий рахунок блокується (дія тарифу, акцій, у яких Абонент брав участь, припиняється). Повторна активація договору платна - у розмірі вартості підключення на обраному тарифі.</p>
             </div>
             <div className={`flex mb-[10px]`}>
-                <img src={`img/green_galochka.svg`} className={`shrink-0 self-start mr-[8px] mt-[2px]`}><p>Перехід на тариф Інтернет з меншою вартістю – 100 грн. разово тариф змінюється з 1 числа наступного місяця.
-                Перехід на тариф Інтернет із більшою вартістю – 45 грн. разово тариф змінюється з наступного робочого дня з перерахунком абонентної плати.
-                Увімкнення/вимкнення передплати Телебачення від МЕГОГО – безкоштовно.</p>
+                <Image src={green_galochka} alt='green_checkArrow' className={`shrink-0 self-start mr-[8px] mt-[2px]`}/>
+                <p>Перехід на тариф Інтернет з меншою вартістю – 100 грн. разово тариф змінюється з 1 числа наступного місяця. Перехід на тариф Інтернет із більшою вартістю – 45 грн. разово тариф змінюється з наступного робочого дня з перерахунком абонентної плати. Увімкнення/вимкнення передплати Телебачення від МЕГОГО – безкоштовно.</p>
             </div>
         </div>
 
@@ -337,10 +206,9 @@ const Body = () => {
             <h1 className={`font-['MontserratBold'] font-bold text-white mt-[50px] text-[42px] mb-[25px]`}>Простіше обговорити всі деталі по телефону?</h1>
             <p className={`font-['Montserrat'] font-normal text-white text-[24px]`}>Залишіть ваші контактні дані і ми <span className={`text-[#DC662D] font-semibold`}>передзвонимо</ span></p>
             <div className={`flex mt-[49px]`}>
-                <input type={`text`} className={`w-[310px] rounded-full bg-transparent border h-[60px] mr-[30px]`}>
-                <input type={`text`} className={`w-[310px] rounded-full bg-transparent border h-[60px] mr-[30px]`}>
+                <input type={`text`} className={`w-[310px] rounded-full bg-transparent border h-[60px] mr-[30px]`}/>
+                <input type={`text`} className={`w-[310px] rounded-full bg-transparent border h-[60px] mr-[30px]`}/>
                 <button type={`button`} className={`w-[310px] rounded-full bg-[#56AABF] h-[60px] text-white text-[18px] font-['Montserrat'] font-semibold`}>Зв'яжіться зі мною</button>
-
             </div>
         </div>
 
@@ -430,10 +298,10 @@ const Body = () => {
                 <div>
                     <h3 className={`border-b border-white border-solid font-semibold pb-[11px] mb-[8px]`}>Социальные сети</h3>
                     <div className={`flex`}>
-                        <a href={``}><img src={`img/1.svg`} alt={``}></a>
-                        <a href={``}><img src={`img/2.svg`} alt={``}></a>
-                        <a href={``}><img src={`img/3.svg`} alt={``}></a>
-                        <a href={``}><img src={`img/4.svg`} alt={``}></a>
+                        <a href={``}><Image src={_1} alt={``}/></a>
+                        <a href={``}><Image src={_2} alt={``}/></a>
+                        <a href={``}><Image src={_3} alt={``}/></a>
+                        <a href={``}><Image src={_4} alt={``}/></a>
                     </div>
                 </div>
             </div>
