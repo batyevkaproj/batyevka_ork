@@ -2,14 +2,12 @@ import WhiteGreyIpCheck from './WhiteGreyIpCheck';
 import galochka from '../../public/img/galochka.svg';
 import green_galochka from '../../public/img/green_galochka.svg';
 import Image from 'next/image';
+import Heading from './Heading';
 
 const Tarifs = () => {
     return ( 
     <>
-        <div className={`text-[42px] font-bold text-white flex items-center justify-center w-[1110px]`}>
-            <h1 className={`text-center w-[913px] flex items-center justify-center`}>Бізнес тарифи {`G-PON`}</h1>
-        </div>
-
+    <Heading text={`Бізнес тарифи "GPON"`}/>
         <div className={`h-[60px]`}></div>
         <div className={` text-[26px] font-bold text-white flex items-center justify-center w-[1110px]`}>
             <h1 className={`text-center w-[913px] flex items-center justify-center`}>Підключаємо ОПТИЧНИЙ кабель</h1>
@@ -56,13 +54,7 @@ const Tarifs = () => {
             </div>
         </div>
 
-
-       
-        
-
-        <div className={` text-[42px] font-bold text-white flex items-center justify-center w-[1110px] mt-[120px]`}>
-            <h1 className={`text-center w-[913px] flex items-center justify-center`}>Бизнес тарифы {`XG-PON`}</h1>
-        </div>
+        <Heading text={`Бизнес тарифы "XG-PON"`}/>
 
         <div className={`flex justify-center box-border pt-[60px]`}>
             <div className={`h-[573px] w-[350px] rounded-md bg-[#123853] mr-5`}>
@@ -100,13 +92,7 @@ const Tarifs = () => {
                 </div>
             </div>
         </div>
-
-
-
-        <div className={` text-[42px] font-bold text-white flex items-center justify-center w-[1110px] mt-[120px]`}>
-            <h1 className={`text-center w-[913px] flex items-center justify-center`}>Механіка тарифів та розрахунків</h1>
-        </div>
-
+        <Heading text={`Механіка тарифів та розрахунків`}/>
         <div className={` font-normal text-white flex flex-col items-center justify-center w-[1110px] mt-[120px] mb-[120px]`}>
             <div className={`flex mb-[10px]`}>
                 <Image src={green_galochka} alt='green_checkArrow' className={`shrink-0 self-start mr-[8px] mt-[2px]`}/>
