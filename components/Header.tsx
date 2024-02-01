@@ -94,7 +94,7 @@ const Header = () => {
             <Image src={rectangle} alt='rect'/>
             <Link href='#'  className={`text-white font-semibold  text-[13px]`}>Доступ  в Інтернет</Link>
             <Link href='#'  className={`max-[801px]:hidden text-white font-semibold  text-[13px]`}>Трансляції ТБ і футбола для закладів</Link>
-            <Link href='#'  className={`max-[1024px]:hidden text-white font-semibold  text-[13px]`}>Будівництво локальних мереж для офісів</Link>
+            <Link href='#'  className={`max-[1024px]:hidden text-white font-semibold  text-[13px]`}>Будівництво <br/> локальних мереж для офісів</Link>
             <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold  text-[13px]`}>Відео нагляд <br/> для бізнеса</Link>
             <Link href='#'  className={`text-white inline-flex font-semibold  text-[13px]`}>Всі послуги <Image src={all_services} className={`ml-2`} alt='All Services'/></Link>
         </div>

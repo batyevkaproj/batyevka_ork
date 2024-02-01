@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label"
 
 const WhiteGreyIpCheck = () => {
     return (
-        <>
+    <>
         <Checkbox />
         <Label htmlFor="WhiteGreyIpCheck">Хочу Прямий IP</Label>
     </>
