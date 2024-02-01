@@ -43,30 +43,30 @@ const Body = () => {
     <main className={`mx-auto w-[1110px] bg-[#0E2D43]`}>
         <div className={`h-[446px] w-[1110px] flex items-center justify-between`}>
             <div>
-                <h1 className={`font-['MontserratBold'] text-[60px] font-bold text-white`}>Інтернет <span className={`text-[#56AABF]`}>в офіс</span></h1>
+                <h1 className={` text-[60px] font-bold text-white`}>Інтернет <span className={`text-[#56AABF]`}>в офіс</span></h1>
                 <li className={`list-none text-white flex flex-col mb-[30px]`}>
                     <div className={`flex items-center mb-[15px]`}>
                       <span className={`box-border w-5 flex`}><Image src={infinity} className={`inline-flex`} alt='infinity'/></span>
-                      <ul className={`ml-2 font-['Montserrat'] font-normal`}>Безлімітні та необмежені тарифні плани</ul>
+                      <ul className={`ml-2  font-normal`}>Безлімітні та необмежені тарифні плани</ul>
                     </div>
                     
                     <div className={`flex items-center mb-[15px]`}>   
                     <span className={`box-border w-[20px] pl-[5px] flex justify-center self-start pt-[5px]`}><Image src={sign} className={`inline-flex`} alt={`sign`}/></span>
-                      <ul className={`ml-3 font-['Montserrat'] font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
+                      <ul className={`ml-3  font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
                     </div>
                     
                     <div className={`flex items-center`}>
                       <span className={`box-border w-5 flex justify-center self-start`}><Image src={cable} className={`inline-flex`} alt={`cable`}/></span>
-                      <ul className={`ml-2 font-['Montserrat'] font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
+                      <ul className={`ml-2  font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
                     </div>
                   </li>
-                <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-['Montserrat'] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
+                <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
             </div>
             <div>
                 <Image src={vector} alt='vector'/>
             </div>
         </div>
-        <div className={`font-['MontserratBold'] text-[42px] font-bold text-white flex items-center justify-center w-[1110px]`}>
+        <div className={` text-[42px] font-bold text-white flex items-center justify-center w-[1110px]`}>
             <h1 className={`text-center w-[913px] flex items-center justify-center`}>Ключові переваги для наших бізнес абонентів</h1>
         </div>
         <div className={`flex justify-between text-white`}>
@@ -76,24 +76,24 @@ const Body = () => {
                         <Image src={flash} alt={`flash`}/>
                         <div className={`flex flex-col w-[279px] ml-[42px]`}>
                             <span className={`relative w-[43px] h-[3px] right-14 top-14 bg-white`}></span>
-                            <h3 className={`font-['MontserratBold'] text-[24px] mt-10`}>Підключаємо за добу</h3>
-                            <p className={`font-['Montserrat'] font-normal h-[126px] flex items-center leading-[24px]`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
+                            <h3 className={` text-[24px] mt-10`}>Підключаємо за добу</h3>
+                            <p className={` font-normal h-[126px] flex items-center leading-[24px]`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
                         </div>
                     </div>
                     <div className={`flex items-center h-[251px]`}>
                         <Image src={money} alt={`money`}/>
                         <div className={`flex flex-col w-[279px] ml-[42px]`}>
                             <span className={`relative w-[43px] h-[3px] right-14 top-14 bg-white`}></span>
-                            <h3 className={`font-['MontserratBold'] text-[24px] mt-10`}>Найбільш адекватні ціни</h3>
-                            <p className={`font-['Montserrat'] font-normal h-[126px] flex items-center`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
+                            <h3 className={`text-[24px] mt-10`}>Найбільш адекватні ціни</h3>
+                            <p className={` font-normal h-[126px] flex items-center`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
                         </div>
                     </div>
                     <div className={`flex items-center h-[251px]`}>
                         <Image src={schema} alt={``} className={``}/>
                         <div className={`flex flex-col w-[279px] ml-[42px]`}>
                             <span className={`relative w-[43px] h-[3px] right-14 top-14 bg-white`}></span>
-                            <h3 className={`font-['MontserratBold'] text-[24px] mt-10`}>Надійність та стабільність</h3>
-                            <p className={`font-['Montserrat'] font-normal h-[126px] flex items-center`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
+                            <h3 className={`text-[24px] mt-10`}>Надійність та стабільність</h3>
+                            <p className={` font-normal h-[126px] flex items-center`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
                         </div>
                     </div>
                 </div>
@@ -104,24 +104,24 @@ const Body = () => {
                         <Image src={docks} alt={``} className={``}/>
                         <div className={`flex flex-col w-[279px] ml-[42px]`}>
                             <span className={`relative w-[43px] h-[3px] right-14 top-14 bg-white`}></span>
-                            <h3 className={`font-['MontserratBold'] text-[24px] mt-10`}>Якісний бухгалтерський супровід</h3>
-                            <p className={`font-['Montserrat'] font-normal h-[126px] flex items-center`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
+                            <h3 className={`text-[24px] mt-10`}>Якісний бухгалтерський супровід</h3>
+                            <p className={` font-normal h-[126px] flex items-center`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
                         </div>
                     </div>
                     <div className={`flex items-center h-[251px]`}>
                         <Image src={speed} alt={`speed`} className={``}/>
                         <div className={`flex flex-col w-[279px] ml-[42px]`}>
                             <span className={`relative w-[43px] h-[3px] right-14 top-14 bg-white`}></span>
-                            <h3 className={`font-['MontserratBold'] text-[24px] mt-10`}>Найкраща швидкість</h3>
-                            <p className={`font-['Montserrat'] font-normal h-[126px] flex items-center`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
+                            <h3 className={`text-[24px] mt-10`}>Найкраща швидкість</h3>
+                            <p className={` font-normal h-[126px] flex items-center`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
                         </div>
                     </div>
                     <div className={`flex items-center h-[251px]`}>
                         <Image src={oper} alt={`oper`} className={``}/>
                         <div className={`flex flex-col w-[279px] ml-[42px]`}>
                             <span className={`relative w-[43px] h-[3px] right-14 top-14 bg-white`}></span>
-                            <h3 className={`font-['MontserratBold'] text-[24px] mt-10`}>Підтримка</h3>
-                            <p className={`font-['Montserrat'] font-normal h-[126px] flex items-center`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
+                            <h3 className={` text-[24px] mt-10`}>Підтримка</h3>
+                            <p className={` font-normal h-[126px] flex items-center`}>Підключаємо наступного дня, після подання заявки без попереднього укладання документів.</p>
                         </div>
                     </div>
                 </div>
@@ -132,17 +132,17 @@ const Body = () => {
         </div>
 
         <div className={`h-[60px]`}></div>
-        <div className={`font-['MontserratBold'] text-[26px] font-bold text-white flex items-center justify-center w-[1110px]`}>
+        <div className={` text-[26px] font-bold text-white flex items-center justify-center w-[1110px]`}>
             <h1 className={`text-center w-[913px] flex items-center justify-center`}>Підключаємо ОПТИЧНИЙ кабель</h1>
         </div>
-        <div className={`font-['Montserrat'] text-[24px] font-bold text-white flex items-center justify-center w-[1110px]`}>
+        <div className={` text-[24px] font-bold text-white flex items-center justify-center w-[1110px]`}>
             <h1 className={`text-center w-[913px] flex items-center justify-center`}>Всього за<span className={` text-[#56AABF] px-[6px]`}>699</span>грн</h1>
         </div>
 
 
         <div className={`flex justify-center box-border pt-[60px]`}>
             <div className={`h-[573px] w-[350px] rounded-md bg-[#123853] mr-5`}>
-                <h2 className={`text-[#DC662D] font-['MontserratBold'] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]`}>
+                <h2 className={`text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]`}>
                     1999
                 </h2>
                 <h2 className={`text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]`}>
@@ -152,7 +152,7 @@ const Body = () => {
                 <h2 className={`text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]`}>
                     Швидкість
                 </h2>
-                <h2 className={`text-white font-['MontserratBold'] font-bold text-[36px] justify-center flex pb-[10px]`}>
+                <h2 className={`text-white  font-bold text-[36px] justify-center flex pb-[10px]`}>
                     2000 Мегабіт
                 </h2>
                 <div className={`flex justify-center text-white text-[18px]`}>
@@ -165,14 +165,14 @@ const Body = () => {
                         СВІТ
                     </span>
                 </div>
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[40px]`}>
+                <h2 className={`text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[40px]`}>
                     Одинакові
                 </h2>
                 <div className={`flex justify-center mb-[30px]`}>
                 <WhiteGreyIpCheck/>
                 </div>
                 <div className={`flex justify-center`}>
-                    <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-['Montserrat'] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
+                    <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
                 </div>
             </div>
         </div>
@@ -181,47 +181,54 @@ const Body = () => {
        
         
 
-        <div className={`font-['MontserratBold'] text-[42px] font-bold text-white flex items-center justify-center w-[1110px] mt-[120px]`}>
+        <div className={` text-[42px] font-bold text-white flex items-center justify-center w-[1110px] mt-[120px]`}>
             <h1 className={`text-center w-[913px] flex items-center justify-center`}>Бизнес тарифы {`XG-PON`}</h1>
         </div>
 
         <div className={`flex justify-center box-border pt-[60px]`}>
             <div className={`h-[573px] w-[350px] rounded-md bg-[#123853] mr-5`}>
-                <h2 className={`text-[#DC662D] font-['MontserratBold'] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]`}>
+                <h2 className={`text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]`}>
                     1999
                 </h2>
-                <h2 className={`text-[#DC662D] font-['Montserrat'] font-normal text-[20px] justify-center flex pb-[72px]`}>
+                <h2 className={`text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]`}>
                     грн/міс
                 </h2>
 
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[7px]`}>
+                <h2 className={`text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]`}>
                     Швидкість
                 </h2>
-                <h2 className={`text-white font-['MontserratBold'] font-bold text-[36px] justify-center flex pb-[10px]`}>
+                <h2 className={`text-white  font-bold text-[36px] justify-center flex pb-[10px]`}>
                     2000 Мегабіт
                 </h2>
-                <div className={`flex justify-center font-['Montserrat'] text-white text-[18px]`}>
-                <h2 className={`text-[#56AABF] font-['Montserrat'] font-semibold text-[18px] justify-center flex pb-[40px]`}>
+                <div className={`flex justify-center text-white text-[18px]`}>
+                    <span className={`flex mr-[20px] `}>
+                        <Image src={galochka} alt={`galochka`} className={`mr-2 `}/>
+                        УКРАЇНА
+                    </span>
+                    <span className={`flex ml-1.5`}>
+                    <Image src={galochka} alt={`galochka`} className={`mr-2`}/>
+                        СВІТ
+                    </span>
+                </div>
+                <h2 className={`text-[#56AABF]  font-semibold text-[18px] justify-center flex pb-[40px]`}>
                     Одинакові
                 </h2>
                 <div className={`flex justify-center mb-[30px]`}>
-                    <WhiteGreyIpCheck/>
+                <WhiteGreyIpCheck/>
                 </div>
                 <div className={`flex justify-center`}>
-                    <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-['Montserrat'] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
+                    <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Прдключення</button>
                 </div>
-            </div>
-
             </div>
         </div>
 
 
 
-        <div className={`font-['MontserratBold'] text-[42px] font-bold text-white flex items-center justify-center w-[1110px] mt-[120px]`}>
+        <div className={` text-[42px] font-bold text-white flex items-center justify-center w-[1110px] mt-[120px]`}>
             <h1 className={`text-center w-[913px] flex items-center justify-center`}>Механіка тарифів та розрахунків</h1>
         </div>
 
-        <div className={`font-['Montserrat'] font-normal text-white flex flex-col items-center justify-center w-[1110px] mt-[120px] mb-[120px]`}>
+        <div className={` font-normal text-white flex flex-col items-center justify-center w-[1110px] mt-[120px] mb-[120px]`}>
             <div className={`flex mb-[10px]`}>
                 <Image src={green_galochka} alt='green_checkArrow' className={`shrink-0 self-start mr-[8px] mt-[2px]`}/>
                 <p>При підключенні, Абоненту за замовчуванням надається внутрішня ІР-адреса. Всі тарифи безлімітні по трафіку Мир та Україна – немає поділу. Швидкість Входу та Виходу однакові.</p>
@@ -241,18 +248,18 @@ const Body = () => {
         </div>
 
 
-        <div className={`font-['Montserrat'] font-normal text-white flex flex-col items-center w-[1110px] h-[326px] bg-[#123853] mb-[120px]`}>
-            <h1 className={`font-['MontserratBold'] font-bold text-white mt-[50px] text-[42px] mb-[25px]`}>Простіше обговорити всі деталі по телефону?</h1>
-            <p className={`font-['Montserrat'] font-normal text-white text-[24px]`}>Залишіть ваші контактні дані і ми <span className={`text-[#DC662D] font-semibold`}>передзвонимо</ span></p>
+        <div className={` font-normal text-white flex flex-col items-center w-[1110px] h-[326px] bg-[#123853] mb-[120px]`}>
+            <h1 className={` font-bold text-white mt-[50px] text-[42px] mb-[25px]`}>Простіше обговорити всі деталі по телефону?</h1>
+            <p className={` font-normal text-white text-[24px]`}>Залишіть ваші контактні дані і ми <span className={`text-[#DC662D] font-semibold`}>передзвонимо</ span></p>
             <div className={`flex mt-[49px]`}>
                 <input type={`text`} className={`w-[310px] rounded-full bg-transparent border h-[60px] mr-[30px]`}/>
                 <input type={`text`} className={`w-[310px] rounded-full bg-transparent border h-[60px] mr-[30px]`}/>
-                <button type={`button`} className={`w-[310px] rounded-full bg-[#56AABF] h-[60px] text-white text-[18px] font-['Montserrat'] font-semibold`}>Зв'яжіться зі мною</button>
+                <button type={`button`} className={`w-[310px] rounded-full bg-[#56AABF] h-[60px] text-white text-[18px]  font-semibold`}>Зв'яжіться зі мною</button>
             </div>
         </div>
 
 
-        <div className={`font-['Montserrat'] font-normal text-white flex flex-col w-[1110px] mb-[120px]`}>
+        <div className={` font-normal text-white flex flex-col w-[1110px] mb-[120px]`}>
             <h1 className={`font-semibold`}>Про компанію</h1>
             <p className={`mb-5`}>Компанія Batyevka.NET - це надійний постачальник високоякісного інтернету, який перевірений роками. Ми надаємо послуги тисячам задоволених городян, успішно зарекомендувавши себе як хорошого, стабільного провайдера і спеціалізуємося на підключенні до телебачення та Internet.</p>
             <p className={`mb-5`}>Batyevka.NET - інтернет провайдер, який стійко витримує жорстку конкуренцію столиці і при цьому зберігає умови лояльної цінової політики, стосовно своїх клієнтів. Ми працюємо як з фізичними, так і юридичними особами і наші тарифи доступні для всіх мешканців міста. Ми завжди відкриті для співробітництва та готові надати широкий пакет послуг кожному. Наш клієнт - це наш друг, тому ми працюємо так, щоб підключити інтернет у Києві було для вас максимально просто. Наша команда — це команда професіоналів своєї справи, які готові надати безперебійний доступ до всесвітньої мережі з будь-якої точки міста в режимі 24/7. Наша головна мета - задоволений замовник, тому ми знаємо, що таке індивідуальний підхід до кожного.</p>
@@ -273,7 +280,7 @@ const Body = () => {
     </main>
 
     <div className={`bg-[#0E2D43] shadow-[0_4px_29px_0_rgba(8,35,27)]`}>
-        <div className={`mx-auto w-[1110px] pt-[60px] grid grid-cols-5 text-white gap-4 font-['Montserrat'] font-normal leading-[30px]`}>
+        <div className={`mx-auto w-[1110px] pt-[60px] grid grid-cols-5 text-white gap-4  font-normal leading-[30px]`}>
             <div>
                 <div>
                     <h3 className={`border-b border-white border-solid font-semibold pb-[11px] mb-[8px]`}>Для квартир</h3>

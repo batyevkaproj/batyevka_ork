@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Montserrat } from "next/font/google";
 import localFont from '@next/font/local'
 
 
@@ -13,12 +12,19 @@ const montserrat = localFont({
   variable: '--font-montserrat'
 })
 
+const montserratBold = localFont({
+  src: [
+    {
+      path: '../public/fonts/Montserrat/Montserrat-Bold.ttf'
+    }
+  ],
+  variable: '--font-montserrat'
+})
+
 export const metadata: Metadata = {
   title: "Батиївка для бізнесу",
   description: "Відкрийте для себе можливості швідкісного інтернету від Батиївки для бізнесу"
 };
-
-// Montserrat
 
 export default function RootLayout({ children }: Readonly<{
   children: React.ReactNode;

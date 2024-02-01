@@ -1,15 +1,11 @@
-import { Input } from "@/components/ui/input"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 
 
 const WhiteGreyIpCheck = () => {
     return (
         <>
-{/* <input
-    type={`checkbox`}
-    className={``}
-    name={`staticIp`} id={``}/> */}
-        <Input type="chekbox"/>
+        <Checkbox />
         <Label htmlFor="WhiteGreyIpCheck">Хочу Прямий IP</Label>
     </>
      );
