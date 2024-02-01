@@ -14,7 +14,7 @@ import all_services from '../public/img/all_services.svg';
 
 const Header = () => {
     return (
-        <>
+        <header>
         <div className={`flex justify-between items-center bg-[#56AABF] h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] min-[3644px]:text-[27px] max-[720px]:bg-[#0E2D43]`}>
             <nav className={`space-x-4 ml-[50px] text-white max-[720px]:hidden`}>
                 <Link href='#'>Акції</Link>
@@ -107,7 +107,7 @@ const Header = () => {
             <button className={`bg-[#DC662D] mt-5 text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80]`}>Заявка на
                 підключення</button>
         </div>
-        </>
+        </header>
     );
 }
 

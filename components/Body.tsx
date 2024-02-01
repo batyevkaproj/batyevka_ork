@@ -19,7 +19,6 @@ import _4 from '../public/img/4.svg';
 
 const Body = () => {
     return ( 
-        <>
 <body className={`bg-[#0E2D43]`}>
 
     <div id={`mobile-modal`} className={`hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full`}>
@@ -231,10 +230,6 @@ const Body = () => {
             <p className={`mb-5`}>Використання маршрутизаторів Cisco дають можливість контролювати трафік, забезпечуючи абонентів максимальну швидкість підключення Internet.</p>
             <p className={`mb-5`}>Якщо у вас виникли питання, ви завжди можете звернутися за консультацією Online, або зателефонувавши до нас по одному з телефонів, вказаних у розділі «контакти». Бажаєте стати нашим новим абонентом? Звертайтесь, ми завжди радо зустрічаємо нових клієнтів!</p>
         </div>
-
-
-
-
     </main>
 
     <div className={`bg-[#0E2D43] shadow-[0_4px_29px_0_rgba(8,35,27)]`}>
@@ -311,7 +306,6 @@ const Body = () => {
         
     </div>
 </body>
-        </> 
     );
 }
  
