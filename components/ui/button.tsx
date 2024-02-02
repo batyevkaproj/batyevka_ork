@@ -18,7 +18,8 @@ const buttonVariants = cva(
           'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        batyevka: 'bg-batyevka text-batyevka-foreground hover:bg-batyevka/90'
+        batyevka: 'bg-batyevka text-batyevka-foreground hover:bg-batyevka/90',
+        topburger: 'bg-[#56AABF] w-[66.86px] h-[60px] rounded-sm relative ml-[30px] min-[801px]:hidden striped-box  max-[720px]:h-[35px] max-[720px]:w-[39px] cursor-pointer'
       },
       size: {
         default: 'h-10 px-4 py-2',

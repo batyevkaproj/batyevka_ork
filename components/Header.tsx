@@ -11,6 +11,8 @@ import gear from '../public/img/gear.svg';
 import bandit_ban from '../public/img/bandit-ban.svg';
 import rectangle from '../public/img/rectangle.svg';
 import all_services from '../public/img/all_services.svg';
+import MobileModal from '@/components/MobileModal';
+
 
 const Header = () => {
     return (
@@ -80,11 +82,7 @@ const Header = () => {
                 </div>
                 <button className={`bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] max-[779px]:hidden`}>
                     Заявка на підключення</button>
-                <Link href='#'  className={`bg-[#56AABF] w-[66.86px] h-[60px] rounded-sm relative ml-[30px] min-[801px]:hidden striped-box  max-[720px]:h-[35px] max-[720px]:w-[39px] cursor-pointer`} id={`burger`}>
-                    <span className={`absolute inset-y-1/4 h-[3.43px] w-[60%] bg-white ml-3.5 max-[720px]:ml-2`}></span>
-                    <span className={`absolute inset-y-2/4 h-[4px] w-[60%] bg-white ml-3.5  max-[720px]:ml-2`}></span>
-                    <span className={`absolute inset-y-3/4 h-[3.43px] w-[60%] bg-white ml-3.5  max-[720px]:ml-2`}></span>
-                </Link>
+                    <MobileModal />
             </nav>
         </div>
         <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg mx-8 max-[720px]:hidden`}>
