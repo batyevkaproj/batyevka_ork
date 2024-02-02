@@ -1,8 +1,29 @@
-import Image from "next/image";
-import Header from "@/components/Header";
+import React from 'react'
+import Header from '@/components/Header'
+
+import Tarifs from '@/components/business-page/Tarifs';
+import ContactForm from '@/components/business-page/ContactForm';
+import InfoBlock from '@/components/business-page/InfoBlock';
+import Advantages from '@/components/business-page/Advantages';
+import Slider from '@/components/business-page/Slider';
+import Heading from '@/components/Heading';
+import Footer from '@/components/Footer';
+
 
 export default function Home() {
   return (
-    <Header />
-      );
+    <>
+      <Header />
+      <main className={`mx-auto w-[1110px] bg-[#0E2D43]`}>
+        <Slider />
+        <Heading text={'Ключові переваги для наших бізнес абонентів'}></Heading>
+        <Advantages />
+        <Tarifs />
+        <ContactForm />
+        <InfoBlock />
+      </main>
+      <Footer />
+
+    </>
+  )
 }
