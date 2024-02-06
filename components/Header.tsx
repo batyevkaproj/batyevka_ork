@@ -53,7 +53,7 @@ const Header = () => {
         <div className={`flex justify-between items-center h-[70px] my-[30px] max-[720px]:h-[50px] max-[720px]:my-0`}>
             <nav className={`flex items-center space-x-4 ml-[50px] min-w-max max-[720px]:ml-[20px]`}>
                 <Link href='#'  className={``}>
-                    <Image src={logo} width={158} height={1} className={`flex-shrink-0 max-[720px]:w-[158px]`} alt={'ArrowDown'}/>
+                    <Image src={logo} height={1} className={`flex-shrink-0 max-[720px]:w-[158px] min-[2430px]:h-[70px]  min-[3644px]:h-[104 px] min-[2430px]:h-[70px] min-[2430px]:w-[403px] min-[3644px]:h-[104 px]`} alt={'Batyevka logo'}/>
                 </Link>
                 <Link href='#'  className={`max-[1666px]:hidden`}>
                     <Image src={bandit_ban} className={`min-w-full`} alt={'ArrowDown'}/>
