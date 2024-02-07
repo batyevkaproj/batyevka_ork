@@ -56,28 +56,28 @@ const Header = () => {
                     <Image src={logo} height={1} className={`flex-shrink-0 max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px] min-[3644px]:h-[104 px]`} alt={'Batyevka logo'}/>
                 </Link>
                 <Link href='#'  className={`max-[1666px]:hidden`}>
-                    <Image src={bandit_ban} className={`min-w-full`} alt={'ArrowDown'}/>
+                    <Image src={bandit_ban} className={`min-w-full`} alt={'bandit_ban'}/>
                 </Link>
             </nav>
             <Link href='#'  className={`text-[#51B18B] min-[1280px]:hidden max-[801px]:hidden`}>
-                <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}/>
+                <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'wallet'}/>
             </Link>
             <Link href='#'  className={`text-[#56AABF] min-[1280px]:hidden max-[801px]:hidden`}>
-                <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}/>
+                <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}/>
             </Link>
             <Link href='#'  className={`text-[#5984B3] min-[1280px]:hidden max-[801px]:hidden`}>
-                <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}/>
+                <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'gear'}/>
             </Link>
             <nav className={`mr-[50px] max-[720px]:mr-[20px] flex items-center`}>
                 <div className={`flex items-center max-[1280px]:hidden mr-[76px] font-semibold`}>
                     <Link href='#'  className={`text-[#51B18B] flex items-center`}>
-                        <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}></Image><span className={`ml-[15px]`}>Оплата</span>
+                        <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'wallet'}></Image><span className={`ml-[15px]`}>Оплата</span>
                     </Link>
                     <Link href='#'  className={`text-[#56AABF] flex items-center`}>
-                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}></Image><span className={`ml-[15px]`}>Підтримка</span>
+                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px]`}>Підтримка</span>
                     </Link>
                     <Link href='#'  className={`text-[#5984B3] flex items-center`}>
-                        <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}></Image><span className={`ml-[15px]`}>Опції</span>
+                        <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'gear'}></Image><span className={`ml-[15px]`}>Опції</span>
                     </Link>
                 </div>
                 <button className={`bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] max-[779px]:hidden`}>
