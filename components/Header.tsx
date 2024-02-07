@@ -56,7 +56,7 @@ const Header = () => {
                     <Image src={logo} height={1} className={`flex-shrink-0 max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px] min-[3644px]:h-[104 px]`} alt={'Batyevka logo'}/>
                 </Link>
                 <Link href='#'  className={`max-[1666px]:hidden`}>
-                    <Image src={bandit_ban} className={`min-w-full`} alt={'bandit_ban'}/>
+                    <Image src={bandit_ban} className={`min-w-full min-[2430px]:h-[92px] min-[2430px]:w-[590px]`} alt={'bandit_ban'}/>
                 </Link>
             </nav>
             <Link href='#'  className={`text-[#51B18B] min-[1280px]:hidden max-[801px]:hidden`}>
