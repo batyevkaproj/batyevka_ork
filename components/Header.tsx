@@ -50,51 +50,51 @@ const Header = () => {
             </nav>
         </div>
 
-        <div className={`flex justify-between items-center h-[70px] my-[30px] max-[720px]:h-[50px] max-[720px]:my-0`}>
+        <div className={`flex justify-between items-center h-[70px] my-[30px] max-[720px]:h-[50px] max-[720px]:my-0 min-[2430px]:h-[92px] min-[2430px]:my-[40px]`}>
             <nav className={`flex items-center space-x-4 ml-[50px] min-w-max max-[720px]:ml-[20px]`}>
                 <Link href='#'  className={``}>
-                    <Image src={logo} width={158} height={1} className={`flex-shrink-0 max-[720px]:w-[158px]`} alt={'ArrowDown'}/>
+                    <Image src={logo} height={1} className={`flex-shrink-0 max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px] min-[3644px]:h-[104 px]`} alt={'Batyevka logo'}/>
                 </Link>
                 <Link href='#'  className={`max-[1666px]:hidden`}>
-                    <Image src={bandit_ban} className={`min-w-full`} alt={'ArrowDown'}/>
+                    <Image src={bandit_ban} className={`min-w-full min-[2430px]:h-[92px] min-[2430px]:w-[590px]`} alt={'bandit_ban'}/>
                 </Link>
             </nav>
             <Link href='#'  className={`text-[#51B18B] min-[1280px]:hidden max-[801px]:hidden`}>
-                <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}/>
+                <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'wallet'}/>
             </Link>
             <Link href='#'  className={`text-[#56AABF] min-[1280px]:hidden max-[801px]:hidden`}>
-                <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}/>
+                <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}/>
             </Link>
             <Link href='#'  className={`text-[#5984B3] min-[1280px]:hidden max-[801px]:hidden`}>
-                <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}/>
+                <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'gear'}/>
             </Link>
             <nav className={`mr-[50px] max-[720px]:mr-[20px] flex items-center`}>
                 <div className={`flex items-center max-[1280px]:hidden mr-[76px] font-semibold`}>
                     <Link href='#'  className={`text-[#51B18B] flex items-center`}>
-                        <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}></Image><span className={`ml-[15px]`}>Оплата</span>
+                        <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'wallet'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Оплата</span>
                     </Link>
                     <Link href='#'  className={`text-[#56AABF] flex items-center`}>
-                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}></Image><span className={`ml-[15px]`}>Підтримка</span>
+                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
                     </Link>
                     <Link href='#'  className={`text-[#5984B3] flex items-center`}>
-                        <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'ArrowDown'}></Image><span className={`ml-[15px]`}>Опції</span>
+                        <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'gear'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Опції</span>
                     </Link>
                 </div>
-                <button className={`bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] max-[779px]:hidden`}>
+                <button className={`bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] max-[779px]:hidden min-[2430px]:text-[21px] min-[2430px]:h-[78px] min-[2430px]:w-[354px]`}>
                     Заявка на підключення</button>
                     <MobileModal />
             </nav>
         </div>
-        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg mx-8 max-[720px]:hidden`}>
-            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold  text-[13px]`}>Для багатоповерхівок</Link>
-            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold  text-[13px]`}>Приватним будинкам</Link>
-            <Link href='#'  className={`max-[1420px]:m-1 text-white font-semibold  text-[13px] `}>Для бізнеса</Link>
+        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg mx-8 max-[720px]:hidden min-[2430px]:h-[104px]`}>
+            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Для багатоповерхівок</Link>
+            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Приватним будинкам</Link>
+            <Link href='#'  className={`max-[1420px]:m-1 text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Для бізнеса</Link>
             <Image src={rectangle} alt='rect'/>
-            <Link href='#'  className={`text-white font-semibold  text-[13px]`}>Доступ  в Інтернет</Link>
-            <Link href='#'  className={`max-[801px]:hidden text-white font-semibold  text-[13px]`}>Трансляції ТБ і футбола для закладів</Link>
-            <Link href='#'  className={`max-[1024px]:hidden text-white font-semibold  text-[13px]`}>Будівництво <br/> локальних мереж для офісів</Link>
-            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold  text-[13px]`}>Відео нагляд <br/> для бізнеса</Link>
-            <Link href='#'  className={`text-white inline-flex font-semibold  text-[13px]`}>Всі послуги <Image src={all_services} className={`ml-2`} alt='All Services'/></Link>
+            <Link href='#'  className={`text-white font-semibold  text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Доступ  в Інтернет</Link>
+            <Link href='#'  className={`max-[801px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Трансляції ТБ і футболу <br/> для закладів</Link>
+            <Link href='#'  className={`max-[1024px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Будівництво <br/> локальних мереж для офісів</Link>
+            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Відеоспостереження <br/>для бізнесу</Link>
+            <Link href='#'  className={`text-white inline-flex font-semibold  text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Всі послуги <Image src={all_services} className={`ml-2`} alt='All Services'/></Link>
         </div>
         <div className={`flex items-center justify-center min-w-max flex-col min-[720px]:hidden mt-2`}>
             <div className={` bg-[#8B6CB0] w-[335px] h-[70px] flex items-center justify-center flex-col text-white rounded-md`}>
