@@ -85,16 +85,16 @@ const Header = () => {
                     <MobileModal />
             </nav>
         </div>
-        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg mx-8 max-[720px]:hidden min-[2430px]:text-[21px] min-[2430px]:h-[104px]`}>
-            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold  text-[13px]`}>Для багатоповерхівок</Link>
-            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold  text-[13px]`}>Приватним будинкам</Link>
-            <Link href='#'  className={`max-[1420px]:m-1 text-white font-semibold  text-[13px] `}>Для бізнеса</Link>
+        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg mx-8 max-[720px]:hidden min-[2430px]:h-[104px]`}>
+            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Для багатоповерхівок</Link>
+            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Приватним будинкам</Link>
+            <Link href='#'  className={`max-[1420px]:m-1 text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Для бізнеса</Link>
             <Image src={rectangle} alt='rect'/>
-            <Link href='#'  className={`text-white font-semibold  text-[13px]`}>Доступ  в Інтернет</Link>
-            <Link href='#'  className={`max-[801px]:hidden text-white font-semibold  text-[13px]`}>Трансляції ТБ і футбола для закладів</Link>
-            <Link href='#'  className={`max-[1024px]:hidden text-white font-semibold  text-[13px]`}>Будівництво <br/> локальних мереж для офісів</Link>
-            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold  text-[13px]`}>Відео нагляд <br/> для бізнеса</Link>
-            <Link href='#'  className={`text-white inline-flex font-semibold  text-[13px]`}>Всі послуги <Image src={all_services} className={`ml-2`} alt='All Services'/></Link>
+            <Link href='#'  className={`text-white font-semibold  text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Доступ  в Інтернет</Link>
+            <Link href='#'  className={`max-[801px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Трансляції ТБ і футболу <br/> для закладів</Link>
+            <Link href='#'  className={`max-[1024px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Будівництво <br/> локальних мереж для офісів</Link>
+            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Відеоспостереження <br/>для бізнесу</Link>
+            <Link href='#'  className={`text-white inline-flex font-semibold  text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Всі послуги <Image src={all_services} className={`ml-2`} alt='All Services'/></Link>
         </div>
         <div className={`flex items-center justify-center min-w-max flex-col min-[720px]:hidden mt-2`}>
             <div className={` bg-[#8B6CB0] w-[335px] h-[70px] flex items-center justify-center flex-col text-white rounded-md`}>
