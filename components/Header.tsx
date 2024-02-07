@@ -71,16 +71,16 @@ const Header = () => {
             <nav className={`mr-[50px] max-[720px]:mr-[20px] flex items-center`}>
                 <div className={`flex items-center max-[1280px]:hidden mr-[76px] font-semibold`}>
                     <Link href='#'  className={`text-[#51B18B] flex items-center`}>
-                        <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'wallet'}></Image><span className={`ml-[15px]`}>Оплата</span>
+                        <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'wallet'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Оплата</span>
                     </Link>
                     <Link href='#'  className={`text-[#56AABF] flex items-center`}>
-                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px]`}>Підтримка</span>
+                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
                     </Link>
                     <Link href='#'  className={`text-[#5984B3] flex items-center`}>
-                        <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'gear'}></Image><span className={`ml-[15px]`}>Опції</span>
+                        <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'gear'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Опції</span>
                     </Link>
                 </div>
-                <button className={`bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] max-[779px]:hidden`}>
+                <button className={`bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] max-[779px]:hidden min-[2430px]:text-[21px] min-[2430px]:h-[78px] min-[2430px]:w-[354px]`}>
                     Заявка на підключення</button>
                     <MobileModal />
             </nav>
