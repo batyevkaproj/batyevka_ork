@@ -19,7 +19,35 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         batyevka: 'bg-batyevka text-batyevka-foreground hover:bg-batyevka/90',
-        topburger: 'bg-[#56AABF] w-[66.86px] h-[60px] rounded-sm relative ml-[30px] min-[801px]:hidden striped-box  max-[720px]:h-[35px] max-[720px]:w-[39px] cursor-pointer'
+        topburger: 'bg-[#56AABF] w-[66.86px] h-[60px] rounded-sm relative ml-[30px] min-[801px]:hidden striped-box  max-[720px]:h-[35px] max-[720px]:w-[39px] cursor-pointer',
+        connect: 'bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] max-[779px]:hidden min-[2430px]:text-[21px] min-[2430px]:h-[78px] min-[2430px]:w-[354px]',
+        connectMobile: 'bg-[#DC662D] mt-5 text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80]',
+        cabinet: 'bg-[#0E2D43] text-white rounded-full border-[2px] border-solid border-[#56AABF] h-[60px] w-[270px]',
+        pay: 'bg-[#51B18B] text-white'
+
+        /* Button 
+
+position: absolute;
+width: 180px;
+height: 60px;
+right: 0px;
+top: calc(50% - 60px/2);
+
+background: #51B18B;
+box-shadow: 0px 4px 20px #51B18B;
+border-radius: 50px;
+
+position: absolute;
+width: 270px;
+height: 60px;
+right: 350px;
+top: calc(50% - 60px/2 - 10px);
+
+background: #0E2D43;
+border: 2px solid #56AABF;
+border-radius: 50px;
+*/
+
       },
       size: {
         default: 'h-10 px-4 py-2',

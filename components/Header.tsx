@@ -11,7 +11,9 @@ import gear from '../public/img/gear.svg';
 import bandit_ban from '../public/img/bandit-ban.svg';
 import rectangle from '../public/img/rectangle.svg';
 import all_services from '../public/img/all_services.svg';
+import connect from '../public/img/connect.svg';
 import MobileModal from '@/components/MobileModal';
+import { Button } from '@/components/ui/button';
 
 
 const Header = () => {
@@ -71,7 +73,7 @@ const Header = () => {
             <nav className={`mr-[50px] max-[720px]:mr-[20px] flex items-center`}>
                 <div className={`flex items-center max-[1280px]:hidden mr-[76px] font-semibold`}>
                     <Link href='#'  className={`text-[#51B18B] flex items-center`}>
-                        <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'wallet'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Оплата</span>
+                        <Button variant="pay"><Image src={wallet} className={`relative ml-[15px] w-8 h-8 `} alt={'wallet'}></Image> Оплата</Button>
                     </Link>
                     <Link href='#'  className={`text-[#56AABF] flex items-center`}>
                         <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
@@ -80,8 +82,12 @@ const Header = () => {
                         <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'gear'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Опції</span>
                     </Link>
                 </div>
-                <button className={`bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] max-[779px]:hidden min-[2430px]:text-[21px] min-[2430px]:h-[78px] min-[2430px]:w-[354px]`}>
-                    Заявка на підключення</button>
+                <Button variant="cabinet">
+                <Image src={connect} alt='connect' className={`pr-2`}></Image>
+                    Кабінет абонента
+                </Button>
+                <Button variant="connect">
+                    Заявка на підключення</Button>
                     <MobileModal />
             </nav>
         </div>
@@ -102,8 +108,8 @@ const Header = () => {
                 <p>Бандітский інтернет
                     Yahoo4it  не по-детски!</p>
             </div>
-            <button className={`bg-[#DC662D] mt-5 text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80]`}>Заявка на
-                підключення</button>
+            <Button variant="connectMobile">Заявка на
+                підключення</Button>
         </div>
         </header>
     );
