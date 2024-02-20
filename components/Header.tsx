@@ -6,6 +6,7 @@ import arrow_down from '../public/img/arrow_down.svg';
 import ket_small from '../public/img/ket_small.svg';
 import globe_small from '../public/img/globe_small.svg';
 import wallet from '../public/img/wallet.svg';
+import wallet_white from '../public/img/wallet_white.svg';
 import _247 from '../public/img/247.svg';
 import gear from '../public/img/gear.svg';
 import bandit_ban from '../public/img/bandit-ban.svg';
@@ -60,6 +61,19 @@ const Header = () => {
                 <Link href='#'  className={`max-[1666px]:hidden`}>
                     <Image src={bandit_ban} className={`min-w-full min-[2430px]:h-[92px] min-[2430px]:w-[590px]`} alt={'bandit_ban'}/>
                 </Link>
+
+                <div className={`flex items-center max-[1280px]:hidden mr-[76px] font-semibold`}>
+                    <Link href='#'  className={`text-[#51B18B] flex items-center`}>
+                    <Image src={wallet_white} className={`relative ml-[15px] w-8 h-8 fill-white`} alt={'wallet'}></Image>
+                        <Button variant="pay"> Оплата</Button>
+                    </Link>
+                    <Link href='#'  className={`text-[#56AABF] flex items-center`}>
+                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
+                    </Link>
+                    <Link href='#'  className={`text-[#5984B3] flex items-center`}>
+                        <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'gear'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Опції</span>
+                    </Link>
+                </div>
             </nav>
             <Link href='#'  className={`text-[#51B18B] min-[1280px]:hidden max-[801px]:hidden`}>
                 <Image src={wallet} className={`relative ml-[15px] w-8 h-8`} alt={'wallet'}/>
@@ -71,17 +85,6 @@ const Header = () => {
                 <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'gear'}/>
             </Link>
             <nav className={`mr-[50px] max-[720px]:mr-[20px] flex items-center`}>
-                <div className={`flex items-center max-[1280px]:hidden mr-[76px] font-semibold`}>
-                    <Link href='#'  className={`text-[#51B18B] flex items-center`}>
-                        <Button variant="pay"><Image src={wallet} className={`relative ml-[15px] w-8 h-8 `} alt={'wallet'}></Image> Оплата</Button>
-                    </Link>
-                    <Link href='#'  className={`text-[#56AABF] flex items-center`}>
-                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
-                    </Link>
-                    <Link href='#'  className={`text-[#5984B3] flex items-center`}>
-                        <Image src={gear} className={`relative ml-[15px] w-8 h-8`} alt={'gear'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Опції</span>
-                    </Link>
-                </div>
                 <Button variant="cabinet">
                 <Image src={connect} alt='connect' className={`pr-2`}></Image>
                     Кабінет абонента
