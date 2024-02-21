@@ -17,7 +17,10 @@ import MobileModal from '@/components/MobileModal';
 import { Button } from '@/components/ui/button';
 
 
+
 const Header = () => {
+
+
     return (
         <header>
         <div className={`flex justify-between items-center bg-[#56AABF] h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] min-[3644px]:text-[27px] max-[720px]:bg-[#0E2D43]`}>

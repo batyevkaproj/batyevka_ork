@@ -11,6 +11,8 @@ import Slider from '@/components/business-page/Slider';
 import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
 
+import Contact from '@/components/business-page/modals/Contact';
+
 import { useState } from 'react';
 
 
@@ -35,6 +37,7 @@ export default function Home() {
         fetch
       </button>
       <main className={`mx-auto w-[1110px] bg-[#0E2D43]`}>
+        <Contact/>
         <Slider />
         <Heading text={'Ключові переваги для наших бізнес абонентів'}></Heading>
         <Advantages />
