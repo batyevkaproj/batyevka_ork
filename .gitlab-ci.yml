@@ -18,3 +18,11 @@ deploy:
   script: 
     - ssh www-root@server.icstudio.online "bash batyevka.sh" -vvv
     - echo "Deployed"
+
+deploy-dev:
+  stage: deploy
+  only:
+    - development
+  script: 
+    - ssh www-root@server.icstudio.online "bash batyevka-dev.sh" -vvv
+    - echo "Deployed"
