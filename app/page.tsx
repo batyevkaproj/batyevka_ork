@@ -29,6 +29,7 @@ export default function Home() {
   const [lorem, setComment] = useState("lorem")
   //https://www.youtube.com/watch?v=wqHGLjuXuHo
   // const res = await fetch('https://api.api-ninjas.com/v1/loremipsum?paragraphs=1')
+  //https://medium.com/@a.pirus/create-a-modal-that-can-be-opened-from-anywhere-in-next-js-13-36f6d0ce1bcf
   const fetchComments = async () => {
     const response = await fetch('https://api.api-ninjas.com/v1/loremipsum?paragraphs=1')
     const data = await response.json()
@@ -42,7 +43,7 @@ export default function Home() {
       <div>
             {modal &&
                 <dialog
-                    className="fixed left-0 top-0 w-full h-full bg-black bg-opacity-50 z-50 overflow-auto backdrop-blur flex justify-center items-center">
+                    className="fixed left-0 top-0 w-full h-full bg-black overflow-auto backdrop-blur flex justify-center items-center">
                     <div className="bg-white m-auto p-8">
                         <div className="flex flex-col items-center">
                             <p>Modal content</p>
