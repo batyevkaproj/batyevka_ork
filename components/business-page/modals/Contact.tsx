@@ -1,11 +1,11 @@
 "use client"
 
-
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-
+import {useSearchParams, usePathname} from "next/navigation";
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -26,6 +26,10 @@ const formSchema = z.object({
 
 const Contact = () => {
 
+  const searchParams = useSearchParams();
+  const modal = searchParams.get("modal");
+  const pathname = usePathname();
+
     // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -41,8 +45,10 @@ const Contact = () => {
         console.log(values)
     }
 
-    return ( 
-        <div className="bg-[#133853] w-[620px] h-[461px] rounded-[10px]">
+    return (
+      <>
+      {modal &&
+        <div className="bg-[#133853] w-[620px] h-[461px] rounded-[10px] fixed z-50 inset-56">
             <h1>Передзвонимо через 30 секунд</h1>
             <p>Залиште свій номер телефону і чекайте дзвінка</p>
 
@@ -65,10 +71,16 @@ const Contact = () => {
           )}
         />
         <Button type="submit">Submit</Button>
+
+        <Link href={pathname}>
+          <button type="button" className="bg-red-500 text-white p-2">Close Modal</button>
+        </Link>
       </form>
-    </Form>
+      </Form>
 
         </div>
+          }
+          </>
      );
 }
  

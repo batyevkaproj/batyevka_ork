@@ -57,18 +57,18 @@ const Header = () => {
                     <Image src={arrow_down} width={4} height={4} className={`w-4 h-4`} alt={'ArrowDown'}/>
                     </div>
                 </Link>
-            <Link href='#'  className={`text-[#56AABF] min-[1280px]:hidden max-[801px]:hidden`}>
+            <Link href='#'  className={`text-[#56AABF] min-[1280px]:hidden max-[801px]:hidden h-[60px]`}>
                 <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}/>
             </Link>
-            <Link href='#'  className={`text-[#5984B3] min-[1280px]:hidden max-[801px]:hidden`}>
+            <Link href='#'  className={`text-[#5984B3] min-[1280px]:hidden max-[801px]:hidden h-[60px]`}>
                 <Image src={wrench} className={`relative ml-[15px] w-8 h-8`} alt={'wrench'}/>
             </Link>
 
                 <div className={`flex items-center max-[1280px]:hidden mr-[76px] font-semibold`}>
-                    <Link href='#'  className={`text-[#56AABF] flex items-center`}>
+                    <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px]`}>
                         <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
                     </Link>
-                    <Link href='#'  className={`text-[#5984B3] flex items-center`}>
+                    <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px]`}>
                         <Image src={wrench} className={`relative ml-[15px] w-8 h-8`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Обладнання</span>
                     </Link>
                     <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px]`}>
@@ -85,9 +85,11 @@ const Header = () => {
                 <Image src={connect} alt='connect' className={`pr-2`}></Image>
                     Кабінет абонента
                 </Button>
+                <Link href="?modal=true">
                 <Button variant="connect">
                     Заявка на підключення
                 </Button>
+                </Link>
                     <MobileModal />
             </nav>
         </div>
