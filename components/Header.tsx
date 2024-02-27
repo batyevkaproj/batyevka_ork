@@ -15,13 +15,11 @@ import rectangle from '../public/img/rectangle.svg';
 import all_services from '../public/img/all_services.svg';
 import connect from '../public/img/connect.svg';
 import wrench from '../public/img/wrench.svg'
-import MobileModal from '@/components/MobileModal';
 import { Button } from '@/components/ui/button';
 
 
 
 const Header = () => {
-
 
     return (
         <header>
@@ -49,26 +47,26 @@ const Header = () => {
                 <Link href='#'  className={``}>
                     <Image src={logo} height={1} className={`flex-shrink-0 max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px] min-[3644px]:h-[104 px]`} alt={'Batyevka logo'}/>
                 </Link>
-                <Link href='#'  className={`max-[1666px]:hidden`}>
+                <div className={`max-[1666px]:hidden`}>
                     {/* <Image src={bandit_ban} className={`min-w-full min-[2430px]:h-[92px] min-[2430px]:w-[590px]`} alt={'bandit_ban'}/> */}
-                    <div className='bg-[#8B6CB0] w-[275px] h-[60px] flex items-center justify-around'>
-                    <Image src={telephon} className={`relative ml-[15px] w-8 h-8`} alt={'phone'}/>
-                    0 800 30 32 30
-                    <Image src={arrow_down} width={4} height={4} className={`w-4 h-4`} alt={'ArrowDown'}/>
+                    <div className='bg-[#8B6CB0] w-[275px] h-[60px] flex items-center justify-center'>
+                    <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'}/>
+                        <a className='font-semibold text-white text-[24px] leading-[22px]' href={`tel:0800303230`}>0 800 30 32 30</a>
+                    <Image src={arrow_down} width={4} height={4} className={`w-[10px] h-[6px] ml-[12px]`} alt={'ArrowDown'}/>
                     </div>
+                </div>
+                <Link href='#'  className={`text-[#56AABF] min-[1280px]:hidden max-[801px]:hidden h-[60px]`}>
+                    <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}/>
                 </Link>
-            <Link href='#'  className={`text-[#56AABF] min-[1280px]:hidden max-[801px]:hidden h-[60px]`}>
-                <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}/>
-            </Link>
-            <Link href='#'  className={`text-[#5984B3] min-[1280px]:hidden max-[801px]:hidden h-[60px]`}>
-                <Image src={wrench} className={`relative ml-[15px] w-8 h-8`} alt={'wrench'}/>
-            </Link>
+                <Link href='#'  className={`text-[#5984B3] min-[1280px]:hidden max-[801px]:hidden h-[60px]`}>
+                    <Image src={wrench} className={`relative ml-[15px] w-8 h-8`} alt={'wrench'}/>
+                </Link>
 
                 <div className={`flex items-center max-[1280px]:hidden mr-[76px] font-semibold`}>
-                    <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px]`}>
+                    <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px] font-semibold`}>
                         <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
                     </Link>
-                    <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px]`}>
+                    <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px] font-semibold`}>
                         <Image src={wrench} className={`relative ml-[15px] w-8 h-8`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Обладнання</span>
                     </Link>
                     <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px]`}>
@@ -90,7 +88,6 @@ const Header = () => {
                     Заявка на підключення
                 </Button>
                 </Link>
-                    <MobileModal />
             </nav>
         </div>
         <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg mx-8 max-[720px]:hidden min-[2430px]:h-[104px]`}>
