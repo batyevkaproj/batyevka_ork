@@ -23,7 +23,7 @@ const Header = () => {
 
     return (
         <header>
-        <div className={`flex justify-between items-center bg-[#56AABF] h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] min-[3644px]:text-[27px] max-[720px]:bg-[#0E2D43]`}>
+        <div className={`flex justify-between items-center bg-[#56AABF] h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] min-[3644px]:text-[27px] max-[720px]:bg-[#0E2D43] px-[50px]`}>
             <nav className={`space-x-4 text-white max-[720px]:hidden`}>
                 <Link href='#'>Акції</Link>
                 <Link href='#'>Мапа покриття</Link>
@@ -42,7 +42,7 @@ const Header = () => {
             </nav>
         </div>
 
-        <div className={`flex justify-between items-center my-[30px] max-[720px]:h-[50px] max-[720px]:my-0 min-[2430px]:h-[92px]`}>
+        <div className={`flex justify-between items-center my-[30px] max-[720px]:h-[50px] max-[720px]:my-0 min-[2430px]:h-[92px] px-[50px]`}>
             <nav className={`flex items-center space-x-4 min-w-max max-[720px]:ml-[20px]`}>
                 <Link href='#'  className={``}>
                     <Image src={logo} height={1} className={`flex-shrink-0 max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px] min-[3644px]:h-[104 px]`} alt={'Batyevka logo'}/>
@@ -52,7 +52,7 @@ const Header = () => {
                     <div className='bg-[#8B6CB0] w-[275px] h-[60px] flex items-center justify-center'>
                     <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'}/>
                         <a className='font-semibold text-white text-[24px] leading-[22px]' href={`tel:0800303230`}>0 800 30 32 30</a>
-                    <Image src={arrow_down} width={4} height={4} className={`w-[10px] h-[6px] ml-[12px]`} alt={'ArrowDown'}/>тз
+                    <Image src={arrow_down} width={4} height={4} className={`w-[10px] h-[6px] ml-[12px]`} alt={'ArrowDown'}/>
                     </div>
                 </div>
                 <Link href='#'  className={`text-[#56AABF] min-[1280px]:hidden max-[801px]:hidden h-[60px]`}>
@@ -90,7 +90,7 @@ const Header = () => {
                 </Link>
             </nav>
         </div>
-        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg max-[720px]:hidden min-[2430px]:h-[104px]`}>
+        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg max-[720px]:hidden min-[2430px]:h-[104px] mx-[50px]`}>
             <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Для багатоповерхівок</Link>
             <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Приватним будинкам</Link>
             <Link href='#'  className={`max-[1420px]:m-1 text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Для бізнеса</Link>
