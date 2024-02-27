@@ -44,7 +44,7 @@ const Header = () => {
 
         <div className={`flex justify-between items-center my-[30px] max-[720px]:h-[50px] max-[720px]:my-0 min-[2430px]:h-[92px] px-[50px]`}>
             <nav className={`flex items-center space-x-4 min-w-max max-[720px]:ml-[20px]`}>
-                <Link href='#'  className={``}>
+                <Link href='#'  className={`mr-[17px]`}>
                     <Image src={logo} height={1} className={`flex-shrink-0 max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px] min-[3644px]:h-[104 px]`} alt={'Batyevka logo'}/>
                 </Link>
                 <div className={`max-[1666px]:hidden`}>
