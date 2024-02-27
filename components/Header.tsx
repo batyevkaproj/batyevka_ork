@@ -71,7 +71,7 @@ const Header = () => {
                     </Link>
                     <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px]`}>
                         <Button variant="pay">
-                        <Image src={wallet_white} className={`relative w-8 h-8 fill-white pr-[15px]`} alt={'wallet'}></Image>
+                        <Image src={wallet_white} className={`relative w-8 h-8 fill-white mr-[15px]`} alt={'wallet'}></Image>
                         Оплата
                         </Button>
                     </Link>

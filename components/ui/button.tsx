@@ -23,7 +23,13 @@ const buttonVariants = cva(
         connect: 'bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] max-[779px]:hidden min-[2430px]:text-[21px] min-[2430px]:h-[78px] min-[2430px]:w-[354px] ml-[15px]',
         connectMobile: 'bg-[#DC662D] mt-5 text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80]',
         cabinet: 'bg-[#0E2D43] text-white rounded-full border-[2px] border-solid border-[#56AABF] font-semibold h-[60px] w-[270px] ',
-        pay: 'bg-[#51B18B] text-white rounded-full font-semibold ml-[15px] w-[180px] h-[60px] '
+        pay: 'bg-[#51B18B] text-white rounded-full font-semibold ml-[15px] w-[180px] h-[60px] shadow-[0_4px_20px_0_#51B18B]'
+
+        /*
+        box-shadow: 0px 4px 20px 0px #51B18B;
+
+
+        */
       },
       size: {
         default: 'h-10 px-4 py-2',
