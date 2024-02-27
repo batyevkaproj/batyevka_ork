@@ -66,12 +66,12 @@ const Header = () => {
                     <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px] font-semibold`}>
                         <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
                     </Link>
-                    <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px] font-semibold`}>
-                        <Image src={wrench} className={`relative ml-[15px] w-8 h-8`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Обладнання</span>
+                    <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px] font-semibold ml-[20px]`}>
+                        <Image src={wrench} className={`relative w-8 h-8`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Обладнання</span>
                     </Link>
                     <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px]`}>
                         <Button variant="pay">
-                        <Image src={wallet_white} className={`relative w-8 h-8 fill-white mr-[15px]`} alt={'wallet'}></Image>
+                        <Image src={wallet_white} className={`relative w-7 h-7 fill-white mr-[15px]`} alt={'wallet'}></Image>
                         Оплата
                         </Button>
                     </Link>
