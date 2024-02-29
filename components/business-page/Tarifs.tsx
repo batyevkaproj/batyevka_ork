@@ -11,7 +11,8 @@ import galochka from '../../public/img/galochka.svg';
 import green_galochka from '../../public/img/green_galochka.svg';
 import Image from 'next/image';
 import Heading from '@/components/Heading';
-import OpticCable from "./OpticCable";
+import OpticCableReverse from "./OpticCableReverse";
+
 
 const Tarifs = () => {
     return (
@@ -67,6 +68,8 @@ const Tarifs = () => {
             
 
             <Heading text={`Бизнес тарифы "XG-PON"`} />
+
+            <OpticCableReverse></OpticCableReverse>
 
             <div className="flex justify-center box-border pt-[60px]">
                 <div className="h-[573px] w-[350px] rounded-md bg-[#123853] mr-5">
