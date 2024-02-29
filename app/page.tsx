@@ -12,10 +12,9 @@ import Advantages from '@/components/business-page/Advantages';
 import Slider from '@/components/business-page/Slider';
 import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
-
 import { useState } from 'react';
-
 import Contact from '@/components/business-page/modals/Contact';
+import OpticCable from '@/components/business-page/OpticCable';
 
 
 
@@ -33,7 +32,7 @@ export default function Home() {
   }
   return (
     <>
-
+      <OpticCable />
       <Contact/>
       <Header />
       <input type="text" value={lorem} onChange={(e) => setComment(e.target.value)} />
