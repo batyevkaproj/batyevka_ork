@@ -64,10 +64,10 @@ const Header = () => {
 
                 <div className={`flex items-center justify-between w-[532px] max-[1280px]:hidden mr-[76px] font-semibold`}>
                     <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px] font-semibold`}>
-                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
+                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Підтримка</span>
                     </Link>
                     <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px] font-semibold`}>
-                        <Image src={wrench} className={`relative w-8 h-8`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Обладнання</span>
+                        <Image src={wrench} className={`relative w-8 h-8`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Обладнання</span>
                     </Link>
                     <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px]`}>
                         <Button variant="pay">
