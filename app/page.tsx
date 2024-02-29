@@ -32,7 +32,7 @@ export default function Home() {
   }
   return (
     <>
-      <OpticCable />
+    
       <Contact/>
       <Header />
       <input type="text" value={lorem} onChange={(e) => setComment(e.target.value)} />
@@ -43,6 +43,8 @@ export default function Home() {
         <Slider />
         <Heading text={'Ключові переваги для наших бізнес абонентів'}></Heading>
         <Advantages />
+        <Heading text={`Бізнес тарифи "GPON"`} />
+        <OpticCable />
         <Tarifs />
         <ContactForm />
         <InfoBlock />

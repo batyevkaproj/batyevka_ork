@@ -11,12 +11,11 @@ import galochka from '../../public/img/galochka.svg';
 import green_galochka from '../../public/img/green_galochka.svg';
 import Image from 'next/image';
 import Heading from '@/components/Heading';
+import OpticCable from "./OpticCable";
 
 const Tarifs = () => {
     return (
         <>
-            <Heading text={`Бізнес тарифи "GPON"`} />
-
             <div className="h-[60px]"></div>
             <div className=" text-[26px] font-bold text-white flex items-center justify-center w-[1110px]">
                 <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо ОПТИЧНИЙ кабель</h1>
