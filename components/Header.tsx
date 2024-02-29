@@ -43,9 +43,9 @@ const Header = () => {
         </div>
 
         <div className={`flex justify-between items-center my-[30px] max-[720px]:h-[50px] max-[720px]:my-0 min-[2430px]:h-[92px] px-[50px]`}>
-            <nav className={`flex items-center space-x-4 min-w-max max-[720px]:ml-[20px]`}>
+            <nav className={`flex items-center space-x-4 max-[720px]:ml-[20px]`}>
                 <Link href='#'  className={`mr-[17px]`}>
-                    <Image src={logo} height={1} className={`flex-shrink-0 max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px] min-[3644px]:h-[104 px]`} alt={'Batyevka logo'}/>
+                    <Image src={logo} height={1} className={`flex-shrink-0 min-w-max max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px] min-[3644px]:h-[104 px]`} alt={'Batyevka logo'}/>
                 </Link>
                 <div className={`max-[1666px]:hidden`}>
                     {/* <Image src={bandit_ban} className={`min-w-full min-[2430px]:h-[92px] min-[2430px]:w-[590px]`} alt={'bandit_ban'}/> */}
@@ -62,11 +62,11 @@ const Header = () => {
                     <Image src={wrench} className={`relative ml-[15px] w-8 h-8`} alt={'wrench'}/>
                 </Link>
 
-                <div className={`flex items-center max-[1280px]:hidden mr-[76px] font-semibold`}>
+                <div className={`flex items-center justify-between min-w-[532px] max-[1280px]:hidden mr-[76px] font-semibold`}>
                     <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px] font-semibold`}>
                         <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
                     </Link>
-                    <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px] font-semibold ml-[20px]`}>
+                    <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px] font-semibold`}>
                         <Image src={wrench} className={`relative w-8 h-8`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Обладнання</span>
                     </Link>
                     <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px]`}>
@@ -80,7 +80,8 @@ const Header = () => {
 
             <nav className={`max-[720px]:mr-[20px] flex items-center`}>
                 <Button variant="cabinet">
-                <Image src={connect} alt='connect' className={`pr-2`}></Image>
+                <Image src={connect} alt='connect' className={`pr-2`}>
+                </Image>
                     Кабінет абонента
                 </Button>
                 <Link href="?modal=true">
