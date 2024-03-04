@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react';
-import Link from "next/link";
 
 import Header from '@/components/Header'
 import Tarifs from '@/components/business-page/Tarifs';
@@ -11,7 +10,6 @@ import Advantages from '@/components/business-page/Advantages';
 import Slider from '@/components/business-page/Slider';
 import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
-import Contact from '@/components/business-page/modals/Contact';
 
 
 
