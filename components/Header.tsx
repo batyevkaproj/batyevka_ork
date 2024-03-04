@@ -74,7 +74,7 @@ const Header = () => {
                         <Image src={wrench} className={`relative w-8 h-8`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Обладнання</span>
                     </Link>
                     <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px]`}>
-                        <Button variant="pay">
+                        <Button onClick={() => {onOpen("payment")}} variant="pay">
                         <Image src={wallet_white} className={`relative w-7 h-7 fill-white mr-[15px]`} alt={'wallet'}></Image>
                         Оплата
                         </Button>
