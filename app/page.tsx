@@ -10,8 +10,6 @@ import Advantages from '@/components/business-page/Advantages';
 import Slider from '@/components/business-page/Slider';
 import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
-import { useState } from 'react';
-import Contact from '@/components/business-page/modals/Contact';
 import OpticCable from '@/components/business-page/OpticCable';
 
 
