@@ -10,7 +10,9 @@ import Advantages from '@/components/business-page/Advantages';
 import Slider from '@/components/business-page/Slider';
 import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
-
+import { useState } from 'react';
+import Contact from '@/components/business-page/modals/Contact';
+import OpticCable from '@/components/business-page/OpticCable';
 
 
 
@@ -20,12 +22,11 @@ export default function Home() {
   const [lorem, setComment] = useState("lorem")
   //https://www.youtube.com/watch?v=wqHGLjuXuHo
   // const res = await fetch('https://api.api-ninjas.com/v1/loremipsum?paragraphs=1')
+  //https://medium.com/@a.pirus/create-a-modal-that-can-be-opened-from-anywhere-in-next-js-13-36f6d0ce1bcf
   const fetchComments = async () => {
     const response = await fetch('https://api.api-ninjas.com/v1/loremipsum?paragraphs=1')
     const data = await response.json()
     setComment(data)
-    console.log(data)
-
   }
   return (
     <>
@@ -34,6 +35,8 @@ export default function Home() {
         <Slider />
         <Heading text={'Ключові переваги для наших бізнес абонентів'}></Heading>
         <Advantages />
+        <Heading text={`Бізнес тарифи "GPON"`} />
+        <OpticCable/>
         <Tarifs />
         <ContactForm />
         <InfoBlock />

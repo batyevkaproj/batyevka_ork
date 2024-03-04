@@ -11,12 +11,12 @@ import galochka from '../../public/img/galochka.svg';
 import green_galochka from '../../public/img/green_galochka.svg';
 import Image from 'next/image';
 import Heading from '@/components/Heading';
+import OpticCableReverse from "./OpticCableReverse";
+
 
 const Tarifs = () => {
     return (
         <>
-            <Heading text={`Бізнес тарифи "GPON"`} />
-
             <div className="h-[60px]"></div>
             <div className=" text-[26px] font-bold text-white flex items-center justify-center w-[1110px]">
                 <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо ОПТИЧНИЙ кабель</h1>
@@ -68,6 +68,8 @@ const Tarifs = () => {
             
 
             <Heading text={`Бизнес тарифы "XG-PON"`} />
+
+            <OpticCableReverse></OpticCableReverse>
 
             <div className="flex justify-center box-border pt-[60px]">
                 <div className="h-[573px] w-[350px] rounded-md bg-[#123853] mr-5">
