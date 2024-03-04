@@ -1,3 +1,5 @@
+import { useModal } from "@/hooks/use-modal-store";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../public/img/logo.svg';
@@ -20,6 +22,8 @@ import { Button } from '@/components/ui/button';
 
 
 const Header = () => {
+
+    const { onOpen } = useModal();
 
     return (
         <header>
@@ -84,11 +88,8 @@ const Header = () => {
                 </Image>
                     Кабінет абонента
                 </Button>
-                <Link href="?modal=true">
-                <Button variant="connect">
-                    Заявка на підключення
-                </Button>
-                </Link>
+                <Button onClick={() => onOpen("call")} variant="connect">
+                    Заявка на підключення</Button>
             </nav>
         </div>
         <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg max-[720px]:hidden min-[2430px]:h-[104px] mx-[50px]`}>

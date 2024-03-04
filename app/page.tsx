@@ -1,10 +1,8 @@
 "use client"
 
-import React from 'react'
+import { useState } from 'react';
+
 import Header from '@/components/Header'
-
-import Link from "next/link";
-
 import Tarifs from '@/components/business-page/Tarifs';
 import ContactForm from '@/components/business-page/ContactForm';
 import InfoBlock from '@/components/business-page/InfoBlock';
@@ -32,13 +30,7 @@ export default function Home() {
   }
   return (
     <>
-    
-      <Contact/>
       <Header />
-      <input type="text" value={lorem} onChange={(e) => setComment(e.target.value)} />
-      <button onClick={fetchComments}>
-        fetch
-      </button>
       <main className={`mx-auto w-[1110px] bg-[#0E2D43]`}>
         <Slider />
         <Heading text={'Ключові переваги для наших бізнес абонентів'}></Heading>

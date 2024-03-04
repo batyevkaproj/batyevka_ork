@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "start-stage": "next start -p 3020",
+    "start-dev": "next start -p 3021",
     "lint": "next lint"
   },
   "dependencies": {
@@ -27,7 +28,8 @@
     "sharp": "^0.33.2",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.0",
