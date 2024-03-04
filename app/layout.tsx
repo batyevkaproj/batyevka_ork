@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from 'next/font/local'
+import { ModalProvider } from "@/providers/modal-provider";
 
 
 const montserrat = localFont({
@@ -31,7 +32,10 @@ export default function RootLayout({ children }: Readonly<{
 }>) {
   return (
     <html lang="uk-uk" className={montserrat.className}>
-      <body className={`bg-[#0E2D43]`}>{children}</body>
+      <body className={`bg-[#0E2D43]`}>
+        <ModalProvider />
+        {children}
+        </body>
     </html>
   );
 }

@@ -1,3 +1,5 @@
+import { useModal } from "@/hooks/use-modal-store";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../public/img/logo.svg';
@@ -20,6 +22,7 @@ import { Button } from '@/components/ui/button';
 
 const Header = () => {
 
+    const { onOpen } = useModal();
 
     return (
         <header>
@@ -68,7 +71,7 @@ const Header = () => {
                 <div className={`flex items-center max-[1280px]:hidden mr-[76px] font-semibold`}>
                     <Link href='#'  className={`text-[#51B18B] flex items-center`}>
                     <Image src={wallet_white} className={`relative ml-[15px] w-8 h-8 fill-white`} alt={'wallet'}></Image>
-                        <Button variant="pay"> Оплата</Button>
+                        <Button onClick={() => {onOpen("payment")} } variant="pay"> Оплата</Button>
                     </Link>
                     <Link href='#'  className={`text-[#56AABF] flex items-center`}>
                         <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px]`}>Підтримка</span>
@@ -92,9 +95,8 @@ const Header = () => {
                 <Image src={connect} alt='connect' className={`pr-2`}></Image>
                     Кабінет абонента
                 </Button>
-                <Button variant="connect">
+                <Button onClick={() => onOpen("call")} variant="connect">
                     Заявка на підключення</Button>
-                    <MobileModal />
             </nav>
         </div>
         <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg mx-8 max-[720px]:hidden min-[2430px]:h-[104px]`}>
