@@ -78,6 +78,9 @@ const Header = () => {
                         <Image src={wallet_white} className={`relative w-7 h-7 fill-white mr-[15px]`} alt={'wallet'}></Image>
                         Оплата
                         </Button>
+                        <Button onClick={() => {onOpen("payment")}} variant="payMob">
+                        <Image src={wallet_white} className={`relative w-7 h-7 fill-white`} alt={'wallet'}></Image>
+                        </Button>
                     </Link>
                 </div>
             </nav>
@@ -87,6 +90,10 @@ const Header = () => {
                 <Image src={connect} alt='connect' className={`pr-2`}>
                 </Image>
                     Кабінет абонента
+                </Button>
+                <Button variant="cabinetMob">
+                <Image src={connect} alt='connect' className={``}>
+                </Image>
                 </Button>
                 <Button onClick={() => onOpen("call")} variant="connect">
                     Заявка на підключення</Button>
