@@ -51,7 +51,7 @@ const Header = () => {
                 <Link href='#'  className={`mr-[17px]`}>
                     <Image src={logo} height={1} className={`flex-shrink-0 min-w-max max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px] min-[3644px]:h-[104 px]`} alt={'Batyevka logo'}/>
                 </Link>
-                <div className={`max-[1666px]:hidden`}>
+                <div className={``}>
                     {/* <Image src={bandit_ban} className={`min-w-full min-[2430px]:h-[92px] min-[2430px]:w-[590px]`} alt={'bandit_ban'}/> */}
                     <div className='bg-[#8B6CB0] w-[275px] h-[60px] flex items-center justify-center'>
                     <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'}/>
@@ -66,7 +66,7 @@ const Header = () => {
                     <Image src={wrench} className={`relative ml-[15px] w-8 h-8`} alt={'wrench'}/>
                 </Link>
 
-                <div className={`flex items-center justify-between w-[532px] max-[1280px]:hidden mr-[76px] font-semibold`}>
+                <div className={`flex items-center justify-between min-[1770px]:w-[532px] max-[1280px]:hidden mr-[76px] font-semibold`}>
                     <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px] font-semibold`}>
                         <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Підтримка</span>
                     </Link>
