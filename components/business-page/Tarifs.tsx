@@ -69,7 +69,6 @@ const Tarifs = () => {
 
             <Heading text={`Бизнес тарифы "XG-PON"`} />
 
-            <OpticCableReverse></OpticCableReverse>
 
             <div className="flex justify-center box-border pt-[60px]">
                 <div className="h-[573px] w-[350px] rounded-md bg-[#123853] mr-5">
