@@ -53,39 +53,41 @@ const Header = () => {
                 </Link>
                 <div className={``}>
                     {/* <Image src={bandit_ban} className={`min-w-full min-[2430px]:h-[92px] min-[2430px]:w-[590px]`} alt={'bandit_ban'}/> */}
-                    <div className='bg-[#8B6CB0] w-[275px] h-[60px] flex items-center justify-center'>
+                    <div className='bg-[#8B6CB0] w-[275px] h-[60px] flex items-center justify-center max-[1270px]:hidden'>
                     <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'}/>
                         <a className='font-semibold text-white text-[24px] leading-[22px]' href={`tel:0800303230`}>0 800 30 32 30</a>
                     <Image src={arrow_down} width={4} height={4} className={`w-[10px] h-[6px] ml-[12px]`} alt={'ArrowDown'}/>
                     </div>
                 </div>
-                <Link href='#'  className={`text-[#56AABF] min-[1280px]:hidden max-[801px]:hidden h-[60px]`}>
+                {/* <Link href='#'  className={`text-[#56AABF] min-[1280px]:hidden max-[801px]:hidden h-[60px]`}>
                     <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}/>
                 </Link>
                 <Link href='#'  className={`text-[#5984B3] min-[1280px]:hidden max-[801px]:hidden h-[60px]`}>
                     <Image src={wrench} className={`relative ml-[15px] w-8 h-8`} alt={'wrench'}/>
-                </Link>
+                </Link> */}
 
-                <div className={`flex items-center justify-between min-[1770px]:w-[532px] max-[1280px]:hidden mr-[76px] font-semibold`}>
-                    <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px] font-semibold`}>
-                        <Image src={_247} className={`relative ml-[15px] w-8 h-8`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Підтримка</span>
+                <div className={`flex items-center justify-between min-[1770px]:w-[532px] mr-[76px] font-semibold`}>
+                    <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px] font-semibold max-[1770px]:mr-[20px]`}>
+                        <Image src={_247} className={`relative w-8 h-8 min-w-max`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Підтримка</span>
                     </Link>
                     <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px] font-semibold`}>
-                        <Image src={wrench} className={`relative w-8 h-8`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Обладнання</span>
+                        <Image src={wrench} className={`relative w-8 h-8 min-w-max`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Обладнання</span>
                     </Link>
                     <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px]`}>
                         <Button onClick={() => {onOpen("payment")}} variant="pay">
                         <Image src={wallet_white} className={`relative w-7 h-7 fill-white mr-[15px]`} alt={'wallet'}></Image>
                         Оплата
                         </Button>
-                        <Button onClick={() => {onOpen("payment")}} variant="payMob">
-                        <Image src={wallet_white} className={`relative w-7 h-7 fill-white`} alt={'wallet'}></Image>
-                        </Button>
                     </Link>
                 </div>
             </nav>
 
             <nav className={`flex items-center`}>
+                <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px]`}>
+                    <Button onClick={() => {onOpen("payment")}} variant="payMob">
+                    <Image src={wallet_white} className={`relative w-7 h-7 fill-white`} alt={'wallet'}></Image>
+                    </Button>
+                </Link>
                 <Button variant="cabinet">
                 <Image src={connect} alt='connect' className={`pr-2`}>
                 </Image>
