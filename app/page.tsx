@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className={`mx-auto w-[1110px] bg-[#0E2D43]`}>
+      {/* <main className={`mx-auto w-[1110px] bg-[#0E2D43]`}>
         <Slider />
         <Heading text={'Ключові переваги для наших бізнес абонентів'}></Heading>
         <Advantages />
@@ -39,7 +39,7 @@ export default function Home() {
         <ContactForm />
         <InfoBlock />
       </main>
-      <Footer />
+      <Footer /> */}
 
     </>
   )
