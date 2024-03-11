@@ -1,4 +1,7 @@
 import { useModal } from "@/hooks/use-modal-store";
+import { useEffect, useState } from "react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from '@/components/ui/button';
 
 import Image from 'next/image';
 import wallet_white from '../public/img/wallet_white.svg';
@@ -7,13 +10,23 @@ import telephon from '../public/img/phone.svg';
 import connect from '../public/img/connect.svg';
 import wkey from '../public/img/wkey.svg'
 import mobLogo from '../public/img/mobLogo.svg'
-import { Button } from '@/components/ui/button';
 import mobButton from '../public/img/mobButton.svg'
+import Sidebar from "./Sidebar";
+
 
 const Navbar = () => {
 
     const { onOpen } = useModal();
 
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, [])
+
+    if (!isMounted) {
+        return null;
+    }
     
     return ( 
         <>
@@ -38,11 +51,22 @@ const Navbar = () => {
                 <Image src={wkey} alt='wkey'>
                 </Image>
             </Button>
+            <Sheet>
+                <SheetTrigger>
 
             <Button variant="menuMob">
-                <Image src={mobButton} alt='Menu' className={`h-[60px] w-[63px]`}>
-                </Image>
-            </Button>
+                    <Image src={mobButton} alt='Menu' className={`h-[60px] w-[63px]`}>
+                    </Image>
+                </Button>
+                
+                </SheetTrigger>
+                <SheetContent
+                    side="left"
+                    className="p-0"
+                >
+                <Sidebar />
+                </SheetContent>
+            </Sheet>
         </div>
         </>
      );

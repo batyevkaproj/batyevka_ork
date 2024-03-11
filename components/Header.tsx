@@ -6,6 +6,7 @@ import logo from '../public/img/logo.svg';
 import arrow_down from '../public/img/arrow_down.svg';
 import globe_small from '../public/img/globe_small.svg';
 import wallet_white from '../public/img/wallet_white.svg';
+import wallet from '../public/img/wallet.svg'
 import _247 from '../public/img/247.svg';
 import telephon from '../public/img/phone.svg';
 import rectangle from '../public/img/rectangle.svg';
@@ -13,11 +14,10 @@ import all_services from '../public/img/all_services.svg';
 import connect from '../public/img/connect.svg';
 import wrench from '../public/img/wrench.svg'
 import wkey from '../public/img/wkey.svg'
-import mobLogo from '../public/img/mobLogo.svg'
 import { Button } from '@/components/ui/button';
-import mobButton from '../public/img/mobButton.svg'
-
 import Navbar from "./Navbar";
+
+import gear from '../public/img/gear.svg';
 
 const Header = () => {
 
@@ -108,6 +108,32 @@ const Header = () => {
         </div>
 
         <Navbar/>
+
+        <div className="max-[500px]:hidden w-[375px] h-[100vh] bg-[#0E2D43]"> 
+            <div className="w-full h-[60px] bg-[#0D2A40] flex items-center justify-center">
+                <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'}/>
+                <a className='font-semibold text-white text-[24px] leading-[22px]' href={`tel:0800303230`}>0 800 30 32 30</a>
+            </div>
+            <div className="ml-[20px] mt-[20px]">
+                <Link href='/' className="">
+                    <Image src={logo} height={1} className={`flex-shrink-0 min-w-max w-[203px] h-[35px]`} alt={'Batyevka logo'}/>
+                </Link>
+            </div>
+            <div className="mt-[15px] ml-[20px] flex flex-col">
+                <Button onClick={() => {onOpen("payment")}} variant="payMenuBurger">
+                    <Image src={wallet} className={`w-7 h-7 mr-[15px]`} alt={'wallet'}></Image>
+                        Оплата
+                </Button>
+                <Button onClick={() => {onOpen("payment")}} variant="payMenuBurger">
+                    <Image src={_247} className={`w-7 h-7 mr-[15px]`} alt={'options'}></Image>
+                        Підтримка
+                </Button>
+                <Button onClick={() => {onOpen("payment")}} variant="payMenuBurger">
+                    <Image src={gear} className={`w-7 h-7 mr-[15px]`} alt={'wallet'}></Image>
+                        Опції
+                </Button>
+            </div>
+        </div>
 
         </header>
     );
