@@ -52,21 +52,21 @@ const Navbar = () => {
                 </Image>
             </Button>
             <Sheet>
-                <SheetTrigger>
+            <SheetTrigger>
 
-            <Button variant="menuMob">
-                    <Image src={mobButton} alt='Menu' className={`h-[60px] w-[63px]`}>
-                    </Image>
-                </Button>
-                
-                </SheetTrigger>
-                <SheetContent
-                    side="left"
-                    className="p-0"
-                >
-                <Sidebar />
-                </SheetContent>
-            </Sheet>
+           <Button variant="menuMob">
+                <Image src={mobButton} alt='Menu' className={`h-[60px] w-[63px]`}>
+                </Image>
+            </Button>
+            
+            </SheetTrigger>
+            <SheetContent
+                side="left"
+                className="p-0"
+            >
+            <Sidebar />
+            </SheetContent>
+        </Sheet>
         </div>
         </>
      );
