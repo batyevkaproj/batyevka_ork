@@ -111,30 +111,33 @@ const Header = () => {
             <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Відеоспостереження <br/>для бізнесу</Link>
             <Link href='#'  className={`text-white inline-flex font-semibold  text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Всі послуги <Image src={all_services} className={`ml-2`} alt='All Services'/></Link>
         </div>
-        <div className="min-[780px]:hidden bg-[#0D2A40] h-[60px] flex items-center justify-center">
-            <Image src={mobLogo} alt="Batyevka.NET"></Image>
-            <div className="flex ml-[10px]">
-            <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'}/>
-            <a className='font-semibold text-white text-[24px] leading-[22px]' href={`tel:0800303230`}>0 800 30 32 30</a>
+        <div className="flex items-center justify-center bg-[#0D2A40]">
+            <div className="min-[780px]:hidden bg-[#0D2A40] h-[60px] flex items-center justify-start w-[300px]">
+                <Image src={mobLogo} alt="Batyevka.NET"></Image>
+                <div className="flex ml-[10px]">
+                <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'}/>
+                <a className='font-semibold text-white text-[24px] leading-[22px]' href={`tel:0800303230`}>0 800 30 32 30</a>
+                </div>
             </div>
         </div>
         <div className="mt-[16px] min-[780px]:hidden flex items-center justify-center">
-            <Button onClick={() => {onOpen("payment")}} variant="payMob">
+            <Button onClick={() => {onOpen("payment")}} variant="payMobMob">
                 <Image src={wallet_white} className={`relative w-7 h-7 fill-white`} alt={'wallet'}></Image>
             </Button>
-            <Button variant="cabinetMob">
+            <Button variant="cabinetMobMob">
                 <Image src={connect} alt='connect' className={``}>
                 </Image>
             </Button>
-            <Button onClick={() => onOpen("call")} variant="connectMob">
+            <Button onClick={() => onOpen("call")} variant="connectMobMob">
                 <Image src={wkey} alt='wkey'>
                 </Image>
             </Button>
 
             <Button variant="menuMob">
-                <Image src={mobButton} alt='Menu' className={``}>
+                <Image src={mobButton} alt='Menu' className={`h-[60px] w-[63px]`}>
                 </Image>
             </Button>
+
         </div>
         </header>
     );
