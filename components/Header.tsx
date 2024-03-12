@@ -25,7 +25,7 @@ const Header = () => {
 
     return (
         <header>
-        <div className={`flex justify-between items-center bg-[#56AABF] h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] min-[3644px]:text-[27px] max-[720px]:bg-[#0E2D43] px-[50px] min-w-[100vh] max-[780px]:hidden`}>
+        <div className={`flex justify-between items-center bg-[#56AABF] h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] min-[3644px]:text-[27px] max-[720px]:bg-[#0E2D43] px-[50px] max-[780px]:hidden`}>
             <nav className={`space-x-4 text-white`}>
                 <Link href='#'>Акції</Link>
                 <Link href='#'>Мапа покриття</Link>
