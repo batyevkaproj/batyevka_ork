@@ -31,7 +31,7 @@ const buttonVariants = cva(
         cabinetMobMob: 'bg-[#0E2D43] text-white rounded-full border-[2px] border-solid border-[#56AABF] font-semibold h-[60px] w-[63px] min-[1770px]:hidden mr-[24px]',
         connectMobMob: 'bg-[#DC662D] text-white rounded-full h-[60px] w-[63px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] min-[995px]:hidden ',
         payMenuBurger: 'justify-items-start',
-        menuMob: 'solid h-[48px] w-[52px] ml-[48px]'
+        menuMob: 'solid h-[48px] w-[52px] ml-[48px] flex items-center'
       },
       size: {
         default: 'h-10 px-4 py-2',
