@@ -16,7 +16,7 @@ const Sidebar = () => {
     
 
     return ( 
-        <div className="max-[500px]:hidden w-[375px] h-[100vh] bg-[#0E2D43]"> 
+        <div className="w-[375px] h-[100vh] bg-[#0E2D43]"> 
             <div className="w-full h-[60px] bg-[#0D2A40] flex items-center justify-center">
                 <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'}/>
                 <a className='font-semibold text-white text-[24px] leading-[22px]' href={`tel:0800303230`}>0 800 30 32 30</a>
