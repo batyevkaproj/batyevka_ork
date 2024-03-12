@@ -7,6 +7,7 @@ import wallet from '../public/img/wallet.svg'
 import _247 from '../public/img/247.svg';
 import telephon from '../public/img/phone.svg';
 import gear from '../public/img/gear.svg';
+import orange_building from '@/public/img/orange_building.svg';
 
 
 const Sidebar = () => {
@@ -27,18 +28,23 @@ const Sidebar = () => {
                 </Link>
             </div>
             <div className="mt-[15px] ml-[20px] flex flex-col">
-                <Link href={"#"} onClick={() => {onOpen("payment")}} >
-                    <Image src={wallet} className={`w-7 h-7 mr-[15px]`} alt={'wallet'}></Image>
-                        Оплата
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}} >
+                    <Image src={wallet} className={`w-8 h-8 mr-[15px]`} alt={'wallet'}></Image>
+                        <span className="ml-[15px]">Оплата</span>
                 </Link>
-                <Link href={"#"} onClick={() => {onOpen("payment")}} >
-                    <Image src={_247} className={`w-7 h-7 mr-[15px]`} alt={'options'}></Image>
-                        Підтримка
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}} >
+                    <Image src={_247} className={`w-8 h-8 mr-[15px]`} alt={'options'}></Image>
+                        <span className="ml-[15px]">Підтримка</span>
                 </Link>
-                <Link href={"#"} onClick={() => {onOpen("payment")}}>
-                    <Image src={gear} className={`w-7 h-7 mr-[15px]`} alt={'wallet'}></Image>
-                        Опції
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}}>
+                    <Image src={gear} className={`w-8 h-8 mr-[15px]`} alt={'wallet'}></Image>
+                        <span className="ml-[15px]">Опції</span>
                 </Link>
+            </div>
+
+            <div className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center">
+                <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
+                <span className="ml-[11px]">для багатоповерхівок</span>
             </div>
         </div>
      );
