@@ -15,6 +15,8 @@ import gear from '../public/img/gear.svg';
 import orange_building from '@/public/img/orange_building.svg';
 import orange_house from '@/public/img/house_orange.svg';
 import bc_orange from '@/public/img/br_case_orange.svg'
+import key from '@/public/img/key_white.svg';
+import globe from '@/public/img/globe_white.png';
 
   
 
@@ -113,6 +115,17 @@ const Sidebar = () => {
                 </AccordionContent>
             </AccordionItem>
             </Accordion>
+
+            <div className="ml-[20px] mt-[10px]">
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}} >
+                        <Image src={key} alt={'key'}></Image>
+                        <span className="ml-[15px] text-white">Вхід   </span>
+                </Link>
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}}>
+                    <Image src={globe} alt={'globe'}></Image>
+                    <span className="ml-[15px] text-white">Укр</span>
+                </Link>
+            </div>
         </div>
      );
 }
