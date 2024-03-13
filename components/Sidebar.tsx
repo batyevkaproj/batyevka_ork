@@ -1,26 +1,27 @@
 import { useModal } from "@/hooks/use-modal-store";
-
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 import logo from '../public/img/logo.svg';
 import wallet from '../public/img/wallet.svg'
 import _247 from '../public/img/247.svg';
 import telephon from '../public/img/phone.svg';
 import gear from '../public/img/gear.svg';
 import orange_building from '@/public/img/orange_building.svg';
-import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-  } from "@/components/ui/collapsible"
+import orange_house from '@/public/img/house_orange.svg';
+import bc_orange from '@/public/img/br_case_orange.svg'
+
   
 
 
 const Sidebar = () => {
 
     const { onOpen } = useModal();
-
-    
 
     return ( 
         <div className="w-[375px] h-[100vh] bg-[#0E2D43]"> 
@@ -35,27 +36,26 @@ const Sidebar = () => {
             </div>
             <div className="mt-[15px] ml-[20px] flex flex-col">
                 <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}} >
-                    <Image src={wallet} className={`w-8 h-8 mr-[15px]`} alt={'wallet'}></Image>
-                        <span className="ml-[15px]">Оплата</span>
+                    <Image src={wallet} className={`w-8 h-8`} alt={'wallet'}></Image>
+                        <span className="ml-[15px] font-semibold text-[#51B18B]">Оплата</span>
                 </Link>
                 <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}} >
-                    <Image src={_247} className={`w-8 h-8 mr-[15px]`} alt={'options'}></Image>
-                        <span className="ml-[15px]">Підтримка</span>
+                    <Image src={_247} className={`w-8 h-8`} alt={'options'}></Image>
+                        <span className="ml-[15px] font-semibold text-[#56AABF]">Підтримка</span>
                 </Link>
                 <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}}>
-                    <Image src={gear} className={`w-8 h-8 mr-[15px]`} alt={'wallet'}></Image>
-                        <span className="ml-[15px]">Опції</span>
+                    <Image src={gear} className={`w-8 h-8`} alt={'wallet'}></Image>
+                        <span className="ml-[15px] font-semibold text-[#5984B3]">Опції</span>
                 </Link>
             </div>
-            <Collapsible>
-                <CollapsibleTrigger>
-                <div className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center">
+            <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+                <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
                     <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
-                    <span className="ml-[11px] uppercase font-semibold text-[#DC662D]">для багатоповерхівок</span>
-                </div>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="flex flex-col">
-                    <Link href={'#'}>
+                    <span className="ml-[15px] uppercase font-semibold text-[#DC662D]">для багатоповерхівок</span>
+                </AccordionTrigger>
+                <AccordionContent className="flex flex-col ml-[20px] text-white">
+                        <Link href={'#'}>
                         Інтернет
                     </Link>
                     <Link href={'#'}>
@@ -70,16 +70,14 @@ const Sidebar = () => {
                     <Link href={'#'}>
                         Всі опції
                     </Link>
-                </CollapsibleContent>
-            </Collapsible>
-            <Collapsible>
-                <CollapsibleTrigger>
-                <div className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center">
-                    <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
-                    <span className="ml-[11px] uppercase font-semibold text-[#DC662D]">Приватному сектору</span>
-                </div>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="flex flex-col">
+                </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+                <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
+                    <Image src={orange_house} alt={'orange'} className="ml-[20px]"></Image>
+                    <span className="ml-[10px] uppercase font-semibold text-[#DC662D]">Приватному сектору</span>
+                </AccordionTrigger>
+                <AccordionContent className="flex flex-col ml-[20px] text-white">
                     <Link href={'#'}>
                         Інтернет
                     </Link>
@@ -87,41 +85,34 @@ const Sidebar = () => {
                         Інтернет + ТВ
                     </Link>
                     <Link href={'#'}>
-                        Телебачення
+                        Комп'ютерна допомога
+                    </Link>
+                </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+                <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
+                    <Image src={bc_orange} alt={'orange'} className="ml-[24px]"></Image>
+                    <span className="ml-[13px] uppercase font-semibold text-[#DC662D]">бiзнесу</span>
+                </AccordionTrigger>
+                <AccordionContent className="flex flex-col ml-[20px] text-white">
+                    <Link href={'#'}>
+                        Акції
                     </Link>
                     <Link href={'#'}>
-                        Комп'ютерна допомога
+                        Тарифи
+                    </Link>
+                    <Link href={'#'}>
+                        Мапа покриття
+                    </Link>
+                    <Link href={'#'}>
+                        Абоненту
                     </Link>
                     <Link href={'#'}>
                         Всі опції
                     </Link>
-                </CollapsibleContent>
-            </Collapsible>
-            <Collapsible>
-                <CollapsibleTrigger>
-                <div className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center">
-                    <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
-                    <span className="ml-[11px] uppercase font-bold text-[#DC662D]">бiзнесу</span>
-                </div>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="flex flex-col">
-                    <Link href={'#'}>
-                        Інтернет
-                    </Link>
-                    <Link href={'#'}>
-                        Інтернет + ТВ
-                    </Link>
-                    <Link href={'#'}>
-                        Телебачення
-                    </Link>
-                    <Link href={'#'}>
-                        Комп'ютерна допомога
-                    </Link>
-                    <Link href={'#'}>
-                        Всі опції
-                    </Link>
-                </CollapsibleContent>
-            </Collapsible>
+                </AccordionContent>
+            </AccordionItem>
+            </Accordion>
         </div>
      );
 }
