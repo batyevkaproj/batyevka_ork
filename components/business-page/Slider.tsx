@@ -43,16 +43,6 @@ const Slider = () => {
     return ( 
     <>
 
-    <div className="py-2 text-center text-sm text-muted-foreground">
-        Slide {current} of {count}
-    </div>
-
-    {timesArray.map((_, index) => (
-        <div key={index}>
-          {index+1==current ? <p>lox</p>:<p>ne lox</p> }
-          Iteration {index + 1}
-        </div>
-      ))}
 
 <Carousel className={`h-[446px] w-[1110px] flex items-center justify-between`} setApi={setApi}>
   <CarouselContent>
@@ -150,8 +140,13 @@ const Slider = () => {
         </div>
     </CarouselItem>
   </CarouselContent>
-  <CarouselPrevious />
-  <CarouselNext />
+    {timesArray.map((_, index) => (
+    <div key={index}>
+        {index+1==current ? <p className='text-[#56AABF]'>{index+1}</p>:<p>{index+1}</p> }
+    </div>
+    ))}
+    <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] flex'/>
+  <CarouselNext className='bg-[#123853] w-[40px] h-[40px] flex'/>
 </Carousel>
     </>
      );
