@@ -68,6 +68,11 @@ const Navbar = () => {
             </SheetContent>
         </Sheet>
         </div>
+        <div className="flex justify-center items-center w-full">
+            <Button onClick={() => onOpen("call")} variant="MobConnect">
+                Заявка на підключення
+            </Button>
+        </div>
         </>
      );
 }
