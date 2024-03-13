@@ -3,7 +3,6 @@
 import * as React from "react"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
 import { cva, type VariantProps } from "class-variance-authority"
-import { X } from "lucide-react"
 import cross from "@/public/img/close.svg"
 import Image from "next/image"
 
@@ -68,9 +67,7 @@ const SheetContent = React.forwardRef<
     >
       {children}
       <SheetPrimitive.Close className="absolute right-4 top-4 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none ">
-        {/* <X className="h-4 w-4" /> */}
         <Image src={cross} className={`w-6 h-6`} alt={'close'}></Image>
-        {/* <span className="sr-only">Close</span> */}
       </SheetPrimitive.Close>
     </SheetPrimitive.Content>
   </SheetPortal>
