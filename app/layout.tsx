@@ -2,25 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from 'next/font/local'
 import { ModalProvider } from "@/providers/modal-provider";
+import { Montserrat } from 'next/font/google';
 
-
-const montserrat = localFont({
-  src: [
-    {
-      path: '../public/fonts/Montserrat/Montserrat-Light.ttf'
-    }
-  ],
-  variable: '--font-montserrat'
-})
-
-const montserratBold = localFont({
-  src: [
-    {
-      path: '../public/fonts/Montserrat/Montserrat-Bold.ttf'
-    }
-  ],
-  variable: '--font-montserrat'
-})
+const montserrat = Montserrat({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  display:'swap',
+  fallback: ['Arial', 'sans-serif'],
+});
 
 export const metadata: Metadata = {
   title: "Батиївка для бізнесу",

@@ -8,6 +8,12 @@ import _247 from '../public/img/247.svg';
 import telephon from '../public/img/phone.svg';
 import gear from '../public/img/gear.svg';
 import orange_building from '@/public/img/orange_building.svg';
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+  } from "@/components/ui/collapsible"
+  
 
 
 const Sidebar = () => {
@@ -41,11 +47,81 @@ const Sidebar = () => {
                         <span className="ml-[15px]">Опції</span>
                 </Link>
             </div>
-
-            <div className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center">
-                <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
-                <span className="ml-[11px]">для багатоповерхівок</span>
-            </div>
+            <Collapsible>
+                <CollapsibleTrigger>
+                <div className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center">
+                    <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
+                    <span className="ml-[11px] uppercase font-semibold text-[#DC662D]">для багатоповерхівок</span>
+                </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="flex flex-col">
+                    <Link href={'#'}>
+                        Інтернет
+                    </Link>
+                    <Link href={'#'}>
+                        Інтернет + ТВ
+                    </Link>
+                    <Link href={'#'}>
+                        Телебачення
+                    </Link>
+                    <Link href={'#'}>
+                        Комп'ютерна допомога
+                    </Link>
+                    <Link href={'#'}>
+                        Всі опції
+                    </Link>
+                </CollapsibleContent>
+            </Collapsible>
+            <Collapsible>
+                <CollapsibleTrigger>
+                <div className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center">
+                    <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
+                    <span className="ml-[11px] uppercase font-semibold text-[#DC662D]">Приватному сектору</span>
+                </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="flex flex-col">
+                    <Link href={'#'}>
+                        Інтернет
+                    </Link>
+                    <Link href={'#'}>
+                        Інтернет + ТВ
+                    </Link>
+                    <Link href={'#'}>
+                        Телебачення
+                    </Link>
+                    <Link href={'#'}>
+                        Комп'ютерна допомога
+                    </Link>
+                    <Link href={'#'}>
+                        Всі опції
+                    </Link>
+                </CollapsibleContent>
+            </Collapsible>
+            <Collapsible>
+                <CollapsibleTrigger>
+                <div className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center">
+                    <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
+                    <span className="ml-[11px] uppercase font-bold text-[#DC662D]">бiзнесу</span>
+                </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="flex flex-col">
+                    <Link href={'#'}>
+                        Інтернет
+                    </Link>
+                    <Link href={'#'}>
+                        Інтернет + ТВ
+                    </Link>
+                    <Link href={'#'}>
+                        Телебачення
+                    </Link>
+                    <Link href={'#'}>
+                        Комп'ютерна допомога
+                    </Link>
+                    <Link href={'#'}>
+                        Всі опції
+                    </Link>
+                </CollapsibleContent>
+            </Collapsible>
         </div>
      );
 }
