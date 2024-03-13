@@ -62,7 +62,7 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent
                 side="left"
-                className="p-0"
+                className="p-0 m-0"
             >
             <Sidebar />
             </SheetContent>
