@@ -14,11 +14,47 @@ import {
     CarouselPrevious,
   } from "@/components/ui/carousel"
 
+  import { type CarouselApi } from "@/components/ui/carousel"
+import { useEffect, useState } from 'react';
+
+
 const Slider = () => {
+
+    const [api, setApi] = useState<CarouselApi>()
+    const [current, setCurrent] = useState(0)
+    const [count, setCount] = useState(0)
+   
+    useEffect(() => {
+      if (!api) {
+        return
+      }
+   
+      setCount(api.scrollSnapList().length)
+      setCurrent(api.selectedScrollSnap() + 1)
+   
+      api.on("select", () => {
+        setCurrent(api.selectedScrollSnap() + 1)
+      })
+    }, [api])
+
+    const timesArray = Array.from({ length: count });
+
+
     return ( 
     <>
 
-<Carousel className={`h-[446px] w-[1110px] flex items-center justify-between`}>
+    <div className="py-2 text-center text-sm text-muted-foreground">
+        Slide {current} of {count}
+    </div>
+
+    {timesArray.map((_, index) => (
+        <div key={index}>
+          {index+1==current ? <p>lox</p>:<p>ne lox</p> }
+          Iteration {index + 1}
+        </div>
+      ))}
+
+<Carousel className={`h-[446px] w-[1110px] flex items-center justify-between`} setApi={setApi}>
   <CarouselContent>
     <CarouselItem className='flex'>
         <div>
