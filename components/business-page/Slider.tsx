@@ -145,8 +145,11 @@ const Slider = () => {
         {index+1==current ? <p className='text-[#56AABF]'>{index+1}</p>:<p>{index+1}</p> }
     </div>
     ))}
-    <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] flex'/>
-  <CarouselNext className='bg-[#123853] w-[40px] h-[40px] flex'/>
+    
+    {/* "-right-12 top-1/2 -translate-y-1/2"
+          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90 */}
+    <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] flex absolute right-0 top-0 -translate-y-0 left-0 rotate-90'/>
+  <CarouselNext className='bg-[#123853] w-[40px] h-[40px] flex rotate rotate-90'/>
 </Carousel>
     </>
      );
