@@ -44,10 +44,10 @@ const Slider = () => {
     <>
 
 
-<Carousel className={`h-[446px] ml-[120px] mr-[120px] flex items-center justify-between`} setApi={setApi}>
+<Carousel className={`h-[446px]`} setApi={setApi}>
   <CarouselContent className='flex'>
-    <CarouselItem className='flex'>
-        <div>
+    <CarouselItem className='flex items-center justify-between'>
+        <div className='ml-[120px]'>
             <h1 className={` text-[60px] font-bold text-white`}>Інтернет0 <span className={`text-[#56AABF]`}>в офіс</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px]`}>
                 <div className={`flex items-center mb-[15px]`}>
@@ -73,12 +73,12 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div>
+        <div className='mr-[120px]'>
             <Image src={vector} alt='vector'/>
         </div>
     </CarouselItem>
-    <CarouselItem className='flex'>
-        <div>
+    <CarouselItem className='flex items-center justify-between'>
+        <div className='ml-[120px]'>
             <h1 className={` text-[60px] font-bold text-white`}>Інтернет1 <span className={`text-[#56AABF]`}>в офіс</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px]`}>
                 <div className={`flex items-center mb-[15px]`}>
@@ -104,12 +104,12 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div>
+        <div className='mr-[120px]'>
             <Image src={vector} alt='vector'/>
         </div>
     </CarouselItem>
-    <CarouselItem className='flex'>
-        <div>
+    <CarouselItem className='flex items-center justify-between'>
+        <div className='ml-[120px]'>
             <h1 className={` text-[60px] font-bold text-white`}>Інтернет2 <span className={`text-[#56AABF]`}>в офіс</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px]`}>
                 <div className={`flex items-center mb-[15px]`}>
@@ -135,21 +135,20 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div>
+        <div className='mr-[120px]'>
             <Image src={vector} alt='vector'/>
         </div>
     </CarouselItem>
   </CarouselContent>
+  <div className='absolute'>
     {timesArray.map((_, index) => (
     <div key={index}>
         {index+1==current ? <p className='text-[#56AABF]'>{index+1}</p>:<p>{index+1}</p> }
     </div>
     ))}
-    
-    {/* "-right-12 top-1/2 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90 */}
     <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] flex absolute right-0 -translate-y-0 left-full rotate-90 border-0 top-32'/>
     <CarouselNext className='bg-[#123853] w-[40px] h-[40px] flex rotate rotate-90 border-0 left-full'/>
+    </div>
 </Carousel>
     </>
      );
