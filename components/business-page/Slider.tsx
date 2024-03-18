@@ -50,7 +50,7 @@ const Slider = () => {
 
 <Carousel className={`h-[446px] mt-[45px]`} setApi={setApi}>
   <CarouselContent className='flex'>
-    <CarouselItem className='flex items-center justify-between'>
+    <CarouselItem className='flex justify-between items-center'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:hidden'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px]`}>
@@ -77,11 +77,11 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1'>
-            <Image src={vector} className='z-1' alt='vector'/>
+        <div className='mr-[120px] z-1 max-[910px]:pl-[20%] max-[910px]:box-border whitespace-nowrap min-w-full'>
+            <Image src={vector} className='z-1 whitespace-nowrap' alt='vector'/>
         </div>
     </CarouselItem>
-    <CarouselItem className='flex items-center justify-between '>
+    <CarouselItem className='flex items-center justify-between'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:hidden'>
             <h1 className={` text-[60px] font-bold text-white whitespace-nowrap`}>Інтернет <span className={`text-[#56AABF]`}>в МАГАЗИН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px]`}>
@@ -108,7 +108,7 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1'>
+        <div className='mr-[120px] z-1 '>
             <Image src={vector2} alt='vector'/>
         </div>
     </CarouselItem>
