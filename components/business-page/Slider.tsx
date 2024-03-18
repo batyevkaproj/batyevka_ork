@@ -44,7 +44,7 @@ const Slider = () => {
     <>
 
 
-<Carousel className={`h-[446px]`} setApi={setApi}>
+<Carousel className={`h-[446px] mt-[45px]`} setApi={setApi}>
   <CarouselContent className='flex'>
     <CarouselItem className='flex items-center justify-between'>
         <div className='ml-[120px]'>
@@ -140,15 +140,15 @@ const Slider = () => {
         </div>
     </CarouselItem>
   </CarouselContent>
-    <div className='absolute top-0 right-8'>
+    <div className='absolute top-40 right-8 w-[25px]'>
         {timesArray.map((_, index) => (
-        <span key={index}>
-            {index+1==current ? <p className='text-[#56AABF] bold text-[20px] leading-[32px]'>0{index+1}</p>:<p className='bold text-[20px] leading-[32px]'>0{index+1}</p> }
+        <span className='' key={index}>
+            {index+1==current ? <span><p key={index} className='text-[#56AABF] bold text-[20px] leading-[32px] w-[25px]'>0{index+1}</p><span className='w-[18px] h-[2px] bg-[#56AABF] block absolute left-[38px] top-[20px]'></span></span>:<p key={index} className='bold text-[20px] leading-[32px] w-[25px]'>0{index+1}</p> }
         </span>
         ))}
+        <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] -translate-y-0 rotate-90 border-0 relative left-[1px] bottom-36'/>
+        <CarouselNext className='bg-[#123853] w-[40px] h-[40px] rotate rotate-90 border-0 relative top-0 -right-[2px]'/>
     </div>
-        <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] -translate-y-0 rotate-90 border-0 relative top-0 left-0'/>
-        <CarouselNext className='bg-[#123853] w-[40px] h-[40px] rotate rotate-90 border-0 relative top-56 left-0'/>
 </Carousel>
     </>
      );
