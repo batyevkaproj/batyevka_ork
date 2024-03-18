@@ -51,8 +51,8 @@ const Slider = () => {
 <Carousel className={`h-[446px] mt-[45px]`} setApi={setApi}>
   <CarouselContent className='flex'>
     <CarouselItem className='flex items-center justify-between'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px]'>
-            <h1 className={` text-[60px] font-bold text-white`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
+        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10'>
+            <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
@@ -77,13 +77,13 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px]'>
-            <Image src={vector} alt='vector'/>
+        <div className='mr-[120px] z-1'>
+            <Image src={vector} className='z-1' alt='vector'/>
         </div>
     </CarouselItem>
     <CarouselItem className='flex items-center justify-between'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px]'>
-            <h1 className={` text-[60px] font-bold text-white`}>Інтернет <span className={`text-[#56AABF]`}>в МАГАЗИН</span></h1>
+            <h1 className={` text-[60px] font-bold text-white whitespace-nowrap`}>Інтернет <span className={`text-[#56AABF]`}>в МАГАЗИН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
@@ -114,7 +114,7 @@ const Slider = () => {
     </CarouselItem>
     <CarouselItem className='flex items-center justify-between '>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px]'>
-            <h1 className={` text-[60px] font-bold text-white`}>Інтернет2 <span className={`text-[#56AABF]`}>в САЛОН</span></h1>
+            <h1 className={` text-[60px] font-bold text-white whitespace-nowrap`}>Інтернет <span className={`text-[#56AABF]`}>в САЛОН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
@@ -145,7 +145,7 @@ const Slider = () => {
     </CarouselItem>
     <CarouselItem className='flex items-center justify-between'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px]'>
-            <h1 className={` text-[60px] font-bold text-white flex-shrink-0`}>Інтернет2 <span className={`text-[#56AABF]`}>в РЕСТОРАН</span></h1>
+            <h1 className={` text-[60px] font-bold text-white flex-shrink-0 whitespace-nowrap`}>Інтернет <span className={`text-[#56AABF]`}>в РЕСТОРАН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
