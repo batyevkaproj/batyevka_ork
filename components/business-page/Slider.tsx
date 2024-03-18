@@ -77,7 +77,7 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1 max-[910px]:pl-[20%] max-[910px]:box-border whitespace-nowrap min-w-full'>
+        <div className='mr-[120px] z-10 max-[910px]:pl-[20%] max-[910px]:box-border whitespace-nowrap min-w-full'>
             <Image src={vector} className='z-1 whitespace-nowrap' alt='vector'/>
         </div>
     </CarouselItem>
@@ -108,7 +108,7 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1 '>
+        <div className='mr-[120px] z-10 max-[910px]:pl-[20%] max-[910px]:box-border whitespace-nowrap min-w-full'>
             <Image src={vector2} alt='vector'/>
         </div>
     </CarouselItem>
@@ -139,7 +139,7 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1'>
+        <div className='mr-[120px] z-10 max-[910px]:pl-[20%] max-[910px]:box-border whitespace-nowrap min-w-full'>
             <Image src={vector3} alt='vector'/>
         </div>
     </CarouselItem>
@@ -170,12 +170,12 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-10'>
+        <div className='mr-[120px] z-10 max-[910px]:pl-[20%] max-[910px]:box-border whitespace-nowrap min-w-full'>
             <Image src={vector4} alt='vector'/>
         </div>
     </CarouselItem>
   </CarouselContent>
-    <div className='absolute top-40 right-8 w-[25px]'>
+    <div className='absolute top-40 right-8 w-[25px] max-[910px]:hidden'>
         {timesArray.map((_, index) => (
         <span className='' key={index}>
             {index+1==current ? <><p key={index} className='text-[#56AABF] bold text-[20px] leading-[32px] w-[25px]'>0{index+1}</p><span className='w-[18px] h-[2px] bg-[#56AABF] block relative left-[38px] -top-[16px]'></span></>:<p key={index} className='bold text-[20px] leading-[32px] w-[25px]'>0{index+1}</p> }
