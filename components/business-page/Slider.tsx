@@ -44,7 +44,7 @@ const Slider = () => {
     <>
 
 
-<Carousel className={`h-[446px] ml-[50px] mr-[50px] flex items-center justify-between`} setApi={setApi}>
+<Carousel className={`h-[446px] ml-[120px] mr-[120px] flex items-center justify-between`} setApi={setApi}>
   <CarouselContent className='flex'>
     <CarouselItem className='flex'>
         <div>
