@@ -89,7 +89,8 @@ const Slider = () => {
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-10 max-[910px]:pl-[20%] max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full'>
-            {/* <Image src={Object.values(data)[0]} alt={`vector`} /> */}
+            <Image src={Object.values(data)[0]} alt={`vector`} fill={true}/>
+            {/* {Object.values(data)[0]} */}
         </div>
     </CarouselItem>
 ))}
