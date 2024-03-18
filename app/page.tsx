@@ -31,15 +31,15 @@ export default function Home() {
       <Header />
       {/* <main className={`mx-auto w-[1110px] bg-[#0E2D43]`}> */}
         <Slider />
-        <Heading text={'Ключові переваги для наших бізнес абонентів'}></Heading>
+        {/* <Heading text={'Ключові переваги для наших бізнес абонентів'}></Heading>
         <Advantages />
         <Heading text={`Бізнес тарифи "GPON"`} />
         <OpticCable/>
         <Tarifs />
         <ContactForm />
-        <InfoBlock />
+        <InfoBlock /> */}
       {/* </main> */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

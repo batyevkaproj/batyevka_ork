@@ -140,15 +140,15 @@ const Slider = () => {
         </div>
     </CarouselItem>
   </CarouselContent>
-  <div className='absolute'>
-    {timesArray.map((_, index) => (
-    <div key={index}>
-        {index+1==current ? <p className='text-[#56AABF]'>{index+1}</p>:<p>{index+1}</p> }
+    <div className='absolute top-0 right-8'>
+        {timesArray.map((_, index) => (
+        <span key={index}>
+            {index+1==current ? <p className='text-[#56AABF] bold text-[20px] leading-[32px]'>0{index+1}</p>:<p className='bold text-[20px] leading-[32px]'>0{index+1}</p> }
+        </span>
+        ))}
     </div>
-    ))}
-    <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] flex absolute right-0 -translate-y-0 left-full rotate-90 border-0 top-32'/>
-    <CarouselNext className='bg-[#123853] w-[40px] h-[40px] flex rotate rotate-90 border-0 left-full'/>
-    </div>
+        <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] -translate-y-0 rotate-90 border-0 relative top-0 left-0'/>
+        <CarouselNext className='bg-[#123853] w-[40px] h-[40px] rotate rotate-90 border-0 relative top-56 left-0'/>
 </Carousel>
     </>
      );
