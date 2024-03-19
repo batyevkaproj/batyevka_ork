@@ -1,4 +1,3 @@
-
 import infinity from '../../public/img/infinity.png';
 import cable from    '../../public/img/cable.png';
 import sign from     '../../public/img/sign.png';
@@ -18,7 +17,7 @@ import {
     CarouselPrevious,
   } from "@/components/ui/carousel"
 
-  import { type CarouselApi } from "@/components/ui/carousel"
+import { type CarouselApi } from "@/components/ui/carousel"
 import { useEffect, useState } from 'react';
 
 
@@ -33,7 +32,7 @@ const Slider = () => {
         return
       }
    
-      setCount(api.scrollSnapList().length)
+      setCount(api.scrollSnapList().length) 
       setCurrent(api.selectedScrollSnap() + 1)
    
       api.on("select", () => {
@@ -181,7 +180,7 @@ const Slider = () => {
             {index+1==current ? <><p key={index} className='text-[#56AABF] bold text-[20px] leading-[32px] w-[25px]'>0{index+1}</p><span className='w-[18px] h-[2px] bg-[#56AABF] block relative left-[38px] -top-[16px]'></span></>:<p key={index} className='bold text-[20px] leading-[32px] w-[25px]'>0{index+1}</p> }
         </span>
         ))}
-        <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] -translate-y-0 rotate-90 border-0 relative left-[1px] bottom-36'/>
+        <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] -translate-y-0 rotate-90 border-0 relative left-[1px] bottom-44'/>
         <CarouselNext className='bg-[#123853] w-[40px] h-[40px] rotate rotate-90 border-0 relative top-0 -right-[2px]'/>
     </div>
 </Carousel>
