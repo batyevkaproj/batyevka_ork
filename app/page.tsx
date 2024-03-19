@@ -34,12 +34,14 @@ export default function Home() {
          <Heading text={'Ключові переваги для наших бізнес-абонентів'}></Heading>
          
         <Advantages />
-        {/*
+
         <Heading text={`Бізнес тарифи "GPON"`} />
+                
         <OpticCable/>
+        
         <Tarifs />
         <ContactForm />
-        <InfoBlock /> */}
+        <InfoBlock />
       {/* </main> */}
       {/* <Footer /> */}
     </>
