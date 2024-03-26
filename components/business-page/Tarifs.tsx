@@ -18,10 +18,10 @@ const Tarifs = () => {
     return (
         <>
             <div className="h-[60px]"></div>
-            <div className=" text-[26px] font-bold text-white flex items-center justify-center w-[1110px]">
+            <div className=" text-[26px] font-bold text-white flex items-center justify-center">
                 <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо ОПТИЧНИЙ кабель</h1>
             </div>
-            <div className=" text-[24px] font-bold text-white flex items-center justify-center w-[1110px]">
+            <div className=" text-[24px] font-bold text-white flex items-center justify-center">
                 <h1 className="text-center w-[913px] flex items-center justify-center">Всього за<span className=" text-[#56AABF] px-[6px]">699</span>грн</h1>
             </div>
 
@@ -108,7 +108,7 @@ const Tarifs = () => {
             </div>
 
             <Heading text="Механіка тарифів та розрахунків" />
-            <div className=" font-normal text-white flex flex-col items-center justify-center w-[1110px] mt-[120px] mb-[120px]">
+            <div className="font-normal text-white flex flex-col items-center justify-center mt-[120px] mb-[120px]">
                 <div className="flex mb-[10px]">
                     <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
                     <p>При підключенні, Абоненту за замовчуванням надається внутрішня ІР-адреса. Всі тарифи безлімітні по трафіку Мир та Україна – немає поділу. Швидкість Входу та Виходу однакові.</p>
