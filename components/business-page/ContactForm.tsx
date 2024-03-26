@@ -1,6 +1,6 @@
 const ContactForm = () => {
     return ( 
-        <div className={`font-normal text-white flex flex-col items-center h-[326px] bg-[#123853] mb-[120px]`}>
+        <div className={`font-normal text-white flex flex-col items-center   h-[326px] bg-[#123853] mb-[120px]`}>
             <h1 className={`font-bold text-white mt-[50px] text-[42px] mb-[25px]`}>Простіше обговорити всі деталі по телефону?</h1>
             <p className={`font-normal text-white text-[24px]`}>Залишіть ваші контактні дані і ми <span className={`text-[#DC662D] font-semibold`}>передзвонимо</ span></p>
             <div className={`flex mt-[49px]`}>

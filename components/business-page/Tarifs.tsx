@@ -19,10 +19,10 @@ const Tarifs = () => {
         <>
             <div className="h-[60px]"></div>
             <div className=" text-[26px] font-bold text-white flex items-center justify-center">
-                <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо ОПТИЧНИЙ кабель</h1>
+                <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем</h1>
             </div>
-            <div className=" text-[24px] font-bold text-white flex items-center justify-center">
-                <h1 className="text-center w-[913px] flex items-center justify-center">Всього за<span className=" text-[#56AABF] px-[6px]">699</span>грн</h1>
+            <div className=" text-[24px] font-bold text-white flex justify-center">
+                <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] text-[42px]">2 599</span>грн</h1>
             </div>
 
 
