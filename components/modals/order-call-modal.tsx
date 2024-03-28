@@ -21,8 +21,8 @@ export const OrderCallModal = () => {
         <Dialog open={isModalOpen} onOpenChange={onClose}>
             <DialogContent className="shadow-[0_4px_29px_0px_#0B273C] bg-[#133853] rounded-[10px] w-[620px] p-0 m-0 border-0">
                 <DialogHeader>
-                    <DialogTitle className="flex justify-center text-[24px] font-bold text-white  mt-[60px]">Передзвонимо через 30 секунд</DialogTitle>
-                    <DialogDescription className="flex justify-center text-[16px] mt-[15px] font-light text-white font-sans">
+                    <DialogTitle className="flex justify-center text-[24px] font-bold text-white mt-[60px]">Передзвонимо через 30 секунд</DialogTitle>
+                    <DialogDescription className="flex justify-center text-[16px] mt-[15px] font-light text-white">
                     Залиште свій номер телефону і чекайте дзвінка
                     </DialogDescription>
                 </DialogHeader>
