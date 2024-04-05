@@ -35,9 +35,8 @@ export default function Home() {
       <Heading text={`Бізнес тарифи "GPON"`} /> 
       <OpticCable/>
       <ContactForm />
-      <Tarifs />
-      <ContactForm />
-      <InfoBlock />
+      {/* <Tarifs /> */}
+      {/* <InfoBlock /> */}
       {/* <Footer /> */}
 
     </>
