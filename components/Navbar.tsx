@@ -31,7 +31,7 @@ const Navbar = () => {
     return ( 
         <>
         <div className="flex items-center justify-center bg-[#0D2A40]">
-            <div className="min-[780px]:hidden bg-[#0D2A40] h-[60px] flex items-center justify-start w-[300px]">
+            <div className="min-[781px]:hidden bg-[#0D2A40] h-[60px] flex items-center justify-start w-[300px]">
                 <Image src={mobLogo} alt="Batyevka.NET"></Image>
                 <div className="flex ml-[10px]">
                 <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'}/>
@@ -39,7 +39,7 @@ const Navbar = () => {
                 </div>
             </div>
         </div>
-        <div className="mt-[16px] min-[780px]:hidden flex items-center justify-center">
+        <div className="mt-[16px] min-[781px]:hidden flex items-center justify-center">
             <Button onClick={() => {onOpen("payment")}} variant="payMobMob">
                 <Image src={wallet_white} className={`relative w-7 h-7 fill-white`} alt={'wallet'}></Image>
             </Button>
