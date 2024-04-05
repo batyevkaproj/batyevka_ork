@@ -28,20 +28,25 @@ export default function Home() {
   }
   return (
     <>
-      <Header />
+      {/* <Header />
         <Slider />
          <Heading text={'Ключові переваги для наших бізнес-абонентів'}></Heading>
          
         <Advantages />
 
-        <Heading text={`Бізнес тарифи "GPON"`} />
-                
-        <OpticCable/>
-        
+         <Heading text={`Бізнес тарифи "GPON"`} />
+             
+        <OpticCable/> */}
+        <ContactForm />
+        {/* 
         <Tarifs />
         <ContactForm />
         <InfoBlock />
-        <Footer />
+        <Footer /> */}
+
+        {/* <div className={`min-[2430px]:mx-[120px] min-[2430px]:mx-[170px] min-[1770px]:mx-[85px] min-[1180px]:mx-[67px] max-[1180px]:mx-[67px] max-[910px]:mx-[35px]`}>
+          
+        </div> */}
     </>
   )
 }

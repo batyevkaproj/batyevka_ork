@@ -6,7 +6,6 @@ import logo from '../public/img/logo.svg';
 import arrow_down from '../public/img/arrow_down.svg';
 import globe_small from '../public/img/globe_small.svg';
 import wallet_white from '../public/img/wallet_white.svg';
-import wallet from '../public/img/wallet.svg'
 import _247 from '../public/img/247.svg';
 import telephon from '../public/img/phone.svg';
 import rectangle from '../public/img/rectangle.svg';
@@ -16,8 +15,6 @@ import wrench from '../public/img/wrench.svg'
 import wkey from '../public/img/wkey.svg'
 import { Button } from '@/components/ui/button';
 import Navbar from "./Navbar";
-
-import gear from '../public/img/gear.svg';
 
 const Header = () => {
 
