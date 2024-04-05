@@ -9,7 +9,7 @@ import Image    from 'next/image';
 
 const Advantages = () => {
     return ( 
-        <div className={`grid text-white grid-cols-3 max-[1770px]:grid-cols-2 max-[1180px]:grid-cols-1 justify-center items-center max-[780px]:gap-5 place-items-center`}>
+        <div className={`grid text-white grid-cols-3 max-[1770px]:grid-cols-2 max-[1180px]:grid-cols-1 justify-center items-center max-[780px]:gap-5 place-items-center max-[2430px]:px-[120px]`}>
             <div className={`flex items-center justify-center h-[251px] max-[780px]:flex-col max-[780px]:h-[270px] min-[2430px]:h-[329px] min-[2430px]:w-[706px]`}>
                 <Image src={flash} alt={`flash`} className='min-[2430px]:h-[238px] min-[2430px]:w-[284px]'/>
                 <div className={`flex flex-col ml-[42px]`}>
