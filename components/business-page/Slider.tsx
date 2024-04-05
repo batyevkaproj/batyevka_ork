@@ -76,7 +76,7 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1 max-[910px]:pl-[20%] max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full'>
+        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center'>
             <Image src={vector} className='z-1 whitespace-nowrap' alt='vector'/>
         </div>
     </CarouselItem>
@@ -107,7 +107,7 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1 max-[910px]:pl-[20%] max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full'>
+        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center'>
             <Image src={vector2} alt='vector' className='z-1 whitespace-nowrap'/>
         </div>
     </CarouselItem>
@@ -138,8 +138,8 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1 max-[910px]:pl-[20%] max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full'>
-            <Image src={vector3} alt='vector' className='z-1 whitespace-nowrap'/>
+        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center'>
+            <Image src={vector3} alt='vector' className='z-1 whitespace-nowrap '/>
         </div>
     </CarouselItem>
     <CarouselItem className='flex items-center justify-between'>
@@ -169,7 +169,7 @@ const Slider = () => {
             </li>
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1 max-[910px]:pl-[20%] max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full'>
+        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center'>
             <Image src={vector4} alt='vector' className='z-1 whitespace-nowrap'/>
         </div>
     </CarouselItem>
