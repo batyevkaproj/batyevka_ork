@@ -34,8 +34,8 @@ export default function Home() {
       <Advantages />
       <Heading text={`Бізнес тарифи "GPON"`} /> 
       <OpticCable/>
-      <ContactForm />
-      {/* <Tarifs /> */}
+      {/* <ContactForm /> */}
+      <Tarifs />
       {/* <InfoBlock /> */}
       {/* <Footer /> */}
 

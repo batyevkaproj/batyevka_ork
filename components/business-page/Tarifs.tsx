@@ -17,8 +17,7 @@ import OpticCableReverse from "./OpticCableReverse";
 const Tarifs = () => {
     return (
         <>
-            <div className="h-[60px]"></div>
-            <div className=" text-[26px] font-bold text-white flex items-center justify-center">
+            <div className="text-[26px] font-bold text-white flex items-center justify-center">
                 <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем</h1>
             </div>
             <div className=" text-[24px] font-bold text-white flex justify-center">
@@ -29,7 +28,42 @@ const Tarifs = () => {
             <div className="flex justify-center box-border pt-[60px]">
                 <div className="h-[573px] w-[350px] rounded-md bg-[#123853] mr-5">
                     <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
-                        1999
+                        499
+                    </h2>
+                    <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
+                        грн/міс
+                    </h2>
+
+                    <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]">
+                        Швидкість
+                    </h2>
+                    <h2 className="text-white  font-bold text-[36px] justify-center flex pb-[10px]">
+                        100 Мегабіт
+                    </h2>
+                    <div className="flex justify-center text-white text-[18px]">
+                        <span className="flex mr-[20px] ">
+                            <Image src={galochka} alt="galochka" className="mr-2 " />
+                            УКРАЇНА
+                        </span>
+                        <span className="flex ml-1.5">
+                            <Image src={galochka} alt="galochka" className="mr-2" />
+                            СВІТ
+                        </span>
+                    </div>
+                    <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[40px]">
+                        рівнозначна
+                    </h2>
+                    <div className="flex justify-center mb-[30px]">
+                        <WhiteGreyIpCheck />
+                    </div>
+                    <div className="flex justify-center">
+                        <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Прдключення</button>
+                    </div>
+                </div>
+
+                <div className="h-[573px] w-[350px] rounded-md bg-[#123853] mr-5">
+                    <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
+                        300
                     </h2>
                     <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
                         грн/міс
@@ -52,7 +86,42 @@ const Tarifs = () => {
                         </span>
                     </div>
                     <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[40px]">
-                        Одинакові
+                        рівнозначна
+                    </h2>
+                    <div className="flex justify-center mb-[30px]">
+                        <WhiteGreyIpCheck />
+                    </div>
+                    <div className="flex justify-center">
+                        <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Прдключення</button>
+                    </div>
+                </div>
+
+                <div className="h-[573px] w-[350px] rounded-md bg-[#123853] mr-5">
+                    <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
+                        1 499
+                    </h2>
+                    <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
+                        грн/міс
+                    </h2>
+
+                    <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]">
+                        Швидкість
+                    </h2>
+                    <h2 className="text-white  font-bold text-[36px] justify-center flex pb-[10px]">
+                        1000 Мегабіт
+                    </h2>
+                    <div className="flex justify-center text-white text-[18px]">
+                        <span className="flex mr-[20px] ">
+                            <Image src={galochka} alt="galochka" className="mr-2 " />
+                            УКРАЇНА
+                        </span>
+                        <span className="flex ml-1.5">
+                            <Image src={galochka} alt="galochka" className="mr-2" />
+                            СВІТ
+                        </span>
+                    </div>
+                    <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[40px]">
+                        рівнозначна
                     </h2>
                     <div className="flex justify-center mb-[30px]">
                         <WhiteGreyIpCheck />
@@ -69,11 +138,18 @@ const Tarifs = () => {
 
             <Heading text={`Бизнес тарифы "XG-PON"`} />
 
+            <div className=" text-[26px] font-bold text-white flex items-center justify-center">
+                <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
+            </div>
+            <div className=" text-[24px] font-bold text-white flex justify-center">
+                <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] text-[42px]">14 99</span>грн.</h1>
+            </div>
+
 
             <div className="flex justify-center box-border pt-[60px]">
                 <div className="h-[573px] w-[350px] rounded-md bg-[#123853] mr-5">
                     <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
-                        1999
+                        1 299
                     </h2>
                     <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
                         грн/міс
@@ -96,7 +172,75 @@ const Tarifs = () => {
                         </span>
                     </div>
                     <h2 className="text-[#56AABF]  font-semibold text-[18px] justify-center flex pb-[40px]">
-                        Одинакові
+                        рівнозначна
+                    </h2>
+                    <div className="flex justify-center mb-[30px]">
+                        <WhiteGreyIpCheck />
+                    </div>
+                    <div className="flex justify-center">
+                        <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Прдключення</button>
+                    </div>
+                </div>
+                <div className="h-[573px] w-[350px] rounded-md bg-[#123853] mr-5">
+                    <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
+                        1 699
+                    </h2>
+                    <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
+                        грн/міс
+                    </h2>
+
+                    <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]">
+                        Швидкість
+                    </h2>
+                    <h2 className="text-white  font-bold text-[36px] justify-center flex pb-[10px]">
+                        2000 Мегабіт
+                    </h2>
+                    <div className="flex justify-center text-white text-[18px]">
+                        <span className="flex mr-[20px] ">
+                            <Image src={galochka} alt="galochka" className="mr-2 " />
+                            УКРАЇНА
+                        </span>
+                        <span className="flex ml-1.5">
+                            <Image src={galochka} alt="galochka" className="mr-2" />
+                            СВІТ
+                        </span>
+                    </div>
+                    <h2 className="text-[#56AABF]  font-semibold text-[18px] justify-center flex pb-[40px]">
+                        рівнозначна
+                    </h2>
+                    <div className="flex justify-center mb-[30px]">
+                        <WhiteGreyIpCheck />
+                    </div>
+                    <div className="flex justify-center">
+                        <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Прдключення</button>
+                    </div>
+                </div>
+                <div className="h-[573px] w-[350px] rounded-md bg-[#123853] mr-5">
+                    <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
+                        3 999
+                    </h2>
+                    <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
+                        грн/міс
+                    </h2>
+
+                    <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]">
+                        Швидкість
+                    </h2>
+                    <h2 className="text-white  font-bold text-[36px] justify-center flex pb-[10px]">
+                        2000 Мегабіт
+                    </h2>
+                    <div className="flex justify-center text-white text-[18px]">
+                        <span className="flex mr-[20px] ">
+                            <Image src={galochka} alt="galochka" className="mr-2 " />
+                            УКРАЇНА
+                        </span>
+                        <span className="flex ml-1.5">
+                            <Image src={galochka} alt="galochka" className="mr-2" />
+                            СВІТ
+                        </span>
+                    </div>
+                    <h2 className="text-[#56AABF]  font-semibold text-[18px] justify-center flex pb-[40px]">
+                        рівнозначна
                     </h2>
                     <div className="flex justify-center mb-[30px]">
                         <WhiteGreyIpCheck />
