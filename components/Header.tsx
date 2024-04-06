@@ -53,7 +53,7 @@ const Header = () => {
                     <Image src={arrow_down} width={4} height={4} className={`w-[10px] h-[6px] ml-[12px] min-[2430px]:w-[17px] min-[2430px]:h-[13px]`} alt={'ArrowDown'}/>
                     </div>
                 </div>
-                <div className={`flex items-center justify-between min-[1770px]:w-[532px] mr-[76px] font-semibold min-[2430px]:w-[699px]`}>
+                <div className={`flex items-center justify-between min-[1770px]:w-[532px] font-semibold min-[2430px]:w-[699px]`}>
                     <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px] font-semibold max-[1770px]:mr-[20px] min-[2430px]:mr-[40px]`}>
                         <Image src={_247} className={`relative w-8 h-8 min-w-max min-[2430px]:w-[42px] min-[2430px]:h-[42px]`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Підтримка</span>
                     </Link>
