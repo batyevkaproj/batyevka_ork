@@ -37,7 +37,7 @@ export default function Home() {
       {/* <ContactForm /> */}
       <Tarifs />
       {/* <InfoBlock /> */}
-      {/* <Footer /> */}
+      <Footer />
 
     </>
   )
