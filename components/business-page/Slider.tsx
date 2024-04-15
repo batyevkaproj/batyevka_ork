@@ -42,15 +42,14 @@ const Slider = () => {
 
     const timesArray = Array.from({ length: count });
 
-
-    return ( 
+    return (
     <>
 
 
-<Carousel className={`h-[446px] mt-[45px]`} setApi={setApi}>
+<Carousel className={`mt-[45px]`} setApi={setApi}>
   <CarouselContent className='flex'>
-    <CarouselItem className='flex justify-between items-center'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:hidden'>
+    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
+        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
                 <div className={`flex items-center mb-[15px]`}>
@@ -80,8 +79,8 @@ const Slider = () => {
             <Image src={vector} className='z-1 whitespace-nowrap' alt='vector'/>
         </div>
     </CarouselItem>
-    <CarouselItem className='flex items-center justify-between'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:hidden'>
+    <CarouselItem className='flex items-center justify-between max-[910px]:flex-col-reverse'>
+        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 '>
             <h1 className={` text-[60px] font-bold text-white whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>в МАГАЗИН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
                 <div className={`flex items-center mb-[15px]`}>
@@ -111,8 +110,8 @@ const Slider = () => {
             <Image src={vector2} alt='vector' className='z-1 whitespace-nowrap'/>
         </div>
     </CarouselItem>
-    <CarouselItem className='flex items-center justify-between '>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:hidden'>
+    <CarouselItem className='flex items-center justify-between  max-[910px]:flex-col-reverse'>
+        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 '>
             <h1 className={` text-[60px] font-bold text-white whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>в САЛОН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
                 <div className={`flex items-center mb-[15px]`}>
@@ -142,8 +141,8 @@ const Slider = () => {
             <Image src={vector3} alt='vector' className='z-1 whitespace-nowrap '/>
         </div>
     </CarouselItem>
-    <CarouselItem className='flex items-center justify-between'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:hidden'>
+    <CarouselItem className='flex items-center justify-between max-[910px]:flex-col-reverse '>
+        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 '>
             <h1 className={` text-[60px] font-bold text-white flex-shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>в РЕСТОРАН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
                 <div className={`flex items-center mb-[15px]`}>
