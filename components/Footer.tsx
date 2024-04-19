@@ -88,13 +88,13 @@ const Footer = () => {
                     <h3 className={`w-full font-medium text-left`}>ТАРИФИ</h3>
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col text-white">
-                    <Link href={'#'}>
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
                         для бізнесу 
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
                        для Багатоповерхівок
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
                         для Приватних будинків
                     </Link>
                 </AccordionContent>
@@ -104,19 +104,19 @@ const Footer = () => {
                     <h3 className={`w-full font-medium text-left`}>Інформація абонентам</h3>              
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col text-white">
-                    <Link href={'#'}>
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
                     Публічний договір
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
                         Мапа покриття
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
                         Особистий кабінет
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
                         Додаткові опції
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
                         Ще щось цікаве
                     </Link>
                 </AccordionContent>
@@ -127,14 +127,14 @@ const Footer = () => {
                     <h3 className={`w-full font-medium text-left`}>Технічна підтримка</h3>
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col text-white">
-                    <Link href={'#'}>
-                    <Image className='inline mr-[10px] w-[21px] h-[21px] max-[1920px]:w-[16px] max-[1920px]:h-[16px]' src={orange_mini_phone} alt={``}/>044 49 555 49
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
+                        <Image className='inline mr-[10px] w-[16px] h-[16px]' src={orange_mini_phone} alt={``}/>044 49 555 49
                     </Link>
-                    <Link href={'#'}>
-                        support@batyevka.net
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
+                        <Image className='inline mr-[10px] w-[16px] h-[12px]' src={orange_mini_mail} alt={``}/>support@batyevka.netsupport@batyevka.net
                     </Link>
-                    <Link href={'#'}>
-                        бот в телеграмм
+                    <Link href={'#'} className='hover:text-[#DC662D]'>
+                        <Image className='inline mr-[10px] w-[17px] h-[15px]' src={orange_mini_tg_logo} alt={``}/>бот в телеграммбот в телеграмм
                     </Link>
                 </AccordionContent>
             </AccordionItem>
@@ -153,21 +153,22 @@ const Footer = () => {
             
             <div className={'text-white mr-[35px] ml-[35px] text-[14px] pt-[10px]'}>
                 <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Контакти</h3>
-                <ul className={'leading-[36px]'}>
-                    <li><Image className='inline mr-[10px] w-[16px] h-[21px] max-[1920px]:w-[12px] max-[1920px]:h-[16px]' src={orange_mini_place_marker} alt={``}/>03110, м. Київ, а/с 26</li>
-                    <li><Image className='inline mr-[10px] w-[21px] h-[21px] max-[1920px]:w-[16px] max-[1920px]:h-[16px]' src={orange_mini_phone} alt={``}/>0 800 30 32 30</li>
-                    <li><Image className='inline mr-[10px] w-[21px] h-[16px] max-[1920px]:w-[16px] max-[1920px]:h-[12px]' src={orange_mini_mail} alt={``}/>dogovor@batyevka.net</li>
+                <ul className={'leading-[32px]'}>
+                    <li><Image className='inline mr-[10px] w-[12px] h-[16px]' src={orange_mini_place_marker} alt={``}/>03110, м. Київ, а/с 26</li>
+                    <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[16px] h-[16px]' src={orange_mini_phone} alt={``}/>0 800 30 32 30</li>
+                    <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[16px] h-[12px]' src={orange_mini_mail} alt={``}/>dogovor@batyevka.net</li>
                 </ul>    
             </div>
-            <div className={'text-white mr-[35px] ml-[35px] text-[14px] pt-[10px]'}>
+            <div className={'text-white mr-[35px] ml-[35px] text-[14px] pt-[10px] pb-[60px]'}>
                 <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Ми надаємо послуги:</h3>
-                <ul className={'leading-[36px]'}>
+                <ul className={'leading-[32px]'}>
                     <li>Швидкісного доступу в Інтернет</li>
                     <li>Інтерактивне Телебачення</li>
-                    <li>ось вже:</li>
-                    <div className={'h-[48px] max-w-[282px] max-[1920px]:max-w-[216px] min-w-[216px] rounded-xl bg-[#123853]'}>
-                        <p className={'font-semibold ml-[17px] pt-[7px]'}>24 роки 5 місяців</p>
+                    <li className={'pb-[6px]'}>ось вже:</li>
+                    <div className={'h-[37px] w-[216px] rounded-[10px] bg-[#123853]'}>
+                        <p className={'font-semibold ml-[17px] pt-[3px]'}>24 роки 5 місяців</p>
                     </div>
+                    <li className={'text-[#56AABF] font-semibold pt-[8px]'}>© Batyevka 2014-2024</li>
                 </ul>
             </div>
             {/*
