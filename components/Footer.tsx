@@ -20,7 +20,7 @@ const Footer = () => {
     return ( 
         <footer className={`bg-[#0E2D43] shadow-[0_4px_29px_0_rgba(8,35,27)] max-[375px]:shadow-none`}>
             <div className={'max-[932px]:hidden'}>
-                <div className={`min-[3840px]:pt-[118px] min-[3840px]:pb-[118px] pt-[78px] pb-[78px] max-[2377px]:pt-[60px] max-[2377px]:pb-[60px] grid grid-cols-6 max-[2377px]:grid-cols-5 max-[1600px]:grid-cols-4 max-[1247px]:grid-cols-3 grid-rows-3 text-white min-[3840px]:text-[27px] text-[18px] max-[2377px]:text-[14px] min-[3840px]:gap-[72.2px] gap-[43.2px] font-normal leading-[38px] min-[3840px]:leading-[57px] max-[2377px]:leading-[30px] mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] min-[3840px]:mr-[240px] min-[3840px]:ml-[240px]`}>
+                <div className={`min-[3840px]:pt-[118px] min-[3840px]:pb-[118px] pt-[78px] pb-[78px] max-[2377px]:pt-[60px] max-[2377px]:pb-[60px] grid grid-cols-6 max-[2377px]:grid-cols-5 max-[1600px]:grid-cols-4 max-[1247px]:grid-cols-3 grid-rows-2 max-[1247px]:grid-rows-3 text-white min-[3840px]:text-[27px] text-[18px] max-[2377px]:text-[14px] min-[3840px]:gap-[72.2px] gap-[43.2px] font-normal leading-[38px] min-[3840px]:leading-[57px] max-[2377px]:leading-[30px] mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] min-[3840px]:mr-[240px] min-[3840px]:ml-[240px]`}>
                     <div className={'col-span-1 row-span-2'}>
                         <div>
                             <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Ми надаємо послуги:</h3>
