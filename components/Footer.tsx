@@ -75,13 +75,13 @@ const Footer = () => {
                     <div className={'max-[2377px]:col-start-5 max-[2377px]:row-start-2 max-[2377px]:row-span-1 max-[1600px]:col-start-4 max-[1600px]:row-start-2 max-[1600px]:row-span-1 max-[1247px]:col-start-3 max-[1247px]:row-start-3 max-[1247px]:row-span-1'}>
                         <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[24px] max-[2377px]:mb-[19px]`}>Соціальні мережі</h3>
                         <div className={`flex`}>
-                            <a href={``}><Image className='min-[3840px]:w-[59px] min-[3840px]:h-[59px] w-[40px] h-[40px] max-[2377px]:w-[30px] max-[2377px]:h-[30px] mr-[8px]' src={_1} alt={``}/></a>
-                            <a href={``}><Image className='min-[3840px]:w-[59px] min-[3840px]:h-[59px] w-[40px] h-[40px] max-[2377px]:w-[30px] max-[2377px]:h-[30px]' src={_3} alt={``}/></a>
+                            <a href={``}><Image className='min-[3840px]:w-[59px] min-[3840px]:h-[59px] w-[40px] h-[40px] max-[2377px]:w-[30px] max-[2377px]:h-[30px] mr-[8px] transition ease-in-out duration-100 hover:scale-110' src={_1} alt={``}/></a>
+                            <a href={``}><Image className='min-[3840px]:w-[59px] min-[3840px]:h-[59px] w-[40px] h-[40px] max-[2377px]:w-[30px] max-[2377px]:h-[30px] transition ease-in-out duration-100 hover:scale-110' src={_3} alt={``}/></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className={'min-[932px]:hidden'}>
+            <div className={'min-[933px]:hidden'}>
             <Accordion type="single" collapsible className={'mr-[35px] ml-[35px] max-[375px]:mr-[20px] max-[375px]:ml-[20px] text-[14px] pt-[74px] max-[375px]:pt-[0px]'}>
             <AccordionItem value="item-2">
                 <AccordionTrigger className="flex items-center w-full">
