@@ -42,52 +42,22 @@ const Slider = () => {
 
     const timesArray = Array.from({ length: count });
 
-    return (
+
+    return ( 
     <>
 
 
-<Carousel className={`mt-[45px]`} setApi={setApi}>
+<Carousel className={`h-[446px] mt-[45px]`} setApi={setApi}>
   <CarouselContent className='flex'>
-    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
+    <CarouselItem className='flex justify-between items-center'>
+        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:hidden'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
                     <Image src={infinity} className={`inline-flex`} alt='infinity'/>
                 </span>
-                    <ul className={`ml-2 font-normal`}>Безлімітні та необмежені тарифні плани</ul>
-                </div>
-                
-                <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-[20px] pl-[5px] flex justify-center self-start pt-[5px]`}>
-                    <Image src={sign} className={`inline-flex`} alt={`sign`}/>
-                </span>
-                <ul className={`ml-3  font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
-                </div>
-                
-                <div className={`flex items-center`}>
-                <span className={`box-border w-5 flex justify-center self-start`}>
-                    <Image src={cable} className={`inline-flex`} alt={`cable`}/>
-                </span>
-                <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
-                </div>
-            </li>
-            <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
-        </div>
-        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
-            <Image src={vector} className='z-1 whitespace-nowrap' alt='vector'/>
-        </div>
-    </CarouselItem>
-    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
-            <h1 className={`text-[60px] font-bold text-white whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>в МАГАЗИН</span></h1>
-            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
-                <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-5 flex`}>
-                    <Image src={infinity} className={`inline-flex`} alt='infinity'/>
-                </span>
-                    <ul className={`ml-2 font-normal`}>Безлімітні та необмежені тарифні плани</ul>
+                    <ul className={`ml-2  font-normal`}>Безлімітні та необмежені тарифні плани</ul>
                 </div>
                 
                 <div className={`flex items-center mb-[15px]`}>   
@@ -101,24 +71,55 @@ const Slider = () => {
                 <span className={`box-border w-5 flex justify-center self-start`}>
                     <Image src={cable} className={`inline-flex`} alt={`cable`}/>
                 </span>
-                <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
+                <ul className={`ml-2  font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
                 </div>
             </li>
-            <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
+            <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
+        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center'>
+            <Image src={vector} className='z-1 whitespace-nowrap' alt='vector'/>
+        </div>
+    </CarouselItem>
+    <CarouselItem className='flex items-center justify-between'>
+        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:hidden'>
+            <h1 className={` text-[60px] font-bold text-white whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>в МАГАЗИН</span></h1>
+            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
+                <div className={`flex items-center mb-[15px]`}>
+                <span className={`box-border w-5 flex`}>
+                    <Image src={infinity} className={`inline-flex`} alt='infinity'/>
+                </span>
+                    <ul className={`ml-2  font-normal`}>Безлімітні та необмежені тарифні плани</ul>
+                </div>
+                
+                <div className={`flex items-center mb-[15px]`}>   
+                <span className={`box-border w-[20px] pl-[5px] flex justify-center self-start pt-[5px]`}>
+                    <Image src={sign} className={`inline-flex`} alt={`sign`}/>
+                </span>
+                <ul className={`ml-3  font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
+                </div>
+                
+                <div className={`flex items-center`}>
+                <span className={`box-border w-5 flex justify-center self-start`}>
+                    <Image src={cable} className={`inline-flex`} alt={`cable`}/>
+                </span>
+                <ul className={`ml-2  font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
+                </div>
+            </li>
+            <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
+        </div>
+        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center'>
             <Image src={vector2} alt='vector' className='z-1 whitespace-nowrap'/>
         </div>
     </CarouselItem>
-    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
+    <CarouselItem className='flex items-center justify-between '>
+        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:hidden'>
             <h1 className={` text-[60px] font-bold text-white whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>в САЛОН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
                     <Image src={infinity} className={`inline-flex`} alt='infinity'/>
                 </span>
-                    <ul className={`ml-2 font-normal`}>Безлімітні та необмежені тарифні плани</ul>
+                    <ul className={`ml-2  font-normal`}>Безлімітні та необмежені тарифні плани</ul>
                 </div>
                 
                 <div className={`flex items-center mb-[15px]`}>   
@@ -127,28 +128,29 @@ const Slider = () => {
                 </span>
                 <ul className={`ml-3  font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
                 </div>
+                
                 <div className={`flex items-center`}>
                 <span className={`box-border w-5 flex justify-center self-start`}>
                     <Image src={cable} className={`inline-flex`} alt={`cable`}/>
                 </span>
-                <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
+                <ul className={`ml-2  font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
                 </div>
             </li>
-            <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
+            <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
+        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center'>
             <Image src={vector3} alt='vector' className='z-1 whitespace-nowrap '/>
         </div>
     </CarouselItem>
-    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
+    <CarouselItem className='flex items-center justify-between'>
+        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:hidden'>
             <h1 className={` text-[60px] font-bold text-white flex-shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>в РЕСТОРАН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
                     <Image src={infinity} className={`inline-flex`} alt='infinity'/>
                 </span>
-                    <ul className={`ml-2 font-normal`}>Безлімітні та необмежені тарифні плани</ul>
+                    <ul className={`ml-2  font-normal`}>Безлімітні та необмежені тарифні плани</ul>
                 </div>
                 
                 <div className={`flex items-center mb-[15px]`}>   
@@ -162,12 +164,12 @@ const Slider = () => {
                 <span className={`box-border w-5 flex justify-center self-start`}>
                     <Image src={cable} className={`inline-flex`} alt={`cable`}/>
                 </span>
-                <ul className={`ml-2 zfont-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
+                <ul className={`ml-2  font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
                 </div>
             </li>
-            <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
+            <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Замовити</button>
         </div>
-        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
+        <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center'>
             <Image src={vector4} alt='vector' className='z-1 whitespace-nowrap'/>
         </div>
     </CarouselItem>
