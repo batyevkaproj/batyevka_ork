@@ -36,7 +36,7 @@ export default function Home() {
       <OpticCable/>
       {/* <ContactForm /> */}
       <Tarifs />
-      {/* <InfoBlock /> */}
+      {<InfoBlock />}
       <Footer />
 
     </>
