@@ -50,8 +50,8 @@ const Slider = () => {
   <CarouselContent className='flex'>
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
-            <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
-            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
+            <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
+            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
                     <Image src={infinity} className={`inline-flex`} alt='infinity'/>
@@ -81,8 +81,8 @@ const Slider = () => {
     </CarouselItem>
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
-            <h1 className={`text-[60px] font-bold text-white whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>в МАГАЗИН</span></h1>
-            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
+            <h1 className={`text-[60px] font-bold text-white whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>в МАГАЗИН</span></h1>
+            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
                     <Image src={infinity} className={`inline-flex`} alt='infinity'/>
@@ -112,8 +112,8 @@ const Slider = () => {
     </CarouselItem>
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
-            <h1 className={` text-[60px] font-bold text-white whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>в САЛОН</span></h1>
-            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
+            <h1 className={` text-[60px] font-bold text-white whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>в САЛОН</span></h1>
+            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
                     <Image src={infinity} className={`inline-flex`} alt='infinity'/>
@@ -142,8 +142,8 @@ const Slider = () => {
     </CarouselItem>
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
-            <h1 className={` text-[60px] font-bold text-white flex-shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px]`}>Інтернет <span className={`text-[#56AABF]`}>в РЕСТОРАН</span></h1>
-            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px]`}>
+            <h1 className={` text-[60px] font-bold text-white flex-shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>в РЕСТОРАН</span></h1>
+            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
                     <Image src={infinity} className={`inline-flex`} alt='infinity'/>
