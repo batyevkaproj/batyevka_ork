@@ -30,9 +30,9 @@ export default function Home() {
     <div className={'min-w-[350px]'}>
       <Header />
       <Slider />
-      <Heading text={'Ключові переваги для наших бізнес-абонентів'}></Heading>
+      <Heading text={'Ключові переваги для наших бізнес-абонентів'} text_size={42}></Heading>
       <Advantages />
-      <Heading text={`Бізнес тарифи "GPON"`} /> 
+      <Heading text={`Бізнес тарифи "GPON"`} text_size={42} /> 
       <OpticCable/>
       {/* <ContactForm /> */}
       <Tarifs />

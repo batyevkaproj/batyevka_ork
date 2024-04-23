@@ -14,11 +14,11 @@ const InfoBlock = () => {
     };
     return (
         <div>
-            <div className={'max-[375px]:hidden'}>
-                <div className={`mb-[120px] max-[2377px]:mb-[90px] max-[932px]:mb-[60px] min-[3840px]:mb-[180px] mr-[170px] ml-[170px] min-[3840px]:mr-[240px] min-[3840px]:ml-[240px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] max-[932px]:mr-[35px] max-[932px]:ml-[35px] min-[3840px]:mr-[240px] min-[3840px]:ml-[240px]`}>
-                    <div className={`text-[16px] text-white flex flex-col leading-[24px] max-[2377px]:leading-[18px] max-[2377px]:text-[12px] min-[2377px]:grid min-[2377px]:grid-cols-2 gap-[40px] min-[3840px]:gap-[60px] min-[3840px]:leading-[36px] min-[3840px]:text-[24px]`}>
+            <div className={'max-[558px]:hidden'}>
+                <div className={`mb-[120px] max-[2377px]:mb-[90px] max-[932px]:mb-[60px] min-[3644px]:mb-[180px] mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] max-[932px]:mr-[35px] max-[932px]:ml-[35px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px]`}>
+                    <div className={`text-[16px] text-white flex flex-col leading-[24px] max-[2377px]:leading-[18px] max-[2377px]:text-[12px] min-[2377px]:grid min-[2377px]:grid-cols-2 gap-[40px] min-[3644px]:gap-[60px] min-[3644px]:leading-[36px] min-[3644px]:text-[24px]`}>
                         <div className={'col-span-1'}>
-                            <h1 className={`font-bold leading-[30px] text-[21px] max-[2377px]:leading-[24px] max-[2377px]:text-[16px] min-[3840px]:leading-[45px] min-[3840px]:text-[32px]`}>Про компанію</h1>
+                            <h1 className={`font-bold leading-[30px] text-[21px] max-[2377px]:leading-[24px] max-[2377px]:text-[16px] min-[3644px]:leading-[45px] min-[3644px]:text-[32px]`}>Про компанію</h1>
                             <p className={`mb-5`}>Компанія Batyevka.NET - це надійний постачальник високоякісного інтернету, який перевірений роками. Ми надаємо послуги тисячам задоволених городян, успішно зарекомендувавши себе як хорошого, стабільного провайдера і спеціалізуємося на підключенні до телебачення та Internet.</p>
                             <p className={`mb-5`}>Batyevka.NET - інтернет провайдер, який стійко витримує жорстку конкуренцію столиці і при цьому зберігає умови лояльної цінової політики, стосовно своїх клієнтів. Ми працюємо як з фізичними, так і юридичними особами і наші тарифи доступні для всіх мешканців міста. Ми завжди відкриті для співробітництва та готові надати широкий пакет послуг кожному. Наш клієнт - це наш друг, тому ми працюємо так, щоб підключити інтернет у Києві було для вас максимально просто. Наша команда — це команда професіоналів своєї справи, які готові надати безперебійний доступ до всесвітньої мережі з будь-якої точки міста в режимі 24/7. Наша головна мета - задоволений замовник, тому ми знаємо, що таке індивідуальний підхід до кожного.</p>
                             <h1 className={`font-bold leading-[30px] text-[21px] max-[2377px]:leading-[24px] max-[2377px]:text-[16px]`}>Чому варто вибрати саме нас?</h1>
@@ -40,7 +40,7 @@ const InfoBlock = () => {
                     </div>
                 </div>
             </div>
-            <div className={'min-[376px]:hidden'}>
+            <div className={'min-[559px]:hidden'}>
                 <div className={`mr-[20px] ml-[20px] mb-[20px] relative`}>
                     <div className={`font-normal text-white flex flex-col leading-[18px] text-[12px]`}>
                         <h1 className={`font-bold leading-[24px] text-[16px]`}>Про компанію</h1>
