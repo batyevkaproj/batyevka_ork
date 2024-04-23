@@ -27,7 +27,7 @@ export default function Home() {
     setComment(data)
   }
   return (
-    <>
+    <div className={'min-w-[350px]'}>
       <Header />
       <Slider />
       <Heading text={'Ключові переваги для наших бізнес-абонентів'}></Heading>
@@ -39,6 +39,6 @@ export default function Home() {
       {<InfoBlock />}
       <Footer />
 
-    </>
+    </div>
   )
 }
