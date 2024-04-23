@@ -41,17 +41,17 @@ const InfoBlock = () => {
                 </div>
             </div>
             <div className={'min-[376px]:hidden'}>
-                <div className={`mr-[20px] ml-[20px] mb-[20px]`}>
+                <div className={`mr-[20px] ml-[20px] mb-[20px] relative`}>
                     <div className={`font-normal text-white flex flex-col leading-[18px] text-[12px]`}>
                         <h1 className={`font-bold leading-[24px] text-[16px]`}>Про компанію</h1>
                         <p className={`mb-5`}>Компанія Batyevka.NET - це надійний постачальник високоякісного інтернету, який перевірений роками. Ми надаємо послуги тисячам задоволених городян, успішно зарекомендувавши себе як хорошого, стабільного провайдера і спеціалізуємося на підключенні до телебачення та Internet.<span className={isAboutVisible ? 'hidden' : ''}>..</span>
-                        <ChevronDown className={`inline-flex absolute right-[20px] h-4 w-4 transition-transform + ${isAboutVisible ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} onClick={toggleAboutVisibility}/></p>
+                        <ChevronDown className={`inline-flex absolute right-0 margin-right-auto end h-4 w-4 transition-transform + ${isAboutVisible ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} onClick={toggleAboutVisibility}/></p>
                         <div className={isAboutVisible ? '' : 'hidden'}>
                             <p className={`mb-5`}>Batyevka.NET - інтернет провайдер, який стійко витримує жорстку конкуренцію столиці і при цьому зберігає умови лояльної цінової політики, стосовно своїх клієнтів. Ми працюємо як з фізичними, так і юридичними особами і наші тарифи доступні для всіх мешканців міста. Ми завжди відкриті для співробітництва та готові надати широкий пакет послуг кожному. Наш клієнт - це наш друг, тому ми працюємо так, щоб підключити інтернет у Києві було для вас максимально просто. Наша команда — це команда професіоналів своєї справи, які готові надати безперебійний доступ до всесвітньої мережі з будь-якої точки міста в режимі 24/7. Наша головна мета - задоволений замовник, тому ми знаємо, що таке індивідуальний підхід до кожного.</p>
                         </div>
                         <h1 className={`font-bold leading-[24px] text-[16px]`}>Чому варто вибрати саме нас?</h1>
                         <p className={`mb-5`}>Існує кілька важливих причин, через які жителям Солом'янського району столиці потрібно вибрати нашу компанію<span className={isReasonsVisible ? 'hidden' : ''}>...</span><span className={isReasonsVisible ? '' : 'hidden'}>:</span>
-                        <ChevronDown className={`inline-flex absolute right-[20px] h-4 w-4 transition-transform + ${isReasonsVisible ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} onClick={toggleReasonsVisibility}/></p>
+                        <ChevronDown className={`inline-flex absolute right-0 h-4 w-4 transition-transform + ${isReasonsVisible ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} onClick={toggleReasonsVisibility}/></p>
                         <div className={isReasonsVisible ? '' : 'hidden'}>
                             <p>Якість</p>
                             <p className={`mb-5`}>Головне, чим ми можемо по-праву пишатися — це можливість користувача мати цілодобовий доступ до високоякісного інтернету.</p>
