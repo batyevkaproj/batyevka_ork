@@ -12,8 +12,6 @@ import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
 import OpticCable from '@/components/business-page/OpticCable';
 
-
-
 export default function Home() {
   return (
     <div className={'min-w-[350px]'}>
@@ -25,7 +23,6 @@ export default function Home() {
       <ContactForm />
       {<InfoBlock />}
       <Footer />
-
     </div>
   )
 }
