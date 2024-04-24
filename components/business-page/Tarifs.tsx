@@ -6,6 +6,9 @@ import {
     CarouselPrevious,
   } from "@/components/ui/carousel"
 
+import { type CarouselApi } from "@/components/ui/carousel"
+// import { useEffect, useState } from 'react';
+
 import WhiteGreyIpCheck from './WhiteGreyIpCheck';
 import galochka from '../../public/img/galochka.svg';
 import green_galochka from '../../public/img/green_galochka.svg';
@@ -174,8 +177,8 @@ const Tarifs = () => {
 
 
                 <div className="flex justify-center box-border pt-[40px] mx-[35px]">
-                <Carousel className="w-[760px]">
-                    <CarouselContent className="-ml-1">
+                <Carousel className="w-[760px]" opts={{ loop: false, slidesToScroll : 2 }}>
+                    <CarouselContent className="-ml-1" >
                         <CarouselItem key={1} className="basis-1/2 flex justify-between items-center ">
                             <div className="p-1">
                                 <div className="flex justify-center items-center pt-[20px] mb-[20px]">
@@ -216,7 +219,7 @@ const Tarifs = () => {
                                 </div>
                             </div>                        
                         </CarouselItem>
-                        <CarouselItem key={2} className="basis-1/2 flex justify-between items-center ">
+                        <CarouselItem key={2} className="basis-1/2 flex justify-between items-center">
                             <div className="p-1">
                                 <div className="flex justify-center items-center pt-[20px] mb-[20px]">
                                     <div className="h-[573px] w-[350px] rounded-md bg-[#123853]">                 
