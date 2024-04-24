@@ -56,20 +56,20 @@ const Sidebar = () => {
                     <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
                     <span className="ml-[15px] uppercase font-semibold text-[#DC662D]">для багатоповерхівок</span>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col ml-[20px] text-white">
-                        <Link href={'#'}>
+                <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
+                    <Link href={'#'} className="mt-[10px]">
                         Інтернет
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className="mt-[10px]">
                         Інтернет + ТВ
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className="mt-[10px]">
                         Телебачення
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className="mt-[10px]">
                         Комп'ютерна допомога
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className="mt-[10px]">
                         Всі опції
                     </Link>
                 </AccordionContent>
@@ -79,14 +79,14 @@ const Sidebar = () => {
                     <Image src={orange_house} alt={'orange'} className="ml-[20px]"></Image>
                     <span className="ml-[10px] uppercase font-semibold text-[#DC662D]">Приватному сектору</span>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col ml-[20px] text-white">
-                    <Link href={'#'}>
+                <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
+                    <Link href={'#'} className="mt-[10px]">
                         Інтернет
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className="mt-[10px]">
                         Інтернет + ТВ
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className="mt-[10px]">
                         Комп'ютерна допомога
                     </Link>
                 </AccordionContent>
@@ -96,20 +96,20 @@ const Sidebar = () => {
                     <Image src={bc_orange} alt={'orange'} className="ml-[24px]"></Image>
                     <span className="ml-[13px] uppercase font-semibold text-[#DC662D]">бiзнесу</span>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col ml-[20px] text-white">
-                    <Link href={'#'}>
+                <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
+                    <Link href={'#'} className="mt-[10px]">
                         Акції
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className="mt-[10px]">
                         Тарифи
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className="mt-[10px]">
                         Мапа покриття
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className="mt-[10px]">
                         Абоненту
                     </Link>
-                    <Link href={'#'}>
+                    <Link href={'#'} className="mt-[10px]">
                         Всі опції
                     </Link>
                 </AccordionContent>
