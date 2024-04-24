@@ -18,9 +18,6 @@ import bc_orange from '@/public/img/br_case_orange.svg'
 import key from '@/public/img/key_white.svg';
 import globe from '@/public/img/globe_white.png';
 
-  
-
-
 const Sidebar = () => {
 
     const { onOpen } = useModal();
