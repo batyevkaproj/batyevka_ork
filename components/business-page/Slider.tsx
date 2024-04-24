@@ -76,7 +76,7 @@ const Slider = () => {
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
-            <Image src={vector} className='z-1 whitespace-nowrap' alt='vector'/>
+            <Image src={vector} className='z-1 whitespace-nowrap max-[559px]:px-[20px]' alt='vector'/>
         </div>
     </CarouselItem>
 
@@ -108,7 +108,7 @@ const Slider = () => {
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
-            <Image src={vector} className='z-1 whitespace-nowrap' alt='vector'/>
+            <Image src={vector2} className='z-1 whitespace-nowrap max-[559px]:px-[20px]' alt='vector'/>
         </div>
     </CarouselItem>
 
@@ -140,7 +140,7 @@ const Slider = () => {
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
-            <Image src={vector} className='z-1 whitespace-nowrap' alt='vector'/>
+            <Image src={vector3} className='z-1 whitespace-nowrap max-[559px]:px-[20px]' alt='vector'/>
         </div>
     </CarouselItem>
 
@@ -172,7 +172,7 @@ const Slider = () => {
             <button className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
-            <Image src={vector} className='z-1 whitespace-nowrap' alt='vector'/>
+            <Image src={vector4} className='z-1 whitespace-nowrap max-[559px]:px-[20px]' alt='vector'/>
         </div>
     </CarouselItem>
 

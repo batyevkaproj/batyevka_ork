@@ -567,8 +567,7 @@ const Tarifs = () => {
                 <div className="text-[16px] leading-[22px] font-bold text-white flex justify-center mt-[5px] mx-[20px]">
                     <h1 className="text-center align-bottom">всього за<span className=" text-[#56AABF] leading-[22px] px-[6px] text-[32px]">14 999</span>грн.</h1>
                 </div>
-
-
+                
                 <div className="flex justify-center items-center pt-[20px] mb-[20px]">
                     <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853]">
                         <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
