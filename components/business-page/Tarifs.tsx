@@ -40,7 +40,7 @@ const Tarifs = () => {
     };
     return (
         <>  
-            <div className="max-[558px]:hidden">
+            <div className="max-[1247px]:hidden">
                 <Heading text={`Бізнес тарифи "GPON"`} text_size={42} /> 
                 <OpticCable/>
                 <div className="text-[26px] font-bold text-white flex items-center justify-center">
@@ -159,9 +159,12 @@ const Tarifs = () => {
                 </div>
             </div>
 
+            <div className="min-[1247px]:hidden max-[558px]:hidden">
+                
+            </div>
             <div className="min-[559px]:hidden mt-[52px]">
                 <Heading text={`Бізнес тарифи "GPON"`} text_size={24} />
-                <div className="mt-[15px] mb-[15px]">
+                <div className="mt-[15px] mb-[15px] mr-[68px]">
                     <OpticCable/>
                 </div>
                 
@@ -173,18 +176,18 @@ const Tarifs = () => {
                 </div>
 
                 <div className="flex justify-center items-center pt-[20px] mb-[20px]">
-                    <div className="h-[573px] w-[335px] mx-[20px] rounded-md bg-[#123853] ">
+                    <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853] ">
                         <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
                             499
                         </h2>
-                        <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
+                        <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
                             грн/міс
                         </h2>
 
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]">
+                        <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
                             Швидкість
                         </h2>
-                        <h2 className="text-white  font-bold text-[36px] justify-center flex pb-[10px]">
+                        <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
                             100 Мегабіт
                         </h2>
                         <div className="flex justify-center text-white text-[18px]">
@@ -204,23 +207,24 @@ const Tarifs = () => {
                             <WhiteGreyIpCheck />
                         </div>
                         <div className="flex justify-center">
-                            <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Прдключення</button>
+                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                         </div>
                     </div>
                 </div>
                 <div className="flex justify-center items-center pt-[20px] mb-[20px]">
-                    <div className="h-[573px] w-[335px] mx-[20px] rounded-md bg-[#123853]">
-                        <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
-                            300
+                    <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853]">
+                       
+                        <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex pt-[60px] leading-[70px]">
+                            699
                         </h2>
-                        <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
+                        <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
                             грн/міс
                         </h2>
 
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]">
+                        <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
                             Швидкість
                         </h2>
-                        <h2 className="text-white  font-bold text-[36px] justify-center flex pb-[10px]">
+                        <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
                             2000 Мегабіт
                         </h2>
                         <div className="flex justify-center text-white text-[18px]">
@@ -240,23 +244,24 @@ const Tarifs = () => {
                             <WhiteGreyIpCheck />
                         </div>
                         <div className="flex justify-center">
-                            <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Прдключення</button>
+                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                         </div>
+                        
                     </div>
                 </div>
                 <div className="flex justify-center items-center pt-[20px] mb-[20px]">
-                    <div className="h-[573px] w-[335px] mx-[20px] rounded-md bg-[#123853]">
+                    <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853]">
                         <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
                             1 499
                         </h2>
-                        <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
+                        <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
                             грн/міс
                         </h2>
 
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]">
+                        <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
                             Швидкість
                         </h2>
-                        <h2 className="text-white  font-bold text-[36px] justify-center flex pb-[10px]">
+                        <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
                             1000 Мегабіт
                         </h2>
                         <div className="flex justify-center text-white text-[18px]">
@@ -276,13 +281,13 @@ const Tarifs = () => {
                             <WhiteGreyIpCheck />
                         </div>
                         <div className="flex justify-center">
-                            <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Прдключення</button>
+                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div className="max-[558px]:hidden">
+            <div className="max-[1247px]:hidden">
                 <Heading text={`Бизнес тарифы "XG-PON"`} text_size={42}/>
 
                 <div className=" text-[26px] font-bold text-white flex items-center justify-center">
@@ -402,7 +407,7 @@ const Tarifs = () => {
 
             <div className="min-[559px]:hidden">
                 <Heading text={`Бизнес тарифы "XG-PON"`} text_size={24}/>
-                <div className="mt-[15px] mb-[15px] scale-x-[-1]">
+                <div className="mt-[15px] mb-[15px] scale-x-[-1] ml-[68px]">
                     <OpticCable/>
                 </div>
                 <div className="text-[16px] leading-[22px] font-bold text-white flex items-center justify-center mx-[20px]">
@@ -414,18 +419,18 @@ const Tarifs = () => {
 
 
                 <div className="flex justify-center items-center pt-[20px] mb-[20px]">
-                    <div className="h-[573px] w-[335px] mx-[20px] rounded-md bg-[#123853]">
+                    <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853]">
                         <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
                             1 299
                         </h2>
-                        <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
+                        <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
                             грн/міс
                         </h2>
 
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]">
+                        <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
                             Швидкість
                         </h2>
-                        <h2 className="text-white  font-bold text-[36px] justify-center flex pb-[10px]">
+                        <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
                             2000 Мегабіт
                         </h2>
                         <div className="flex justify-center text-white text-[18px]">
@@ -445,23 +450,23 @@ const Tarifs = () => {
                             <WhiteGreyIpCheck />
                         </div>
                         <div className="flex justify-center">
-                            <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Прдключення</button>
+                            <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[270px] mx-[32px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                         </div>
                     </div>
                 </div>
                 <div className="flex justify-center items-center pt-[20px] mb-[20px]">
-                    <div className="h-[573px] w-[335px] mx-[20px] rounded-md bg-[#123853]">
+                    <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853]">
                         <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
                             1 699
                         </h2>
-                        <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
+                        <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
                             грн/міс
                         </h2>
 
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]">
+                        <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
                             Швидкість
                         </h2>
-                        <h2 className="text-white  font-bold text-[36px] justify-center flex pb-[10px]">
+                        <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
                             2000 Мегабіт
                         </h2>
                         <div className="flex justify-center text-white text-[18px]">
@@ -481,23 +486,23 @@ const Tarifs = () => {
                             <WhiteGreyIpCheck />
                         </div>
                         <div className="flex justify-center">
-                            <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Прдключення</button>
+                            <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[270px] mx-[32px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                         </div>
                     </div>
                 </div>
                 <div className="flex justify-center items-center pt-[20px] mb-[20px]">
-                    <div className="h-[573px] w-[335px] mx-[20px] rounded-md bg-[#123853]">
+                    <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853]">
                         <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
                             3 999
                         </h2>
-                        <h2 className="text-[#DC662D] font-normal text-[20px] justify-center flex pb-[72px]">
+                        <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
                             грн/міс
                         </h2>
 
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[7px]">
+                        <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
                             Швидкість
                         </h2>
-                        <h2 className="text-white  font-bold text-[36px] justify-center flex pb-[10px]">
+                        <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
                             2000 Мегабіт
                         </h2>
                         <div className="flex justify-center text-white text-[18px]">
@@ -517,7 +522,7 @@ const Tarifs = () => {
                             <WhiteGreyIpCheck />
                         </div>
                         <div className="flex justify-center">
-                            <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Прдключення</button>
+                            <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[270px] mx-[32px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                         </div>
                     </div>
                 </div>
