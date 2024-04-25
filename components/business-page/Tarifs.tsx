@@ -45,125 +45,125 @@ const Tarifs = () => {
         <>  {/* GPON biggest*/}
             <div className="max-[1247px]:hidden">
                 <Heading text={`Бізнес тарифи "GPON"`} text_size={42} /> 
-                <div className="max-[2377px]:my-[60px] my-[78px] min-[3644px]:my-[117px] mr-[68px]">
+                <div className="max-[2377px]:my-[60px] my-[75px] min-[3644px]:my-[129px] mr-[68px] min-[2378px]:scale-[1.33] min-[3644px]:scale-[1.96]">
                     <OpticCable/>
                 </div>
-                <div className="text-[26px] font-bold text-white flex items-center justify-center">
-                    <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем</h1>
+                <div className="min-[3644px]:text-[51px] min-[3644px]:leading-[51px] text-[34px] leading-[34px] max-[2377px]:text-[26px] max-[2377px]:leading-[26px] font-bold text-white flex items-center justify-center">
+                    <h1 className="text-center flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем</h1>
                 </div>
-                <div className=" text-[24px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
-                    <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] text-[42px]">2 599</span>грн</h1>
+                <div className="pt-[24px] min-[3644px]:pt-[36px] max-[2377px]:pt-[18px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
+                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">2 599</span>грн.</h1>
                 </div>
 
 
                 <div className="flex justify-center box-border max-[2377px]:gap-[40px] max-[1600px]:gap-[30px] gap-[52px] min-[3644px]:gap-[78px]">
-                    <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[1125px] rounded-md bg-[#123853]">
-                        <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
+                    <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px] min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
+                        <h2 className="text-[#DC662D] font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
                             499
                         </h2>
-                        <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
+                        <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[150px] pb-[100px] max-[2377px]:pb-[77px]">
                             грн/міс
                         </h2>
 
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
+                        <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex ">
                             Швидкість
                         </h2>
-                        <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
+                        <h2 className="text-white font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
                             100 Мегабіт
                         </h2>
-                        <div className="flex justify-center text-white text-[18px]">
+                        <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                             <span className="flex mr-[20px] ">
-                                <Image src={galochka} alt="galochka" className="mr-2 " />
+                                <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                 УКРАЇНА
                             </span>
-                            <span className="flex ml-1.5">
-                                <Image src={galochka} alt="galochka" className="mr-2" />
+                            <span className="flex">
+                                <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                 СВІТ
                             </span>
                         </div>
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[40px]">
+                        <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[73px] pb-[49px] max-[2377px]:pb-[40px] min-[3644px]:pt-[20px] pt-[13px] max-[2377px]:pt-[10px]">
                             рівнозначна
                         </h2>
-                        <div className="flex justify-center mb-[30px]">
+                        <div className="flex justify-center min-[3644px]:mb-[60px] mb-[40px] max-[2377px]:mb-[30px]">
                             <WhiteGreyIpCheck />
                         </div>
                         <div className="flex justify-center">
-                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                         </div>
                     </div>
-                    <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[1125px] rounded-md bg-[#123853]">                 
-                        <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex pt-[60px] leading-[70px]">
+                    <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">                 
+                        <h2 className="text-[#DC662D] font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
                             699
                         </h2>
-                        <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
+                        <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[150px] pb-[100px] max-[2377px]:pb-[77px]">
                             грн/міс
                         </h2>
 
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
+                        <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex">
                             Швидкість
                         </h2>
-                        <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
+                        <h2 className="text-white  font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
                             2000 Мегабіт
                         </h2>
-                        <div className="flex justify-center text-white text-[18px]">
+                        <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                             <span className="flex mr-[20px] ">
-                                <Image src={galochka} alt="galochka" className="mr-2 " />
+                                <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                 УКРАЇНА
                             </span>
-                            <span className="flex ml-1.5">
-                                <Image src={galochka} alt="galochka" className="mr-2" />
+                            <span className="flex">
+                                <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                 СВІТ
                             </span>
                         </div>
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[40px]">
+                        <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[73px] pb-[49px] max-[2377px]:pb-[40px] min-[3644px]:pt-[20px] pt-[13px] max-[2377px]:pt-[10px]">
                             рівнозначна
                         </h2>
-                        <div className="flex justify-center mb-[30px]">
+                        <div className="flex justify-center min-[3644px]:mb-[60px] mb-[40px] max-[2377px]:mb-[30px]">
                             <WhiteGreyIpCheck />
                         </div>
                         <div className="flex justify-center">
-                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                         </div>                                 
                     </div>
-                    <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[1125px] rounded-md bg-[#123853]">
-                        <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
+                    <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
+                        <h2 className="text-[#DC662D] font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
                             1 499
                         </h2>
-                        <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
+                        <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[150px] pb-[100px] max-[2377px]:pb-[77px]">
                             грн/міс
                         </h2>
 
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
+                        <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex">
                             Швидкість
                         </h2>
-                        <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
+                        <h2 className="text-white font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
                             1000 Мегабіт
                         </h2>
-                        <div className="flex justify-center text-white text-[18px]">
+                        <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                             <span className="flex mr-[20px] ">
-                                <Image src={galochka} alt="galochka" className="mr-2 " />
+                                <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                 УКРАЇНА
                             </span>
-                            <span className="flex ml-1.5">
-                                <Image src={galochka} alt="galochka" className="mr-2" />
+                            <span className="flex">
+                                <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                 СВІТ
                             </span>
                         </div>
-                        <h2 className="text-[#56AABF] font-semibold text-[18px] justify-center flex pb-[40px]">
+                        <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[73px] pb-[49px] max-[2377px]:pb-[40px] min-[3644px]:pt-[20px] pt-[13px] max-[2377px]:pt-[10px]">
                             рівнозначна
                         </h2>
-                        <div className="flex justify-center mb-[30px]">
+                        <div className="flex justify-center min-[3644px]:mb-[60px] mb-[40px] max-[2377px]:mb-[30px]">
                             <WhiteGreyIpCheck />
                         </div>
                         <div className="flex justify-center">
-                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             {/*GPON middle */}
-            <div className="min-[1248px]:hidden max-[558px]:hidden mt-[90px]">
+            <div className="min-[1248px]:hidden max-[799px]:hidden mt-[90px]">
                 <Heading text={`Бізнес тарифи "GPON"`} text_size={42} />
                 <div className="my-[60px] mr-[68px]">
                     <OpticCable/>
@@ -307,7 +307,7 @@ const Tarifs = () => {
             </div>
 
             {/*GPON mobile*/}
-            <div className="min-[559px]:hidden mt-[52px]">
+            <div className="min-[800px]:hidden mt-[52px]">
                 <Heading text={`Бізнес тарифи "GPON"`} text_size={24} />
                 <div className="mt-[15px] mb-[15px] mr-[68px]">
                     <OpticCable/>
@@ -435,123 +435,123 @@ const Tarifs = () => {
             {/*XG-GPON biggest */}
             <div className="max-[1247px]:hidden">
                 <Heading text={`Бизнес тарифы "XG-PON"`} text_size={42}/>
-                <div className="max-[2377px]:my-[60px] my-[78px] min-[3644px]:my-[117px] ml-[68px] scale-x-[-1]">
+                <div className="max-[2377px]:my-[60px] my-[75px] min-[3644px]:my-[129px] ml-[68px] scale-x-[-1] min-[2378px]:scale-x-[-1.33] min-[2378px]:scale-y-[1.33] min-[3644px]:scale-x-[-1.96] min-[3644px]:scale-y-[1.96]">
                     <OpticCable/>
                 </div>
-                <div className=" text-[26px] font-bold text-white flex items-center justify-center">
-                    <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
+                <div className="min-[3644px]:text-[51px] min-[3644px]:leading-[51px] text-[34px] leading-[34px] max-[2377px]:text-[26px] max-[2377px]:leading-[26px] font-bold text-white flex items-center justify-center">
+                    <h1 className="text-center flex items-center justify-center">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
                 </div>
-                <div className=" text-[24px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
-                    <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] text-[42px]">14 99</span>грн.</h1>
+                <div className="pt-[24px] min-[3644px]:pt-[36px] max-[2377px]:pt-[18px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
+                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">14 99</span>грн.</h1>
                 </div>
 
 
                 <div className="flex justify-center box-border max-[2377px]:gap-[40px] max-[1600px]:gap-[30px] gap-[52px] min-[3644px]:gap-[78px]">
                     <div className="flex justify-center items-center pt-[20px] mb-[20px]">
-                        <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[1125px] rounded-md bg-[#123853]">
-                            <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
+                        <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
+                            <h2 className="text-[#DC662D] font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
                                 1 299
                             </h2>
-                            <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
+                            <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[150px] pb-[100px] max-[2377px]:pb-[77px]">
                                 грн/міс
                             </h2>
 
-                            <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
+                            <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex ">
                                 Швидкість
                             </h2>
-                            <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
+                            <h2 className="text-white font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
                                 2000 Мегабіт
                             </h2>
-                            <div className="flex justify-center text-white text-[18px]">
+                            <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                                 <span className="flex mr-[20px] ">
-                                    <Image src={galochka} alt="galochka" className="mr-2 " />
+                                    <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                     УКРАЇНА
                                 </span>
-                                <span className="flex ml-1.5">
-                                    <Image src={galochka} alt="galochka" className="mr-2" />
+                                <span className="flex">
+                                    <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                     СВІТ
                                 </span>
                             </div>
-                            <h2 className="text-[#56AABF]  font-semibold text-[18px] justify-center flex pb-[40px]">
+                            <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[73px] pb-[49px] max-[2377px]:pb-[40px] min-[3644px]:pt-[20px] pt-[13px] max-[2377px]:pt-[10px]">
                                 рівнозначна
                             </h2>
-                            <div className="flex justify-center mb-[30px]">
+                            <div className="flex justify-center min-[3644px]:mb-[60px] mb-[40px] max-[2377px]:mb-[30px]">
                                 <WhiteGreyIpCheck />
                             </div>
                             <div className="flex justify-center">
-                                <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[270px] mx-[32px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                                <button className="bg-[#56AABF] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] mx-[32px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                             </div>
                         </div>
                     </div>
                     <div className="flex justify-center items-center pt-[20px] mb-[20px]">
-                        <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[1125px] rounded-md bg-[#123853]">
-                            <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
+                        <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
+                            <h2 className="text-[#DC662D]  font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
                                 1 699
                             </h2>
-                            <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
+                            <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[150px] pb-[100px] max-[2377px]:pb-[77px]">
                                 грн/міс
                             </h2>
 
-                            <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
+                            <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex">
                                 Швидкість
                             </h2>
-                            <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
+                            <h2 className="text-white  font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
                                 2000 Мегабіт
                             </h2>
-                            <div className="flex justify-center text-white text-[18px]">
+                            <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                                 <span className="flex mr-[20px] ">
-                                    <Image src={galochka} alt="galochka" className="mr-2 " />
+                                    <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                     УКРАЇНА
                                 </span>
-                                <span className="flex ml-1.5">
-                                    <Image src={galochka} alt="galochka" className="mr-2" />
+                                <span className="flex">
+                                    <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                     СВІТ
                                 </span>
                             </div>
-                            <h2 className="text-[#56AABF]  font-semibold text-[18px] justify-center flex pb-[40px]">
+                            <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[73px] pb-[49px] max-[2377px]:pb-[40px] min-[3644px]:pt-[20px] pt-[13px] max-[2377px]:pt-[10px]">
                                 рівнозначна
                             </h2>
-                            <div className="flex justify-center mb-[30px]">
+                            <div className="flex justify-center min-[3644px]:mb-[60px] mb-[40px] max-[2377px]:mb-[30px]">
                                 <WhiteGreyIpCheck />
                             </div>
                             <div className="flex justify-center">
-                                <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[270px] mx-[32px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                                <button className="bg-[#56AABF] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] mx-[32px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                             </div>
                         </div>
                     </div>
                     <div className="flex justify-center items-center pt-[20px] mb-[20px]">
-                        <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[1125px] rounded-md bg-[#123853]">
-                            <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
+                        <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
+                            <h2 className="text-[#DC662D] font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
                                 3 999
                             </h2>
-                            <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[77px]">
+                            <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[150px] pb-[100px] max-[2377px]:pb-[77px]">
                                 грн/міс
                             </h2>
 
-                            <h2 className="text-[#56AABF] font-semibold text-[18px] leading-[22px] justify-center flex pb-[10px]">
+                            <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex">
                                 Швидкість
                             </h2>
-                            <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
+                            <h2 className="text-white  font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
                                 2000 Мегабіт
                             </h2>
-                            <div className="flex justify-center text-white text-[18px]">
+                            <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                                 <span className="flex mr-[20px] ">
-                                    <Image src={galochka} alt="galochka" className="mr-2 " />
+                                    <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                     УКРАЇНА
                                 </span>
-                                <span className="flex ml-1.5">
-                                    <Image src={galochka} alt="galochka" className="mr-2" />
+                                <span className="flex">
+                                    <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                     СВІТ
                                 </span>
                             </div>
-                            <h2 className="text-[#56AABF]  font-semibold text-[18px] justify-center flex pb-[40px]">
+                            <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[73px] pb-[49px] max-[2377px]:pb-[40px] min-[3644px]:pt-[20px] pt-[13px] max-[2377px]:pt-[10px]">
                                 рівнозначна
                             </h2>
-                            <div className="flex justify-center mb-[30px]">
+                            <div className="flex justify-center min-[3644px]:mb-[60px] mb-[40px] max-[2377px]:mb-[30px]">
                                 <WhiteGreyIpCheck />
                             </div>
                             <div className="flex justify-center">
-                                <button className="bg-[#56AABF] text-white rounded-full h-[60px] w-[270px] mx-[32px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                                <button className="bg-[#56AABF] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] mx-[32px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                             </div>
                         </div>
                     </div>
@@ -559,12 +559,12 @@ const Tarifs = () => {
             </div>
 
             {/*XG-GPON middle */}
-            <div className="min-[1248px]:hidden max-[558px]:hidden mt-[-48px]">
+            <div className="min-[1248px]:hidden max-[799px]:hidden mt-[-48px]">
             <Heading text={`Бізнес тарифи "XG-PON"`} text_size={42} />
                 <div className="my-[60px] scale-x-[-1] ml-[68px]">
                     <OpticCable/>
                 </div>
-                <div className="text-[26px] leading-[32px] font-bold text-white flex items-center justify-center">
+                <div className="text-[26px] leading-[32px] font-bold text-white flex items-center justify-center mx-[147px]">
                     <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
                 </div>
                 <div className="text-[24px] leading-[36px] font-bold text-white flex justify-center pt-[18px]">
@@ -702,7 +702,7 @@ const Tarifs = () => {
             </div>
 
             {/* XG-GPON mobile */}
-            <div className="min-[559px]:hidden">
+            <div className="min-[800px]:hidden">
                 <Heading text={`Бизнес тарифы "XG-PON"`} text_size={24}/>
                 <div className="mt-[15px] mb-[15px] scale-x-[-1] ml-[68px]">
                     <OpticCable/>
@@ -825,7 +825,7 @@ const Tarifs = () => {
             </div>
 
             {/* */}
-            <div className={'max-[558px]:hidden mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] max-[932px]:mr-[35px] max-[932px]:ml-[35px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px] max-[1247px]:mt-[-48px]'}>
+            <div className={'max-[639px]:hidden mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] max-[932px]:mr-[35px] max-[932px]:ml-[35px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px] max-[1247px]:mt-[-48px]'}>
                 <Heading text="Механіка тарифів та розрахунків" text_size={42}/>
                 <div className="min-[2377px]:grid min-[2377px]:grid-cols-2 gap-[40px] min-[3644px]:gap-[60px] font-normal text-white flex flex-col items-center justify-center mt-[52px] max-[2377px]:mt-[40px] min-[3644px]:mt-[78px] mb-[120px] max-[2377px]:leading-[24px] max-[2377px]:text-[16px] leading-[28px] text-[20px] min-[3644px]:leading-[42px] min-[3644px]:text-[30px]">
                     <div className="col-span-1 max-[2377px]:mb-[-38px]">
@@ -850,7 +850,7 @@ const Tarifs = () => {
                     </div>
                 </div>
             </div>
-            <div className={'min-[559px]:hidden mr-[20px] ml-[20px] relative'}>
+            <div className={'min-[640px]:hidden mr-[20px] ml-[20px] relative'}>
                 <Heading text="Механіка тарифів та розрахунків" text_size={24}/>
                 <div className="font-normal text-white flex flex-col items-center justify-center mt-[10px] mb-[20px] leading-[18px] text-[12px]">
                     <div className="flex mb-[10px]">
