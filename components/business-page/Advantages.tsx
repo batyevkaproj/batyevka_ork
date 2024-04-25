@@ -10,7 +10,7 @@ import Image    from 'next/image';
 const Advantages = () => {
     return (
         
-        <div className={`grid text-white grid-cols-3 max-[1770px]:grid-cols-2 max-[1180px]:grid-cols-1 justify-center items-center max-[780px]:gap-5 place-items-center min-[3644]:px-[240px] px-[170px] max-[2430px]:px-[120px] max-[1600px]:px-[85px] max-[1247px]:px-[67px] max-[932px]:pt-[35px] max-[558px]:pt-[20px]`}>
+        <div className={`grid text-white grid-cols-3 max-[1770px]:grid-cols-2 max-[1180px]:grid-cols-1 justify-center items-center max-[780px]:gap-5 place-items-center min-[3644px]:px-[240px] px-[170px] max-[2430px]:px-[120px] max-[1600px]:px-[85px] max-[1247px]:px-[67px] max-[932px]:px-[35px] max-[558px]:px-[20px]`}>
             <div className={`flex items-center justify-center h-[251px] max-[780px]:flex-col max-[780px]:h-[270px] min-[2430px]:h-[329px] min-[2430px]:w-[706px] max-[910px]:h-full`}>
                 <Image src={flash} alt={`flash`} className='min-[2430px]:h-[238px] min-[2430px]:w-[284px]'/>
                 <div className={`flex flex-col min-[3644px]:ml-[80px] ml-[57px] max-[2377px]:ml-[43px]`}>
