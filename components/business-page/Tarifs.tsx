@@ -16,7 +16,7 @@ import Image from 'next/image';
 import Heading from '@/components/Heading';
 import OpticCableReverse from "./OpticCableReverse";
 import React, { useState } from 'react'
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, FlipVertical } from "lucide-react"
 import OpticCable from '@/components/business-page/OpticCable';
 
 const Tarifs = () => {
@@ -163,7 +163,7 @@ const Tarifs = () => {
             </div>
 
             {/*GPON middle */}
-            <div className="min-[1248px]:hidden max-[799px]:hidden mt-[90px]">
+            <div className="min-[1248px]:hidden max-[823px]:hidden">
                 <Heading text={`Бізнес тарифи "GPON"`} text_size={42} />
                 <div className="my-[60px] mr-[68px]">
                     <OpticCable/>
@@ -300,14 +300,14 @@ const Tarifs = () => {
                             </div>
                         </CarouselItem>
                     </CarouselContent>
-                    <CarouselPrevious className="ml-[32px]"/>
-                    <CarouselNext className="mr-[32px]"/>
+                    <CarouselPrevious className="ml-[48px] bg-[#3C7199] border-[#3C7199] text-white"/>
+                    <CarouselNext className="mr-[44px] bg-[#3C7199] border-[#3C7199] text-white"/>
                 </Carousel>
                 </div>
             </div>
 
             {/*GPON mobile*/}
-            <div className="min-[800px]:hidden mt-[52px]">
+            <div className="min-[824px]:hidden mt-[30px]">
                 <Heading text={`Бізнес тарифи "GPON"`} text_size={24} />
                 <div className="mt-[15px] mb-[15px] mr-[68px]">
                     <OpticCable/>
@@ -559,7 +559,7 @@ const Tarifs = () => {
             </div>
 
             {/*XG-GPON middle */}
-            <div className="min-[1248px]:hidden max-[799px]:hidden mt-[-48px]">
+            <div className="min-[1248px]:hidden max-[823px]:hidden mt-[-48px]">
             <Heading text={`Бізнес тарифи "XG-PON"`} text_size={42} />
                 <div className="my-[60px] scale-x-[-1] ml-[68px]">
                     <OpticCable/>
@@ -572,7 +572,7 @@ const Tarifs = () => {
                 </div>
 
                 <div className="flex justify-center box-border pt-[40px] mx-[35px]">
-                <Carousel className="w-[760px]" opts={{ loop: false, slidesToScroll : 2 }}>
+                <Carousel className="w-[760px]" opts={{loop :false, slidesToScroll : 2}}>
                     <CarouselContent className="-ml-1" >
                         <CarouselItem key={1} className="basis-1/2 flex justify-between items-center ">
                             <div className="p-1">
@@ -695,14 +695,14 @@ const Tarifs = () => {
                             </div>
                         </CarouselItem>
                     </CarouselContent>
-                    <CarouselPrevious className="ml-[32px]"/>
-                    <CarouselNext className="mr-[32px]"/>
+                    <CarouselPrevious className="ml-[48px] bg-[#3C7199] border-[#3C7199] text-white"/>
+                    <CarouselNext className="mr-[44px] bg-[#3C7199] border-[#3C7199] text-white"/>
                 </Carousel>
                 </div>
             </div>
 
             {/* XG-GPON mobile */}
-            <div className="min-[800px]:hidden">
+            <div className="min-[824px]:hidden">
                 <Heading text={`Бизнес тарифы "XG-PON"`} text_size={24}/>
                 <div className="mt-[15px] mb-[15px] scale-x-[-1] ml-[68px]">
                     <OpticCable/>
@@ -825,7 +825,7 @@ const Tarifs = () => {
             </div>
 
             {/* */}
-            <div className={'max-[639px]:hidden mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] max-[932px]:mr-[35px] max-[932px]:ml-[35px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px] max-[1247px]:mt-[-48px]'}>
+            <div className={'max-[823px]:hidden mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] max-[932px]:mr-[35px] max-[932px]:ml-[35px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px] max-[1247px]:mt-[-48px]'}>
                 <Heading text="Механіка тарифів та розрахунків" text_size={42}/>
                 <div className="min-[2377px]:grid min-[2377px]:grid-cols-2 gap-[40px] min-[3644px]:gap-[60px] font-normal text-white flex flex-col items-center justify-center mt-[52px] max-[2377px]:mt-[40px] min-[3644px]:mt-[78px] mb-[120px] max-[2377px]:leading-[24px] max-[2377px]:text-[16px] leading-[28px] text-[20px] min-[3644px]:leading-[42px] min-[3644px]:text-[30px]">
                     <div className="col-span-1 max-[2377px]:mb-[-38px]">
@@ -850,7 +850,7 @@ const Tarifs = () => {
                     </div>
                 </div>
             </div>
-            <div className={'min-[640px]:hidden mr-[20px] ml-[20px] relative'}>
+            <div className={'min-[824px]:hidden mr-[20px] ml-[20px] mt-[-18px] relative'}>
                 <Heading text="Механіка тарифів та розрахунків" text_size={24}/>
                 <div className="font-normal text-white flex flex-col items-center justify-center mt-[10px] mb-[20px] leading-[18px] text-[12px]">
                     <div className="flex mb-[10px]">
