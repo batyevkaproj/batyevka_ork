@@ -56,11 +56,11 @@ const Header = () => {
             </nav>
 
             <nav className={`flex items-center`}>
-            <div className={`flex items-center justify-end min-[1770px]:w-[532px] font-semibold min-[2430px]:w-[699px]`}>
+                <div className={`flex items-center justify-end min-[1770px]:w-[532px] font-semibold min-[2430px]:w-[699px]`}>
                     <Link href='#'  className={`text-[#56AABF] flex items-center h-[60px] font-semibold max-[1770px]:mr-[20px] min-[2430px]:mr-[40px]`}>
                         <Image src={_247} className={`relative w-8 h-8 min-w-max min-[2430px]:w-[42px] min-[2430px]:h-[42px]`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Підтримка</span>
                     </Link>
-                    <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px] font-semibold min-[2430px]:mr-[40px]`}>
+                    <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px] font-semibold min-[2430px]:mr-[40px] mr-[25px]`}>
                         <Image src={wrench} className={`relative w-8 h-8 min-w-max min-[2430px]:w-[42px] min-[2430px]:h-[42px]`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1770px]:hidden`}>Обладнання</span>
                     </Link>
                     <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px] min-[2430px]:h-[78px]`}>
