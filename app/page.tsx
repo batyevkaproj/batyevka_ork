@@ -22,6 +22,7 @@ export default function Home() {
       <Tarifs />
       <ContactForm />
       {<InfoBlock />}
+      
       <Footer />
     </div>
   )
