@@ -47,7 +47,7 @@ const Header = () => {
                     <Image src={logo} height={1} className={`flex-shrink-0 min-w-max max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px]`} alt={'Batyevka logo'}/>
                 </Link>
                 <div>
-                    <div className='bg-[#8B6CB0] w-[275px] h-[60px] flex items-center justify-center max-[1290px]:hidden min-[2430px]:w-[360px] min-[2430px]:h-[78px] rounded-[5px] min-[2430px]:mr-[78px]'>
+                    <div className='bg-[#8B6CB0] w-[275px] h-[60px] flex items-center justify-center max-[1280px]:hidden min-[2430px]:w-[360px] min-[2430px]:h-[78px] rounded-[5px] min-[2430px]:mr-[78px]'>
                     <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px] min-[2430px]:w-[26px] min-[2430px]:h-[26px]`} alt={'phone'}/>
                         <a className='font-semibold text-white text-[24px] leading-[22px] min-[2430px]:text-[32px]' href={`tel:0800303230`}>0 800 30 32 30</a>
                     <Image src={arrow_down} width={4} height={4} className={`w-[10px] h-[6px] ml-[12px] min-[2430px]:w-[17px] min-[2430px]:h-[13px]`} alt={'ArrowDown'}/>

@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         batyevka: 'bg-batyevka text-batyevka-foreground hover:bg-batyevka/90',
-        topburger: 'bg-[#56AABF] w-[66.86px] h-[60px] rounded-sm relative ml-[30px] min-[801px]:hidden striped-box  max-[720px]:h-[35px] max-[720px]:w-[39px] cursor-pointer',
+        topburger: 'bg-[#56AABF] w-[66.86px] h-[60px] rounded-sm relative ml-[30px] min-[801px]:hidden striped-box max-[720px]:h-[35px] max-[720px]:w-[39px] cursor-pointer',
         connect: 'bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] max-[1026px]:hidden min-[2430px]:text-[21px] min-[2430px]:h-[78px] min-[2430px]:w-[354px] ml-[30px]',
         connectMobile: 'bg-[#DC662D] mt-5 text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80]',
         cabinet: 'bg-[#0E2D43] text-white rounded-full border-[2px] border-solid border-[#56AABF] font-semibold h-[60px] w-[270px] max-[1860px]:hidden min-[2430px]:h-[78px] min-[2430px]:w-[354px] min-[2430px]:text-[21px] min-[2430px]:ml-[30px]',
