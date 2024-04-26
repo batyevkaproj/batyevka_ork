@@ -22,7 +22,7 @@ deploy:
 deploy-dev:
   stage: deploy
   only:
-    - development
+    - testing
   script: 
     - ssh www-root@server.icstudio.online "bash batyevka-dev.sh" -vvv
     - echo "Deployed"
