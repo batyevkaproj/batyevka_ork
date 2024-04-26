@@ -24,7 +24,7 @@ const buttonVariants = cva(
         connectMobile: 'bg-[#DC662D] mt-5 text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80]',
         cabinet: 'bg-[#0E2D43] text-white rounded-full border-[2px] border-solid border-[#56AABF] font-semibold h-[60px] w-[270px] max-[1860px]:hidden min-[2430px]:h-[78px] min-[2430px]:w-[354px] min-[2430px]:text-[21px] min-[2430px]:ml-[30px]',
         pay: 'bg-[#51B18B] text-white rounded-full font-semibold w-[180px] h-[60px] shadow-[0_4px_20px_0_#51B18B] max-[1860px]:hidden min-[2430px]:h-[78px] min-[2430px]:w-[234px] min-[2430px]:text-[21px]',
-        cabinetMob: 'bg-[#0E2D43] text-white rounded-full border-[2px] border-solid border-[#56AABF] font-semibold h-[60px] w-[63px] min-[1861px]:hidden ml-[19px]',
+        cabinetMob: 'bg-[#0E2D43] text-white rounded-full border-[2px] border-solid border-[#56AABF] font-semibold h-[60px] w-[63px] min-[1861px]:hidden min-[1330px]:ml-[42px] ml-[20px]',
         payMob: 'bg-[#51B18B] text-white rounded-full font-semibold h-[60px] w-[63px] shadow-[0_4px_20px_0_#51B18B] min-[1861px]:hidden',
         connectMob: 'bg-[#DC662D] text-white rounded-full h-[60px] w-[63px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] min-[1027px]:hidden ml-[24px]',
         payMobMob: 'bg-[#51B18B] text-white rounded-full font-semibold h-[60px] w-[63px] shadow-[0_4px_20px_0_#51B18B] min-[1861px]:hidden mr-[24px]',
