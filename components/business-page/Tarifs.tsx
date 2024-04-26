@@ -559,7 +559,7 @@ const Tarifs = () => {
             </div>
 
             {/*XG-GPON middle */}
-            <div className="min-[1248px]:hidden max-[823px]:hidden mt-[-48px]">
+            <div className="min-[1248px]:hidden max-[823px]:hidden mt-[-24px]">
             <Heading text={`Бізнес тарифи "XG-PON"`} text_size={42} />
                 <div className="my-[60px] scale-x-[-1] ml-[68px]">
                     <OpticCable/>
