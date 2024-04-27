@@ -97,7 +97,9 @@ const Header = () => {
             <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Приватному сектору</Link>
             <Link href='#'  className={`max-[1420px]:m-1 text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Бiзнесу</Link>
             <Image src={rectangle} alt='rect'/>
-            <Link href='#'  className={`text-white font-semibold  text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center hover:text-[#DC662D]`}>Доступ  в Інтернет</Link>
+            <div className={`rounded-full bg-none border-2 border-[#DC662D] text-[#DC662D] min-[2430px]:w-[186px] min-[2430px]:h-[65px] w-[142px] h-[50px] flex justify-center items-center hover:border-[#E59067] hover:text-[#E59067]`}>
+                <Link href='#'  className={`min-[2430px]:mx-[37px] mx-[29px] font-semibold leading-[22px] text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center `}>Доступ  в Інтернет</Link>
+            </div>
             <Link href='#'  className={`max-[801px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center hover:text-[#DC662D]`}>Трансляції ТБ і футболу <br/> для закладів</Link>
             <Link href='#'  className={`max-[1024px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center hover:text-[#DC662D]`}>Будівництво <br/> локальних мереж для офісів</Link>
             <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center hover:text-[#DC662D]`}>Відеоспостереження <br/>для бізнесу</Link>
