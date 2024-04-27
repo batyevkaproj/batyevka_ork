@@ -906,7 +906,7 @@ const Tarifs = () => {
             </div>
 
             {/* */}
-            <div className={'max-[823px]:hidden mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] max-[932px]:mr-[35px] max-[932px]:ml-[35px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px] max-[1247px]:mt-[-48px]'}>
+            <div className={'max-[643px]:hidden mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] max-[932px]:mr-[35px] max-[932px]:ml-[35px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px] max-[1247px]:mt-[-48px]'}>
                 <Heading text="Механіка тарифів та розрахунків" text_size={42}/>
                 <div className="min-[2377px]:grid min-[2377px]:grid-cols-2 gap-[40px] min-[3644px]:gap-[60px] font-normal text-white flex flex-col items-center justify-center mt-[52px] max-[2377px]:mt-[40px] min-[3644px]:mt-[78px] mb-[120px] max-[2377px]:leading-[24px] max-[2377px]:text-[16px] leading-[28px] text-[20px] min-[3644px]:leading-[42px] min-[3644px]:text-[30px]">
                     <div className="col-span-1 max-[2377px]:mb-[-38px]">
@@ -931,35 +931,35 @@ const Tarifs = () => {
                     </div>
                 </div>
             </div>
-            <div className={'min-[824px]:hidden mr-[20px] ml-[20px] mt-[-18px] relative'}>
+            <div className={'min-[644px]:hidden mr-[20px] ml-[20px] mt-[-18px] relative'}>
                 <Heading text="Механіка тарифів та розрахунків" text_size={24}/>
                 <div className="font-normal text-white flex flex-col items-center justify-center mt-[10px] mb-[20px] leading-[18px] text-[12px]">
-                    <div className="flex mb-[10px]">
+                    <div className={"flex mb-[10px]"} onClick={toggleMechanicVisibility_1}>
                         <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
                         <p>При підключенні, Абоненту за замовчуванням надається внутрішня ІР-адреса.<span className={isMechanicVisible_1 ? 'hidden' : ''}>..</span>
                         <span className={isMechanicVisible_1 ? '' : 'hidden'}> Всі тарифи безлімітні по трафіку Мир та Україна – немає поділу. Швидкість Входу та Виходу однакові.</span>
-                        <ChevronDown className={`inline-flex absolute right-0 h-4 w-4 transition-transform + ${isMechanicVisible_1 ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} onClick={toggleMechanicVisibility_1}/>
+                        <ChevronDown className={`inline-flex absolute right-0 h-4 w-4 transition-transform + ${isMechanicVisible_1 ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`}/>
                         </p>
                     </div>
-                    <div className="flex mb-[10px]">
+                    <div className="flex mb-[10px]" onClick={toggleMechanicVisibility_2}>
                         <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
                         <p>Абонентна плата нараховується за календарний місяць та оплачується шляхом передоплати.<span className={isMechanicVisible_2 ? 'hidden' : ''}>..</span>
                         <span className={isMechanicVisible_2 ? '' : 'hidden'}> Для безперервного користування послугою Абонент до 1-го числа кожного місяця вносить на свій особовий рахунок суму в розмірі абонентної плати та всіх замовлених додаткових послуг (рекомендуємо внести гроші за 3 дні до вказаної дати).</span>
-                        <ChevronDown className={`inline-flex absolute right-0 end h-4 w-4 transition-transform + ${isMechanicVisible_2 ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} onClick={toggleMechanicVisibility_2}/>
+                        <ChevronDown className={`inline-flex absolute right-0 end h-4 w-4 transition-transform + ${isMechanicVisible_2 ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} />
                         </p>
                     </div>
-                    <div className="flex mb-[10px]">
+                    <div className="flex mb-[10px]" onClick={toggleMechanicVisibility_3}>
                         <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
                         <p>Якщо Абонент не сплатив більше 40 днів від останнього дня надання послуг, його договір<span className={isMechanicVisible_3 ? 'hidden' : ''}>...</span>
                         <span className={isMechanicVisible_3 ? '' : 'hidden'}>/ликовий рахунок блокується (дія тарифу, акцій, у яких Абонент брав участь, припиняється). Повторна активація договору платна - у розмірі вартості підключення на обраному тарифі.</span>
-                        <ChevronDown className={`inline-flex absolute right-0 end h-4 w-4 transition-transform + ${isMechanicVisible_3 ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} onClick={toggleMechanicVisibility_3}/>
+                        <ChevronDown className={`inline-flex absolute right-0 end h-4 w-4 transition-transform + ${isMechanicVisible_3 ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} />
                         </p>
                     </div>
-                    <div className="flex mb-[10px]">
+                    <div className="flex mb-[10px]" onClick={toggleMechanicVisibility_4}>
                         <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
                         <p>Перехід на тариф Інтернет з меншою вартістю – 100 грн. разово тариф змінюється<span className={isMechanicVisible_4 ? 'hidden' : ''}>...</span>
                         <span className={isMechanicVisible_4 ? '' : 'hidden'}> з 1 числа наступного місяця. Перехід на тариф Інтернет із більшою вартістю – 45 грн. разово тариф змінюється з наступного робочого дня з перерахунком абонентної плати. Увімкнення/вимкнення передплати Телебачення від МЕГОГО – безкоштовно.</span>
-                        <ChevronDown className={`inline-flex absolute right-0 end h-4 w-4 transition-transform + ${isMechanicVisible_4 ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} onClick={toggleMechanicVisibility_4}/>
+                        <ChevronDown className={`inline-flex absolute right-0 end h-4 w-4 transition-transform + ${isMechanicVisible_4 ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`}/>
                         </p>
                     </div>
                 </div>
