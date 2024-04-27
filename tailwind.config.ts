@@ -68,10 +68,18 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "easyspin": {    
+          '0%':   {left: '0px', top: '0px'},
+          '25%':  {left: '200px', top: '0px'},
+          '50%':  {left: '200px', top: '200px'},
+          '75%': {left: '0px', top: '200px'},
+          '100%': {left: '0px', top: '0px'},
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "easyspin": "easyspin 4s linear infinite",
       },
     },
   },

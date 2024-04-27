@@ -10,12 +10,14 @@ import Advantages from '@/components/business-page/Advantages';
 import Slider from '@/components/business-page/Slider';
 import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
+import ParallaxDemo from '@/components/ParallaxDemo';
 import OpticCable from '@/components/business-page/OpticCable';
 
 export default function Home() {
   return (
     <div className={'min-w-[350px]'}>
       <Header />
+      <ParallaxDemo />
       <Slider />
       <Heading text={'Ключові переваги для наших бізнес-абонентів'} text_size={42}></Heading>
       <Advantages />
