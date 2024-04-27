@@ -13,8 +13,8 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
+    CarouselNextVariation,
+    CarouselPreviousVariation,
   } from "@/components/ui/carousel"
 
 import { type CarouselApi } from "@/components/ui/carousel"
@@ -178,15 +178,15 @@ const Slider = () => {
 
   </CarouselContent>
   <div className={'max-[2429px]:w-[55px] max-[2429px]:h-[258px] w-[72px] h-[321px] absolute top-[84px] min-[2430px]:top-[78px] right-0 max-[910px]:hidden'}>
-        <CarouselPrevious className='bg-[#123853] text-white max-[2429px]:size-[40px] size-[52px] -translate-y-0 rotate-90 border-0 relative top-0 left-0'/>
-        <div className='max-[2429px]:mr-[23px] mr-[29px]  max-[2429px]:pt-[10px] pt-[13px]'>  
+        <CarouselPreviousVariation className='bg-[#123853] text-white max-[2429px]:size-[40px] size-[52px] -translate-y-0 rotate-90 border-0 relative top-0 left-0'/>
+        <div className='max-[2429px]:mr-[23px] mr-[29px] max-[2429px]:pt-[10px] pt-[13px]'>  
             {timesArray.map((_, index) => (
             <span className='' key={index}>
                 <span className='text-right text-[26px] leading-[36px] max-[2429px]:text-[20px] max-[2429px]:leading-[32px]'>{index+1==current ? <><p key={index} className='text-[#56AABF] font-bold pb-[13px] max-[2429px]:pb-[10px]'>0{index+1}</p><span className='h-[3px] max-[2429px]:h-[2px] bg-[#56AABF] block relative right-[-49px] max-[2429px]:right-[-38px] top-[-33px] max-[2429px]:top-[-27px]'></span></>:<p key={index} className='text-white pb-[13px] max-[2429px]:pb-[10px]'>0{index+1}</p> }</span>
             </span>
             ))}  
         </div>
-        <CarouselNext className='bg-[#123853] text-white max-[2429px]:size-[40px] size-[52px] rotate rotate-90 -translate-y-0 border-0 relative top-0 left-0'/>
+        <CarouselNextVariation className='bg-[#123853] text-white max-[2429px]:size-[40px] size-[52px] rotate rotate-90 -translate-y-0 border-0 relative top-0 left-0'/>
     </div>
 </Carousel>
     </>
