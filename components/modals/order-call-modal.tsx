@@ -33,7 +33,7 @@ export const OrderCallModal = () => {
                     <div className="h-[60px] flex items-center w-3/4">
                         <input type={`text`} className={`w-full h-full rounded-full text-[16px] leading-[22px] bg-transparent border border-[#56AABF] pl-[22px] placeholder:text-slate-300`} placeholder="Телефон"/>
                     </div>
-                    <button type={`button`} className={`w-3/4 rounded-full bg-[#2F94AD] h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] text-white text-[18px] leading-[22px] font-semibold shadow-[0_4px_20px_0_#56AABF80]`}>Зателефонуйте мені</button>
+                    <button type={`button`} className={`w-3/4 rounded-full bg-[#2F94AD] h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] text-white text-[18px] leading-[22px] font-semibold text-[#133853] shadow-[0_4px_20px_0_#56AABF80]`}>Зателефонуйте мені</button>
                 </div>
                 <DialogFooter className="sm:justify-start">
                     {/* <DialogClose asChild>
