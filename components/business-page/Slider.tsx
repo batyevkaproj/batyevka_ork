@@ -177,14 +177,16 @@ const Slider = () => {
     </CarouselItem>
 
   </CarouselContent>
-    <div className='absolute top-40 right-8 w-[25px] max-[910px]:hidden'>
-        {timesArray.map((_, index) => (
-        <span className='' key={index}>
-            {index+1==current ? <><p key={index} className='text-[#56AABF] bold text-[20px] leading-[32px] w-[25px]'>0{index+1}</p><span className='w-[18px] h-[2px] bg-[#56AABF] block relative left-[38px] -top-[16px]'></span></>:<p key={index} className='bold text-[20px] leading-[32px] w-[25px]'>0{index+1}</p> }
-        </span>
-        ))}
-        <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] -translate-y-0 rotate-90 border-0 relative left-[1px] bottom-44'/>
-        <CarouselNext className='bg-[#123853] w-[40px] h-[40px] rotate rotate-90 border-0 relative top-0 -right-[2px]'/>
+  <div className={'max-[2377px]:w-[55px] max-[2377px]:h-[258px] w-[72px] h-[321px] absolute top-[129px] right-0 max-[910px]:hidden'}>
+        <CarouselPrevious className='bg-[#123853] text-white max-[2377px]:size-[40px] size-[52px] -translate-y-0 rotate-90 border-0 relative top-0 left-0'/>
+        <div className='max-[2377px]:mr-[23px] mr-[29px]  max-[2377px]:pt-[10px] pt-[13px]'>  
+            {timesArray.map((_, index) => (
+            <span className='' key={index}>
+                <span className='text-right text-[26px] leading-[36px] max-[2377px]:text-[20px] max-[2377px]:leading-[32px]'>{index+1==current ? <><p key={index} className='text-[#56AABF] font-bold pb-[13px] max-[2377px]:pb-[10px]'>0{index+1}</p><span className='h-[3px] max-[2377px]:h-[2px] bg-[#56AABF] block relative right-[-49px] max-[2377px]:right-[-38px] top-[-33px] max-[2377px]:top-[-27px]'></span></>:<p key={index} className='text-white pb-[13px] max-[2377px]:pb-[10px]'>0{index+1}</p> }</span>
+            </span>
+            ))}  
+        </div>
+        <CarouselNext className='bg-[#123853] text-white max-[2377px]:size-[40px] size-[52px] rotate rotate-90 -translate-y-0 border-0 relative top-0 left-0'/>
     </div>
 </Carousel>
     </>
