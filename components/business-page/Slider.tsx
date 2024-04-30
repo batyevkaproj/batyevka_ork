@@ -22,6 +22,7 @@ import { useEffect, useState } from 'react';
 
 
 const Slider = () => {
+    
 
     const [api, setApi] = useState<CarouselApi>()
     const [current, setCurrent] = useState(0)
