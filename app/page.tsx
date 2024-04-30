@@ -12,6 +12,7 @@ import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
 import ParallaxDemo from '@/components/ParallaxDemo';
 import OpticCable from '@/components/business-page/OpticCable';
+import CalculatorTarifs from '@/components/business-page/CalculatorTarifs';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <Header />
       <ParallaxDemo />
       <Slider />
+      <CalculatorTarifs />
       <Heading text={'Ключові переваги для наших бізнес-абонентів'} text_size={42}></Heading>
       <Advantages />
       <Tarifs />
