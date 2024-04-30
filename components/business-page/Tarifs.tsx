@@ -22,6 +22,7 @@ import React, { useState } from 'react'
 import { ChevronDown, FlipVertical } from "lucide-react"
 import OpticCable from '@/components/business-page/OpticCable';
 
+
 const Tarifs = () => {
 
     const [isMechanicVisible_1, setMechanicVisible_1] = useState(false);
@@ -56,7 +57,7 @@ const Tarifs = () => {
         <>  {/* GPON biggest*/}
             <div className="max-[1247px]:hidden">
                 <Heading text={`Бізнес тарифи "GPON"`} text_size={42} /> 
-                <div className="max-[2377px]:my-[60px] my-[75px] min-[3644px]:my-[129px] mr-[68px] min-[2378px]:scale-[1.33] min-[3644px]:scale-[1.96]">
+                <div className="max-[2377px]:my-[60px] my-[75px] min-[3644px]:my-[129px] w-[1200px] mr-[68px] min-[2378px]:scale-[1.33] min-[3644px]:scale-[1.96]">
                     <OpticCable/>
                 </div>
                 <div className="min-[3644px]:text-[51px] min-[3644px]:leading-[51px] text-[34px] leading-[34px] max-[2377px]:text-[26px] max-[2377px]:leading-[26px] font-bold text-white flex items-center justify-center">
@@ -482,8 +483,8 @@ const Tarifs = () => {
             {/*XG-GPON biggest */}
             <div className="max-[1247px]:hidden">
                 <Heading text={`Бизнес тарифы "XG-PON"`} text_size={42}/>
-                <div className="max-[2377px]:my-[60px] my-[75px] min-[3644px]:my-[129px] ml-[68px] scale-x-[-1] min-[2378px]:scale-x-[-1.33] min-[2378px]:scale-y-[1.33] min-[3644px]:scale-x-[-1.96] min-[3644px]:scale-y-[1.96]">
-                    <OpticCable/>
+                <div className="max-[2377px]:my-[60px] my-[75px] min-[3644px]:my-[129px] ml-[45vw]">
+                    <OpticCableReverse/>
                 </div>
                 <div className="min-[3644px]:text-[51px] min-[3644px]:leading-[51px] text-[34px] leading-[34px] max-[2377px]:text-[26px] max-[2377px]:leading-[26px] font-bold text-white flex items-center justify-center">
                     <h1 className="text-center flex items-center justify-center">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>

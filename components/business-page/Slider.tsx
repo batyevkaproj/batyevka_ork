@@ -182,7 +182,7 @@ const Slider = () => {
         <div className='max-[2429px]:mr-[23px] mr-[29px] max-[2429px]:pt-[10px] pt-[13px]'>  
             {timesArray.map((_, index) => (
             <span className='' key={index}>
-                <span className='text-right text-[26px] leading-[36px] max-[2429px]:text-[20px] max-[2429px]:leading-[32px]'>{index+1==current ? <><p key={index} className='text-[#56AABF] font-bold pb-[13px] max-[2429px]:pb-[10px]'>0{index+1}</p><span className='h-[3px] max-[2429px]:h-[2px] bg-[#56AABF] block relative right-[-49px] max-[2429px]:right-[-38px] top-[-33px] max-[2429px]:top-[-27px]'></span></>:<p key={index} className='text-white pb-[13px] max-[2429px]:pb-[10px]'>0{index+1}</p> }</span>
+                <span className='text-right text-[26px] leading-[36px] max-[2429px]:text-[20px] max-[2429px]:leading-[32px]'>{index+1==current ? <><p key={index} className='text-[#56AABF] font-bold pb-[13px] max-[2429px]:pb-[10px]'>0{index+1}</p><span className='h-[3px] max-[2429px]:h-[2px] bg-[#56AABF] block w-1/2 relative right-[-49px] max-[2429px]:right-[-38px] top-[-33px] max-[2429px]:top-[-27px]'></span></>:<p key={index} className='text-white pb-[13px] max-[2429px]:pb-[10px]'>0{index+1}</p> }</span>
             </span>
             ))}  
         </div>
