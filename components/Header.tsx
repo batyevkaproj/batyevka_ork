@@ -93,7 +93,7 @@ const Header = () => {
                 </Button>
             </nav>
         </div>
-        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg max-[780px]:hidden min-[2430px]:h-[104px] mx-[50px] min-[2430px]:mx-[65px] max-[690px]:hidden px-[50px] min-[2430px]:px-[68px]`}>
+        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg max-[780px]:hidden min-[2430px]:h-[104px] mx-[50px] min-[2430px]:mx-[65px] max-[690px]:hidden pl-[50px] pr-[30px] min-[2430px]:pl-[68px] min-[2430px]:pr-[40px]`}>
             <Link href='#'  className={`max-[1650px]:hidden text-white font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Для багатоповерхівок</Link>
             <Link href='#'  className={`max-[1650px]:hidden text-white font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Приватному сектору</Link>
             <Link href='#'  className={`text-white font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Бiзнесу <ChevronDown className={`inline-flex ml-[10px] size-[16px] mb-[3px] min-[1651px]:hidden`}/></Link>
@@ -111,7 +111,7 @@ const Header = () => {
                 <div className={`max-[1970px]:hidden rounded-full bg-none hover:border-2 text-white hover:border-[#DC662D] hover:text-[#DC662D] min-[2430px]:w-[386px] min-[2430px]:h-[65px] w-[292px] h-[50px] flex justify-center items-center`}>
                     <Link href='#' className={` font-semibold text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Відеоспостереження <br/>для бізнесу</Link>
                 </div>
-                <div className="bg-none min-[2430px]:w-[190px] w-[150px] text-white hover:text-[#DC662D]">
+                <div className="bg-none min-[2430px]:w-[180px] w-[150px] text-white hover:text-[#DC662D]">
                     <Link href='#' className={`inline-flex font-semibold  text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center `}>Всі опції <ChevronDown className={`inline-flex ml-[12px] mt-[3px] size-[18px] min-[2430px]:size-[22px]`}/></Link>
                 </div>
             </div>
