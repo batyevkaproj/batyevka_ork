@@ -15,6 +15,7 @@ import wrench from '../public/img/wrench.svg'
 import wkey from '../public/img/wkey.svg'
 import { Button } from '@/components/ui/button';
 import Navbar from "./Navbar";
+import { ChevronDown } from "lucide-react"
 
 const Header = () => {
 
@@ -92,16 +93,28 @@ const Header = () => {
                 </Button>
             </nav>
         </div>
-        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg max-[720px]:hidden min-[2430px]:h-[104px] mx-[50px] min-[2430px]:mx-[65px] max-[690px]:hidden`}>
-            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Для багатоповерхівок</Link>
-            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Приватному сектору</Link>
-            <Link href='#'  className={`max-[1420px]:m-1 text-white font-semibold text-[13px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center`}>Бiзнесу</Link>
+        <div className={`h-20 flex justify-around items-center rounded-full bg-[#123853] shadow-lg max-[780px]:hidden min-[2430px]:h-[104px] mx-[50px] min-[2430px]:mx-[65px] max-[690px]:hidden pl-[50px] pr-[30px] min-[2430px]:pl-[68px] min-[2430px]:pr-[40px]`}>
+            <Link href='#'  className={`max-[1650px]:hidden text-white font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Для багатоповерхівок</Link>
+            <Link href='#'  className={`max-[1650px]:hidden text-white font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Приватному сектору</Link>
+            <Link href='#'  className={`text-white font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Бiзнесу <ChevronDown className={`inline-flex ml-[10px] size-[16px] mb-[3px] min-[1651px]:hidden`}/></Link>
             <Image src={rectangle} alt='rect'/>
-            <Link href='#'  className={`text-white font-semibold  text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Доступ  в Інтернет</Link>
-            <Link href='#'  className={`max-[801px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Трансляції ТБ і футболу <br/> для закладів</Link>
-            <Link href='#'  className={`max-[1024px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Будівництво <br/> локальних мереж для офісів</Link>
-            <Link href='#'  className={`max-[1420px]:hidden text-white font-semibold text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Відеоспостереження <br/>для бізнесу</Link>
-            <Link href='#'  className={`text-white inline-flex font-semibold  text-[13px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Всі опції <Image src={all_services} className={`ml-2`} alt='All Services'/></Link>
+            <div className="h-full w-4/6 max-[1650px]:w-3/4 flex items-center justify-right justify-end gap-[60px]">
+                <div className={`rounded-full bg-none hover:border-2 text-white hover:border-[#DC662D] hover:text-[#DC662D] min-[2430px]:w-[186px] min-[2430px]:h-[65px] w-[142px] h-[50px] flex justify-center items-center`}>
+                    <Link href='#' className={`font-semibold leading-[22px] text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center `}>Доступ  в Інтернет</Link>
+                </div>
+                <div className={`max-[951px]:hidden rounded-full bg-none hover:border-2 text-white hover:border-[#DC662D] hover:text-[#DC662D] min-[2430px]:w-[386px] min-[2430px]:h-[65px] w-[292px] h-[50px] flex justify-center items-center`}>
+                    <Link href='#' className={` font-semibold text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Трансляції ТБ і футболу <br/> для закладів</Link>
+                </div>
+                <div className={`max-[1280px]:hidden rounded-full bg-none hover:border-2 text-white hover:border-[#DC662D] hover:text-[#DC662D] min-[2430px]:w-[386px] min-[2430px]:h-[65px] w-[292px] h-[50px] flex justify-center items-center`}>
+                    <Link href='#' className={`font-semibold text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Будівництво  локальних<br/> мереж для офісів</Link>
+                </div>
+                <div className={`max-[1970px]:hidden rounded-full bg-none hover:border-2 text-white hover:border-[#DC662D] hover:text-[#DC662D] min-[2430px]:w-[386px] min-[2430px]:h-[65px] w-[292px] h-[50px] flex justify-center items-center`}>
+                    <Link href='#' className={` font-semibold text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Відеоспостереження <br/>для бізнесу</Link>
+                </div>
+                <div className="bg-none min-[2430px]:w-[180px] w-[150px] text-white hover:text-[#DC662D]">
+                    <Link href='#' className={`inline-flex font-semibold  text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center `}>Всі опції <ChevronDown className={`inline-flex ml-[12px] mt-[3px] size-[18px] min-[2430px]:size-[22px]`}/></Link>
+                </div>
+            </div>
         </div>
         <Navbar/>
         </header>

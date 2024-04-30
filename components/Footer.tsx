@@ -41,35 +41,35 @@ const Footer = () => {
                     <div>
                         <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>ТАРИФИ</h3>
                         <ul>
-                            <li>Для Бізнесу</li>
-                            <li>Для Багатоповерхівок</li>
-                            <li>Для Приватних Будинків</li>
+                            <li className='hover:text-[#DC662D]'>Для Бізнесу</li>
+                            <li className='hover:text-[#DC662D]'>Для Багатоповерхівок</li>
+                            <li className='hover:text-[#DC662D]'>Для Приватних Будинків</li>
                         </ul>
                     </div>
                     <div className={'col-span-1 row-span-2 max-[1600px]:col-start-2 max-[1600px]:row-start-2'}>
                         <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Інформація абонентам</h3>
                         <ul>
-                            <li>Публічний договір</li>
-                            <li>Мапа покриття</li>
-                            <li>Особитстий кабінет</li>
-                            <li>Додаткові опції</li>
-                            <li>Ще щось цікаве</li>
+                            <li className='hover:text-[#DC662D]'>Публічний договір</li>
+                            <li className='hover:text-[#DC662D]'>Мапа покриття</li>
+                            <li className='hover:text-[#DC662D]'>Особитстий кабінет</li>
+                            <li className='hover:text-[#DC662D]'>Додаткові опції</li>
+                            <li className='hover:text-[#DC662D]'>Ще щось цікаве</li>
                         </ul>
                     </div>
                     <div>
                         <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Технічна підтримка</h3>
                         <ul>
-                            <li><Image className='inline mr-[10px] w-[21px] h-[21px] max-[2377px]:w-[16px] max-[2377px]:h-[16px]' src={orange_mini_phone} alt={``}/>044 49 555 49</li>
-                            <li><Image className='inline mr-[10px] w-[21px] h-[16px] max-[2377px]:w-[16px] max-[2377px]:h-[12px]' src={orange_mini_mail} alt={``}/>support@batyevka.net</li>
-                            <li><Image className='inline mr-[10px] w-[21px] h-[19px] max-[2377px]:w-[17px] max-[2377px]:h-[15px]' src={orange_mini_tg_logo} alt={``}/>бот в телеграмм</li>
+                            <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[21px] h-[21px] max-[2377px]:w-[16px] max-[2377px]:h-[16px]' src={orange_mini_phone} alt={``}/>044 49 555 49</li>
+                            <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[21px] h-[16px] max-[2377px]:w-[16px] max-[2377px]:h-[12px]' src={orange_mini_mail} alt={``}/>support@batyevka.net</li>
+                            <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[21px] h-[19px] max-[2377px]:w-[17px] max-[2377px]:h-[15px]' src={orange_mini_tg_logo} alt={``}/>бот в телеграмм</li>
                         </ul>
                     </div>
                     <div className={'col-span-1 max-[1247px]:col-start-3 max-[1247px]:row-start-2 max-[1247px]:row-span-1'}>
                         <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Контакти</h3>
                         <ul>
                             <li><Image className='inline mr-[10px] w-[16px] h-[21px] max-[2377px]:w-[12px] max-[2377px]:h-[16px]' src={orange_mini_place_marker} alt={``}/>03110, м. Київ, а/с 26</li>
-                            <li><Image className='inline mr-[10px] w-[21px] h-[21px] max-[2377px]:w-[16px] max-[2377px]:h-[16px]' src={orange_mini_phone} alt={``}/>0 800 30 32 30</li>
-                            <li><Image className='inline mr-[10px] w-[21px] h-[16px] max-[2377px]:w-[16px] max-[2377px]:h-[12px]' src={orange_mini_mail} alt={``}/>dogovor@batyevka.net</li>
+                            <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[21px] h-[21px] max-[2377px]:w-[16px] max-[2377px]:h-[16px]' src={orange_mini_phone} alt={``}/>0 800 30 32 30</li>
+                            <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[21px] h-[16px] max-[2377px]:w-[16px] max-[2377px]:h-[12px]' src={orange_mini_mail} alt={``}/>dogovor@batyevka.net</li>
                         </ul>    
                     </div>
                     <div className={'max-[2377px]:col-start-5 max-[2377px]:row-start-2 max-[2377px]:row-span-1 max-[1600px]:col-start-4 max-[1600px]:row-start-2 max-[1600px]:row-span-1 max-[1247px]:col-start-3 max-[1247px]:row-start-3 max-[1247px]:row-span-1'}>

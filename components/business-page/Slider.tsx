@@ -13,8 +13,8 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
+    CarouselNextVariation,
+    CarouselPreviousVariation,
   } from "@/components/ui/carousel"
 
 import { type CarouselApi } from "@/components/ui/carousel"
@@ -22,6 +22,7 @@ import { useEffect, useState } from 'react';
 
 
 const Slider = () => {
+    
 
     const [api, setApi] = useState<CarouselApi>()
     const [current, setCurrent] = useState(0)
@@ -46,7 +47,7 @@ const Slider = () => {
     <>
 
 
-<Carousel className={`mt-[45px]`} setApi={setApi}>
+<Carousel className={`min-[2430px]:mt-[60px] mt-[45px]`} setApi={setApi}>
   <CarouselContent className='flex'>
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
@@ -82,7 +83,7 @@ const Slider = () => {
 
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
-            <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
+            <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В МАГАЗИН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
@@ -114,7 +115,7 @@ const Slider = () => {
 
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
-            <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
+            <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В САЛОН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
@@ -146,7 +147,7 @@ const Slider = () => {
 
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
-            <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
+            <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В РЕСТОРАН</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
@@ -177,14 +178,16 @@ const Slider = () => {
     </CarouselItem>
 
   </CarouselContent>
-    <div className='absolute top-40 right-8 w-[25px] max-[910px]:hidden'>
-        {timesArray.map((_, index) => (
-        <span className='' key={index}>
-            {index+1==current ? <><p key={index} className='text-[#56AABF] bold text-[20px] leading-[32px] w-[25px]'>0{index+1}</p><span className='w-[18px] h-[2px] bg-[#56AABF] block relative left-[38px] -top-[16px]'></span></>:<p key={index} className='bold text-[20px] leading-[32px] w-[25px]'>0{index+1}</p> }
-        </span>
-        ))}
-        <CarouselPrevious className='bg-[#123853] w-[40px] h-[40px] -translate-y-0 rotate-90 border-0 relative left-[1px] bottom-44'/>
-        <CarouselNext className='bg-[#123853] w-[40px] h-[40px] rotate rotate-90 border-0 relative top-0 -right-[2px]'/>
+  <div className={'max-[2429px]:w-[55px] max-[2429px]:h-[258px] w-[72px] h-[321px] absolute top-[84px] min-[2430px]:top-[78px] right-0 max-[910px]:hidden'}>
+        <CarouselPreviousVariation className='bg-[#123853] text-white max-[2429px]:size-[40px] size-[52px] -translate-y-0 rotate-90 border-0 relative top-0 left-0'/>
+        <div className='max-[2429px]:mr-[23px] mr-[29px] max-[2429px]:pt-[10px] pt-[13px]'>  
+            {timesArray.map((_, index) => (
+            <span className='' key={index}>
+                <span className='text-right text-[26px] leading-[36px] max-[2429px]:text-[20px] max-[2429px]:leading-[32px]'>{index+1==current ? <><p key={index} className='text-[#56AABF] font-bold pb-[13px] max-[2429px]:pb-[10px]'>0{index+1}</p><span className='h-[3px] max-[2429px]:h-[2px] bg-[#56AABF] block w-1/2 relative right-[-49px] max-[2429px]:right-[-38px] top-[-33px] max-[2429px]:top-[-27px]'></span></>:<p key={index} className='text-white pb-[13px] max-[2429px]:pb-[10px]'>0{index+1}</p> }</span>
+            </span>
+            ))}  
+        </div>
+        <CarouselNextVariation className='bg-[#123853] text-white max-[2429px]:size-[40px] size-[52px] rotate rotate-90 -translate-y-0 border-0 relative top-0 left-0'/>
     </div>
 </Carousel>
     </>
