@@ -25,6 +25,19 @@ import OpticCable from '@/components/business-page/OpticCable';
 
 const Tarifs = () => {
 
+    const tarifs_simple = [
+        {id: 1, price: '799', speed: '300', promotion: false, promotionString: ''},
+        {id: 2, price: '1 399', speed: '1000', promotion: true, promotionString: 'з 3 місяця 1 899'},
+        {id: 3, price: '2 299', speed: '2500', promotion: false, promotionString: ''}
+    ];
+
+
+    const tarifs_premium = [
+        {id: 1, price: '2 699', speed: '300', promotion: true, promotionString: 'Знижка 30% на перший місяць'},
+        {id: 2, price: '4 999', speed: '1000', promotion: false, promotionString: 'Знижка 30% на перший місяць'},
+        {id: 3, price: '9 999', speed: '2500', promotion: true, promotionString: 'Знижка 30% на перший місяць'}
+    ];
+
     const [isMechanicVisible_1, setMechanicVisible_1] = useState(false);
     const [isMechanicVisible_2, setMechanicVisible_2] = useState(false);
     const [isMechanicVisible_3, setMechanicVisible_3] = useState(false);
@@ -69,24 +82,29 @@ const Tarifs = () => {
 
 
                 <div className="flex justify-center box-border max-[2377px]:gap-[40px] max-[1600px]:gap-[30px] gap-[52px] min-[3644px]:gap-[78px]">
-                    <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px] min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
-                        <Image src={prom_small} alt='prom_large' className={`self-start absolute ml-[20px] mt-[-20px] min-[2378px]:hidden + ${isPromotionGPONVisible_1 ? '' : 'hidden'}`} />
-                        <Image src={prom_middle} alt='prom_large' className={`self-start absolute ml-[26px] mt-[-26px] max-[2377px]:hidden min-[3644px]:hidden + ${isPromotionGPONVisible_1 ? '' : 'hidden'}`} />
-                        <Image src={prom_large} alt='prom_large' className={`self-start absolute ml-[39px] mt-[-39px] max-[3643px]:hidden + ${isPromotionGPONVisible_1 ? '' : 'hidden'}`} />
+
+
+                {
+                tarifs_simple.map((tarif) =>
+                    
+                    <div key={tarif.id} className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px] min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
+                        <Image src={prom_small} alt='prom_large' className={`self-start absolute ml-[20px] mt-[-20px] min-[2378px]:hidden + ${tarif.promotion ? '' : 'hidden'}`} />
+                        <Image src={prom_middle} alt='prom_large' className={`self-start absolute ml-[26px] mt-[-26px] max-[2377px]:hidden min-[3644px]:hidden + ${tarif.promotion ? '' : 'hidden'}`} />
+                        <Image src={prom_large} alt='prom_large' className={`self-start absolute ml-[39px] mt-[-39px] max-[3643px]:hidden + ${tarif.promotion ? '' : 'hidden'}`} />
                         <h2 className="text-[#DC662D] font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
-                            499
+                            {tarif.price}
                         </h2>
                         <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[30px] pb-[20px] max-[2377px]:pb-[15px]">
                             грн/міс
                         </h2>
                         <h2 className={`text-[#8B6CB0] font-semibold min-[3644px]:text-[48px] min-[3644px]:leading-[48px] text-[32px] leading-[32px] max-[2377px]:text-[22px] max-[2377px]:leading-[24px] justify-center flex min-[3644px]:pb-[72px] pb-[48px] max-[2377px]:pb-[40px] + ${isPromotionGPONVisible_1 ? '' : 'min-[3644px]:pb-[120px] pb-[80px] max-[2377px]:pb-[64px]'}`}>
-                            <span className={isPromotionGPONVisible_1 ? '' : 'hidden'}>з 3 місяця 799 грн.</span>
+                            <span className={tarif.promotion ? '' : 'hidden'}>{tarif.promotionString}</span>
                         </h2>
                         <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex ">
                             Швидкість
                         </h2>
                         <h2 className="text-white font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
-                            100 Мегабіт
+                            {tarif.speed} Мегабіт
                         </h2>
                         <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                             <span className="flex mr-[20px] ">
@@ -108,84 +126,8 @@ const Tarifs = () => {
                             <button className="bg-[#56AABF] mx-[32px] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                         </div>
                     </div>
-                    <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">                 
-                        <Image src={prom_small} alt='prom_large' className={`self-start absolute ml-[20px] mt-[-20px] min-[2378px]:hidden + ${isPromotionGPONVisible_2 ? '' : 'hidden'}`} />
-                        <Image src={prom_middle} alt='prom_large' className={`self-start absolute ml-[26px] mt-[-26px] max-[2377px]:hidden min-[3644px]:hidden + ${isPromotionGPONVisible_2 ? '' : 'hidden'}`} />
-                        <Image src={prom_large} alt='prom_large' className={`self-start absolute ml-[39px] mt-[-39px] max-[3643px]:hidden + ${isPromotionGPONVisible_2 ? '' : 'hidden'}`} />
-                        <h2 className="text-[#DC662D] font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
-                            699
-                        </h2>
-                        <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[30px] pb-[20px] max-[2377px]:pb-[15px]">
-                            грн/міс
-                        </h2>
-                        <h2 className={`text-[#8B6CB0] font-semibold min-[3644px]:text-[48px] min-[3644px]:leading-[48px] text-[32px] leading-[32px] max-[2377px]:text-[22px] max-[2377px]:leading-[24px] justify-center flex min-[3644px]:pb-[72px] pb-[48px] max-[2377px]:pb-[40px] + ${isPromotionGPONVisible_2 ? '' : 'min-[3644px]:pb-[120px] pb-[80px] max-[2377px]:pb-[64px]'}`}>
-                            <span className={isPromotionGPONVisible_2 ? '' : 'hidden'}>з 3 місяця 799 грн.</span>
-                        </h2>
-                        <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex">
-                            Швидкість
-                        </h2>
-                        <h2 className="text-white  font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
-                            2000 Мегабіт
-                        </h2>
-                        <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
-                            <span className="flex mr-[20px] ">
-                                <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
-                                УКРАЇНА
-                            </span>
-                            <span className="flex">
-                                <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
-                                СВІТ
-                            </span>
-                        </div>
-                        <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[73px] pb-[49px] max-[2377px]:pb-[40px] min-[3644px]:pt-[20px] pt-[13px] max-[2377px]:pt-[10px]">
-                            рівнозначна
-                        </h2>
-                        <div className="flex justify-center min-[3644px]:mb-[60px] mb-[40px] max-[2377px]:mb-[30px]">
-                            <WhiteGreyIpCheck />
-                        </div>
-                        <div className="flex justify-center">
-                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
-                        </div>                                 
-                    </div>
-                    <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
-                        <Image src={prom_small} alt='prom_large' className={`self-start absolute ml-[20px] mt-[-20px] min-[2378px]:hidden + ${isPromotionGPONVisible_3 ? '' : 'hidden'}`} />
-                        <Image src={prom_middle} alt='prom_large' className={`self-start absolute ml-[26px] mt-[-26px] max-[2377px]:hidden min-[3644px]:hidden + ${isPromotionGPONVisible_3 ? '' : 'hidden'}`} />
-                        <Image src={prom_large} alt='prom_large' className={`self-start absolute ml-[39px] mt-[-39px] max-[3643px]:hidden + ${isPromotionGPONVisible_3 ? '' : 'hidden'}`} />
-                        <h2 className="text-[#DC662D] font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
-                            1 499
-                        </h2>
-                        <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[30px] pb-[20px] max-[2377px]:pb-[15px]">
-                            грн/міс
-                        </h2>
-                        <h2 className={`text-[#8B6CB0] font-semibold min-[3644px]:text-[48px] min-[3644px]:leading-[48px] text-[32px] leading-[32px] max-[2377px]:text-[22px] max-[2377px]:leading-[24px] justify-center flex min-[3644px]:pb-[72px] pb-[48px] max-[2377px]:pb-[40px] + ${isPromotionGPONVisible_3 ? '' : 'min-[3644px]:pb-[120px] pb-[80px] max-[2377px]:pb-[64px]'}`}>
-                            <span className={isPromotionGPONVisible_3 ? '' : 'hidden'}>з 3 місяця 799 грн.</span>
-                        </h2>
-                        <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex">
-                            Швидкість
-                        </h2>
-                        <h2 className="text-white font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
-                            1000 Мегабіт
-                        </h2>
-                        <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
-                            <span className="flex mr-[20px] ">
-                                <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
-                                УКРАЇНА
-                            </span>
-                            <span className="flex">
-                                <Image src={galochka} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
-                                СВІТ
-                            </span>
-                        </div>
-                        <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[73px] pb-[49px] max-[2377px]:pb-[40px] min-[3644px]:pt-[20px] pt-[13px] max-[2377px]:pt-[10px]">
-                            рівнозначна
-                        </h2>
-                        <div className="flex justify-center min-[3644px]:mb-[60px] mb-[40px] max-[2377px]:mb-[30px]">
-                            <WhiteGreyIpCheck />
-                        </div>
-                        <div className="flex justify-center">
-                            <button className="bg-[#56AABF] mx-[32px] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
-                        </div>
-                    </div>
+                  )
+                }
                 </div>
             </div>
 
@@ -212,7 +154,7 @@ const Tarifs = () => {
                                     <div className="h-[573px] w-[350px] rounded-md bg-[#123853]">
                                         <Image src={prom_small} alt='prom_small1' className={`self-start absolute ml-[20px] mt-[-20px] + ${isPromotionGPONVisible_1 ? '' : 'hidden'}`} />
                                         <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
-                                            499
+                                            799 
                                         </h2>
                                         <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[15px]">
                                             грн/міс
@@ -224,7 +166,7 @@ const Tarifs = () => {
                                             Швидкість
                                         </h2>
                                         <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
-                                            100 Мегабіт
+                                            300 Мегабіт
                                         </h2>
                                         <div className="flex justify-center text-white text-[18px]">
                                             <span className="flex mr-[20px] ">
@@ -255,7 +197,7 @@ const Tarifs = () => {
                                     <div className="h-[573px] w-[350px] rounded-md bg-[#123853]">
                                         <Image src={prom_small} alt='prom_small1' className={`self-start absolute ml-[20px] mt-[-20px] + ${isPromotionGPONVisible_2 ? '' : 'hidden'}`} />
                                         <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex pt-[60px] leading-[70px]">
-                                            699
+                                            1 399
                                         </h2>
                                         <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[15px]">
                                             грн/міс
@@ -267,7 +209,7 @@ const Tarifs = () => {
                                             Швидкість
                                         </h2>
                                         <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
-                                            2000 Мегабіт
+                                            1000 Мегабіт
                                         </h2>
                                         <div className="flex justify-center text-white text-[18px]">
                                             <span className="flex mr-[20px] ">
@@ -299,7 +241,7 @@ const Tarifs = () => {
                                         <Image src={prom_small} alt='prom_small1' className={`self-start absolute ml-[20px] mt-[-20px] + ${isPromotionGPONVisible_3 ? '' : 'hidden'}`} />
 
                                         <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
-                                            1 499
+                                            2 299
                                         </h2>
                                         <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[15px]">
                                             грн/міс
@@ -311,7 +253,7 @@ const Tarifs = () => {
                                             Швидкість
                                         </h2>
                                         <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
-                                            1000 Мегабіт
+                                            2500 Мегабіт
                                         </h2>
                                         <div className="flex justify-center text-white text-[18px]">
                                             <span className="flex mr-[20px] ">
@@ -362,7 +304,7 @@ const Tarifs = () => {
                         <Image src={prom_small} alt='prom_small1' className={`self-start absolute ml-[20px] mt-[-20px] + ${isPromotionGPONVisible_1 ? '' : 'hidden'}`} />
 
                         <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
-                            499
+                            799
                         </h2>
                         <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[15px]">
                             грн/міс
@@ -374,7 +316,7 @@ const Tarifs = () => {
                             Швидкість
                         </h2>
                         <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
-                            100 Мегабіт
+                            300 Мегабіт
                         </h2>
                         <div className="flex justify-center text-white text-[18px]">
                             <span className="flex mr-[20px] ">
@@ -402,7 +344,7 @@ const Tarifs = () => {
                         <Image src={prom_small} alt='prom_small1' className={`self-start absolute ml-[20px] mt-[-20px] + ${isPromotionGPONVisible_2 ? '' : 'hidden'}`} />
 
                         <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex pt-[60px] leading-[70px]">
-                            699
+                            1 399
                         </h2>
                         <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[15px]">
                             грн/міс
@@ -414,7 +356,7 @@ const Tarifs = () => {
                             Швидкість
                         </h2>
                         <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
-                            2000 Мегабіт
+                            1000 Мегабіт
                         </h2>
                         <div className="flex justify-center text-white text-[18px]">
                             <span className="flex mr-[20px] ">
@@ -443,7 +385,7 @@ const Tarifs = () => {
                         <Image src={prom_small} alt='prom_small1' className={`self-start absolute ml-[20px] mt-[-20px] + ${isPromotionGPONVisible_3 ? '' : 'hidden'}`} />
 
                         <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
-                            1 499
+                            2 299
                         </h2>
                         <h2 className="text-[#DC662D] font-normal text-[20px] leading-[22px] justify-center flex pb-[15px]">
                             грн/міс
@@ -455,7 +397,7 @@ const Tarifs = () => {
                             Швидкість
                         </h2>
                         <h2 className="text-white  font-bold text-[36px] leading-[36px] justify-center flex pb-[8px]">
-                            1000 Мегабіт
+                            2500 Мегабіт
                         </h2>
                         <div className="flex justify-center text-white text-[18px]">
                             <span className="flex mr-[20px] ">
@@ -499,7 +441,7 @@ const Tarifs = () => {
                             <Image src={prom_middle} alt='prom_large' className={`self-start absolute ml-[26px] mt-[-26px] max-[2377px]:hidden min-[3644px]:hidden + ${isPromotionXGPONVisible_1 ? '' : 'hidden'}`} />
                             <Image src={prom_large} alt='prom_large' className={`self-start absolute ml-[39px] mt-[-39px] max-[3643px]:hidden + ${isPromotionXGPONVisible_1 ? '' : 'hidden'}`} />
                             <h2 className="text-[#DC662D] font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
-                                1 299
+                                2 699
                             </h2>
                             <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[30px] pb-[20px] max-[2377px]:pb-[15px]">
                                 грн/міс
@@ -511,7 +453,7 @@ const Tarifs = () => {
                                 Швидкість
                             </h2>
                             <h2 className="text-white font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
-                                2000 Мегабіт
+                                300 Мегабіт
                             </h2>
                             <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                                 <span className="flex mr-[20px] ">
@@ -540,7 +482,7 @@ const Tarifs = () => {
                             <Image src={prom_middle} alt='prom_large' className={`self-start absolute ml-[26px] mt-[-26px] max-[2377px]:hidden min-[3644px]:hidden + ${isPromotionXGPONVisible_2 ? '' : 'hidden'}`} />
                             <Image src={prom_large} alt='prom_large' className={`self-start absolute ml-[39px] mt-[-39px] max-[3643px]:hidden + ${isPromotionXGPONVisible_2 ? '' : 'hidden'}`} />
                             <h2 className="text-[#DC662D]  font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
-                                1 699
+                                4 999
                             </h2>
                             <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[30px] pb-[20px] max-[2377px]:pb-[15px]">
                                 грн/міс
@@ -552,7 +494,7 @@ const Tarifs = () => {
                                 Швидкість
                             </h2>
                             <h2 className="text-white  font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
-                                2000 Мегабіт
+                                1000 Мегабіт
                             </h2>
                             <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                                 <span className="flex mr-[20px] ">
@@ -581,7 +523,7 @@ const Tarifs = () => {
                             <Image src={prom_middle} alt='prom_large' className={`self-start absolute ml-[26px] mt-[-26px] max-[2377px]:hidden min-[3644px]:hidden + ${isPromotionXGPONVisible_3 ? '' : 'hidden'}`} />
                             <Image src={prom_large} alt='prom_large' className={`self-start absolute ml-[39px] mt-[-39px] max-[3643px]:hidden + ${isPromotionXGPONVisible_3 ? '' : 'hidden'}`} />
                             <h2 className="text-[#DC662D] font-bold justify-center flex min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]">
-                                3 999
+                                9 999
                             </h2>
                             <h2 className="text-[#DC662D] font-normal min-[3644px]:text-[39px] min-[3644px]:leading-[45px] text-[26px] leading-[30px] max-[2377px]:text-[20px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pb-[30px] pb-[20px] max-[2377px]:pb-[15px]">
                                 грн/міс
@@ -593,7 +535,7 @@ const Tarifs = () => {
                                 Швидкість
                             </h2>
                             <h2 className="text-white  font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
-                                2000 Мегабіт
+                                2500 Мегабіт
                             </h2>
                             <div className="flex justify-center text-white min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                                 <span className="flex mr-[20px] ">
