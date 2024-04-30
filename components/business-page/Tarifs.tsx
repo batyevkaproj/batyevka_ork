@@ -144,7 +144,6 @@ const Tarifs = () => {
                     <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[10px] text-[42px]">2 599</span>грн</h1>
                 </div>
 
-
                 <div className="flex justify-center box-border pt-[40px] mx-[35px]">
                 <Carousel className="w-[760px]" opts={{ loop: false, slidesToScroll : 2 }}>
                     <CarouselContent className="-ml-1" >
