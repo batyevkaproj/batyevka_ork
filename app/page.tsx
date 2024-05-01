@@ -14,9 +14,10 @@ import ParallaxDemo from '@/components/ParallaxDemo';
 import OpticCable from '@/components/business-page/OpticCable';
 
 export default function Home() {
+
   return (
-    <div className={'min-w-[350px]'}>
-      <Header />
+    <div className={'min-w-[350px] bg-[#0E2D43]'}>
+      <Header theme="dark" business={true}/>
       <ParallaxDemo />
       <Slider />
       <Heading text={'Ключові переваги для наших бізнес-абонентів'} text_size={42}></Heading>
@@ -24,8 +25,7 @@ export default function Home() {
       <Tarifs />
       <ContactForm />
       {<InfoBlock />}
-      
-      <Footer />
+      <Footer theme='dark'/>
     </div>
   )
 }

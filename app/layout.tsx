@@ -21,7 +21,7 @@ export default function RootLayout({ children }: Readonly<{
 }>) {
   return (
     <html lang="uk-uk" className={montserrat.className}>
-      <body className={`bg-[#0E2D43]`}>
+      <body>
         <ModalProvider />
         {children}
         </body>
