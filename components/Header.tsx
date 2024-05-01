@@ -23,7 +23,7 @@ import { ChevronDown } from "lucide-react"
 import SubHeader from "./SubHeader";
 import SubHeaderBusiness from "./SubHeaderBusiness";
 
-const Header = ({theme, business}) => {
+const Header = ({theme, business}:any) => {
 
     const { onOpen } = useModal();
 
