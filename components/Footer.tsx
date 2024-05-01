@@ -16,9 +16,9 @@ import Link from 'next/link';
 
 import Image from 'next/image';
 
-const Footer = () => {
+const Footer = ({theme}) => {
     return ( 
-        <footer className={`bg-[#0E2D43] shadow-[0_4px_29px_0_rgba(8,35,27)] max-[558px]:shadow-none`}>
+        <footer className={`${theme=='white'?'bg-white':'bg-[#0E2D43]'}shadow-[0_4px_29px_0_rgba(8,35,27)] max-[558px]:shadow-none`}>
             <div className={'max-[932px]:hidden'}>
                 <div className={`min-[3644px]:pt-[118px] min-[3644px]:pb-[118px] pt-[78px] pb-[78px] max-[2377px]:pt-[60px] max-[2377px]:pb-[60px] grid grid-cols-6 max-[2377px]:grid-cols-5 max-[1600px]:grid-cols-4 max-[1247px]:grid-cols-3 grid-rows-2 max-[1247px]:grid-rows-3 text-white min-[3644px]:text-[27px] text-[18px] max-[2377px]:text-[14px] min-[3644px]:gap-[72.2px] gap-[43.2px] font-normal leading-[38px] min-[3644px]:leading-[57px] max-[2377px]:leading-[30px] mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px]`}>
                     <div className={'col-span-1 row-span-2'}>
@@ -172,43 +172,6 @@ const Footer = () => {
                     </ul>
                 </div>
             </div>
-            {/*
-            <AccordionItem value="item-5">
-                <AccordionTrigger className="h-[48px] flex items-center w-full">
-                    <h3 className={`w-full font-medium text-left`}>Контакти</h3>
-                </AccordionTrigger>
-                <AccordionContent className="flex flex-col text-white">
-                    <Link href={'#'}>
-                        03110, м. Київ, а/с 26
-                    </Link>
-                    <Link href={'#'}>
-                        0 800 30 32 30
-                    </Link>
-                    <Link href={'#'}>
-                        dogovor@batyevka.net
-                    </Link>
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-1">
-                <AccordionTrigger className="h-[48px] flex items-center w-full">
-                    <h3 className={`w-full font-medium text-left`}>Ми надаємо послуги:</h3>
-                </AccordionTrigger>
-                <AccordionContent className="flex flex-col text-white">
-                    <Link href={'#'}>
-                        Швидкісного доступу в Інтернет
-                    </Link>
-                    <Link href={'#'}>
-                        Інтерактивне Телебачення
-                    </Link>
-                    <Link href={'#'}>
-                        ось вже:
-                        <div className={'h-[48px] max-w-[282px] max-[2377px]:max-w-[216px] min-w-[216px] rounded-xl bg-[#123853]'}>
-                            <p className={'font-semibold ml-[17px] pt-[7px]'}>24 роки 5 місяців</p>
-                        </div>
-                    </Link>
-                </AccordionContent>
-            </AccordionItem>
-    */}
             </div>
         </footer>
      );
