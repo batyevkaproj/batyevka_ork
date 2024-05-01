@@ -16,7 +16,7 @@ import Link from 'next/link';
 
 import Image from 'next/image';
 
-const Footer = ({theme}) => {
+const Footer = ({theme}:any) => {
     return ( 
         <footer className={`${theme=='white'?'bg-white':'bg-[#0E2D43]'}shadow-[0_4px_29px_0_rgba(8,35,27)] max-[558px]:shadow-none`}>
             <div className={'max-[932px]:hidden'}>
