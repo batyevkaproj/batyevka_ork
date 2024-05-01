@@ -18,9 +18,9 @@ import Image from 'next/image';
 
 const Footer = ({theme}:any) => {
     return ( 
-        <footer className={`${theme=='white'?'bg-white':'bg-[#0E2D43]'}shadow-[0_4px_29px_0_rgba(8,35,27)] max-[558px]:shadow-none`}>
+        <footer className={`${theme=='white'?'bg-white text-[#5F6061]':'bg-[#0E2D43] text-white'} shadow-[0_4px_29px_0_rgba(8,35,27)] max-[558px]:shadow-none`}>
             <div className={'max-[932px]:hidden'}>
-                <div className={`min-[3644px]:pt-[118px] min-[3644px]:pb-[118px] pt-[78px] pb-[78px] max-[2377px]:pt-[60px] max-[2377px]:pb-[60px] grid grid-cols-6 max-[2377px]:grid-cols-5 max-[1600px]:grid-cols-4 max-[1247px]:grid-cols-3 grid-rows-2 max-[1247px]:grid-rows-3 text-white min-[3644px]:text-[27px] text-[18px] max-[2377px]:text-[14px] min-[3644px]:gap-[72.2px] gap-[43.2px] font-normal leading-[38px] min-[3644px]:leading-[57px] max-[2377px]:leading-[30px] mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px]`}>
+                <div className={`min-[3644px]:pt-[118px] min-[3644px]:pb-[118px] pt-[78px] pb-[78px] max-[2377px]:pt-[60px] max-[2377px]:pb-[60px] grid grid-cols-6 max-[2377px]:grid-cols-5 max-[1600px]:grid-cols-4 max-[1247px]:grid-cols-3 grid-rows-2 max-[1247px]:grid-rows-3 min-[3644px]:text-[27px] text-[18px] max-[2377px]:text-[14px] min-[3644px]:gap-[72.2px] gap-[43.2px] font-normal leading-[38px] min-[3644px]:leading-[57px] max-[2377px]:leading-[30px] mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px]`}>
                     <div className={'col-span-1 row-span-2'}>
                         <div>
                             <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Ми надаємо послуги:</h3>
@@ -28,7 +28,7 @@ const Footer = ({theme}:any) => {
                                 <li>Швидкісного доступу в Інтернет</li>
                                 <li>Інтерактивне Телебачення</li>
                                 <li>ось вже:</li>
-                                <div className={'min-[3644px]:h-[72px] h-[48px] max-[2377px]:h-[37px] min-[3644px]:max-w-[423px] max-w-[282px] max-[2377px]:max-w-[216px] min-w-[216px] rounded-xl bg-[#123853] mt-[10px]'}>
+                                <div className={`min-[3644px]:h-[72px] h-[48px] max-[2377px]:h-[37px] min-[3644px]:max-w-[423px] max-w-[282px] max-[2377px]:max-w-[216px] min-w-[216px] rounded-xl mt-[10px] + ${theme=='white'?'bg-white shadow-[0_4px_29px_0_#E6E3E3]':'bg-[#123853] shadow-[0_4px_29px_0_#0B273C]'}`}>
                                     <p className={'font-semibold min-[3644px]:ml-[26px] ml-[17px] pt-[6px] max-[2377px]:pt-[3px]'}>24 роки 5 місяців</p>
                                 </div>
                             </ul>
@@ -36,7 +36,7 @@ const Footer = ({theme}:any) => {
                         
                     </div>
                     <div className={'col-span-1 row-start-3'}>
-                            <a className={'text-[#56AABF] font-semibold leading-[34px]'}>© Batyevka 2014-2024</a>
+                            <a className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold leading-[34px]`}>© Batyevka 2014-2024</a>
                     </div>
                     <div>
                         <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>ТАРИФИ</h3>
@@ -87,7 +87,7 @@ const Footer = ({theme}:any) => {
                 <AccordionTrigger className="flex items-center w-full">
                     <h3 className={`w-full font-medium text-left`}>ТАРИФИ</h3>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col text-white">
+                <AccordionContent className="flex flex-col">
                     <Link href={'#'} className='hover:text-[#DC662D]'>
                         для бізнесу 
                     </Link>
@@ -103,7 +103,7 @@ const Footer = ({theme}:any) => {
                 <AccordionTrigger className="flex items-center w-full">
                     <h3 className={`w-full font-medium text-left`}>Інформація абонентам</h3>              
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col text-white">
+                <AccordionContent className="flex flex-col">
                     <Link href={'#'} className='hover:text-[#DC662D]'>
                     Публічний договір
                     </Link>
@@ -126,7 +126,7 @@ const Footer = ({theme}:any) => {
                 <AccordionTrigger className="flex items-center w-full">
                     <h3 className={`w-full font-medium text-left`}>Технічна підтримка</h3>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col text-white">
+                <AccordionContent className="flex flex-col">
                     <Link href={'#'} className='hover:text-[#DC662D]'>
                         <Image className='inline mr-[10px] w-[16px] h-[16px]' src={orange_mini_phone} alt={``}/>044 49 555 49
                     </Link>
@@ -142,7 +142,7 @@ const Footer = ({theme}:any) => {
                 <AccordionTrigger className="flex items-center w-full">
                     <h3 className={`w-full font-medium text-left`}>Соціальні мережі</h3>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col text-white">
+                <AccordionContent className="flex flex-col">
                     <div className={`flex`}>
                         <a href={``}><Image className='w-[30px] h-[30px] mr-[8px]' src={_1} alt={``}/></a>
                         <a href={``}><Image className='w-[30px] h-[30px]' src={_3} alt={``}/></a>
@@ -151,7 +151,7 @@ const Footer = ({theme}:any) => {
             </AccordionItem> 
             </Accordion>
             <div className={'mr-[35px] ml-[35px] max-[558px]:mr-[20px] max-[558px]:ml-[20px]'}>
-                <div className={'text-white text-[14px] pt-[10px]'}>
+                <div className={'text-[14px] pt-[10px]'}>
                     <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Контакти</h3>
                     <ul className={'leading-[32px]'}>
                         <li><Image className='inline mr-[10px] w-[12px] h-[16px]' src={orange_mini_place_marker} alt={``}/>03110, м. Київ, а/с 26</li>
@@ -159,16 +159,16 @@ const Footer = ({theme}:any) => {
                         <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[16px] h-[12px]' src={orange_mini_mail} alt={``}/>dogovor@batyevka.net</li>
                     </ul>    
                 </div>
-                <div className={'text-white text-[14px] pt-[10px] pb-[60px] max-[558px]:pb-[0px]'}>
+                <div className={'text-[14px] pt-[10px] pb-[60px] max-[558px]:pb-[0px]'}>
                     <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Ми надаємо послуги:</h3>
                     <ul className={'leading-[32px]'}>
                         <li>Швидкісного доступу в Інтернет</li>
                         <li>Інтерактивне Телебачення</li>
                         <li className={'pb-[6px]'}>ось вже:</li>
-                        <div className={'h-[37px] w-[216px] rounded-[10px] bg-[#123853]'}>
+                        <div className={`h-[37px] w-[216px] rounded-[10px] + ${theme=='white'?'bg-white shadow-[0_4px_29px_0_#E6E3E3]':'bg-[#123853] shadow-[0_4px_29px_0_#0B273C]'}`}>
                             <p className={'font-semibold ml-[17px] pt-[3px]'}>24 роки 5 місяців</p>
                         </div>
-                        <li className={'text-[#56AABF] font-semibold pt-[8px]'}>© Batyevka 2014-2024</li>
+                        <li className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold pt-[8px]`}>© Batyevka 2014-2024</li>
                     </ul>
                 </div>
             </div>

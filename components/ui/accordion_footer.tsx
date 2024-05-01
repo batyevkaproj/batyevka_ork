@@ -28,7 +28,7 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "group border-b border-[#56AABF] data-[state=open]:border-hidden border-solid data-[state=closed]:text-white data-[state=open]:text-[#DC662D] h-[43px]",
+        "group border-b border-[#56AABF] data-[state=open]:border-hidden border-solid data-[state=open]:text-[#DC662D] h-[43px]",
         className,
       )}
       {...props}>
