@@ -26,10 +26,10 @@ const ParallaxDemo = () => {
                 <Image src={wave} className={`absolute  top-[3226px] left-[15px] size-[30vmin]`} alt={`wave`}/>
             </div>
             <div className='sticky z-[-1]'>
-                <Image src={tri} className={`absolute rotate-[123deg] top-[3470px] right-[100px] size-[15vmin]`} alt={`tri`}/>
+                <Image src={tri} className={`absolute rotate-[123deg] top-[20%vh] right-[100px] size-[15vmin]`} alt={`tri`}/>
             </div>
             <div className='sticky z-[-1]'>
-                <Image src={tri} className={`absolute rotate-[-40deg] top-[6020px] left-[40px] size-[15vmin]`} alt={`tri`}/>
+                <Image src={tri} className={`absolute rotate-[-40deg] top-[40%vh] left-[40px] size-[15vmin]`} alt={`tri`}/>
             </div>
             <div className='sticky z-[-1]'>
                 <Image src={line} className={`absolute  top-[2686px] left-[375px] size-[5vmin]`} alt={`line`}/>

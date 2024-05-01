@@ -26,16 +26,16 @@ import OpticCable from '@/components/business-page/OpticCable';
 const Tarifs = () => {
 
     const tarifs_simple = [
-        {id: 1, price: '799', speed: '300 Мегабіт', promotion: false, promotionString: ''},
-        {id: 2, price: '1 399', speed: '1000 Мегабіт', promotion: true, promotionString: 'з 3 місяця 1 899'},
-        {id: 3, price: '2 299', speed: '2500 Мегабіт', promotion: false, promotionString: ''}
+        {id: 1, price: '559', speed: '300 Мегабіт', promotion: true, promotionString: 'з 5 місяця 799.'},
+        {id: 2, price: '979', speed: '1000 Мегабіт', promotion: true, promotionString: 'з 5 місяця 1 399.'},
+        {id: 3, price: '1 609', speed: '2500 Мегабіт', promotion: true, promotionString: 'з 5 місяця 2 299.'}
     ];
 
 
     const tarifs_premium = [
-        {id: 1, price: '2 699', speed: '300 Мегабіт', promotion: true, promotionString: 'Знижка 30%'},
-        {id: 2, price: '4 999', speed: '1000 Мегабіт', promotion: false, promotionString: 'Знижка 30%'},
-        {id: 3, price: '9 999', speed: '2500 Мегабіт', promotion: true, promotionString: 'Знижка 30%'}
+        {id: 1, price: '1 889', speed: '300 Мегабіт', promotion: true, promotionString: 'з 5 місяця 2 699.'},
+        {id: 2, price: '3 499', speed: '1000 Мегабіт', promotion: true, promotionString: 'з 5 місяця 4 999.'},
+        {id: 3, price: '6 999', speed: '2500 Мегабіт', promotion: true, promotionString: 'з 5 місяця 9 999.'}
     ];
 
     const [isMechanicVisible_1, setMechanicVisible_1] = useState(false);
