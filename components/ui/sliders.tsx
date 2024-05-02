@@ -20,10 +20,6 @@ const marks = [
 
 const megogo_overpay = [
   {
-    value: 0,
-    label: ''
-  },
-  {
     value: 1,
     label: 'Легка'
   },
@@ -46,10 +42,6 @@ const megogo_overpay = [
 ];
 
 const months = [
-  {
-    value: 0,
-    label: ''
-  },
   {
     value: 1,
     label: '1 міс'
@@ -132,6 +124,7 @@ export function TarifsSlider(){
 export function OverpaySlider(){
   return (
       <DemoSlider
+        defaultValue={0}
         step={null}
         marks={megogo_overpay}
         max={5}
@@ -143,6 +136,7 @@ export function OverpaySlider(){
 export function MonthsSlider(){
     return (
         <DemoSlider
+          defaultValue={0}
           step={null}
           marks={months}
           max={5}
