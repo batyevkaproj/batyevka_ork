@@ -61,7 +61,7 @@ const CalculatorTarifs = ({theme}:any) => {
                         </div>
                     </div>
                 </div>
-                <div className={`col-span-1 col-start-2 max-[1770px]:col-start-1 `}>
+                <div className={`col-span-1 col-start-2 max-[1770px]:col-start-1 flex justify-center`}>
                     <div className={`min-[3644px]:w-[687px] w-[458px] max-[2377px]:w-[350px] shadow-[0_4px_29px_0px_#E6E3E3] rounded-[20px]`}>
                         <p className={`flex items-center justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:pt-[78px] pt-[52px] max-[2377px]:pt-[40px]`}>Інтернет</p>
                         <div className={`flex items-center justify-center min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] min-[3644px]:pb-[60px] pb-[40px] max-[2377px]:pb-[30px]`}>
@@ -107,7 +107,24 @@ const CalculatorTarifs = ({theme}:any) => {
                             </p>
                         </div>
                     </div>
-                    
+                    <div className={`text-white min-[3644px]:w-[687px] w-[458px] max-[2377px]:w-[350px] shadow-[0_4px_29px_0px_#E6E3E3] rounded-[20px] bg-gradient-to-r from-[#3E3D39] to-[#1B211F] max-[2377px]:ml-[49px] ml-[53px] min-[3664px]:ml-[80px]`}>
+                        <p className={`flex items-center justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:pt-[78px] pt-[52px] max-[2377px]:pt-[40px]`}>Телебачення</p>
+                        <div className={`flex items-center justify-center`}>
+                            <p className={`flex items-center justify-center mt-[48px] rounded-[4px] bg-[#FD363B] w-[67px] h-[26px] font-bold min-[3644px]:text-[26px] min-[3644px]:leading-[26px] text-[17px] leading-[17px] max-[2377px]:text-[13px] max-[2377px]:leading-[13px]`}>АКЦIЯ</p>
+                        </div>
+                        <p className={`flex items-center justify-center font-bold min-[3644px]:text-[44px] min-[3644px]:leading-[44px] text-[29px] leading-[29px] max-[2377px]:text-[22px] max-[2377px]:leading-[22px] min-[3644px]:pt-[78px] pt-[52px] max-[2377px]:pt-[50px]`}>Легка</p>
+                        <p className={`flex items-center justify-center mx-[94px] max-[2377px]:mx-[72px] text-center font-bold text-[#909090] min-[3644px]:mt-[24px] mt-[16px] max-[2377px]:mt-[12px]`}>298 каналiв для любителей ТБ, а також колекцiя фiльмiв, мультикiв та серiалiв</p>
+                        <div className={'flex items-center justify-center gap-[40px] font-bold max-[2377px]:mt-[39px]'}>
+                            <div className={``}>
+                                <p className={`text-[36px] leading-[36px] flex justify-center`}>298</p>
+                                <p className={`text-[#909090] pt-[9px] flex justify-center`}>каналiв</p>
+                            </div>
+                            <div className={``}>
+                                <p className={`text-[36px] leading-[36px] flex justify-center`}>10000+</p>
+                                <p className={`text-[#909090] pt-[9px] flex justify-center`}>фiльмiв</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
