@@ -84,26 +84,26 @@ const CalculatorTarifs = ({theme}:any) => {
                         <h2 className="font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex min-[3644px]:pt-[20px] pt-[13px] max-[2377px]:pt-[10px]">
                             рівнозначна
                         </h2>
-                        <div className={'min-[3644px]:mt-[74px] mt-[33px] max-[2377px]:mt-[30px] min-[3644px]:mx-[73px] mx-[39px] max-[2377px]:mx-[38px] min-[3644px]:pb-[78px] pb-[52px] max-[2377px]:pb-[40px] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:gap-[22px] gap-[15px]'}>
+                        <div className={'min-[3644px]:mt-[74px] mt-[33px] max-[2377px]:mt-[30px] min-[3644px]:mx-[73px] mx-[39px] max-[2377px]:mx-[38px] min-[3644px]:pb-[78px] pb-[52px] max-[2377px]:pb-[40px] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]'}>
                             <p className="flex font-bold">
                                 <Image src={galochka_orange} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                                 Стабільність ціни*
                             </p>
-                            <p className="flex font-bold">
+                            <p className="flex font-bold min-[3644px]:mt-[22px] mt-[15px]">
                                 <Image src={galochka_orange} alt="galochka" className="inline mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
-                                Виклик майстра для будь-якого ремонту безкоштовно 
+                                Виклик майстра для <br/> будь-якого ремонту безкоштовно 
                             </p>
-                            <p className="flex">
+                            <p className="flex min-[3644px]:mt-[22px] mt-[15px]">
                                 <Image src={galochka_orange} alt="galochka" className="inline mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
-                                Оптичний модем безкоштовно *
+                                Оптичний модем <br/> безкоштовно *
                             </p>
-                            <p className="flex">
+                            <p className="flex min-[3644px]:mt-[22px] mt-[15px]">
                                 <Image src={galochka_orange} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
-                                Wi-Fi 6 роутер безкоштовно *
+                                Wi-Fi 6 роутер <br/>безкоштовно *
                             </p>
-                            <p className="flex">
+                            <p className="flex min-[3644px]:mt-[22px] mt-[15px]">
                                 <Image src={galochka_orange} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
-                                Без плати за підключення *
+                                Без плати за <br/>підключення *
                             </p>
                         </div>
                     </div>
