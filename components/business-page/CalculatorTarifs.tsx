@@ -1,6 +1,6 @@
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
+import { TarifsSlider, MonthsSlider, OverpaySlider } from "../ui/sliders";
 
 const CalculatorTarifs = ({theme}:any) => {
 
@@ -18,15 +18,15 @@ const CalculatorTarifs = ({theme}:any) => {
                 <div className={`min-[3644px]:h-[60px] h-[40px] max-[2377px]:h-[30px]`}></div>
             </div>
             <div className={`${theme=='white'?'bg-white':'bg-[#0E2D43]'} grid grid-cols-2 max-[1770px]:grid-cols-1 min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] min-[3644px]:gap-[170px] gap-[100px] max-[2377px]:gap-[60px]`}>
-                <div className={`col-span-1 min-[3644px]:ml-[117px] ml-[78px] max-[2377px]:ml-[60px] max-[1770px]:mr-[20px]`}>
+                <div className={`col-span-1 min-[3644px]:ml-[117px] ml-[78px] max-[2377px]:ml-[60px] max-[1770px]:mr-[60px]`}>
                     <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]`}>Обери Інтернет швидкість</p>
                     <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px]">
-                        
+                        <TarifsSlider/>
                     </div>
                 </div>
                 <div className={`col-span-1 col-start-2 max-[1770px]:col-start-1`}>
                     <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]`}>Обери Інтернет швидкість</p>
-
+                    
                 </div>
             </div>
         </div>
