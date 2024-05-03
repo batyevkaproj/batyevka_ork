@@ -125,7 +125,7 @@ export function OverpaySlider(){
   return (
       <DemoSlider
         defaultValue={0}
-        step={null}
+        step={1}
         marks={megogo_overpay}
         max={5}
         aria-label="Default"
@@ -137,7 +137,7 @@ export function MonthsSlider(){
     return (
         <DemoSlider
           defaultValue={0}
-          step={null}
+          step={1}
           marks={months}
           max={5}
           aria-label="Default"

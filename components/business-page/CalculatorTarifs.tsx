@@ -143,14 +143,24 @@ const CalculatorTarifs = ({theme}:any) => {
                             </div>
                         </div>
                     </div>
-                    <div className={`flex grid grid-cols-1 items-center font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3664px]:mr-[117px] mr-[78px] max-[2377px]:mr-[60px]`}>
-                        <div className={`flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]`}>
-                            <h1>Акційна абонплата на Перші 4 місяці</h1>
-                            <h1 className={`opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]`}>1 грн.</h1>
-                        </div>
-                        <div className={`flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]`}>
-                            <h1>Абонплата з 5го місяця</h1>
-                            <h1 className={`opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]`}>1 грн.</h1>
+                    <div className={`flex justify-center`}>
+                        <div className={`min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3664px]:mr-[117px] mr-[78px] max-[2377px]:mr-[60px] w-full max-[1800px]:w-[750px] max-[1800px]:mr-[20px] max-[1800px]:ml-[20px]`}>
+                            <div className={`flex grid grid-cols-1 items-center w-full font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px]`}>
+                                <div className={`flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]`}>
+                                    <h1>Акційна абонплата на Перші 4 місяці</h1>
+                                    <h1 className={`text-[#DC662D] flex items-end justify-between w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]`}>
+                                        <span className={`min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]`}>0</span>
+                                        <span className={`min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]`}>грн/міс</span>
+                                    </h1>
+                                </div>
+                                <div className={`flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]`}>
+                                    <h1>Абонплата з 5го місяця</h1>
+                                    <h1 className={`text-[#51B18B] flex items-end justify-between w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]`}>
+                                        <span className={`min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]`}>0</span>
+                                        <span className={`min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]`}>грн/міс</span>                                   
+                                    </h1>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
