@@ -10,15 +10,23 @@ import zIndex from '@mui/material/styles/zIndex';
 const DemoSwitch = styled((props: SwitchProps) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
   ))(({ theme }) => ({
-    width: 100,
-    height: 48,
+    width: '100%',
+    height: '100%',
     padding: 0,
     '& .MuiSwitch-switchBase': {
       padding: 0,
-      margin: 5,
+      [theme.breakpoints.down(2378)]: {
+        margin: 5,
+      },
+      [theme.breakpoints.up(2378)]: {
+        margin: 7,
+      },
+      [theme.breakpoints.up(3644)]: {
+        margin: 10,
+      },
       transitionDuration: '200ms',
       '&.Mui-checked': {
-        transform: 'translateX(52px)',
+        transform: 'translateX(138%)',
         color: '#fff',
         '& + .MuiSwitch-track': {
           backgroundColor: theme.palette.mode === 'dark' ? '#123853' : 'white',
@@ -44,8 +52,18 @@ const DemoSwitch = styled((props: SwitchProps) => (
     },
     '& .MuiSwitch-thumb': {
       boxSizing: 'border-box',
-      width: 38,
-      height: 38,
+      [theme.breakpoints.down(2378)]: {
+        width: 38,
+        height: 38,
+      },
+      [theme.breakpoints.up(2378)]: {
+        width: 49,
+        height: 49,
+      },
+      [theme.breakpoints.up(3644)]: {
+        width: 74,
+        height: 74,
+      },
       backgroundColor: '#DC662D',
     },
     '& .MuiSwitch-track': {
@@ -197,7 +215,9 @@ const DemoSwitchRegular = styled((props: SwitchProps) => (
 
 export function TarifsSwitch() {
     return (
+      <div className={`min-[3644px]:w-[195px] min-[3644px]:h-[93px] w-[130px] h-[62px] max-[2377px]:w-[100px] max-[2377px]:h-[48px] rounded-full`}>
         <DemoSwitch/>
+      </div>
     )
 };
 
