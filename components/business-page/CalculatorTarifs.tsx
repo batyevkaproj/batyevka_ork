@@ -1,12 +1,28 @@
-import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { TarifsSlider, MonthsSlider, OverpaySlider } from "../ui/sliders";
+import { TarifsSwitch, RegularSwitch } from "../ui/switches";
 import rocket_blue from '@/public/img/rocket_blue.svg';
 import Image from "next/image";
 import galochka from '@/public/img/galochka.svg';
 import galochka_orange from '@/public/img/galochka_orange.svg';
+import  { useState } from 'react'
+
+
+
 
 const CalculatorTarifs = ({theme}:any) => {
+
+    const [isTVChecked, setTVChecker] = useState(false);
+
+    const toggleTVChecker = () => {
+        setTVChecker(!isTVChecked);
+    };
+
+    const [isIPChecked, setIPChecker] = useState(false);
+
+    const toggleIPChecker = () => {
+        setIPChecker(!isIPChecked);
+    };
 
     return (
     <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[640px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[640px]:mt-0 + ${theme=='white'?'text-[#5F6061]':'text-white'}`}>
@@ -15,9 +31,9 @@ const CalculatorTarifs = ({theme}:any) => {
                 <h1 className={`flex text-center items-center justify-center font-bold  text-[50px] leading-[62px] max-[2377px]:text-[42px] max-[2377px]:leading-[50px] min-[3644px]:text-[75px] min-[3644px]:leading-[93px] max-[640px]:text-[24px] max-[640px]:leading-[30px]`}>Калькулятор тарифу</h1>
                 <p className={`flex text-center items-center justify-center min-[3644px]:text-[48px] min-[3644px]:leading-[63px] text-[32px] leading-[42px] max-[2377px]:text-[24px] max-[2377px]:leading-[32px] max-[640px]:text-[16px] max-[640px]:leading-[20px] min-[3644px]:mt-[30px] mt-[15px] max-[640px]:mt-[10px]`}><span className={`font-bold`}>Створи свій тариф / </span> Оберiть технологію підключення</p>
                 <div className={`flex items-center justify-center min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:mt-[84px] mt-[56px] max-[2377px]:mt-[30px] max-[640px]:mt-[15px] `}>
-                    <p className={`min-[3644px]:mr-[30px] mr-[20px] max-[2377px]:mr-[15px]`}>G-PON</p>
-                    <Switch className={`scale-[1]`} id="packet-type"></Switch>
-                    <p className={`min-[3644px]:ml-[30px] ml-[20px] max-[2377px]:ml-[15px]`}>UTP</p>
+                    <p className={`font-bold min-[3644px]:mr-[30px] mr-[20px] max-[2377px]:mr-[15px]`}>G-PON</p>
+                    <TarifsSwitch/>
+                    <p className={`font-bold min-[3644px]:ml-[30px] ml-[20px] max-[2377px]:ml-[15px]`}>UTP</p>
                 </div>
                 <div className={`min-[3644px]:h-[60px] h-[40px] max-[2377px]:h-[30px]`}></div>
             </div>
@@ -29,7 +45,7 @@ const CalculatorTarifs = ({theme}:any) => {
                             <TarifsSlider/>
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[87px] mt-[48px] max-[2377px]:mt-[30px]`}>
-                            <Switch className={`scale-[1]`} id="packet-type"></Switch>
+                            <RegularSwitch />
                             <p className={`font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]`}>Додай MEGOGО Телебачення</p>
                         </div>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px]`}>Обери передплату MEGOGO</p>
@@ -37,7 +53,7 @@ const CalculatorTarifs = ({theme}:any) => {
                             <OverpaySlider/>
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[87px] mt-[48px] max-[2377px]:mt-[30px]`}>
-                            <Switch className={`scale-[1]`} id="packet-type"></Switch>
+                            <RegularSwitch/>
                             <p className={`font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]`}>Додай зовнішню постійну ІР адресу</p>
                         </div>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px]`}>Внесіть авансом абонплату та отримайте знижку на підключення та обладнання </p>
