@@ -3,20 +3,57 @@ import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 import { Montserrat } from 'next/font/google';
 
+const MIN = 3;
+const MID_G = 4;
+const MID = 5;
+const MAX = 10;
+
 const marks = [
     {
-      value: 1,
+      value: MIN,
       label: '100 Мбіт',
     },
     {
-      value: 5,
+      value: MID,
       label: '500 Мбіт',
     },
     {
-      value: 10,
+      value: MAX,
       label: '1 Гбіт',
     },
   ];
+
+const marks_mobile = [
+  {
+    value: MIN,
+  },
+  {
+    value: MID,
+  },
+  {
+    value: MAX,
+  },
+];
+
+const marks_GPON = [
+  {
+    value: MID_G,
+    label: '300 Мбіт',
+  },
+  {
+    value: MAX,
+    label: '1 Гбіт',
+  },
+];
+
+const marks_GPON_mobile = [
+  {
+    value: MID_G,
+  },
+  {
+    value: MAX,
+  },
+];
 
 const megogo_overpay = [
   {
@@ -180,14 +217,52 @@ export function MonthsSlider(){
     );
 }
 
+
+
 export function TarifsSliderMobile(){
+  const [val, setVal] = React.useState<number>(MIN);
+  const handleChange = (_: Event, newValue: number | number[]) => {
+    setVal(newValue as number);
+  };
   return (
+    <div className={``}>
       <DemoSliderMobile
-        defaultValue={1}
+          defaultValue={MIN}
+          value={val}
           step={null}
-          marks={marks}
-          max={10}
-          aria-label="Default"
+          marks={marks_mobile}
+          min={0}
+          max={MAX}
+          onChange={handleChange}
       />
+      <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
+          <button className={`ml-[10%]`} onClick={() => setVal(MIN)}> 100 Мбіт</button>
+          <button className={`${val>=MID ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[10%]`} onClick={() => setVal(MID)}> 500 Мбіт</button>
+          <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}>1 Гбіт</button>
+      </div>
+      </div>
+  );
+}
+
+export function TarifsSliderMobileGPON(){
+  const [val, setVal] = React.useState<number>(MID_G);
+  const handleChange = (_: Event, newValue: number | number[]) => {
+    setVal(newValue as number);
+  };
+  return (
+    <div className={``}>
+      <DemoSliderMobile
+          defaultValue={MID_G}
+          value={val}
+          step={null}
+          marks={marks_GPON_mobile}
+          max={MAX}
+          onChange={handleChange}
+      />
+      <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
+          <button className={`ml-[24%]`} onClick={() => setVal(MID_G)}> 300 Мбіт</button>
+          <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}>1 Гбіт</button>
+      </div>
+      </div>
   );
 }

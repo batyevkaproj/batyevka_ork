@@ -1,5 +1,5 @@
 import { Label } from "@/components/ui/label";
-import { TarifsSlider, MonthsSlider, OverpaySlider , TarifsSliderMobile} from "../ui/sliders";
+import { TarifsSlider, MonthsSlider, OverpaySlider , TarifsSliderMobile, TarifsSliderMobileGPON } from "../ui/sliders";
 import { TarifsSwitch, RegularSwitch } from "../ui/switches";
 import rocket_blue from '@/public/img/rocket_blue.svg';
 import Image from "next/image";
@@ -46,7 +46,7 @@ const CalculatorTarifs = ({theme}:any) => {
                             <TarifsSlider/>
                         </div>
                         <div className={`min-[681px]:hidden`}>
-                            <TarifsSliderMobile/>
+                            <TarifsSliderMobileGPON/>
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[87px] mt-[48px] max-[2377px]:mt-[30px] max-[680px]:hidden`}>
                             <RegularSwitch />
