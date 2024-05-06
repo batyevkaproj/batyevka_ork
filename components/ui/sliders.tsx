@@ -10,15 +10,15 @@ const MAX = 10;
 
 const marks = [
     {
-      value: MIN,
+      value: 1,
       label: '100 Мбіт',
     },
     {
-      value: MID,
+      value: 5,
       label: '500 Мбіт',
     },
     {
-      value: MAX,
+      value: 10,
       label: '1 Гбіт',
     },
   ];
@@ -37,11 +37,11 @@ const marks_mobile = [
 
 const marks_GPON = [
   {
-    value: MID_G,
+    value: 3,
     label: '300 Мбіт',
   },
   {
-    value: MAX,
+    value: 10,
     label: '1 Гбіт',
   },
 ];
@@ -143,6 +143,9 @@ const DemoSlider = styled(Slider)({
   },
   '& .MuiSlider-markLabelActive': {
     color: '#5F6061',
+    '&::before, &::after':{
+      color: '#BDBDBD',
+    }
   },
   
 });
@@ -193,6 +196,18 @@ export function TarifsSlider(){
     );
 }
 
+export function TarifsSliderGPON(){
+  return (
+      <DemoSlider
+          defaultValue={3}
+          step={null}
+          marks={marks_GPON}
+          max={10}
+          aria-label="Default"
+      />
+  );
+}
+
 export function OverpaySlider(){
   return (
       <DemoSlider
@@ -236,8 +251,8 @@ export function TarifsSliderMobile(){
           onChange={handleChange}
       />
       <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
-          <button className={`ml-[10%]`} onClick={() => setVal(MIN)}> 100 Мбіт</button>
-          <button className={`${val>=MID ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[10%]`} onClick={() => setVal(MID)}> 500 Мбіт</button>
+          <button className={`${val==MIN ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[10%]`} onClick={() => setVal(MIN)}> 100 Мбіт</button>
+          <button className={`${val==MID ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[10%]`} onClick={() => setVal(MID)}> 500 Мбіт</button>
           <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}>1 Гбіт</button>
       </div>
       </div>
@@ -260,7 +275,7 @@ export function TarifsSliderMobileGPON(){
           onChange={handleChange}
       />
       <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
-          <button className={`ml-[24%]`} onClick={() => setVal(MID_G)}> 300 Мбіт</button>
+          <button className={`${val==MID_G ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[24%]`} onClick={() => setVal(MID_G)}> 300 Мбіт</button>
           <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}>1 Гбіт</button>
       </div>
       </div>
