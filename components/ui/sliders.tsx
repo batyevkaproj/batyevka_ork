@@ -219,8 +219,8 @@ export function TarifsSlider(){
       <div className={``}>
         <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
           <button className={`${val==MIN ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[6%]`} onClick={() => setVal(MIN)}> 100 Мбіт</button>
-          <button className={`${val==MID ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[7%]`} onClick={() => setVal(MID)}> 500 Мбіт</button>
-          <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}>1 Гбіт</button>
+          <button className={`${val==MID ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[14%]`} onClick={() => setVal(MID)}> 500 Мбіт</button>
+          <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] w-[70px] min-[3644px]:w-[100px] max-[2377px]:w-[50px]`}>1 Гбіт</span></button>
         </div>
         <DemoSlider
             defaultValue={MIN}
