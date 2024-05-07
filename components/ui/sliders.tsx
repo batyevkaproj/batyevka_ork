@@ -3,50 +3,41 @@ import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 import { Montserrat } from 'next/font/google';
 
-const MIN = 3;
-const MID_G = 4;
+const MIN_MOBILE = 3;
+const MID_G_MOBILE = 4;
+const MID_MOBILE = 5;
+const MAX_MOBILE = 10;
+
+const MIN = 1;
+const MID_G = 3;
 const MID = 5;
 const MAX = 10;
 
 const marks = [
     {
-      value: 1,
-      label: '100 Мбіт',
+      value: MIN,
     },
     {
-      value: 5,
-      label: '500 Мбіт',
+      value: MID,
     },
     {
-      value: 10,
-      label: '1 Гбіт',
+      value: MAX,
     },
   ];
 
 const marks_mobile = [
   {
-    value: MIN,
+    value: MIN_MOBILE,
   },
   {
-    value: MID,
+    value: MID_MOBILE,
   },
   {
-    value: MAX,
+    value: MAX_MOBILE,
   },
 ];
 
 const marks_GPON = [
-  {
-    value: 3,
-    label: '300 Мбіт',
-  },
-  {
-    value: 10,
-    label: '1 Гбіт',
-  },
-];
-
-const marks_GPON_mobile = [
   {
     value: MID_G,
   },
@@ -55,26 +46,30 @@ const marks_GPON_mobile = [
   },
 ];
 
+const marks_GPON_mobile = [
+  {
+    value: MID_G_MOBILE,
+  },
+  {
+    value: MAX_MOBILE,
+  },
+];
+
 const megogo_overpay = [
   {
     value: 1,
-    label: 'Легка'
   },
   {
     value: 2,
-    label: 'Оптимальна'
   },
   {
     value: 3,
-    label: 'Максимальна'
   },
   {
     value: 4,
-    label: 'Спорт'
   },
   {
     value: 5,
-    label: 'Кіно+'
   },
 ];
 
@@ -101,16 +96,34 @@ const months = [
   },
 ];
 
-const DemoSlider = styled(Slider)({
-  height: 5,
-  marginTop: 20,
+const DemoSlider = styled(Slider)(({ theme }) => ({
+  [theme.breakpoints.down(2378)]: {
+    height: 5,
+  },
+  [theme.breakpoints.up(2378)]: {
+    height: 7,
+  },
+  [theme.breakpoints.up(3644)]: {
+    height: 11,
+  },
+  marginTop: 0,
   '& .MuiSlider-track': {
     border: 'none',
     color: '#DC662D',
   },
   '& .MuiSlider-thumb': {
-    height: 16,
-    width: 16,
+    [theme.breakpoints.down(2378)]: {
+      width: 16,
+      height: 16,
+    },
+    [theme.breakpoints.up(2378)]: {
+      width: 20,
+      height: 20,
+    },
+    [theme.breakpoints.up(3644)]: {
+      width: 30,
+      height: 30,
+    },
     backgroundColor: '#DC662D',
     boxShadow: 'none',
     '&:focus, &:hover, &.Mui-active': {
@@ -119,11 +132,24 @@ const DemoSlider = styled(Slider)({
     },
   },
   '& .MuiSlider-mark': {
-    height: 16,
-    width: 16,
+    [theme.breakpoints.down(2378)]: {
+      width: 16,
+      height: 16,
+      marginLeft: -7,  
+    },
+    [theme.breakpoints.up(2378)]: {
+      width: 20,
+      height: 20,
+      marginLeft: -9, 
+    },
+    [theme.breakpoints.up(3644)]: {
+      width: 30,
+      height: 30,
+      marginLeft: -14, 
+    },
     backgroundColor: '#F4F2F2',
-    borderRadius: 30,
-    marginLeft: -7,
+    borderRadius: 30, 
+      
     opacity: 1
   },
   '& .MuiSlider-markActive': {
@@ -148,7 +174,7 @@ const DemoSlider = styled(Slider)({
     }
   },
   
-});
+}));
 
 const DemoSliderMobile = styled(Slider)({
   height: 40,
@@ -185,26 +211,52 @@ const DemoSliderMobile = styled(Slider)({
 });
 
 export function TarifsSlider(){
+  const [val, setVal] = React.useState<number>(MIN);
+  const handleChange = (_: Event, newValue: number | number[]) => {
+    setVal(newValue as number);
+  };
     return (
+      <div className={``}>
+        <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
+          <button className={`${val==MIN ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[6%]`} onClick={() => setVal(MIN)}> 100 Мбіт</button>
+          <button className={`${val==MID ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[7%]`} onClick={() => setVal(MID)}> 500 Мбіт</button>
+          <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}>1 Гбіт</button>
+        </div>
         <DemoSlider
-            defaultValue={1}
+            defaultValue={MIN}
             step={null}
             marks={marks}
-            max={10}
+            max={MAX}
+            value={val}
             aria-label="Default"
+            onChange={handleChange}
         />
+        
+      </div>
     );
 }
 
 export function TarifsSliderGPON(){
+  const [val, setVal] = React.useState<number>(MID_G);
+  const handleChange = (_: Event, newValue: number | number[]) => {
+    setVal(newValue as number);
+  };
   return (
+    <div className={``}>
+      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] ">
+          <button className={`${val==MID_G ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[26%]`} onClick={() => setVal(MID_G)}> 300 Мбіт</button>
+          <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px]`}>1 Гбіт</span></button>
+      </div>
       <DemoSlider
-          defaultValue={3}
+          defaultValue={MID_G}
           step={null}
           marks={marks_GPON}
-          max={10}
+          max={MAX}
+          value={val}
           aria-label="Default"
+          onChange={handleChange}
       />
+      </div>
   );
 }
 
@@ -235,48 +287,48 @@ export function MonthsSlider(){
 
 
 export function TarifsSliderMobile(){
-  const [val, setVal] = React.useState<number>(MIN);
+  const [val, setVal] = React.useState<number>(MIN_MOBILE);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
   };
   return (
     <div className={``}>
       <DemoSliderMobile
-          defaultValue={MIN}
+          defaultValue={MIN_MOBILE}
           value={val}
           step={null}
           marks={marks_mobile}
           min={0}
-          max={MAX}
+          max={MAX_MOBILE}
           onChange={handleChange}
       />
       <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
-          <button className={`${val==MIN ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[10%]`} onClick={() => setVal(MIN)}> 100 Мбіт</button>
-          <button className={`${val==MID ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[10%]`} onClick={() => setVal(MID)}> 500 Мбіт</button>
-          <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}>1 Гбіт</button>
+          <button className={`${val==MIN_MOBILE ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[10%]`} onClick={() => setVal(MIN_MOBILE)}> 100 Мбіт</button>
+          <button className={`${val==MID_MOBILE ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[10%]`} onClick={() => setVal(MID_MOBILE)}> 500 Мбіт</button>
+          <button className={`${val==MAX_MOBILE ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>1 Гбіт</button>
       </div>
       </div>
   );
 }
 
 export function TarifsSliderMobileGPON(){
-  const [val, setVal] = React.useState<number>(MID_G);
+  const [val, setVal] = React.useState<number>(MID_G_MOBILE);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
   };
   return (
     <div className={``}>
       <DemoSliderMobile
-          defaultValue={MID_G}
+          defaultValue={MID_G_MOBILE}
           value={val}
           step={null}
           marks={marks_GPON_mobile}
-          max={MAX}
+          max={MAX_MOBILE}
           onChange={handleChange}
       />
       <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
-          <button className={`${val==MID_G ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[24%]`} onClick={() => setVal(MID_G)}> 300 Мбіт</button>
-          <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}>1 Гбіт</button>
+          <button className={`${val==MID_G_MOBILE ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[24%]`} onClick={() => setVal(MID_G_MOBILE)}> 300 Мбіт</button>
+          <button className={`${val==MAX_MOBILE ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>1 Гбіт</button>
       </div>
       </div>
   );

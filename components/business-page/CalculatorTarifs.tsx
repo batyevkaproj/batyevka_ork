@@ -1,5 +1,5 @@
 import { Label } from "@/components/ui/label";
-import { TarifsSlider, MonthsSlider, OverpaySlider , TarifsSliderMobile, TarifsSliderMobileGPON } from "../ui/sliders";
+import { TarifsSlider, TarifsSliderGPON, MonthsSlider, OverpaySlider , TarifsSliderMobile, TarifsSliderMobileGPON } from "../ui/sliders";
 import { TarifsSwitch, RegularSwitch } from "../ui/switches";
 import rocket_blue from '@/public/img/rocket_blue.svg';
 import Image from "next/image";
@@ -43,7 +43,7 @@ const CalculatorTarifs = ({theme}:any) => {
                     <div className={`max-[1800px]:max-w-[750px]`}>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери Інтернет швидкість</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            <TarifsSlider/>
+                            <TarifsSliderGPON/>
                         </div>
                         <div className={`min-[681px]:hidden`}>
                             <TarifsSliderMobile/>
@@ -179,14 +179,14 @@ const CalculatorTarifs = ({theme}:any) => {
                                 <div className={`flex items-end justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]`}>
                                     <h1>Акційна абонплата на Перші 4 місяці</h1>
                                     <h1 className={`text-[#DC662D] flex items-end justify-between w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]`}>
-                                        <span className={`min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]`}>0</span>
+                                        <span className={`min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]`}>0</span>
                                         <span className={`min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]`}>грн/міс</span>
                                     </h1>
                                 </div>
                                 <div className={`flex items-end justify-between min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]`}>
                                     <h1>Абонплата з 5го місяця</h1>
                                     <h1 className={`text-[#51B18B] flex items-end justify-between w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]`}>
-                                        <span className={`min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[70px]`}>0</span>
+                                        <span className={`min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]`}>0</span>
                                         <span className={`min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]`}>грн/міс</span>                                   
                                     </h1>
                                 </div>
