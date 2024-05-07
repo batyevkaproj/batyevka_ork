@@ -136,6 +136,7 @@ const DemoSwitchRegular = styled((props: SwitchProps) => (
         height: 74,
       },
       backgroundColor: 'white',
+      boxShadow: 'none'
     },
     '& .MuiSwitch-track': {
       borderRadius: 200,
