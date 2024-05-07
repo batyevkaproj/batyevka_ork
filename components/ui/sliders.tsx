@@ -76,23 +76,18 @@ const megogo_overpay = [
 const months = [
   {
     value: 1,
-    label: '1 міс'
   },
   {
     value: 2,
-    label: '6 міс'
   },
   {
     value: 3,
-    label: '12 міс'
   },
   {
     value: 4,
-    label: '24 міс'
   },
   {
     value: 5,
-    label: '36 міс'
   },
 ];
 
@@ -261,27 +256,61 @@ export function TarifsSliderGPON(){
 }
 
 export function OverpaySlider(){
+  const [val, setVal] = React.useState<number>(0);
+  const handleChange = (_: Event, newValue: number | number[]) => {
+    setVal(newValue as number);
+  };
   return (
+    <div className={``}>
+      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
+        <div className={`flex justify-between w-full mx-[16%]`}>
+          <button className={`${val==(1) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(1)}> Легка</button>
+          <button className={`${val==(2) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(2)}> Оптимальна</button>
+          <button className={`${val==(3) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(3)}>Максимальна</button>
+          <button className={`${val==(4) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(4)}> Спорт</button>
+        </div>
+        <button className={`${val==(5) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(5)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] `}>Кіно+</span></button>
+      </div>
       <DemoSlider
         defaultValue={0}
         step={1}
         marks={megogo_overpay}
         max={5}
+        value={val}
         aria-label="Default"
+        onChange={handleChange}
       />
+    </div>
   );
 }
 
 export function MonthsSlider(){
-    return (
-        <DemoSlider
-          defaultValue={0}
-          step={1}
-          marks={months}
-          max={5}
-          aria-label="Default"
-        />
-    );
+  const [val, setVal] = React.useState<number>(0);
+  const handleChange = (_: Event, newValue: number | number[]) => {
+    setVal(newValue as number);
+  };
+  return (
+    <div className={``}>
+      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
+        <div className={`flex justify-between w-full ml-[17%] mr-[16%]`}>
+          <button className={`${val==(1) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(1)}> 1 міс</button>
+          <button className={`${val==(2) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(2)}> 6 міс</button>
+          <button className={`${val==(3) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(3)}>12 міс</button>
+          <button className={`${val==(4) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(4)}> 24 міс</button>
+        </div>
+        <button className={`${val==(5) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(5)}><span className={`absolute min-[3644px]:ml-[-54px] ml-[-36px] max-[2377px]:ml-[-26px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] w-[78px] min-[3644px]:w-[120px] max-[2377px]:w-[59px]`}>36 міс</span></button>
+      </div>
+      <DemoSlider
+        defaultValue={0}
+        step={1}
+        marks={months}
+        max={5}
+        value={val}
+        aria-label="Default"
+        onChange={handleChange}
+      />
+    </div>
+  );
 }
 
 
