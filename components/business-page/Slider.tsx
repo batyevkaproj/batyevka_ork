@@ -7,6 +7,9 @@ import vector2 from   '../../public/img/vector2.svg';
 import vector3 from   '../../public/img/vector3.svg';
 import vector4 from   '../../public/img/vector4.svg';
 
+import thumb_flag from '@/public/img/thumb_flag.svg'
+import speed_flag from '@/public/img/speed_flag.svg'
+
 import Image from 'next/image';
 
 import { useModal } from "@/hooks/use-modal-store";
@@ -52,8 +55,16 @@ const Slider = () => {
 
 
 <Carousel className={`min-[2430px]:mt-[60px] mt-[45px]`} setApi={setApi}>
+    <div className='absolute max-[910px]:hidden top-[140px] left-[-160px] h-[139px] z-[1]'>
+        <Image src={thumb_flag} className={`hover:animate-slide`} alt='thumb_flag'/>
+
+          
+        <Image src={speed_flag} className={`hover:animate-slide`} alt='speed_flag'/> 
+    </div>
   <CarouselContent className='flex'>
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
+        
+
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
