@@ -62,12 +62,12 @@ const Tarifs = () => {
     return (
         <>  {/* GPON biggest*/}
             <div className="max-[1247px]:hidden">
-                <Heading text={`Бізнес тарифи "GPON"`} text_size={42} /> 
+                <Heading text={`Бізнес тарифи "Стандарт"`} text_size={42} /> 
                 <div className="max-[2377px]:my-[60px] my-[75px] min-[3644px]:my-[129px] w-[1200px] mr-[68px] min-[2378px]:scale-[1.33] min-[3644px]:scale-[1.96]">
                     <OpticCable/>
                 </div>
                 <div className="min-[3644px]:text-[51px] min-[3644px]:leading-[51px] text-[34px] leading-[34px] max-[2377px]:text-[26px] max-[2377px]:leading-[26px] font-bold text-white flex items-center justify-center">
-                    <h1 className="text-center flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем</h1>
+                    <h1 className="text-center flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем G-PON</h1>
                 </div>
                 <div className="pt-[24px] min-[3644px]:pt-[36px] max-[2377px]:pt-[18px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
                     <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">2 599</span>грн.</h1>
@@ -127,12 +127,12 @@ const Tarifs = () => {
 
             {/*GPON middle */}
             <div className="min-[1248px]:hidden max-[823px]:hidden">
-                <Heading text={`Бізнес тарифи "GPON"`} text_size={42} />
+                <Heading text={`Бізнес тарифи "Стандарт"`} text_size={42} />
                 <div className="my-[60px] mr-[68px]">
                     <OpticCable/>
                 </div>
                 <div className="text-[26px] leading-[26px] font-bold text-white flex items-center justify-center">
-                    <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо ОПТИЧНИМ кабелем</h1>
+                    <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо ОПТИЧНИМ кабелем G-PON</h1>
                 </div>
                 <div className=" text-[24px] leading-[36px] font-bold text-white flex justify-center pt-[18px]">
                     <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[10px] text-[42px]">2 599</span>грн</h1>
@@ -197,13 +197,13 @@ const Tarifs = () => {
 
             {/*GPON mobile*/}
             <div className="min-[824px]:hidden mt-[30px]">
-                <Heading text={`Бізнес тарифи "GPON"`} text_size={24} />
+                <Heading text={`Бізнес тарифи "Стандарт"`} text_size={24} />
                 <div className="mt-[15px] mb-[15px] mr-[68px]">
                     <OpticCable/>
                 </div>
                 
                 <div className="text-[16px] leading-[22px] font-bold text-white flex items-center justify-center mx-[20px]">
-                    <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо ОПТИЧНИМ кабелем</h1>
+                    <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо ОПТИЧНИМ кабелем G-PON</h1>
                 </div>
                 <div className="text-[16px] leading-[22px] font-bold text-white flex justify-center mt-[5px] mx-[20px]">
                     <h1 className="text-center align-bottom z-10">Всього за<span className=" text-[#56AABF] leading-[22px] px-[6px] text-[32px]">2 599</span>грн</h1>
@@ -258,15 +258,15 @@ const Tarifs = () => {
 
             {/*XG-GPON biggest */}
             <div className="max-[1247px]:hidden">
-                <Heading text={`Бизнес тарифы "XG-PON"`} text_size={42}/>
+                <Heading text={`Бізнес тарифи "Преміум"`} text_size={42}/>
                 <div className="max-[2377px]:my-[60px] my-[75px] min-[3644px]:my-[129px] ml-[45vw]">
                     <OpticCableReverse/>
                 </div>
                 <div className="min-[3644px]:text-[51px] min-[3644px]:leading-[51px] text-[34px] leading-[34px] max-[2377px]:text-[26px] max-[2377px]:leading-[26px] font-bold text-white flex items-center justify-center">
-                    <h1 className="text-center flex items-center justify-center z-10">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
+                    <h1 className="text-center flex items-center justify-center z-10">Підключаємо виділеним ОПТИЧНИМ волокном  із точки обміну трафіком по технології XGS-PON</h1>
                 </div>
                 <div className="pt-[24px] min-[3644px]:pt-[36px] max-[2377px]:pt-[18px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
-                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">14 99</span>грн.</h1>
+                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">14 999</span>грн.</h1>
                 </div>
                 <div className="flex justify-center box-border max-[2377px]:gap-[40px] max-[1600px]:gap-[30px] gap-[52px] min-[3644px]:gap-[78px]">
 
@@ -320,12 +320,12 @@ const Tarifs = () => {
 
             {/*XG-GPON middle */}
             <div className="min-[1248px]:hidden max-[823px]:hidden mt-[-24px]">
-            <Heading text={`Бізнес тарифи "XG-PON"`} text_size={42} />
+            <Heading text={`Бізнес тарифи "Преміум"`} text_size={42} />
                 <div className="my-[60px] scale-x-[-1] ml-[68px]">
                     <OpticCable/>
                 </div>
                 <div className="text-[26px] leading-[32px] font-bold text-white flex items-center justify-center mx-[147px]">
-                    <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
+                    <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо виділеним ОПТИЧНИМ волокном  із точки обміну трафіком по технології XGS-PON</h1>
                 </div>
                 <div className="text-[24px] leading-[36px] font-bold text-white flex justify-center pt-[18px]">
                     <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[10px] text-[42px]">14 999</span>грн</h1>
@@ -390,12 +390,12 @@ const Tarifs = () => {
 
             {/* XG-GPON mobile */}
             <div className="min-[824px]:hidden">
-                <Heading text={`Бизнес тарифы "XG-PON"`} text_size={24}/>
+                <Heading text={`Бізнес тарифи "Преміум"`} text_size={24}/>
                 <div className="mt-[15px] mb-[15px] scale-x-[-1] ml-[68px]">
                     <OpticCable/>
                 </div>
                 <div className="text-[16px] leading-[22px] font-bold text-white flex items-center justify-center mx-[20px]">
-                    <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
+                    <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо виділеним ОПТИЧНИМ волокном  із точки обміну трафіком по технології XGS-PON</h1>
                 </div>
                 <div className="text-[16px] leading-[22px] font-bold text-white flex justify-center mt-[5px] mx-[20px]">
                     <h1 className="text-center align-bottom">всього за<span className=" text-[#56AABF] leading-[22px] px-[6px] text-[32px]">14 999</span>грн.</h1>
