@@ -9,8 +9,20 @@ import  { useState } from 'react'
 import { Checkbox } from "@/components/ui/checkbox_calculator"
 import { Label } from "@/components/ui/label";
 
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+  } from '../ui/select';
+
 
 const CalculatorTarifs = ({theme}:any) => {
+
+    var months_overpay = -1;
 
     const [isTVChecked, setTVChecker] = useState(false);
 
@@ -23,6 +35,12 @@ const CalculatorTarifs = ({theme}:any) => {
     const toggleIPChecker = () => {
         setIPChecker(!isIPChecked);
     };
+
+    const [isSelectMenuChecked, setSelectMenu] = useState(false);
+
+    const toggleSelectMenu = () => {
+        setSelectMenu(!isSelectMenuChecked);
+    }
 
     return (
     <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-0 + ${theme=='white'?'text-[#5F6061]':'text-white'}`}>
@@ -94,7 +112,25 @@ const CalculatorTarifs = ({theme}:any) => {
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
                             <MonthsSlider/>
                         </div>
-                        <p className="max-[2377px]:w-full w-[717px] min-[3644px]:w-[994px] opacity-[0.5] min-[3644px]:mt-[60px] mt-[20px] max-[2377px]:mt-[15px] max-[680px]:mt-[15px] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">*СТАБІЛЬНІСТЬ ЦІНИ – при внесенні авансового платежу  ми гарантуємо незмінність ціни тарифного плану протягом обраного періоду</p>
+                        <div className={`mt-[20px] w-full`}>
+                            <Select>
+                                <SelectTrigger className={`pl-[22px] text-[16px] leading-[22px] rounded-full h-[48px] border-[#BDBDBD] ${isSelectMenuChecked ? 'text-[#5F6061] bg-[#F4F2F2] border-[#51B18B]': ''}`}>
+                                    <SelectValue className={``} placeholder="Виберіть період" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                    <SelectLabel>Виберіть період</SelectLabel>
+                                    <SelectItem value='0' onChange={toggleSelectMenu}>Без авансу</SelectItem>
+                                    <SelectItem value='1' onChange={toggleSelectMenu}>1 міс</SelectItem>
+                                    <SelectItem value='2' onChange={toggleSelectMenu}>6 міс</SelectItem>
+                                    <SelectItem value='3' onChange={toggleSelectMenu}>12 міс</SelectItem>
+                                    <SelectItem value='4' onChange={toggleSelectMenu}>24 міс</SelectItem>
+                                    <SelectItem value='5' onChange={toggleSelectMenu}>32 міс</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <p className="max-[2377px]:w-full w-[717px] min-[3644px]:w-[994px] text-[#BDBDBD] min-[3644px]:mt-[60px] mt-[20px] max-[2377px]:mt-[15px] max-[680px]:mt-[15px] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">*СТАБІЛЬНІСТЬ ЦІНИ – при внесенні авансового платежу  ми гарантуємо незмінність ціни тарифного плану протягом обраного періоду</p>
                 
                         <div className={`flex grid grid-cols-1 items-center font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px]`}>
                             <div className={`flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]`}>
