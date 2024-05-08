@@ -70,15 +70,15 @@ const Header = ({theme, business}:any) => {
                     <Link href='#'  className={`text-[#5984B3] flex items-center h-[60px] font-semibold min-[2430px]:mr-[40px] mr-[25px]`}>
                         <Image src={wrench} className={`relative w-8 h-8 min-w-max min-[2430px]:w-[42px] min-[2430px]:h-[42px]`} alt={'wrench'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1920px]:hidden`}>Обладнання</span>
                     </Link>
-                    <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px] min-[2430px]:h-[78px]`}>
-                        <Button onClick={() => {onOpen("payment")}} variant="pay">
+                    <Link href='https://next.privat24.ua/payments/form/%7B%22token%22:%22a163f3a4-7bfa-4921-8d8e-4c4737e6c0f4%22%7D'  className={`text-[#51B18B] flex items-center h-[60px] min-[2430px]:h-[78px]`}>
+                        <Button variant="pay">
                         <Image src={wallet_white} className={`relative w-7 h-7 fill-white mr-[15px] min-[2430px]:w-[36px] min-[2430px]:h-[36px]`} alt={'wallet'}></Image>
                         Оплата
                         </Button>
                     </Link>
                 </div>
-                <Link href='#'  className={`text-[#51B18B] flex items-center h-[60px]`}>
-                    <Button onClick={() => {onOpen("payment")}} variant="payMob">
+                <Link href='https://next.privat24.ua/payments/form/%7B%22token%22:%22a163f3a4-7bfa-4921-8d8e-4c4737e6c0f4%22%7D' className={`text-[#51B18B] flex items-center h-[60px]`}>
+                    <Button variant="payMob">
                     <Image src={wallet_white} className={`relative w-7 h-7 fill-white `} alt={'wallet'}></Image>
                     </Button>
                 </Link>
