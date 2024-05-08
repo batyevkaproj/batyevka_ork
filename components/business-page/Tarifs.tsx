@@ -26,16 +26,16 @@ import OpticCable from '@/components/business-page/OpticCable';
 const Tarifs = () => {
 
     const tarifs_simple = [
-        {id: 1, price: '799', speed: '300 Мегабіт', promotion: false, promotionString: ''},
-        {id: 2, price: '1 399', speed: '1000 Мегабіт', promotion: true, promotionString: 'з 3 місяця 1 899'},
-        {id: 3, price: '2 299', speed: '2500 Мегабіт', promotion: false, promotionString: ''}
+        {id: 1, price: '559', speed: '300 Мегабіт', promotion: true, promotionString: 'з 5 місяця 799.'},
+        {id: 2, price: '979', speed: '1000 Мегабіт', promotion: true, promotionString: 'з 5 місяця 1 399.'},
+        {id: 3, price: '1 609', speed: '2500 Мегабіт', promotion: true, promotionString: 'з 5 місяця 2 299.'}
     ];
 
 
     const tarifs_premium = [
-        {id: 1, price: '2 699', speed: '300 Мегабіт', promotion: true, promotionString: 'Знижка 30%'},
-        {id: 2, price: '4 999', speed: '1000 Мегабіт', promotion: false, promotionString: 'Знижка 30%'},
-        {id: 3, price: '9 999', speed: '2500 Мегабіт', promotion: true, promotionString: 'Знижка 30%'}
+        {id: 1, price: '1 889', speed: '300 Мегабіт', promotion: true, promotionString: 'з 5 місяця 2 699.'},
+        {id: 2, price: '3 499', speed: '1000 Мегабіт', promotion: true, promotionString: 'з 5 місяця 4 999.'},
+        {id: 3, price: '6 999', speed: '2500 Мегабіт', promotion: true, promotionString: 'з 5 місяця 9 999.'}
     ];
 
     const [isMechanicVisible_1, setMechanicVisible_1] = useState(false);
@@ -80,7 +80,7 @@ const Tarifs = () => {
                 {
                 tarifs_simple.map((tarif) =>
                     
-                    <div key={tarif.id} className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px] min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
+                    <div key={tarif.id} className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px] min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853] z-10">
                         <Image src={prom_small} alt='prom_large' className={`self-start absolute ml-[20px] mt-[-20px] min-[2378px]:hidden + ${tarif.promotion ? '' : 'hidden'}`} />
                         <Image src={prom_middle} alt='prom_large' className={`self-start absolute ml-[26px] mt-[-26px] max-[2377px]:hidden min-[3644px]:hidden + ${tarif.promotion ? '' : 'hidden'}`} />
                         <Image src={prom_large} alt='prom_large' className={`self-start absolute ml-[39px] mt-[-39px] max-[3643px]:hidden + ${tarif.promotion ? '' : 'hidden'}`} />
@@ -132,7 +132,7 @@ const Tarifs = () => {
                     <OpticCable/>
                 </div>
                 <div className="text-[26px] leading-[26px] font-bold text-white flex items-center justify-center">
-                    <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем</h1>
+                    <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо ОПТИЧНИМ кабелем</h1>
                 </div>
                 <div className=" text-[24px] leading-[36px] font-bold text-white flex justify-center pt-[18px]">
                     <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[10px] text-[42px]">2 599</span>грн</h1>
@@ -203,16 +203,16 @@ const Tarifs = () => {
                 </div>
                 
                 <div className="text-[16px] leading-[22px] font-bold text-white flex items-center justify-center mx-[20px]">
-                    <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем</h1>
+                    <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо ОПТИЧНИМ кабелем</h1>
                 </div>
                 <div className="text-[16px] leading-[22px] font-bold text-white flex justify-center mt-[5px] mx-[20px]">
-                    <h1 className="text-center align-bottom">Всього за<span className=" text-[#56AABF] leading-[22px] px-[6px] text-[32px]">2 599</span>грн</h1>
+                    <h1 className="text-center align-bottom z-10">Всього за<span className=" text-[#56AABF] leading-[22px] px-[6px] text-[32px]">2 599</span>грн</h1>
                 </div>
 
                 {
                     tarifs_simple.map((tarif) =>
                         <div key={tarif.id} className="flex justify-center items-center pt-[20px] mb-[20px]">
-                            <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853] ">
+                            <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853] z-10">
                             <Image src={prom_small} alt='prom_small1' className={`self-start absolute ml-[20px] mt-[-20px] + ${tarif.promotion ? '' : 'hidden'}`} />
 
                             <h2 className="text-[#DC662D] font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">
@@ -263,7 +263,7 @@ const Tarifs = () => {
                     <OpticCableReverse/>
                 </div>
                 <div className="min-[3644px]:text-[51px] min-[3644px]:leading-[51px] text-[34px] leading-[34px] max-[2377px]:text-[26px] max-[2377px]:leading-[26px] font-bold text-white flex items-center justify-center">
-                    <h1 className="text-center flex items-center justify-center">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
+                    <h1 className="text-center flex items-center justify-center z-10">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
                 </div>
                 <div className="pt-[24px] min-[3644px]:pt-[36px] max-[2377px]:pt-[18px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
                     <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">14 99</span>грн.</h1>
@@ -272,7 +272,7 @@ const Tarifs = () => {
 
                 {
                     tarifs_premium.map(tarif =>
-                        <div key={tarif.id} className="flex justify-center items-center pt-[20px] mb-[20px]">
+                        <div key={tarif.id} className="flex justify-center items-center pt-[20px] mb-[20px] z-10">
                             <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
                                 <Image src={prom_small} alt='prom_large' className={`self-start absolute ml-[20px] mt-[-20px] min-[2378px]:hidden + ${tarif.promotion ? '' : 'hidden'}`} />
                                 <Image src={prom_middle} alt='prom_large' className={`self-start absolute ml-[26px] mt-[-26px] max-[2377px]:hidden min-[3644px]:hidden + ${tarif.promotion ? '' : 'hidden'}`} />
@@ -325,7 +325,7 @@ const Tarifs = () => {
                     <OpticCable/>
                 </div>
                 <div className="text-[26px] leading-[32px] font-bold text-white flex items-center justify-center mx-[147px]">
-                    <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
+                    <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо виділеним ОПТИЧНИМ кабелем із точки обміну трафіком</h1>
                 </div>
                 <div className="text-[24px] leading-[36px] font-bold text-white flex justify-center pt-[18px]">
                     <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[10px] text-[42px]">14 999</span>грн</h1>
@@ -403,8 +403,8 @@ const Tarifs = () => {
                 
                 {
                     tarifs_premium.map(tarif => 
-                        <div key={tarif.id} className="flex justify-center items-center pt-[20px] mb-[20px]">
-                        <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853]">
+                        <div key={tarif.id} className="flex justify-center items-center pt-[20px] mb-[20px] ">
+                        <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853] z-10">
                             <Image src={prom_small} alt='prom_small1' className={`self-start absolute ml-[20px] mt-[-20px] + ${tarif.promotion ? '' : 'hidden'}`} />
     
                             <h2 className="text-[#DC662D]  font-bold text-[70px] justify-center flex mt-[60px] leading-[70px]">

@@ -11,7 +11,6 @@ import Slider from '@/components/business-page/Slider';
 import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
 import ParallaxDemo from '@/components/ParallaxDemo';
-import OpticCable from '@/components/business-page/OpticCable';
 
 export default function Home() {
 
