@@ -62,12 +62,12 @@ const Tarifs = () => {
     return (
         <>  {/* GPON biggest*/}
             <div className="max-[1247px]:hidden">
-                <Heading text={`Бізнес тарифи "GPON"`} text_size={42} /> 
+                <Heading text={`Стандарт`} text_size={42} /> 
                 <div className="max-[2377px]:my-[60px] my-[75px] min-[3644px]:my-[129px] w-[1200px] mr-[68px] min-[2378px]:scale-[1.33] min-[3644px]:scale-[1.96]">
                     <OpticCable/>
                 </div>
                 <div className="min-[3644px]:text-[51px] min-[3644px]:leading-[51px] text-[34px] leading-[34px] max-[2377px]:text-[26px] max-[2377px]:leading-[26px] font-bold text-white flex items-center justify-center">
-                    <h1 className="text-center flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем</h1>
+                    <h1 className="text-center flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем G-PON</h1>
                 </div>
                 <div className="pt-[24px] min-[3644px]:pt-[36px] max-[2377px]:pt-[18px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
                     <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">2 599</span>грн.</h1>
