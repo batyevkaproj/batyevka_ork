@@ -8,6 +8,7 @@ import galochka_orange from '@/public/img/galochka_orange.svg';
 import  { useState } from 'react'
 import { Checkbox } from "@/components/ui/checkbox_calculator"
 import { Label } from "@/components/ui/label";
+import { ChevronsUpDown } from "lucide-react";
 
 import {
     Select,
@@ -116,6 +117,7 @@ const CalculatorTarifs = ({theme}:any) => {
                             <Select>
                                 <SelectTrigger className={`pl-[22px] text-[16px] leading-[22px] rounded-full h-[48px] border-[#BDBDBD] ${isSelectMenuChecked ? 'text-[#5F6061] bg-[#F4F2F2] border-[#51B18B]': ''}`}>
                                     <SelectValue className={``} placeholder="Виберіть період" />
+                                    <ChevronsUpDown className="w-[22px] h-[33px] mr-[10px]"/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
