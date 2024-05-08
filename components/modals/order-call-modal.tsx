@@ -19,7 +19,7 @@ export const OrderCallModal = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={onClose}>
-            <DialogContent className="shadow-[0_4px_29px_0px_#0B273C] bg-[#133853] rounded-[10px] w-[620px] p-0 m-0 border-0">
+            <DialogContent className="shadow-[0_4px_29px_0px_#0B273C] bg-[#133853] rounded-[10px] max-w-[620px] p-0 m-0 border-0">
                 <DialogHeader>
                     <DialogTitle className="flex justify-center text-[24px] font-bold text-white mt-[60px]">Передзвонимо через 30 секунд</DialogTitle>
                     <DialogDescription className="flex justify-center text-[16px] mt-[15px] font-light text-white">
@@ -36,11 +36,6 @@ export const OrderCallModal = () => {
                     <button type={`button`} className={`w-3/4 rounded-full bg-[#2F94AD] h-[60px] text-[18px] leading-[22px] font-semibold text-[#133853] shadow-[0_4px_20px_0_#56AABF80]`}>Зателефонуйте мені</button>
                 </div>
                 <DialogFooter className="sm:justify-start">
-                    {/* <DialogClose asChild>
-                        <Button onClick={onClose} type="button" variant="secondary">
-                            Закрити
-                        </Button>
-                    </DialogClose> */}
                 </DialogFooter>
             </DialogContent>
         </Dialog>
