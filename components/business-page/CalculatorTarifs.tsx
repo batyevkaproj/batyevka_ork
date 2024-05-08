@@ -1,4 +1,4 @@
-import { Label } from "@/components/ui/label";
+
 import { TarifsSlider, TarifsSliderGPON, MonthsSlider, OverpaySlider , TarifsSliderMobile, TarifsSliderMobileGPON } from "../ui/sliders";
 import { TarifsSwitch, RegularSwitch } from "../ui/switches";
 import rocket_blue from '@/public/img/rocket_blue.svg';
@@ -6,8 +6,8 @@ import Image from "next/image";
 import galochka from '@/public/img/galochka.svg';
 import galochka_orange from '@/public/img/galochka_orange.svg';
 import  { useState } from 'react'
-
-
+import { Checkbox } from "@/components/ui/checkbox_calculator"
+import { Label } from "@/components/ui/label";
 
 
 const CalculatorTarifs = ({theme}:any) => {
@@ -59,6 +59,28 @@ const CalculatorTarifs = ({theme}:any) => {
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
                             <OverpaySlider/>
+                        </div>
+                        <div className={`font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden`}>
+                            <div className={`flex items-center gap-x-[20px]`}>
+                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <p className={``}>Легка</p>
+                            </div>
+                            <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
+                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <p className={``}>Оптимальна</p>
+                            </div>
+                            <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
+                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <p className={``}>Максимальна</p>
+                            </div>
+                            <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
+                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <p className={``}>Спорт</p>
+                            </div>
+                            <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
+                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <p className={``}>Кіно+</p>
+                            </div>
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden`}>
                             <RegularSwitch/>
