@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer';
 import CalculatorTarifs from '@/components/business-page/CalculatorTarifs';
 import AdditionalOptions from '@/components/business-page/AdditionalOptions';
+import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 
 export default function Home() {
 
@@ -13,6 +14,7 @@ export default function Home() {
       <Header theme={'white'} business={false}/>
       <CalculatorTarifs theme={'white'}/>
       <AdditionalOptions theme={'white'}/>
+      <TarifsCountInfo theme={"white"}/>
       <Footer theme={'white'}/>
     </div>
   )

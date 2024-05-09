@@ -180,7 +180,7 @@ const AdditionalOptions = ({theme}:any) => {
                                 <ChevronDown className={`size-[20px] transition-transform + ${isInsurance ? 'mt-[2px] rotate-[180deg] opacity-[0.5]':''}`}/>
                             </div>
                         </div>
-                        <div onClick={toggleMessangerVisibility} className={`${isMessanger ? 'mb-[25px] pb-[5px] rounded-[10px]' : ''} rounded-t-[10px] mt-[-5px] + ${theme=='white'?'shadow-[0_4px_29px_0px_#E6E3E3] bg-white':'shadow-[0_4px_29px_0px_#0B273C]'}`}>
+                        <div onClick={toggleMessangerVisibility} className={`${isMessanger ? 'pb-[5px] rounded-[10px]' : ''} rounded-t-[10px] mt-[-5px] + ${theme=='white'?'shadow-[0_4px_29px_0px_#E6E3E3] bg-white':'shadow-[0_4px_29px_0px_#0B273C]'}`}>
                             <div className={`${isMessanger ? 'flex items-center justify-center pt-[30px]':'flex items-center ml-[40px] gap-[20px] pt-[23px]'}`}>
                                 <Image src={messages} alt='speedometer'/>
                                 <p className={`${isMessanger ? 'hidden':''} text-[24px] leading-[36px] font-bold`}>Месенджер</p>

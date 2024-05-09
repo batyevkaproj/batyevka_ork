@@ -11,6 +11,7 @@ import Slider from '@/components/business-page/Slider';
 import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
 import ParallaxDemo from '@/components/ParallaxDemo';
+import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 
 export default function Home() {
 
@@ -22,6 +23,7 @@ export default function Home() {
       <Heading text={'Ключові переваги для наших бізнес-абонентів'} text_size={42}></Heading>
       <Advantages />
       <Tarifs />
+      <TarifsCountInfo theme="dark"/>
       <ContactForm />
       {<InfoBlock />}
       <Footer theme='dark'/>
