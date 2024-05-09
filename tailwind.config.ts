@@ -75,11 +75,21 @@ const config = {
           '75%': {left: '0px', top: '200px'},
           '100%': {left: '0px', top: '0px'},
         },
+        "wiggle": {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" }
+        },
+        "rightslide": {
+          '0%' :{ transform: "translateX(0%)"},
+          '100%' :{ transform: "translateX(64%)"},
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "easyspin": "easyspin 4s linear infinite",
+        "wiggle": "wiggle 200ms ease-in-out",
+        "slide": "rightslide 500ms ease-in-out forwards"
       },
     },
   },
