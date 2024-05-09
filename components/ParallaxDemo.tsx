@@ -34,53 +34,53 @@ const ParallaxDemo = () => {
           const duration = `${dur}s`;
     
           if (parallaxRef.current) {
-            parallaxRef.current.style.transitionDuration = duration;
-            parallaxRef.current.style.transform = translate;
-            parallaxRef.current.style.WebkitTransform = translate;
-            parallaxRef.current.style.MozTransform = translate;
-            parallaxRef.current.style.WebkitTransitionDuration = duration;
+            (parallaxRef.current as HTMLElement).style.transitionDuration = duration;
+            (parallaxRef.current as HTMLElement).style.transform = translate;
+            (parallaxRef.current as HTMLElement).style.webkitTransform = translate;
+            (parallaxRef.current as HTMLElement).style.transform = translate;
+            (parallaxRef.current as HTMLElement).style.webkitTransitionDuration = duration;
           }
           if (parallaxRef1.current) {
-            parallaxRef1.current.style.transitionDuration = duration;
-            parallaxRef1.current.style.transform = translate;
-            parallaxRef1.current.style.WebkitTransform = translate;
-            parallaxRef1.current.style.MozTransform = translate;
-            parallaxRef1.current.style.WebkitTransitionDuration = duration;
+            (parallaxRef1.current as HTMLElement).style.transitionDuration = duration;
+            (parallaxRef1.current as HTMLElement).style.transform = translate;
+            (parallaxRef1.current as HTMLElement).style.webkitTransform = translate;
+            (parallaxRef1.current as HTMLElement).style.transform = translate;
+            (parallaxRef1.current as HTMLElement).style.webkitTransitionDuration = duration;
           }
           if (parallaxRef2.current) {
-            parallaxRef2.current.style.transitionDuration = duration;
-            parallaxRef2.current.style.transform = translate;
-            parallaxRef2.current.style.WebkitTransform = translate;
-            parallaxRef2.current.style.MozTransform = translate;
-            parallaxRef2.current.style.WebkitTransitionDuration = duration;
+            (parallaxRef2.current as HTMLElement).style.transitionDuration = duration;
+            (parallaxRef2.current as HTMLElement).style.transform = translate;
+            (parallaxRef2.current as HTMLElement).style.webkitTransform = translate;
+            (parallaxRef2.current as HTMLElement).style.transform = translate;
+            (parallaxRef2.current as HTMLElement).style.webkitTransitionDuration = duration;
           }
           if (parallaxRef3.current) {
-            parallaxRef3.current.style.transitionDuration = duration;
-            parallaxRef3.current.style.transform = translate;
-            parallaxRef3.current.style.WebkitTransform = translate;
-            parallaxRef3.current.style.MozTransform = translate;
-            parallaxRef3.current.style.WebkitTransitionDuration = duration;
+            (parallaxRef3.current as HTMLElement).style.transitionDuration = duration;
+            (parallaxRef3.current as HTMLElement).style.transform = translate;
+            (parallaxRef3.current as HTMLElement).style.webkitTransform = translate;
+            (parallaxRef3.current as HTMLElement).style.transform = translate;
+            (parallaxRef3.current as HTMLElement).style.webkitTransitionDuration = duration;
           }
           if (parallaxRef4.current) {
-            parallaxRef4.current.style.transitionDuration = duration;
-            parallaxRef4.current.style.transform = translate;
-            parallaxRef4.current.style.WebkitTransform = translate;
-            parallaxRef4.current.style.MozTransform = translate;
-            parallaxRef4.current.style.WebkitTransitionDuration = duration;
+            (parallaxRef4.current as HTMLElement).style.transitionDuration = duration;
+            (parallaxRef4.current as HTMLElement).style.transform = translate;
+            (parallaxRef4.current as HTMLElement).style.webkitTransform = translate;
+            (parallaxRef4.current as HTMLElement).style.transform = translate;
+            (parallaxRef4.current as HTMLElement).style.webkitTransitionDuration = duration;
           }
           if (parallaxRef5.current) {
-            parallaxRef5.current.style.transitionDuration = duration;
-            parallaxRef5.current.style.transform = translate;
-            parallaxRef5.current.style.WebkitTransform = translate;
-            parallaxRef5.current.style.MozTransform = translate;
-            parallaxRef5.current.style.WebkitTransitionDuration = duration;
+            (parallaxRef5.current as HTMLElement).style.transitionDuration = duration;
+            (parallaxRef5.current as HTMLElement).style.transform = translate;
+            (parallaxRef5.current as HTMLElement).style.webkitTransform = translate;
+            (parallaxRef5.current as HTMLElement).style.transform = translate;
+            (parallaxRef5.current as HTMLElement).style.webkitTransitionDuration = duration;
           }
           if (parallaxRef6.current) {
-            parallaxRef6.current.style.transitionDuration = duration;
-            parallaxRef6.current.style.transform = translate;
-            parallaxRef6.current.style.WebkitTransform = translate;
-            parallaxRef6.current.style.MozTransform = translate;
-            parallaxRef6.current.style.WebkitTransitionDuration = duration;
+            (parallaxRef6.current as HTMLElement).style.transitionDuration = duration;
+            (parallaxRef6.current as HTMLElement).style.transform = translate;
+            (parallaxRef6.current as HTMLElement).style.webkitTransform = translate;
+            (parallaxRef6.current as HTMLElement).style.transform = translate;
+            (parallaxRef6.current as HTMLElement).style.webkitTransitionDuration = duration;
           }
         }, 2500);   
     
