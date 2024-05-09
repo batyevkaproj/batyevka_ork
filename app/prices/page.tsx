@@ -5,7 +5,6 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer';
 import CalculatorTarifs from '@/components/business-page/CalculatorTarifs';
 
-
 export default function Home() {
 
   return (
