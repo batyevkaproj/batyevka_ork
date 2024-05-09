@@ -7,6 +7,7 @@ import checkmark from '@/public/img/switch_checkmark.svg';
 import pp from '../../public/img/globe_white.png';
 import zIndex from '@mui/material/styles/zIndex';
 
+
 const DemoSwitch = styled((props: SwitchProps) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
   ))(({ theme }) => ({
@@ -214,10 +215,14 @@ const DemoSwitchRegular = styled((props: SwitchProps) => (
 
 }));
 
-export function TarifsSwitch() {
+export function TarifsSwitch({isTarifsSwitch, setTarifsSwitch}:any) {
+
+  const toggle = () =>{
+    setTarifsSwitch(!isTarifsSwitch);
+  }
     return (
       <div className={`min-[3644px]:w-[195px] min-[3644px]:h-[93px] w-[130px] h-[62px] max-[2377px]:w-[100px] max-[2377px]:h-[48px] rounded-full`}>
-        <DemoSwitch/>
+        <DemoSwitch onChange={toggle}/>
       </div>
     )
 };

@@ -6,7 +6,6 @@ import Footer from '@/components/Footer';
 import CalculatorTarifs from '@/components/business-page/CalculatorTarifs';
 import AdditionalOptions from '@/components/business-page/AdditionalOptions';
 
-
 export default function Home() {
 
   return (

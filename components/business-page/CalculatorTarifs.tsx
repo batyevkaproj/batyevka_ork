@@ -23,9 +23,10 @@ import {
 
 const CalculatorTarifs = ({theme}:any) => {
 
-    var months_overpay = -1;
-
+    const [isTarifsSwitch, setTarifsSwitch] = useState(false);
     const [isTVChecked, setTVChecker] = useState(false);
+
+    
 
     const toggleTVChecker = () => {
         setTVChecker(!isTVChecked);
@@ -52,7 +53,7 @@ const CalculatorTarifs = ({theme}:any) => {
                 <p className={`flex text-center items-center justify-center text-[16px] leading-[20px] mt-[5px] min-[681px]:hidden`}>Оберiть технологію підключення</p>
                 <div className={`flex items-center justify-center min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:mt-[84px] mt-[56px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] `}>
                     <p className={`font-bold min-[3644px]:mr-[30px] mr-[20px] max-[2377px]:mr-[15px]`}>G-PON</p>
-                        <TarifsSwitch/>
+                        <TarifsSwitch isTarifsSwitch={isTarifsSwitch} setTarifsSwitch={setTarifsSwitch}/>
                     <p className={`font-bold min-[3644px]:ml-[30px] ml-[20px] max-[2377px]:ml-[15px]`}>UTP</p>
                 </div>
                 <div className={`min-[3644px]:h-[60px] h-[40px] max-[2377px]:h-[30px]`}></div>
@@ -62,13 +63,13 @@ const CalculatorTarifs = ({theme}:any) => {
                     <div className={`max-[1800px]:max-w-[750px]`}>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери Інтернет швидкість</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            <TarifsSlider/>
+                            {isTarifsSwitch?<TarifsSlider/>:<TarifsSliderGPON/>}
                         </div>
                         <div className={`min-[681px]:hidden`}>
-                            <TarifsSliderMobile/>
+                            {isTarifsSwitch?<TarifsSliderMobile/>:<TarifsSliderMobileGPON/>}
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden`}>
-                            <RegularSwitch />
+                            <RegularSwitch/>
                             <p className={`font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]`}>Додай MEGOGО Телебачення</p>
                         </div>
                         <p className={`flex text-center items-center justify-center font-bold mt-[40px] text-[18px] leading-[22px] min-[681px]:hidden`}>Додай MEGOGО Телебачення</p>
