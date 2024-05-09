@@ -63,28 +63,26 @@ const Slider = () => {
     </div>
   <CarouselContent className='flex'>
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
-        
-
         <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
             <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-5 flex`}>
-                    <Image src={infinity} className={`inline-flex`} alt='infinity'/>
+                <span className={`box-border w-5 mr-[10px] flex`}>
+                    <Image src={infinity} className={`inline-flex min-w-[21px] min-h-[10px]`} alt='infinity'/>
                 </span>
                     <ul className={`ml-2 font-normal`}>Безлімітні та необмежені тарифні плани</ul>
                 </div>
                 
                 <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-[20px] pl-[5px] flex justify-center self-start pt-[5px]`}>
-                    <Image src={sign} className={`inline-flex`} alt={`sign`}/>
+                <span className={`box-border w-[20px] pl-[1px] mr-[8px] flex justify-center self-start pt-[5px] max-[1722px]:ml-[8px] `}>
+                    <Image src={sign} className={`inline-flex min-w-[10px] min-h-[16px]`} alt={`sign`}/>
                 </span>
-                <ul className={`ml-3  font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
+                <ul className={`ml-3 font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
                 </div>
                 
                 <div className={`flex items-center`}>
-                <span className={`box-border w-5 flex justify-center self-start`}>
-                    <Image src={cable} className={`inline-flex`} alt={`cable`}/>
+                <span className={`box-border w-5 mr-[12px] flex justify-center self-start`}>
+                    <Image src={cable} className={`inline-flex min-w-[18px] min-h-[22px]`} alt={`cable`}/>
                 </span>
                 <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
                 </div>
