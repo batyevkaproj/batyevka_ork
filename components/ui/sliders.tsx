@@ -205,10 +205,11 @@ const DemoSliderMobile = styled(Slider)({
   },
 });
 
-export function TarifsSlider(){
+export function TarifsSlider({setSpeed}:any){
   const [val, setVal] = React.useState<number>(MIN);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
+    setSpeed(newValue as number);
   };
     return (
       <div className={``}>
@@ -231,10 +232,11 @@ export function TarifsSlider(){
     );
 }
 
-export function TarifsSliderGPON(){
+export function TarifsSliderGPON({setSpeed}:any){
   const [val, setVal] = React.useState<number>(MID_G);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
+    setSpeed(newValue as number);
   };
   return (
     <div className={``}>
@@ -315,10 +317,11 @@ export function MonthsSlider(){
 
 
 
-export function TarifsSliderMobile(){
+export function TarifsSliderMobile({setSpeed}:any){
   const [val, setVal] = React.useState<number>(MIN_MOBILE);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
+    setSpeed(newValue as number);
   };
   return (
     <div className={``}>
@@ -340,10 +343,11 @@ export function TarifsSliderMobile(){
   );
 }
 
-export function TarifsSliderMobileGPON(){
+export function TarifsSliderMobileGPON({setSpeed}:any){
   const [val, setVal] = React.useState<number>(MID_G_MOBILE);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
+    setSpeed(newValue as number);
   };
   return (
     <div className={``}>

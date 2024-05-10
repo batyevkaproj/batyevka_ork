@@ -227,16 +227,15 @@ export function TarifsSwitch({isTarifsSwitch, setTarifsSwitch}:any) {
     )
 };
 
-export function RegularSwitch() {
-    const [isChecked, setChecker] = useState(false);
+export function RegularSwitch({switchState, state}: any) {
 
     const toggleChecker = () => {
-        setChecker(!isChecked);
+      switchState(!state);
     };
+    
     return (
-        <div className={`${isChecked? 'shadow-[0px_4px_20px_0px_#51B18B]':'shadow-[0px_4px_20px_0px_#DC662D]'} min-[3644px]:w-[195px] min-[3644px]:h-[93px] w-[130px] h-[62px] max-[2377px]:w-[100px] max-[2377px]:h-[48px] rounded-full`}>
-            <DemoSwitchRegular onChange={toggleChecker}/>
-        </div>
-        
+      <div className={`${state? 'shadow-[0px_4px_20px_0px_#51B18B]':'shadow-[0px_4px_20px_0px_#DC662D]'} min-[3644px]:w-[195px] min-[3644px]:h-[93px] w-[130px] h-[62px] max-[2377px]:w-[100px] max-[2377px]:h-[48px] rounded-full`}>
+          <DemoSwitchRegular checked={state} onChange={toggleChecker}/>
+      </div>
     )
 };
