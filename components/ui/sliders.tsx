@@ -205,7 +205,7 @@ const DemoSliderMobile = styled(Slider)({
   },
 });
 
-export function TarifsSlider({setSpeed}:any){
+export function TarifsSlider({setSpeed, speed}:any){
   const [val, setVal] = React.useState<number>(MIN);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);

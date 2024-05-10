@@ -1,4 +1,5 @@
 
+import React from "react";
 import { TarifsSlider, TarifsSliderGPON, MonthsSlider, OverpaySlider , TarifsSliderMobile, TarifsSliderMobileGPON } from "../ui/sliders";
 import { TarifsSwitch, RegularSwitch } from "../ui/switches";
 import rocket_blue from '@/public/img/rocket_blue.svg';
@@ -20,23 +21,21 @@ import {
     SelectValue,
   } from '../ui/select';
 
+  
+
 
 const CalculatorTarifs = ({theme}:any) => {
 
     const [isTarifsSwitch, setTarifsSwitch] = useState(false);
 
-    const [speed, setSpeed] = useState(0);
-
+    const [speedUtp, setSpeedUtp] = React.useState<number>(1); //we need to define .h file WITH MIN=1 to start production working, sure, gpt would replace us 
+    const [speedGpon, setSpeedGpon] = useState(0);
 
     const [isTVChecked, setTVChecker] = useState(false);
 
-    console.log(isTarifsSwitch, speed, isTVChecked);
+    console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked);
 
     const [isIPChecked, setIPChecker] = useState(false);
-
-    const toggleIPChecker = () => {
-        setIPChecker(!isIPChecked);
-    };
 
     const [isSelectMenuChecked, setSelectMenu] = useState(false);
 
@@ -63,10 +62,10 @@ const CalculatorTarifs = ({theme}:any) => {
                     <div className={`max-[1800px]:max-w-[750px]`}>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери Інтернет швидкість</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            {isTarifsSwitch?<TarifsSlider setSpeed={setSpeed}/>:<TarifsSliderGPON setSpeed={setSpeed} />}
+                            {isTarifsSwitch?<TarifsSlider setSpeedUtp={setSpeedUtp} speed={speedUtp}/>:<TarifsSliderGPON setSpeedGpon={setSpeedGpon} />}
                         </div>
                         <div className={`min-[681px]:hidden`}>
-                            {isTarifsSwitch?<TarifsSliderMobile setSpeed={setSpeed}/>:<TarifsSliderMobileGPON setSpeed={setSpeed}/>}
+                            {isTarifsSwitch?<TarifsSliderMobile setSpeedUtp={setSpeedUtp}/>:<TarifsSliderMobileGPON setSpeedGpon={setSpeedGpon}/>}
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden`}>
                             <RegularSwitch switchState={setTVChecker} state={isTVChecked}/>

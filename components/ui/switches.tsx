@@ -222,7 +222,7 @@ export function TarifsSwitch({isTarifsSwitch, setTarifsSwitch}:any) {
   }
     return (
       <div className={`min-[3644px]:w-[195px] min-[3644px]:h-[93px] w-[130px] h-[62px] max-[2377px]:w-[100px] max-[2377px]:h-[48px] rounded-full`}>
-        <DemoSwitch onChange={toggle}/>
+        <DemoSwitch checked={isTarifsSwitch} onChange={toggle}/>
       </div>
     )
 };
