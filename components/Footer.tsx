@@ -29,7 +29,7 @@ const Footer = ({theme}:any) => {
                                 <li>Інтерактивне Телебачення</li>
                                 <li>ось вже:</li>
                                 <div className={`min-[3644px]:h-[72px] h-[48px] max-[2377px]:h-[37px] min-[3644px]:max-w-[423px] max-w-[282px] max-[2377px]:max-w-[216px] min-w-[216px] rounded-xl mt-[10px] + ${theme=='white'?'bg-white shadow-[0_4px_29px_0_#E6E3E3]':'bg-[#123853] shadow-[0_4px_29px_0_#0B273C]'}`}>
-                                    <p className={'font-semibold min-[3644px]:ml-[26px] ml-[17px] pt-[6px] max-[2377px]:pt-[3px]'}>24 роки 5 місяців</p>
+                                    <p className={'font-bold min-[3644px]:ml-[26px] ml-[17px] pt-[6px] max-[2377px]:pt-[3px]'}>24 роки 5 місяців</p>
                                 </div>
                             </ul>
                         </div>

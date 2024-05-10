@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import CalculatorTarifs from '@/components/business-page/CalculatorTarifs';
 import AdditionalOptions from '@/components/business-page/AdditionalOptions';
 import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
+import WaterText from '@/components/business-page/WaterText';
 
 export default function Home() {
 
@@ -15,6 +16,7 @@ export default function Home() {
       <CalculatorTarifs theme={'white'}/>
       <AdditionalOptions theme={'white'}/>
       <TarifsCountInfo theme={"white"}/>
+      <WaterText theme={'white'}/>
       <Footer theme={'white'}/>
     </div>
   )

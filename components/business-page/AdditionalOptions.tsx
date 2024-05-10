@@ -113,7 +113,7 @@ const AdditionalOptions = ({theme}:any) => {
                             <div className={`${isFast1 ? '':'hidden'}`}>
                                 <p className={`flex justify-center items-center font-bold text-[24px] leading-[36px] mt-[10px]`}>Форсаж 1000</p>
                                 <p className={`flex justify-center items-center text-[#DC662D] font-bold text-[30px] leading-[36px] mt-[20px]`}>150 грн</p>
-                                <p className={`flex justify-center items-center text-center font-normal text-[18px] leading-[22px] mt-[20px]`}>Збільшує швидкість доступу в Інтернет до кінця місяця на  <br/>1000 Мегабіт</p>
+                                <p className={`flex justify-center items-center text-center font-normal text-[18px] leading-[22px] mt-[20px]`}>Збільшує швидкість доступу в <br/>Інтернет до кінця місяця на  <br/>1000 Мегабіт</p>
                                 <a href='#' className={`flex justify-center items-center underline text-[#DC662D] font-normal text-[16px] leading-[22px] mt-[42px] `}>Детальніше</a>
                             </div>
                             <div className={`flex justify-center items-center  `}>
@@ -128,7 +128,7 @@ const AdditionalOptions = ({theme}:any) => {
                             <div className={`${isFast5 ? '':'hidden'}`}>
                                 <p className={`flex justify-center items-center font-bold text-[24px] leading-[36px] mt-[10px]`}>Форсаж 5000</p>
                                 <p className={`flex justify-center items-center text-[#DC662D] font-bold text-[30px] leading-[36px] mt-[20px]`}>2000 грн</p>
-                                <p className={`flex justify-center items-center text-center font-normal text-[18px] leading-[22px] mt-[20px]`}>Збільшує швидкість доступу в Інтернет до кінця місяця на  <br/>5000 Мегабіт</p>
+                                <p className={`flex justify-center items-center text-center font-normal text-[18px] leading-[22px] mt-[20px]`}>Збільшує швидкість доступу в <br/>Інтернет до кінця місяця на  <br/>5000 Мегабіт</p>
                                 <a href='#' className={`flex justify-center items-center underline text-[#DC662D] font-normal text-[16px] leading-[22px] mt-[42px] `}>Детальніше</a>
                             </div>
                             <div className={`flex justify-center items-center `}>
