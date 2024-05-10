@@ -7,6 +7,8 @@ import CalculatorTarifs from '@/components/business-page/CalculatorTarifs';
 import AdditionalOptions from '@/components/business-page/AdditionalOptions';
 import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 import WaterText from '@/components/business-page/WaterText';
+import ContactForm from '@/components/business-page/ContactForm';
+
 
 export default function Home() {
 
@@ -17,6 +19,7 @@ export default function Home() {
       <AdditionalOptions theme={'white'}/>
       <TarifsCountInfo theme={"white"}/>
       <WaterText theme={'white'}/>
+      <ContactForm theme = {'white'}/>
       <Footer theme={'white'}/>
     </div>
   )
