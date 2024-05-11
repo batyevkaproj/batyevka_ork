@@ -5,7 +5,7 @@ import rocket_blue from '@/public/img/rocket_blue.svg';
 import Image from "next/image";
 import galochka from '@/public/img/galochka.svg';
 import galochka_orange from '@/public/img/galochka_orange.svg';
-import  { useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { Checkbox } from "@/components/ui/checkbox_calculator"
 import { Label } from "@/components/ui/label";
 import { ChevronsUpDown } from "lucide-react";
@@ -41,6 +41,15 @@ const CalculatorTarifs = ({theme}:any) => {
     }
 
     console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked);
+
+    useEffect(() => {
+        setCount(JSON.parse(window.localStorage.getItem('count')));
+      }, []);
+    
+      useEffect(() => {
+        window.localStorage.setItem('sw', isTarifsSwitch);
+        
+      }, [isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked]);
 
     return (
     <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-0 + ${theme=='white'?'text-[#5F6061]':'text-white'}`}>
