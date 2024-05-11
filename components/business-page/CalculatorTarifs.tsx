@@ -21,8 +21,6 @@ import {
   } from '../ui/select';
 
   
-
-
 const CalculatorTarifs = ({theme}:any) => {
 
     const [isTarifsSwitch, setTarifsSwitch] = useState(false);
@@ -60,8 +58,8 @@ const CalculatorTarifs = ({theme}:any) => {
         window.localStorage.setItem('speedGpon', JSON.stringify(speedGpon));
         window.localStorage.setItem('isTVChecked', JSON.stringify(isTVChecked));
         window.localStorage.setItem('isIPChecked', JSON.stringify(isIPChecked));
-        window.localStorage.setItem('tvBoundle', JSON.stringify(tvBoundle));
         window.localStorage.setItem('isSelectMenuChecked', JSON.stringify(isSelectMenuChecked));
+        window.localStorage.setItem('tvBoundle', JSON.stringify(tvBoundle));
 
       }, [isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked]);
 
