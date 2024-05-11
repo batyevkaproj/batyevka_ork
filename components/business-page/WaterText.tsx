@@ -60,7 +60,7 @@ const WaterText = ({theme}:any) => {
                     </div>
                     <p className={`font-bold text-[16px] leading-[24px]`}>Скільки коштує підключити домашній безлімітний інтернет в Києві?</p>
                     <div className={`flex`}>
-                        <p className={``} onClick={toggleInfo2Visibility}> Ми пропонуємо вигідні тарифи на домашній інтернет та телебачення. Це зручне рішення, оскільки ви одночасно отримуєте швидкісний інтернет, трансляцію всіх телевізійних каналів, безліч фільмів і серіалів у високій якості. <span className={isInfo2Visible ? 'hidden' : ''}>..</span>
+                        <p className={``} onClick={toggleInfo2Visibility}> Ми пропонуємо вигідні тарифи на домашній інтернет та телебачення. Це зручне рішення, оскільки ви одночасно отримуєте швидкісний інтернет, трансляцію всіх телевізійних каналів, безліч фільмів і серіалів у високій якості. <span className={isInfo2Visible ? 'hidden' : ''}>..</span> </p>
                             <span className={`${isInfo2Visible ? '': 'hidden'}`}>
                             <h1>
                                 Зверніть увагу на тарифи інтернет-провайдера Batyevka.NET:
@@ -77,7 +77,7 @@ const WaterText = ({theme}:any) => {
                             </h1>
                             </span>
                             <ChevronDown className={`inline-flex absolute right-0 h-4 w-4 transition-transform mr-[20px] + ${isInfo2Visible ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`}/>
-                        </p>
+                        
                     </div>
                     <p className={`font-bold text-[16px] leading-[24px]`}>Які тарифи вигідні для підключення інтернету і телебачення вдома?</p>
                     <div className={`flex`}>
