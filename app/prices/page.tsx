@@ -15,9 +15,9 @@ export default function Home() {
   return (
     <div className={'min-w-[350px] bg-white'}>
       <Header theme={'white'} business={false}/>
-      {/* <CalculatorTarifs theme={'white'}/> */}
-      {/* <AdditionalOptions theme={'white'}/> */}
-      {/* <TarifsCountInfo theme={"white"}/> */}
+      <CalculatorTarifs theme={'white'}/>
+      <AdditionalOptions theme={'white'}/>
+      <TarifsCountInfo theme={"white"}/>
       <WaterText theme={'white'}/>
       <ContactForm theme = {'white'}/>
       <Footer theme={'white'}/>

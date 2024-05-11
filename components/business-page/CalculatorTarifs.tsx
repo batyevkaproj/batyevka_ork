@@ -1,5 +1,4 @@
 
-import React from "react";
 import { TarifsSlider, TarifsSliderGPON, MonthsSlider, OverpaySlider , TarifsSliderMobile, TarifsSliderMobileGPON } from "../ui/sliders";
 import { TarifsSwitch, RegularSwitch } from "../ui/switches";
 import rocket_blue from '@/public/img/rocket_blue.svg';
@@ -28,14 +27,14 @@ const CalculatorTarifs = ({theme}:any) => {
 
     const [isTarifsSwitch, setTarifsSwitch] = useState(false);
 
-    const [speedUtp, setSpeedUtp] = React.useState<number>(1); //we need to define .h file WITH MIN=1 to start production working, sure, gpt would replace us 
-    const [speedGpon, setSpeedGpon] = useState(0);
+    const [speedUtp, setSpeedUtp] = useState<number>(1)
+    const [speedGpon, setSpeedGpon] = useState<number>(1)
 
     const [isTVChecked, setTVChecker] = useState(false);
 
-    console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked);
-
     const [isIPChecked, setIPChecker] = useState(false);
+
+    console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked);
 
     const [isSelectMenuChecked, setSelectMenu] = useState(false);
 
@@ -62,10 +61,10 @@ const CalculatorTarifs = ({theme}:any) => {
                     <div className={`max-[1800px]:max-w-[750px]`}>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери Інтернет швидкість</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            {isTarifsSwitch?<TarifsSlider setSpeedUtp={setSpeedUtp} speed={speedUtp}/>:<TarifsSliderGPON setSpeedGpon={setSpeedGpon} />}
+                            {isTarifsSwitch?<TarifsSlider setSpeed={setSpeedUtp} speed={speedUtp}/>:<TarifsSliderGPON setSpeed={setSpeedGpon} />}
                         </div>
                         <div className={`min-[681px]:hidden`}>
-                            {isTarifsSwitch?<TarifsSliderMobile setSpeedUtp={setSpeedUtp}/>:<TarifsSliderMobileGPON setSpeedGpon={setSpeedGpon}/>}
+                            {isTarifsSwitch?<TarifsSliderMobile setSpeed={setSpeedUtp}/>:<TarifsSliderMobileGPON setSpeed={setSpeedGpon}/>}
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden`}>
                             <RegularSwitch switchState={setTVChecker} state={isTVChecked}/>
@@ -102,12 +101,12 @@ const CalculatorTarifs = ({theme}:any) => {
                             </div>
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden`}>
-                            <RegularSwitch/>
+                            <RegularSwitch switchState={setIPChecker} state={isIPChecked}/>
                             <p className={`font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]`}>Додай зовнішню постійну ІР адресу</p>
                         </div>                            
                         <p className={`flex text-center items-center justify-center mt-[40px] font-bold text-[18px] leading-[22px] min-[681px]:hidden`}>Додай зовнішню постійну ІР адресу</p>
                         <div className={`flex items-center justify-center mt-[15px] min-[681px]:hidden`}>
-                            <RegularSwitch/>
+                            <RegularSwitch switchState={setIPChecker} state={isIPChecked}/>
                         </div>
                         <p className={`max-[680px]:flex max-[680px]:text-center max-[680px]:justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px]`}>Внесіть авансом абонплату та отримайте знижку на підключення та обладнання </p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">

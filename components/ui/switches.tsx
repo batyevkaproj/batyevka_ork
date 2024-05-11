@@ -227,7 +227,7 @@ export function TarifsSwitch({isTarifsSwitch, setTarifsSwitch}:any) {
     )
 };
 
-export function RegularSwitch({switchState, state}: any) {
+export function RegularSwitch({switchState, state}: {switchState: (state: boolean) => void, state: boolean}) {
 
     const toggleChecker = () => {
       switchState(!state);
