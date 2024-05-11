@@ -15,6 +15,8 @@ import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 
 export default function Home() {
 
+
+  
   return (
     <div className={'min-w-[350px] bg-[#0E2D43]'}>
       <Header theme="dark" business={true}/>

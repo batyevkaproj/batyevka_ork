@@ -8,12 +8,21 @@ import AdditionalOptions from '@/components/business-page/AdditionalOptions';
 import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 import WaterText from '@/components/business-page/WaterText';
 import ContactForm from '@/components/business-page/ContactForm';
+import { useEffect } from 'react';
 
 
 export default function Home() {
 
+  // useEffect(() => {
+  //   console.log('fire')
+  // }, []);
+
+  
   return (
+    
     <div className={'min-w-[350px] bg-white'}>
+
+      awefawefwef
       <Header theme={'white'} business={false}/>
       <CalculatorTarifs theme={'white'}/>
       <AdditionalOptions theme={'white'}/>
