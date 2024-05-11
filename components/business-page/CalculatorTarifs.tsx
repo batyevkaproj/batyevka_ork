@@ -34,13 +34,22 @@ const CalculatorTarifs = ({theme}:any) => {
 
     const [isIPChecked, setIPChecker] = useState(false);
 
-    console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked);
-
     const [isSelectMenuChecked, setSelectMenu] = useState(false);
+
+    const [tvBoundle, setTvBoundle] = useState<number>(0);
+
+
+    const outerSetter = (boundle: number) => {
+        setTvBoundle(boundle);
+    }
 
     const toggleSelectMenu = () => {
         setSelectMenu(!isSelectMenuChecked);
     }
+
+    console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked);
+
+
 
     return (
     <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-0 + ${theme=='white'?'text-[#5F6061]':'text-white'}`}>
@@ -76,7 +85,7 @@ const CalculatorTarifs = ({theme}:any) => {
                         </div>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            <OverpaySlider/>
+                            <OverpaySlider outerSetter={outerSetter} />
                         </div>
                         <div className={`font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden`}>
                             <div className={`flex items-center gap-x-[20px]`}>
