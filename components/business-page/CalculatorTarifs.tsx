@@ -29,27 +29,18 @@ const CalculatorTarifs = ({theme}:any) => {
 
     const [speedUtp, setSpeedUtp] = useState<number>(1)
     const [speedGpon, setSpeedGpon] = useState<number>(1)
-
     const [isTVChecked, setTVChecker] = useState(false);
-
     const [isIPChecked, setIPChecker] = useState(false);
-
-    const [isSelectMenuChecked, setSelectMenu] = useState(false);
-
+    const [isSelectMenuChecked, setSelectMenu] = useState<number>(1)
     const [tvBoundle, setTvBoundle] = useState<number>(0);
-
-
     const outerSetter = (boundle: number) => {
         setTvBoundle(boundle);
     }
-
-    const toggleSelectMenu = () => {
-        setSelectMenu(!isSelectMenuChecked);
+    const toggleSelectMenu = (dig: number) => {
+        setSelectMenu(dig);
     }
 
     console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked);
-
-
 
     return (
     <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-0 + ${theme=='white'?'text-[#5F6061]':'text-white'}`}>
@@ -85,27 +76,28 @@ const CalculatorTarifs = ({theme}:any) => {
                         </div>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            <OverpaySlider outerSetter={outerSetter} />
+                            wef
+                            <OverpaySlider outerSetter={outerSetter}/>
                         </div>
                         <div className={`font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden`}>
                             <div className={`flex items-center gap-x-[20px]`}>
-                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBoundle(1)}  className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Легка</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBoundle(2)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Оптимальна</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBoundle(3)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Максимальна</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBoundle(4)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Спорт</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBoundle(5)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Кіно+</p>
                             </div>
                         </div>
@@ -119,7 +111,8 @@ const CalculatorTarifs = ({theme}:any) => {
                         </div>
                         <p className={`max-[680px]:flex max-[680px]:text-center max-[680px]:justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px]`}>Внесіть авансом абонплату та отримайте знижку на підключення та обладнання </p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            <MonthsSlider/>
+                            kljefw
+                            <MonthsSlider outerSetter={toggleSelectMenu}/>
                         </div>
                         <div className={`mt-[20px] w-full min-[681px]:hidden`}>
                             <Select>
@@ -130,12 +123,12 @@ const CalculatorTarifs = ({theme}:any) => {
                                 <SelectContent>
                                     <SelectGroup>
                                     <SelectLabel>Виберіть період</SelectLabel>
-                                    <SelectItem value='0' onChange={toggleSelectMenu}>Без авансу</SelectItem>
-                                    <SelectItem value='1' onChange={toggleSelectMenu}>1 міс</SelectItem>
-                                    <SelectItem value='2' onChange={toggleSelectMenu}>6 міс</SelectItem>
-                                    <SelectItem value='3' onChange={toggleSelectMenu}>12 міс</SelectItem>
-                                    <SelectItem value='4' onChange={toggleSelectMenu}>24 міс</SelectItem>
-                                    <SelectItem value='5' onChange={toggleSelectMenu}>32 міс</SelectItem>
+                                    <SelectItem value='0' onChange={() => toggleSelectMenu(1)}>Без авансу</SelectItem>
+                                    <SelectItem value='1' onChange={() => toggleSelectMenu(2)}>1 міс</SelectItem>
+                                    <SelectItem value='2' onChange={() => toggleSelectMenu(3)}>6 міс</SelectItem>
+                                    <SelectItem value='3' onChange={() => toggleSelectMenu(4)}>12 міс</SelectItem>
+                                    <SelectItem value='4' onChange={() => toggleSelectMenu(5)}>24 міс</SelectItem>
+                                    <SelectItem value='5' onChange={() => toggleSelectMenu(6)}>32 міс</SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>

@@ -260,8 +260,8 @@ export function TarifsSliderGPON({setSpeed}:any){
 export function OverpaySlider({outerSetter}:any){
   const [val, setVal] = React.useState<number>(0);
   const handleChange = (_: Event, newValue: number | number[]) => {
-    setVal(newValue as number);
-    outerSetter(newValue as number);
+    setVal(newValue as number)
+    outerSetter(newValue as number)
   };
   return (
     <div className={``}>
@@ -287,10 +287,11 @@ export function OverpaySlider({outerSetter}:any){
   );
 }
 
-export function MonthsSlider(){
+export function MonthsSlider({outerSetter}:any){
   const [val, setVal] = React.useState<number>(0);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
+    outerSetter(newValue as number);
   };
   return (
     <div className={``}>
