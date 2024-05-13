@@ -1,6 +1,5 @@
 "use client"
 
-
 import Header from '@/components/Header'
 import Footer from '@/components/Footer';
 import CalculatorTarifs from '@/components/business-page/CalculatorTarifs';
@@ -10,19 +9,10 @@ import WaterText from '@/components/business-page/WaterText';
 import ContactForm from '@/components/business-page/ContactForm';
 import { useEffect } from 'react';
 
-
 export default function Home() {
-
-  // useEffect(() => {
-  //   console.log('fire')
-  // }, []);
-
   
   return (
-    
     <div className={'min-w-[350px] bg-white'}>
-
-      awefawefwef
       <Header theme={'white'} business={false}/>
       <CalculatorTarifs theme={'white'}/>
       <AdditionalOptions theme={'white'}/>

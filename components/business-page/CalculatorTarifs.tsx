@@ -25,7 +25,7 @@ const CalculatorTarifs = ({theme}:any) => {
 
     const [isTarifsSwitch, setTarifsSwitch] = useState(false);
     const [speedUtp, setSpeedUtp] = useState<number>(1)
-    const [speedGpon, setSpeedGpon] = useState<number>(1)
+    const [speedGpon, setSpeedGpon] = useState<number>(3)
     const [isTVChecked, setTVChecker] = useState(false);
     const [isIPChecked, setIPChecker] = useState(false);
     const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
@@ -38,35 +38,32 @@ const CalculatorTarifs = ({theme}:any) => {
         setSelectMenu(dig);
     }
 
-    // console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked);
 
-    // useEffect(() => {
-        // setTarifsSwitch(JSON.parse(window.localStorage.getItem('isTarifsSwitch')));
-        // console.log(JSON.parse(window.localStorage.getItem('isTarifsSwitch')))
-        // setSpeedUtp(JSON.parse(window.localStorage.getItem('speedUtp')));
-        // setSpeedGpon(JSON.parse(window.localStorage.getItem('speedGpon')));
+    useEffect(() => {
+        setTarifsSwitch(JSON.parse(window.localStorage.getItem('isTarifsSwitch')));
+        setSpeedUtp(JSON.parse(window.localStorage.getItem('speedUtp')));
+        setSpeedGpon(JSON.parse(window.localStorage.getItem('speedGpon')));
         // setTVChecker(JSON.parse(window.localStorage.getItem('isTVChecked')));
         // setIPChecker(JSON.parse(window.localStorage.getItem('isIPChecked')));
         // setSelectMenu(JSON.parse(window.localStorage.getItem('isSelectMenuChecked')));
         // setTvBoundle(JSON.parse(window.localStorage.getItem('tvBoundle')));
-
-    //     console.log('fire')
-
-
-    //   }, []);
+      }, []);
 
 
     
-    //   useEffect(() => {
-    //     window.localStorage.setItem('isTarifsSwitch', JSON.stringify(isTarifsSwitch));
-    //     window.localStorage.setItem('speedUtp', JSON.stringify(speedUtp));
-    //     window.localStorage.setItem('speedGpon', JSON.stringify(speedGpon));
-    //     window.localStorage.setItem('isTVChecked', JSON.stringify(isTVChecked));
-    //     window.localStorage.setItem('isIPChecked', JSON.stringify(isIPChecked));
-    //     window.localStorage.setItem('isSelectMenuChecked', JSON.stringify(isSelectMenuChecked));
-    //     window.localStorage.setItem('tvBoundle', JSON.stringify(tvBoundle));
+      useEffect(() => {
+        window.localStorage.setItem('isTarifsSwitch', JSON.stringify(isTarifsSwitch));
+        window.localStorage.setItem('speedUtp', JSON.stringify(speedUtp));
+        window.localStorage.setItem('speedGpon', JSON.stringify(speedGpon));
+        // window.localStorage.setItem('isTVChecked', JSON.stringify(isTVChecked));
+        // window.localStorage.setItem('isIPChecked', JSON.stringify(isIPChecked));
+        // window.localStorage.setItem('isSelectMenuChecked', JSON.stringify(isSelectMenuChecked));
+        // window.localStorage.setItem('tvBoundle', JSON.stringify(tvBoundle));
 
-    //   }, [isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked]);
+        console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked);
+
+
+      }, [isTarifsSwitch, speedUtp, speedGpon]);
 
     return (
     <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-0 + ${theme=='white'?'text-[#5F6061]':'text-white'}`}>
@@ -87,10 +84,10 @@ const CalculatorTarifs = ({theme}:any) => {
                     <div className={`max-[1800px]:max-w-[750px]`}>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери Інтернет швидкість</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            {isTarifsSwitch?<TarifsSlider setSpeed={setSpeedUtp} speed={speedUtp}/>:<TarifsSliderGPON setSpeed={setSpeedGpon} />}
+                            {isTarifsSwitch?<TarifsSlider setSpeed={setSpeedUtp} speed={speedUtp}/>:<TarifsSliderGPON setSpeed={setSpeedGpon} speed={speedGpon} />}
                         </div>
                         <div className={`min-[681px]:hidden`}>
-                            {isTarifsSwitch?<TarifsSliderMobile setSpeed={setSpeedUtp}/>:<TarifsSliderMobileGPON setSpeed={setSpeedGpon}/>}
+                            {isTarifsSwitch?<TarifsSliderMobile setSpeed={setSpeedUtp} speed={speedUtp}/>:<TarifsSliderMobileGPON setSpeed={setSpeedGpon} speed={speedGpon}/>}
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden`}>
                             <RegularSwitch switchState={setTVChecker} state={isTVChecked}/>
