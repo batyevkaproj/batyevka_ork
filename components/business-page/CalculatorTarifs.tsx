@@ -43,9 +43,9 @@ const CalculatorTarifs = ({theme}:any) => {
         setTarifsSwitch(JSON.parse(window.localStorage.getItem('isTarifsSwitch')));
         setSpeedUtp(JSON.parse(window.localStorage.getItem('speedUtp')));
         setSpeedGpon(JSON.parse(window.localStorage.getItem('speedGpon')));
-        // setTVChecker(JSON.parse(window.localStorage.getItem('isTVChecked')));
-        // setIPChecker(JSON.parse(window.localStorage.getItem('isIPChecked')));
-        // setSelectMenu(JSON.parse(window.localStorage.getItem('isSelectMenuChecked')));
+        setTVChecker(JSON.parse(window.localStorage.getItem('isTVChecked')));
+        setIPChecker(JSON.parse(window.localStorage.getItem('isIPChecked')));
+        setSelectMenu(JSON.parse(window.localStorage.getItem('isSelectMenuChecked')));
         // setTvBoundle(JSON.parse(window.localStorage.getItem('tvBoundle')));
       }, []);
 
@@ -55,9 +55,9 @@ const CalculatorTarifs = ({theme}:any) => {
         window.localStorage.setItem('isTarifsSwitch', JSON.stringify(isTarifsSwitch));
         window.localStorage.setItem('speedUtp', JSON.stringify(speedUtp));
         window.localStorage.setItem('speedGpon', JSON.stringify(speedGpon));
-        // window.localStorage.setItem('isTVChecked', JSON.stringify(isTVChecked));
-        // window.localStorage.setItem('isIPChecked', JSON.stringify(isIPChecked));
-        // window.localStorage.setItem('isSelectMenuChecked', JSON.stringify(isSelectMenuChecked));
+        window.localStorage.setItem('isTVChecked', JSON.stringify(isTVChecked));
+        window.localStorage.setItem('isIPChecked', JSON.stringify(isIPChecked));
+        window.localStorage.setItem('isSelectMenuChecked', JSON.stringify(isSelectMenuChecked));
         // window.localStorage.setItem('tvBoundle', JSON.stringify(tvBoundle));
 
         console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked);
