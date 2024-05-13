@@ -57,36 +57,36 @@ const Slider = () => {
 
 
 <Carousel className={`min-[2430px]:mt-[60px] mt-[45px]`} setApi={setApi}>
-    <div className='absolute max-[910px]:hidden top-[140px] left-[-160px] h-[139px] w-[240px] z-[1]'>
-        <div className={`flex h-[77px] w-full max-[2377px]:h-[60px] hover:animate-slide `}>
-            <div className={`flex justify-between items-center h-full w-[225px] bg-[#56AABF] shadow-[0px_4px_20px_0px_#0B273C]`}>
+    <div className='absolute max-[910px]:hidden top-[140px] max-[2377px]:left-[-160px] left-[-210px] h-[139px] max-[2377px]:w-[240px] w-[310px] z-[1]'>
+        <div className={`flex h-[76px] w-full max-[2377px]:h-[60px] hover:animate-slide `}>
+            <div className={`flex justify-between items-center h-full max-[2377px]:w-[225px] w-[293px] bg-[#56AABF] shadow-[0px_4px_20px_0px_#0B273C]`}>
                 <div className={``}>
-                    <p className={`text-white text-[12px] leading-[17px] ml-[20px] antialiased font-normal`}>Найвища якість <br/> ТБ і зображення</p>
+                    <p className={`text-white max-[2377px]:text-[12px] max-[2377px]:leading-[17px] text-[16px] leading-[22px] max-[2377px]:ml-[20px] ml-[25px] antialiased font-normal`}>Найвища якість <br/> ТБ і зображення</p>
                 </div>
-                <div className={`pr-[15px]`}>
-                    <Image src={thumb} className={`size-[32px]`} alt='thumb'/>
+                <div className={`max-[2377px]:mr-[15px] mr-[24px]`}>
+                    <Image src={thumb} className={`size-[42px] max-[2377px]:size-[32px]`} alt='thumb'/>
                 </div>
             </div>
             <div className={`h-full`}>
-                <div className={`border-b-[30px] border-t-[0px] border-l-[15px] border-t-transparent border-b-transparent border-solid border-l-[#56AABF]`}>
+                <div className={`max-[2377px]:border-b-[30px] border-b-[38px] border-t-[0px] max-[2377px]:border-l-[15px] border-l-[27px] border-t-transparent border-b-transparent border-solid border-l-[#56AABF]`}>
                 </div>
-                <div className={`border-b-[0px] border-t-[30px] border-l-[15px] border-t-transparent border-b-transparent border-solid border-l-[#56AABF]`}>
+                <div className={`border-b-[0px] max-[2377px]:border-t-[30px] border-t-[38px] max-[2377px]:border-l-[15px] border-l-[27px] border-t-transparent border-b-transparent border-solid border-l-[#56AABF]`}>
                 </div>
             </div>
         </div>
-        <div className={`flex h-[77px] w-full max-[2377px]:h-[60px] hover:animate-slide mt-[20px]`}>
-            <div className={`flex justify-between items-center h-full w-[225px] bg-[#5984B2] shadow-[0px_4px_20px_0px_#0B273C]`}>
+        <div className={`flex h-[76px] w-full max-[2377px]:h-[60px] hover:animate-slide mt-[20px]`}>
+            <div className={`flex justify-between items-center h-full max-[2377px]:w-[225px] w-[293px] bg-[#5984B2] shadow-[0px_4px_20px_0px_#0B273C]`}>
                 <div className={``}>
-                    <p className={`text-white text-[12px] leading-[17px] ml-[20px] antialiased font-normal`}>Гарантія заявленої <br/> швидкості</p>
+                    <p className={`text-white max-[2377px]:text-[12px] max-[2377px]:leading-[17px] text-[16px] leading-[22px] max-[2377px]:ml-[20px] ml-[25px] antialiased font-normal`}>Гарантія заявленої <br/> швидкості</p>
                 </div>
-                <div className={`mr-[15px]`}>
-                    <Image src={speedometer} className={`size-[32px]`} alt='speedometer'/>
+                <div className={`max-[2377px]:mr-[15px] mr-[24px]`}>
+                    <Image src={speedometer} className={`size-[42px] max-[2377px]:size-[32px]`} alt='speedometer'/>
                 </div>
             </div>
             <figure className={`h-full `}>
-                <div className={`border-b-[30px] border-t-[0px] border-l-[15px] border-t-transparent border-b-transparent border-solid border-l-[#5984B2]`}>
+                <div className={`max-[2377px]:border-b-[30px] border-b-[38px] border-t-[0px] max-[2377px]:border-l-[15px] border-l-[27px] border-t-transparent border-b-transparent border-solid border-l-[#5984B2]`}>
                 </div>
-                <div className={`border-b-[0px] border-t-[30px] border-l-[15px] border-t-transparent border-b-transparent border-solid border-l-[#5984B2]`}>
+                <div className={`border-b-[0px] max-[2377px]:border-t-[30px] border-t-[38px] max-[2377px]:border-l-[15px] border-l-[27px] border-t-transparent border-b-transparent border-solid border-l-[#5984B2]`}>
                 </div>
             </figure>
         </div>
