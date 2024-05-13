@@ -38,11 +38,10 @@ const CalculatorTarifs = ({theme}:any) => {
         setSelectMenu(dig);
     }
 
-    // console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked);
 
-    // useEffect(() => {
-        // setTarifsSwitch(JSON.parse(window.localStorage.getItem('isTarifsSwitch')));
-        // console.log(JSON.parse(window.localStorage.getItem('isTarifsSwitch')))
+    useEffect(() => {
+
+        setTarifsSwitch(JSON.parse(window.localStorage.getItem('isTarifsSwitch')));
         // setSpeedUtp(JSON.parse(window.localStorage.getItem('speedUtp')));
         // setSpeedGpon(JSON.parse(window.localStorage.getItem('speedGpon')));
         // setTVChecker(JSON.parse(window.localStorage.getItem('isTVChecked')));
@@ -50,23 +49,21 @@ const CalculatorTarifs = ({theme}:any) => {
         // setSelectMenu(JSON.parse(window.localStorage.getItem('isSelectMenuChecked')));
         // setTvBoundle(JSON.parse(window.localStorage.getItem('tvBoundle')));
 
-    //     console.log('fire')
-
-
-    //   }, []);
+        // console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked);
+      }, []);
 
 
     
-    //   useEffect(() => {
-    //     window.localStorage.setItem('isTarifsSwitch', JSON.stringify(isTarifsSwitch));
-    //     window.localStorage.setItem('speedUtp', JSON.stringify(speedUtp));
-    //     window.localStorage.setItem('speedGpon', JSON.stringify(speedGpon));
-    //     window.localStorage.setItem('isTVChecked', JSON.stringify(isTVChecked));
-    //     window.localStorage.setItem('isIPChecked', JSON.stringify(isIPChecked));
-    //     window.localStorage.setItem('isSelectMenuChecked', JSON.stringify(isSelectMenuChecked));
-    //     window.localStorage.setItem('tvBoundle', JSON.stringify(tvBoundle));
+      useEffect(() => {
+        window.localStorage.setItem('isTarifsSwitch', JSON.stringify(isTarifsSwitch));
+        // window.localStorage.setItem('speedUtp', JSON.stringify(speedUtp));
+        // window.localStorage.setItem('speedGpon', JSON.stringify(speedGpon));
+        // window.localStorage.setItem('isTVChecked', JSON.stringify(isTVChecked));
+        // window.localStorage.setItem('isIPChecked', JSON.stringify(isIPChecked));
+        // window.localStorage.setItem('isSelectMenuChecked', JSON.stringify(isSelectMenuChecked));
+        // window.localStorage.setItem('tvBoundle', JSON.stringify(tvBoundle));
 
-    //   }, [isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked]);
+      }, [isTarifsSwitch]);
 
     return (
     <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-0 + ${theme=='white'?'text-[#5F6061]':'text-white'}`}>

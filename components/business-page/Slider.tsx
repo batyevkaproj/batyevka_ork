@@ -30,7 +30,6 @@ const Slider = () => {
 
     const { onOpen } = useModal();
     
-
     const [api, setApi] = useState<CarouselApi>()
     const [current, setCurrent] = useState(0)
     const [count, setCount] = useState(0)
@@ -57,8 +56,6 @@ const Slider = () => {
 <Carousel className={`min-[2430px]:mt-[60px] mt-[45px]`} setApi={setApi}>
     <div className='absolute max-[910px]:hidden top-[140px] left-[-160px] h-[139px] z-[1]'>
         <Image src={thumb_flag} className={`hover:animate-slide`} alt='thumb_flag'/>
-
-          
         <Image src={speed_flag} className={`hover:animate-slide`} alt='speed_flag'/> 
     </div>
   <CarouselContent className='flex'>
