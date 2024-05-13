@@ -81,7 +81,7 @@ const config = {
         },
         "rightslide": {
           '0%' :{ transform: "translateX(0%)"},
-          '100%' :{ transform: "translateX(64%)"},
+          '100%' :{ transform: "translateX(65%)"},
         }
       },
       animation: {

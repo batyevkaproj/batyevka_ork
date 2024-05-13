@@ -79,16 +79,16 @@ const Slider = () => {
                 <div className={``}>
                     <p className={`text-white text-[12px] leading-[17px] ml-[20px] antialiased font-normal`}>Гарантія заявленої <br/> швидкості</p>
                 </div>
-                <div className={`pr-[15px]`}>
+                <div className={`mr-[15px]`}>
                     <Image src={speedometer} className={`size-[32px]`} alt='speedometer'/>
                 </div>
             </div>
-            <div className={`h-full`}>
+            <figure className={`h-full `}>
                 <div className={`border-b-[30px] border-t-[0px] border-l-[15px] border-t-transparent border-b-transparent border-solid border-l-[#5984B2]`}>
                 </div>
                 <div className={`border-b-[0px] border-t-[30px] border-l-[15px] border-t-transparent border-b-transparent border-solid border-l-[#5984B2]`}>
                 </div>
-            </div>
+            </figure>
         </div>
     </div>
   <CarouselContent className='flex'>
