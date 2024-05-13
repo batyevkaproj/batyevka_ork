@@ -14,15 +14,13 @@ import { useEffect } from 'react';
 export default function Home() {
 
   // useEffect(() => {
-  //   console.log('fire')
-  // }, []);
+    
+  // });
 
+  console.log('fire')
   
   return (
-    
     <div className={'min-w-[350px] bg-white'}>
-
-      awefawefwef
       <Header theme={'white'} business={false}/>
       <CalculatorTarifs theme={'white'}/>
       <AdditionalOptions theme={'white'}/>
