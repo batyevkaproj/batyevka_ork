@@ -9,6 +9,8 @@ import vector4 from   '../../public/img/vector4.svg';
 
 import thumb_flag from '@/public/img/thumb_flag.svg'
 import speed_flag from '@/public/img/speed_flag.svg'
+import speedometer from '@/public/img/speedometer_small.svg'
+import thumb from '@/public/img/thumb_small.svg'
 
 import Image from 'next/image';
 
@@ -55,11 +57,39 @@ const Slider = () => {
 
 
 <Carousel className={`min-[2430px]:mt-[60px] mt-[45px]`} setApi={setApi}>
-    <div className='absolute max-[910px]:hidden top-[140px] left-[-160px] h-[139px] z-[1]'>
-        <Image src={thumb_flag} className={`hover:animate-slide`} alt='thumb_flag'/>
-
-          
-        <Image src={speed_flag} className={`hover:animate-slide`} alt='speed_flag'/> 
+    <div className='absolute max-[910px]:hidden top-[140px] left-[-160px] h-[139px] w-[240px] z-[1]'>
+        <div className={`flex h-[77px] w-full max-[2377px]:h-[60px] hover:animate-slide `}>
+            <div className={`flex justify-between items-center h-full w-[225px] bg-[#56AABF] shadow-[0px_4px_20px_0px_#0B273C]`}>
+                <div className={``}>
+                    <p className={`text-white text-[12px] leading-[17px] ml-[20px] antialiased font-normal`}>Найвища якість <br/> ТБ і зображення</p>
+                </div>
+                <div className={`pr-[15px]`}>
+                    <Image src={thumb} className={`size-[32px]`} alt='thumb'/>
+                </div>
+            </div>
+            <div className={`h-full`}>
+                <div className={`border-b-[30px] border-t-[0px] border-l-[15px] border-t-transparent border-b-transparent border-solid border-l-[#56AABF]`}>
+                </div>
+                <div className={`border-b-[0px] border-t-[30px] border-l-[15px] border-t-transparent border-b-transparent border-solid border-l-[#56AABF]`}>
+                </div>
+            </div>
+        </div>
+        <div className={`flex h-[77px] w-full max-[2377px]:h-[60px] hover:animate-slide mt-[20px]`}>
+            <div className={`flex justify-between items-center h-full w-[225px] bg-[#5984B2] shadow-[0px_4px_20px_0px_#0B273C]`}>
+                <div className={``}>
+                    <p className={`text-white text-[12px] leading-[17px] ml-[20px] antialiased font-normal`}>Гарантія заявленої <br/> швидкості</p>
+                </div>
+                <div className={`pr-[15px]`}>
+                    <Image src={speedometer} className={`size-[32px]`} alt='speedometer'/>
+                </div>
+            </div>
+            <div className={`h-full`}>
+                <div className={`border-b-[30px] border-t-[0px] border-l-[15px] border-t-transparent border-b-transparent border-solid border-l-[#5984B2]`}>
+                </div>
+                <div className={`border-b-[0px] border-t-[30px] border-l-[15px] border-t-transparent border-b-transparent border-solid border-l-[#5984B2]`}>
+                </div>
+            </div>
+        </div>
     </div>
   <CarouselContent className='flex'>
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
