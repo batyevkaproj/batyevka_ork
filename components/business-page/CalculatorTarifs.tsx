@@ -135,7 +135,7 @@ const CalculatorTarifs = ({theme}:any) => {
                         <p className={`max-[680px]:flex max-[680px]:text-center max-[680px]:justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px]`}>Внесіть авансом абонплату та отримайте знижку на підключення та обладнання </p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
                             kljefw
-                            <MonthsSlider outerSetter={toggleSelectMenu}/>
+                            <MonthsSlider outerSetter={toggleSelectMenu} outer={isSelectMenuChecked}/>
                         </div>
                         <div className={`mt-[20px] w-full min-[681px]:hidden`}>
                             <Select>
