@@ -57,7 +57,7 @@ const Slider = () => {
 
 
 <Carousel className={`min-[2430px]:mt-[60px] mt-[45px]`} setApi={setApi}>
-    <div className='absolute max-[910px]:hidden top-[140px] max-[2377px]:left-[-160px] left-[-210px] h-[139px] max-[2377px]:w-[240px] w-[310px] z-[1]'>
+    <div className='absolute max-[910px]:hidden top-[140px] max-[2377px]:left-[-160px] left-[-210px] h-[139px] max-[2377px]:w-[240px] w-[320px] z-[1]'>
         <div className={`flex h-[76px] w-full max-[2377px]:h-[60px] hover:animate-slide `}>
             <div className={`flex justify-between items-center h-full max-[2377px]:w-[225px] w-[293px] bg-[#56AABF] shadow-[0px_4px_20px_0px_#0B273C]`}>
                 <div className={``}>
@@ -74,7 +74,7 @@ const Slider = () => {
                 </div>
             </div>
         </div>
-        <div className={`flex h-[76px] w-full max-[2377px]:h-[60px] hover:animate-slide mt-[20px]`}>
+        <div className={`flex h-[76px] w-full max-[2377px]:h-[60px] hover:animate-slide max-[2377px]:mt-[20px] mt-[26px]`}>
             <div className={`flex justify-between items-center h-full max-[2377px]:w-[225px] w-[293px] bg-[#5984B2] shadow-[0px_4px_20px_0px_#0B273C]`}>
                 <div className={``}>
                     <p className={`text-white max-[2377px]:text-[12px] max-[2377px]:leading-[17px] text-[16px] leading-[22px] max-[2377px]:ml-[20px] ml-[25px] antialiased font-normal`}>Гарантія заявленої <br/> швидкості</p>
@@ -92,10 +92,10 @@ const Slider = () => {
         </div>
     </div>
   <CarouselContent className='flex'>
-    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
+    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse '>
+        <div className='min-[2430px]:ml-[170px] ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
-            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
+            <li className={`list-none text-white flex flex-col min-[2430px]:my-[40px] my-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 mr-[10px] flex`}>
                     <Image src={infinity} className={`inline-flex min-w-[21px] min-h-[10px]`} alt='infinity'/>
@@ -117,17 +117,17 @@ const Slider = () => {
                 <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
                 </div>
             </li>
-            <button onClick={() => onOpen("call")} className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
+            <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
             <Image src={vector} className='z-1 whitespace-nowrap max-[559px]:px-[20px]' alt='vector'/>
         </div>
     </CarouselItem>
 
-    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
+    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
+        <div className='min-[2430px]:ml-[170px] ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В МАГАЗИН</span></h1>
-            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
+            <li className={`list-none text-white flex flex-col min-[2430px]:my-[40px] mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
                     <Image src={infinity} className={`inline-flex`} alt='infinity'/>
@@ -149,17 +149,17 @@ const Slider = () => {
                 <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
                 </div>
             </li>
-            <button onClick={() => onOpen("call")} className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
+            <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
             <Image src={vector2} className='z-1 whitespace-nowrap max-[559px]:px-[20px]' alt='vector'/>
         </div>
     </CarouselItem>
 
-    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
+    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
+        <div className='min-[2430px]:ml-[170px] ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В САЛОН</span></h1>
-            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
+            <li className={`list-none text-white flex flex-col min-[2430px]:my-[40px] mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
                     <Image src={infinity} className={`inline-flex`} alt='infinity'/>
@@ -181,17 +181,17 @@ const Slider = () => {
                 <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
                 </div>
             </li>
-            <button onClick={() => onOpen("call")} className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
+            <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
             <Image src={vector3} className='z-1 whitespace-nowrap max-[559px]:px-[20px]' alt='vector'/>
         </div>
     </CarouselItem>
 
-    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse pb-[60px] min-[1024px]:pb-[90px] max-[800px]:pb-[20px]'>
-        <div className='ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
+    <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
+        <div className='min-[2430px]:ml-[170px] ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В РЕСТОРАН</span></h1>
-            <li className={`list-none text-white flex flex-col mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
+            <li className={`list-none text-white flex flex-col min-[2430px]:my-[40px] mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
                 <div className={`flex items-center mb-[15px]`}>
                 <span className={`box-border w-5 flex`}>
                     <Image src={infinity} className={`inline-flex`} alt='infinity'/>
@@ -213,7 +213,7 @@ const Slider = () => {
                 <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
                 </div>
             </li>
-            <button onClick={() => onOpen("call")} className={`bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
+            <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
             <Image src={vector4} className='z-1 whitespace-nowrap max-[559px]:px-[20px]' alt='vector'/>
