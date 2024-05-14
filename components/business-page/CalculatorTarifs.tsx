@@ -5,7 +5,7 @@ import rocket_blue from '@/public/img/rocket_blue.svg';
 import Image from "next/image";
 import galochka from '@/public/img/galochka.svg';
 import galochka_orange from '@/public/img/galochka_orange.svg';
-import  { useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { Checkbox } from "@/components/ui/checkbox_calculator"
 import { Label } from "@/components/ui/label";
 import { ChevronsUpDown } from "lucide-react";
@@ -20,100 +20,124 @@ import {
     SelectValue,
   } from '../ui/select';
 
-
+  
 const CalculatorTarifs = ({theme}:any) => {
 
-    var months_overpay = -1;
-
+    const [isTarifsSwitch, setTarifsSwitch] = useState(false);
+    const [speedUtp, setSpeedUtp] = useState<number>(1)
+    const [speedGpon, setSpeedGpon] = useState<number>(3)
     const [isTVChecked, setTVChecker] = useState(false);
-
-    const toggleTVChecker = () => {
-        setTVChecker(!isTVChecked);
-    };
-
     const [isIPChecked, setIPChecker] = useState(false);
+    const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
+    const [tvBoundle, setTvBoundle] = useState<number>(0);
 
-    const toggleIPChecker = () => {
-        setIPChecker(!isIPChecked);
-    };
-
-    const [isSelectMenuChecked, setSelectMenu] = useState(false);
-
-    const toggleSelectMenu = () => {
-        setSelectMenu(!isSelectMenuChecked);
+    const outerSetter = (boundle: number) => {
+        setTvBoundle(boundle);
     }
+    const toggleSelectMenu = (dig: number) => {
+        setSelectMenu(dig);
+    }
+
+
+    useEffect(() => {
+        setTarifsSwitch(JSON.parse(window.localStorage.getItem('isTarifsSwitch') as any));
+        setSpeedUtp(JSON.parse(window.localStorage.getItem('speedUtp') as any));
+        setSpeedGpon(JSON.parse(window.localStorage.getItem('speedGpon') as any));
+        setTVChecker(JSON.parse(window.localStorage.getItem('isTVChecked') as any));
+        setIPChecker(JSON.parse(window.localStorage.getItem('isIPChecked') as any));
+        setSelectMenu(JSON.parse(window.localStorage.getItem('isSelectMenuChecked') as any));
+        // setTvBoundle(JSON.parse(window.localStorage.getItem('tvBoundle')));
+      }, []);
+
+
+    
+      useEffect(() => {
+        window.localStorage.setItem('isTarifsSwitch', JSON.stringify(isTarifsSwitch));
+        window.localStorage.setItem('speedUtp', JSON.stringify(speedUtp));
+        window.localStorage.setItem('speedGpon', JSON.stringify(speedGpon));
+        window.localStorage.setItem('isTVChecked', JSON.stringify(isTVChecked));
+        window.localStorage.setItem('isIPChecked', JSON.stringify(isIPChecked));
+        window.localStorage.setItem('isSelectMenuChecked', JSON.stringify(isSelectMenuChecked));
+        // window.localStorage.setItem('tvBoundle', JSON.stringify(tvBoundle));
+
+        console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked);
+
+
+      }, [isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked]);
 
     return (
     <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-0 + ${theme=='white'?'text-[#5F6061]':'text-white'}`}>
-        <div className={`${theme=='white'?'shadow-[0_4px_29px_0px_#E6E3E3]':'shadow-[0_4px_29px_0px_#0B273C]'} w-full`}>
+        <div className={`${theme=='white'?'shadow-[0_4px_29px_0px_#E6E3E3]':'shadow-[0_4px_29px_0px_#0B273C]'} max-[680px]:shadow-none w-full`}>
             <div className={`min-[3644px]:pt-[117px] pt-[78px] max-[2377px]:pt-[60px] max-[680px]:pt-[20px] rounded-t-[10px] + ${theme=='white'?'bg-[#F4F2F2]':'bg-[#123853]'}`}>
                 <h1 className={`flex text-center items-center justify-center font-bold  text-[50px] leading-[62px] max-[2377px]:text-[42px] max-[2377px]:leading-[50px] min-[3644px]:text-[75px] min-[3644px]:leading-[93px] max-[680px]:text-[24px] max-[680px]:leading-[30px]`}>Калькулятор тарифу</h1>
                 <p className={`flex text-center items-center justify-center min-[3644px]:text-[48px] min-[3644px]:leading-[63px] text-[32px] leading-[42px] max-[2377px]:text-[24px] max-[2377px]:leading-[32px] max-[680px]:text-[16px] max-[680px]:leading-[20px] min-[3644px]:mt-[30px] mt-[15px] max-[680px]:mt-[10px]`}><span className={`font-bold`}>Створи свій тариф&nbsp;</span> <span className={`font-bold max-[680px]:hidden`}>/</span> <span className={`max-[680px]:hidden`}>&nbsp;Оберiть технологію підключення</span></p>
                 <p className={`flex text-center items-center justify-center text-[16px] leading-[20px] mt-[5px] min-[681px]:hidden`}>Оберiть технологію підключення</p>
                 <div className={`flex items-center justify-center min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:mt-[84px] mt-[56px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] `}>
                     <p className={`font-bold min-[3644px]:mr-[30px] mr-[20px] max-[2377px]:mr-[15px]`}>G-PON</p>
-                        <TarifsSwitch/>
+                        <TarifsSwitch isTarifsSwitch={isTarifsSwitch} setTarifsSwitch={setTarifsSwitch}/>
                     <p className={`font-bold min-[3644px]:ml-[30px] ml-[20px] max-[2377px]:ml-[15px]`}>UTP</p>
                 </div>
                 <div className={`min-[3644px]:h-[60px] h-[40px] max-[2377px]:h-[30px]`}></div>
             </div>
-            <div className={`${theme=='white'?'bg-white':'bg-[#0E2D43]'} grid grid-cols-2 max-[1800px]:grid-cols-1 min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] min-[3644px]:gap-[170px] gap-[100px] max-[2377px]:gap-[60px] min-[3644px]:pb-[117px] pb-[78px] max-[2377px]:pb-[60px]`}>
+            <div className={`${theme=='white'?'bg-white':'bg-[#0E2D43]'} grid grid-cols-2 max-[1800px]:grid-cols-1 min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] min-[3644px]:gap-[170px] gap-[100px] max-[2377px]:gap-[60px] min-[3644px]:pb-[117px] pb-[78px] max-[2377px]:pb-[60px] max-[680px]:pb-0`}>
                 <div className={`col-span-1 min-[3644px]:ml-[117px] ml-[78px] max-[2377px]:ml-[60px] max-[1800px]:mr-[60px] max-[1000px]:mx-[35px] max-[680px]:mx-[20px] flex justify-center`}>
                     <div className={`max-[1800px]:max-w-[750px]`}>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери Інтернет швидкість</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            <TarifsSlider/>
+                            {isTarifsSwitch?<TarifsSlider setSpeed={setSpeedUtp} speed={speedUtp}/>:<TarifsSliderGPON setSpeed={setSpeedGpon} speed={speedGpon} />}
                         </div>
                         <div className={`min-[681px]:hidden`}>
-                            <TarifsSliderMobile/>
+                            {isTarifsSwitch?<TarifsSliderMobile setSpeed={setSpeedUtp} speed={speedUtp}/>:<TarifsSliderMobileGPON setSpeed={setSpeedGpon} speed={speedGpon}/>}
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden`}>
-                            <RegularSwitch />
+                            <RegularSwitch switchState={setTVChecker} state={isTVChecked}/>
                             <p className={`font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]`}>Додай MEGOGО Телебачення</p>
                         </div>
                         <p className={`flex text-center items-center justify-center font-bold mt-[40px] text-[18px] leading-[22px] min-[681px]:hidden`}>Додай MEGOGО Телебачення</p>
                         <div className={`flex items-center justify-center mt-[15px] min-[681px]:hidden`}>
-                            <RegularSwitch />
+                            <RegularSwitch switchState={setTVChecker} state={isTVChecked}/>
                         </div>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            <OverpaySlider/>
+                            wef
+                            <OverpaySlider outerSetter={outerSetter}/>
                         </div>
                         <div className={`font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden`}>
                             <div className={`flex items-center gap-x-[20px]`}>
-                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBoundle(1)}  className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Легка</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBoundle(2)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Оптимальна</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBoundle(3)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Максимальна</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBoundle(4)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Спорт</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBoundle(5)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Кіно+</p>
                             </div>
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden`}>
-                            <RegularSwitch/>
+                            <RegularSwitch switchState={setIPChecker} state={isIPChecked}/>
                             <p className={`font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]`}>Додай зовнішню постійну ІР адресу</p>
                         </div>                            
                         <p className={`flex text-center items-center justify-center mt-[40px] font-bold text-[18px] leading-[22px] min-[681px]:hidden`}>Додай зовнішню постійну ІР адресу</p>
                         <div className={`flex items-center justify-center mt-[15px] min-[681px]:hidden`}>
-                            <RegularSwitch/>
+                            <RegularSwitch switchState={setIPChecker} state={isIPChecked}/>
                         </div>
                         <p className={`max-[680px]:flex max-[680px]:text-center max-[680px]:justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px]`}>Внесіть авансом абонплату та отримайте знижку на підключення та обладнання </p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            <MonthsSlider/>
+                            kljefw
+                            <MonthsSlider outerSetter={toggleSelectMenu}/>
                         </div>
-                        <div className={`mt-[20px] w-full`}>
+                        <div className={`mt-[20px] w-full min-[681px]:hidden`}>
                             <Select>
                                 <SelectTrigger className={`pl-[22px] text-[16px] leading-[22px] rounded-full h-[48px] border-[#BDBDBD] ${isSelectMenuChecked ? 'text-[#5F6061] bg-[#F4F2F2] border-[#51B18B]': ''}`}>
                                     <SelectValue className={``} placeholder="Виберіть період" />
@@ -122,12 +146,12 @@ const CalculatorTarifs = ({theme}:any) => {
                                 <SelectContent>
                                     <SelectGroup>
                                     <SelectLabel>Виберіть період</SelectLabel>
-                                    <SelectItem value='0' onChange={toggleSelectMenu}>Без авансу</SelectItem>
-                                    <SelectItem value='1' onChange={toggleSelectMenu}>1 міс</SelectItem>
-                                    <SelectItem value='2' onChange={toggleSelectMenu}>6 міс</SelectItem>
-                                    <SelectItem value='3' onChange={toggleSelectMenu}>12 міс</SelectItem>
-                                    <SelectItem value='4' onChange={toggleSelectMenu}>24 міс</SelectItem>
-                                    <SelectItem value='5' onChange={toggleSelectMenu}>32 міс</SelectItem>
+                                    <SelectItem value='0' onChange={() => toggleSelectMenu(1)}>Без авансу</SelectItem>
+                                    <SelectItem value='1' onChange={() => toggleSelectMenu(2)}>1 міс</SelectItem>
+                                    <SelectItem value='2' onChange={() => toggleSelectMenu(3)}>6 міс</SelectItem>
+                                    <SelectItem value='3' onChange={() => toggleSelectMenu(4)}>12 міс</SelectItem>
+                                    <SelectItem value='4' onChange={() => toggleSelectMenu(5)}>24 міс</SelectItem>
+                                    <SelectItem value='5' onChange={() => toggleSelectMenu(6)}>32 міс</SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>

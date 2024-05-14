@@ -93,8 +93,8 @@ const Header = ({theme, business}:any) => {
                 </Button>
                 <Button onClick={() => onOpen("call")} variant="connect">Заявка на підключення</Button>
                 <Button onClick={() => onOpen("call")} variant="connectMob">
-                <Image src={wkey} alt='wkey'>
-                </Image>
+                    <Image src={wkey} alt='wkey'>
+                    </Image>
                 </Button>
             </nav>
         </div>
