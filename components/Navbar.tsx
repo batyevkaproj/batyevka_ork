@@ -8,13 +8,14 @@ import wallet_white from '../public/img/wallet_white.svg';
 import _247 from '../public/img/247.svg';
 import telephon from '../public/img/phone.svg';
 import connect from '../public/img/connect.svg';
+import connect_grey from '../public/img/cabinet_grey.svg';
 import wkey from '../public/img/wkey.svg'
 import mobLogo from '../public/img/mobLogo.svg'
 import mobButton from '../public/img/mobButton.svg'
 import Sidebar from "./Sidebar";
 
 
-const Navbar = () => {
+const Navbar = ({theme}:any) => {
 
     const { onOpen } = useModal();
 
@@ -43,8 +44,8 @@ const Navbar = () => {
             <Button onClick={() => {onOpen("payment")}} variant="payMobMob">
                 <Image src={wallet_white} className={`relative w-7 h-7 fill-white`} alt={'wallet'}></Image>
             </Button>
-            <Button variant="cabinetMobMob">
-                <Image src={connect} alt='connect' className={``}>
+            <Button variant={theme=='white'?'cabinetGreyMobMob':'cabinetMobMob'}>
+                <Image src={theme=='white' ? connect_grey : connect} alt='connect' className={`fill-white`}>
                 </Image>
             </Button>
             <Button onClick={() => onOpen("call")} variant="connectMobMob">
@@ -68,7 +69,7 @@ const Navbar = () => {
             </SheetContent>
         </Sheet>
         </div>
-        <div className="flex justify-center items-center w-full">
+        <div className={`flex justify-center items-center w-full + ${theme=='white' ? 'hidden': ''}`}>
             <Button onClick={() => onOpen("call")} variant="MobConnect">
                 Заявка на підключення
             </Button>
