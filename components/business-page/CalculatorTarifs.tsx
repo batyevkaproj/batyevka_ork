@@ -40,12 +40,12 @@ const CalculatorTarifs = ({theme}:any) => {
 
 
     useEffect(() => {
-        setTarifsSwitch(JSON.parse(window.localStorage.getItem('isTarifsSwitch')));
-        setSpeedUtp(JSON.parse(window.localStorage.getItem('speedUtp')));
-        setSpeedGpon(JSON.parse(window.localStorage.getItem('speedGpon')));
-        setTVChecker(JSON.parse(window.localStorage.getItem('isTVChecked')));
-        setIPChecker(JSON.parse(window.localStorage.getItem('isIPChecked')));
-        setSelectMenu(JSON.parse(window.localStorage.getItem('isSelectMenuChecked')));
+        setTarifsSwitch(JSON.parse(window.localStorage.getItem('isTarifsSwitch') as any));
+        setSpeedUtp(JSON.parse(window.localStorage.getItem('speedUtp') as any));
+        setSpeedGpon(JSON.parse(window.localStorage.getItem('speedGpon') as any));
+        setTVChecker(JSON.parse(window.localStorage.getItem('isTVChecked') as any));
+        setIPChecker(JSON.parse(window.localStorage.getItem('isIPChecked') as any));
+        setSelectMenu(JSON.parse(window.localStorage.getItem('isSelectMenuChecked') as any));
         // setTvBoundle(JSON.parse(window.localStorage.getItem('tvBoundle')));
       }, []);
 
