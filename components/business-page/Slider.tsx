@@ -57,7 +57,7 @@ const Slider = () => {
 
 
 <Carousel className={`min-[2430px]:mt-[60px] mt-[45px]`} setApi={setApi}>
-    <div className='absolute max-[910px]:hidden top-[140px] max-[2377px]:left-[-160px] left-[-210px] h-[139px] max-[2377px]:w-[240px] w-[320px] z-[1]'>
+    <div className='absolute max-[910px]:hidden top-[159px] max-[2377px]:left-[-160px] left-[-210px] h-[139px] max-[2377px]:w-[240px] w-[320px] z-[1]'>
         <div className={`flex h-[76px] w-full max-[2377px]:h-[60px] hover:animate-slide `}>
             <div className={`flex justify-between items-center h-full max-[2377px]:w-[225px] w-[293px] bg-[#56AABF] shadow-[0px_4px_20px_0px_#0B273C]`}>
                 <div className={``}>
@@ -95,28 +95,26 @@ const Slider = () => {
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse '>
         <div className='min-[2430px]:ml-[170px] ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
-            <li className={`list-none text-white flex flex-col min-[2430px]:my-[40px] my-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
-                <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-5 mr-[10px] flex`}>
-                    <Image src={infinity} className={`inline-flex min-w-[21px] min-h-[10px]`} alt='infinity'/>
-                </span>
-                    <ul className={`ml-2 font-normal`}>Безлімітні та необмежені тарифні плани</ul>
+            <div className={`list-none text-white min-[2430px]:my-[40px] my-[30px] min-[2430px]:text-[21px] min-[2430px]:leading-[30px] text-[16px] leading-[24px] max-[910px]:text-[14px]`}>
+                <div className={`flex`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={infinity} alt='infinity' className={`mt-[7px] min-[2430px]:mt-[9px] min-[3644px]:mt-[14px] w-[21px] h-[10px] min-[2430px]:w-[27px] min-[2430px]:h-[13px] min-[3644px]:w-[40px] min-[3644px]:h-[19px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Безлімітні та необмежені тарифні плани</p>
                 </div>
-                
-                <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-[20px] pl-[1px] mr-[8px] flex justify-center self-start pt-[5px] max-[1722px]:ml-[8px] `}>
-                    <Image src={sign} className={`inline-flex min-w-[10px] min-h-[16px]`} alt={`sign`}/>
-                </span>
-                <ul className={`ml-3 font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
+                <div className={`flex mt-[15px] min-[2430px]:mt-[20px] min-[3644px]:mt-[30px]`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={sign} alt='sign' className={`ml-[6px] min-[2430px]:ml-[7px] min-[3644px]:ml-[11px] mt-[5px] min-[2430px]:mt-[6px] min-[3644px]:mt-[9px] w-[10px] h-[16px] min-[2430px]:w-[13px] min-[2430px]:h-[20px] min-[3644px]:w-[19px] min-[3644px]:h-[30px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</p>
                 </div>
-                
-                <div className={`flex items-center`}>
-                <span className={`box-border w-5 mr-[12px] flex justify-center self-start`}>
-                    <Image src={cable} className={`inline-flex min-w-[18px] min-h-[22px]`} alt={`cable`}/>
-                </span>
-                <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
+                <div className={`flex mt-[15px] min-[2430px]:mt-[20px] min-[3644px]:mt-[30px]`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={cable} alt='cable' className={`w-[18px] h-[22px] min-[2430px]:w-[24px] min-[2430px]:h-[29px] min-[3644px]:w-[35px] min-[3644px]:h-[43px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</p>
                 </div>
-            </li>
+            </div>
             <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
@@ -127,28 +125,26 @@ const Slider = () => {
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
         <div className='min-[2430px]:ml-[170px] ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В МАГАЗИН</span></h1>
-            <li className={`list-none text-white flex flex-col min-[2430px]:my-[40px] mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
-                <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-5 flex`}>
-                    <Image src={infinity} className={`inline-flex`} alt='infinity'/>
-                </span>
-                    <ul className={`ml-2 font-normal`}>Безлімітні та необмежені тарифні плани</ul>
+            <div className={`list-none text-white flex flex-col min-[2430px]:my-[40px] my-[30px] min-[2430px]:text-[21px] min-[2340px]:leading-[30px] text-[16px] leading-[24px] max-[910px]:text-[14px]`}>
+                <div className={`flex`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={infinity} alt='infinity' className={`mt-[7px] min-[2430px]:mt-[9px] min-[3644px]:mt-[14px] w-[21px] h-[10px] min-[2430px]:w-[27px] min-[2430px]:h-[13px] min-[3644px]:w-[40px] min-[3644px]:h-[19px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Безлімітні та необмежені тарифні плани</p>
                 </div>
-                
-                <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-[20px] pl-[5px] flex justify-center self-start pt-[5px]`}>
-                    <Image src={sign} className={`inline-flex`} alt={`sign`}/>
-                </span>
-                <ul className={`ml-3  font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
+                <div className={`flex mt-[15px] min-[2430px]:mt-[20px] min-[3644px]:mt-[30px]`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={sign} alt='sign' className={`ml-[6px] min-[2430px]:ml-[7px] min-[3644px]:ml-[11px] mt-[5px] min-[2430px]:mt-[6px] min-[3644px]:mt-[9px] w-[10px] h-[16px] min-[2430px]:w-[13px] min-[2430px]:h-[20px] min-[3644px]:w-[19px] min-[3644px]:h-[30px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</p>
                 </div>
-                
-                <div className={`flex items-center`}>
-                <span className={`box-border w-5 flex justify-center self-start`}>
-                    <Image src={cable} className={`inline-flex`} alt={`cable`}/>
-                </span>
-                <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
+                <div className={`flex mt-[15px] min-[2430px]:mt-[20px] min-[3644px]:mt-[30px]`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={cable} alt='cable' className={`w-[18px] h-[22px] min-[2430px]:w-[24px] min-[2430px]:h-[29px] min-[3644px]:w-[35px] min-[3644px]:h-[43px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</p>
                 </div>
-            </li>
+            </div>
             <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
@@ -159,28 +155,26 @@ const Slider = () => {
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
         <div className='min-[2430px]:ml-[170px] ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В САЛОН</span></h1>
-            <li className={`list-none text-white flex flex-col min-[2430px]:my-[40px] mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
-                <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-5 flex`}>
-                    <Image src={infinity} className={`inline-flex`} alt='infinity'/>
-                </span>
-                    <ul className={`ml-2 font-normal`}>Безлімітні та необмежені тарифні плани</ul>
+            <div className={`list-none text-white flex flex-col min-[2430px]:my-[40px] my-[30px] min-[2430px]:text-[21px] min-[2340px]:leading-[30px] text-[16px] leading-[24px] max-[910px]:text-[14px]`}>
+                <div className={`flex`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={infinity} alt='infinity' className={`mt-[7px] min-[2430px]:mt-[9px] min-[3644px]:mt-[14px] w-[21px] h-[10px] min-[2430px]:w-[27px] min-[2430px]:h-[13px] min-[3644px]:w-[40px] min-[3644px]:h-[19px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Безлімітні та необмежені тарифні плани</p>
                 </div>
-                
-                <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-[20px] pl-[5px] flex justify-center self-start pt-[5px]`}>
-                    <Image src={sign} className={`inline-flex`} alt={`sign`}/>
-                </span>
-                <ul className={`ml-3  font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
+                <div className={`flex mt-[15px] min-[2430px]:mt-[20px] min-[3644px]:mt-[30px]`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={sign} alt='sign' className={`ml-[6px] min-[2430px]:ml-[7px] min-[3644px]:ml-[11px] mt-[5px] min-[2430px]:mt-[6px] min-[3644px]:mt-[9px] w-[10px] h-[16px] min-[2430px]:w-[13px] min-[2430px]:h-[20px] min-[3644px]:w-[19px] min-[3644px]:h-[30px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</p>
                 </div>
-                
-                <div className={`flex items-center`}>
-                <span className={`box-border w-5 flex justify-center self-start`}>
-                    <Image src={cable} className={`inline-flex`} alt={`cable`}/>
-                </span>
-                <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
+                <div className={`flex mt-[15px] min-[2430px]:mt-[20px] min-[3644px]:mt-[30px]`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={cable} alt='cable' className={`w-[18px] h-[22px] min-[2430px]:w-[24px] min-[2430px]:h-[29px] min-[3644px]:w-[35px] min-[3644px]:h-[43px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</p>
                 </div>
-            </li>
+            </div>
             <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
@@ -191,28 +185,26 @@ const Slider = () => {
     <CarouselItem className='flex justify-between items-center max-[910px]:flex-col-reverse'>
         <div className='min-[2430px]:ml-[170px] ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В РЕСТОРАН</span></h1>
-            <li className={`list-none text-white flex flex-col min-[2430px]:my-[40px] mb-[30px] min-[2430px]:text-[21px] max-[910px]:text-[14px]`}>
-                <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-5 flex`}>
-                    <Image src={infinity} className={`inline-flex`} alt='infinity'/>
-                </span>
-                    <ul className={`ml-2 font-normal`}>Безлімітні та необмежені тарифні плани</ul>
+            <div className={`list-none text-white flex flex-col min-[2430px]:my-[40px] my-[30px] min-[2430px]:text-[21px] min-[2340px]:leading-[30px] text-[16px] leading-[24px] max-[910px]:text-[14px]`}>
+                <div className={`flex`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={infinity} alt='infinity' className={`mt-[7px] min-[2430px]:mt-[9px] min-[3644px]:mt-[14px] w-[21px] h-[10px] min-[2430px]:w-[27px] min-[2430px]:h-[13px] min-[3644px]:w-[40px] min-[3644px]:h-[19px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Безлімітні та необмежені тарифні плани</p>
                 </div>
-                
-                <div className={`flex items-center mb-[15px]`}>
-                <span className={`box-border w-[20px] pl-[5px] flex justify-center self-start pt-[5px]`}>
-                    <Image src={sign} className={`inline-flex`} alt={`sign`}/>
-                </span>
-                <ul className={`ml-3  font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</ul>
+                <div className={`flex mt-[15px] min-[2430px]:mt-[20px] min-[3644px]:mt-[30px]`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={sign} alt='sign' className={`ml-[6px] min-[2430px]:ml-[7px] min-[3644px]:ml-[11px] mt-[5px] min-[2430px]:mt-[6px] min-[3644px]:mt-[9px] w-[10px] h-[16px] min-[2430px]:w-[13px] min-[2430px]:h-[20px] min-[3644px]:w-[19px] min-[3644px]:h-[30px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</p>
                 </div>
-                
-                <div className={`flex items-center`}>
-                <span className={`box-border w-5 flex justify-center self-start`}>
-                    <Image src={cable} className={`inline-flex`} alt={`cable`}/>
-                </span>
-                <ul className={`ml-2 font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</ul>
+                <div className={`flex mt-[15px] min-[2430px]:mt-[20px] min-[3644px]:mt-[30px]`}>
+                    <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
+                        <Image src={cable} alt='cable' className={`w-[18px] h-[22px] min-[2430px]:w-[24px] min-[2430px]:h-[29px] min-[3644px]:w-[35px] min-[3644px]:h-[43px]`}/>
+                    </div>
+                    <p className={`font-normal`}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</p>
                 </div>
-            </li>
+            </div>
             <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
