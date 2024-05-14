@@ -31,14 +31,6 @@ const CalculatorTarifs = ({theme}:any) => {
     const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
     const [tvBoundle, setTvBoundle] = useState<number>(0);
 
-    const outerSetter = (boundle: number) => {
-        setTvBoundle(boundle);
-    }
-    const toggleSelectMenu = (dig: number) => {
-        setSelectMenu(dig);
-    }
-
-
     useEffect(() => {
         setTarifsSwitch(JSON.parse(window.localStorage.getItem('isTarifsSwitch') as any));
         setSpeedUtp(JSON.parse(window.localStorage.getItem('speedUtp') as any));
@@ -100,7 +92,7 @@ const CalculatorTarifs = ({theme}:any) => {
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
                             wef
-                            <OverpaySlider outerSetter={outerSetter}/>
+                            {/* <OverpaySlider outerSetter={outerSetter}/> */}
                         </div>
                         <div className={`font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden`}>
                             <div className={`flex items-center gap-x-[20px]`}>
@@ -135,26 +127,10 @@ const CalculatorTarifs = ({theme}:any) => {
                         <p className={`max-[680px]:flex max-[680px]:text-center max-[680px]:justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px]`}>Внесіть авансом абонплату та отримайте знижку на підключення та обладнання </p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
                             kljefw
-                            <MonthsSlider outerSetter={toggleSelectMenu} outer={isSelectMenuChecked}/>
+                            <MonthsSlider outerSetter={setSelectMenu} outer={isSelectMenuChecked}/>
                         </div>
                         <div className={`mt-[20px] w-full min-[681px]:hidden`}>
-                            <Select>
-                                <SelectTrigger className={`pl-[22px] text-[16px] leading-[22px] rounded-full h-[48px] border-[#BDBDBD] ${isSelectMenuChecked ? 'text-[#5F6061] bg-[#F4F2F2] border-[#51B18B]': ''}`}>
-                                    <SelectValue className={``} placeholder="Виберіть період" />
-                                    <ChevronsUpDown className="w-[22px] h-[33px] mr-[10px]"/>
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                    <SelectLabel>Виберіть період</SelectLabel>
-                                    <SelectItem value='0' onChange={() => toggleSelectMenu(1)}>Без авансу</SelectItem>
-                                    <SelectItem value='1' onChange={() => toggleSelectMenu(2)}>1 міс</SelectItem>
-                                    <SelectItem value='2' onChange={() => toggleSelectMenu(3)}>6 міс</SelectItem>
-                                    <SelectItem value='3' onChange={() => toggleSelectMenu(4)}>12 міс</SelectItem>
-                                    <SelectItem value='4' onChange={() => toggleSelectMenu(5)}>24 міс</SelectItem>
-                                    <SelectItem value='5' onChange={() => toggleSelectMenu(6)}>32 міс</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
+
                         </div>
                         <p className="max-[2377px]:w-full w-[717px] min-[3644px]:w-[994px] text-[#BDBDBD] min-[3644px]:mt-[60px] mt-[20px] max-[2377px]:mt-[15px] max-[680px]:mt-[15px] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">*СТАБІЛЬНІСТЬ ЦІНИ – при внесенні авансового платежу  ми гарантуємо незмінність ціни тарифного плану протягом обраного періоду</p>
                 
