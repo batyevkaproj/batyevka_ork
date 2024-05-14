@@ -9,6 +9,7 @@ import  { useEffect, useState } from 'react'
 import { Checkbox } from "@/components/ui/checkbox_calculator"
 import { Label } from "@/components/ui/label";
 import { ChevronsUpDown } from "lucide-react";
+import { useLocalStorage } from 'usehooks-ts'
 
 import {
     Select,
@@ -23,39 +24,22 @@ import {
   
 const CalculatorTarifs = ({theme}:any) => {
 
-    const [isTarifsSwitch, setTarifsSwitch] = useState(false);
-    const [speedUtp, setSpeedUtp] = useState<number>(1)
-    const [speedGpon, setSpeedGpon] = useState<number>(3)
-    const [isTVChecked, setTVChecker] = useState(false);
-    const [isIPChecked, setIPChecker] = useState(false);
-    const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
-    const [tvBoundle, setTvBoundle] = useState<number>(0);
+    // const [isTarifsSwitch, setTarifsSwitch] = useState(false);
+    // const [speedUtp, setSpeedUtp] = useState<number>(1)
+    // const [speedGpon, setSpeedGpon] = useState<number>(3)
+    // const [isTVChecked, setTVChecker] = useState(false);
+    // const [isIPChecked, setIPChecker] = useState(false);
+    // const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
+    // const [tvBoundle, setTvBoundle] = useState<number>(0);
 
-    useEffect(() => {
-        setTarifsSwitch(JSON.parse(window.localStorage.getItem('isTarifsSwitch') as any));
-        setSpeedUtp(JSON.parse(window.localStorage.getItem('speedUtp') as any));
-        setSpeedGpon(JSON.parse(window.localStorage.getItem('speedGpon') as any));
-        setTVChecker(JSON.parse(window.localStorage.getItem('isTVChecked') as any));
-        setIPChecker(JSON.parse(window.localStorage.getItem('isIPChecked') as any));
-        setSelectMenu(JSON.parse(window.localStorage.getItem('isSelectMenuChecked') as any));
-        // setTvBoundle(JSON.parse(window.localStorage.getItem('tvBoundle')));
-      }, []);
+    const [isTarifsSwitch, setTarifsSwitch, removeTarifsSwitch] = useLocalStorage('isTarifsSwitch', 0)
+    const [speedUtp, setSpeedUtp, removeSpeedUtp] = useLocalStorage('speedUtp', 0)
+    const [speedGpon, setSpeedGpon, removeSpeedGpon] = useLocalStorage('speedGpon', 0)
+    const [isTVChecked, setTVChecker, removeTVChecker] = useLocalStorage('isTVChecked', 0)
+    const [isIPChecked, setIPChecker, removeIPChecker] = useLocalStorage('isIPChecked', 0)
+    const [isSelectMenuChecked, setSelectMenu, removeSelectMenu] = useLocalStorage('isSelectMenuChecked', 0)
+    const [tvBoundle, setTvBoundle, removeTvBoundle] = useLocalStorage('tvBoundle', 0)
 
-
-    
-      useEffect(() => {
-        window.localStorage.setItem('isTarifsSwitch', JSON.stringify(isTarifsSwitch));
-        window.localStorage.setItem('speedUtp', JSON.stringify(speedUtp));
-        window.localStorage.setItem('speedGpon', JSON.stringify(speedGpon));
-        window.localStorage.setItem('isTVChecked', JSON.stringify(isTVChecked));
-        window.localStorage.setItem('isIPChecked', JSON.stringify(isIPChecked));
-        window.localStorage.setItem('isSelectMenuChecked', JSON.stringify(isSelectMenuChecked));
-        // window.localStorage.setItem('tvBoundle', JSON.stringify(tvBoundle));
-
-        console.log(isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked);
-
-
-      }, [isTarifsSwitch, speedUtp, speedGpon, isTVChecked, isIPChecked, tvBoundle,  isSelectMenuChecked]);
 
     return (
     <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-[30px] + ${theme=='white'?'text-[#5F6061]':'text-white'}`}>
@@ -91,8 +75,7 @@ const CalculatorTarifs = ({theme}:any) => {
                         </div>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            wef
-                            {/* <OverpaySlider outerSetter={outerSetter}/> */}
+                            <OverpaySlider outerSetter={setTvBoundle}/>
                         </div>
                         <div className={`font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden`}>
                             <div className={`flex items-center gap-x-[20px]`}>
@@ -126,7 +109,6 @@ const CalculatorTarifs = ({theme}:any) => {
                         </div>
                         <p className={`max-[680px]:flex max-[680px]:text-center max-[680px]:justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px]`}>Внесіть авансом абонплату та отримайте знижку на підключення та обладнання </p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            kljefw
                             <MonthsSlider outerSetter={setSelectMenu} outer={isSelectMenuChecked}/>
                         </div>
                         <div className={`mt-[20px] w-full min-[681px]:hidden`}>
