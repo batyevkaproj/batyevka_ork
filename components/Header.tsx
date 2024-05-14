@@ -107,7 +107,7 @@ const Header = ({theme, business}:any) => {
                 business?<SubHeaderBusiness/>:<SubHeader/>
             }
         </div>
-        <Navbar/>
+        <Navbar theme={theme}/>
         </header>
     );
 }
