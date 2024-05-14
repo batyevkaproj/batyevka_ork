@@ -235,8 +235,8 @@ export function OverpaySlider({outerSetter}:any){
   );
 }
 
-export function MonthsSlider({outerSetter}:any){
-  const [val, setVal] = React.useState<number>(0);
+export function MonthsSlider({outerSetter, outer}:any){
+  const [val, setVal] = React.useState<number>(outer??0);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     outerSetter(newValue as number);
