@@ -205,8 +205,8 @@ const DemoSliderMobile = styled(Slider)({
   },
 });
 
-export function OverpaySlider({outerSetter}:any){
-  const [val, setVal] = React.useState<number>(0);
+export function OverpaySlider({outerSetter, outer}:any){
+  const [val, setVal] = React.useState<number>(outer??0);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number)
     outerSetter(newValue as number)

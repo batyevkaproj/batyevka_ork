@@ -32,12 +32,12 @@ const CalculatorTarifs = ({theme}:any) => {
     // const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
     // const [tvBoundle, setTvBoundle] = useState<number>(0);
 
-    const [isTarifsSwitch, setTarifsSwitch, removeTarifsSwitch] = useLocalStorage('isTarifsSwitch', 0)
-    const [speedUtp, setSpeedUtp, removeSpeedUtp] = useLocalStorage('speedUtp', 0)
-    const [speedGpon, setSpeedGpon, removeSpeedGpon] = useLocalStorage('speedGpon', 0)
-    const [isTVChecked, setTVChecker, removeTVChecker] = useLocalStorage('isTVChecked', 0)
-    const [isIPChecked, setIPChecker, removeIPChecker] = useLocalStorage('isIPChecked', 0)
-    const [isSelectMenuChecked, setSelectMenu, removeSelectMenu] = useLocalStorage('isSelectMenuChecked', 0)
+    const [isTarifsSwitch, setTarifsSwitch, removeTarifsSwitch] = useLocalStorage('isTarifsSwitch', false)
+    const [speedUtp, setSpeedUtp, removeSpeedUtp] = useLocalStorage('speedUtp', 1)
+    const [speedGpon, setSpeedGpon, removeSpeedGpon] = useLocalStorage('speedGpon', 3)
+    const [isTVChecked, setTVChecker, removeTVChecker] = useLocalStorage('isTVChecked', false)
+    const [isIPChecked, setIPChecker, removeIPChecker] = useLocalStorage('isIPChecked', false)
+    const [isSelectMenuChecked, setSelectMenu, removeSelectMenu] = useLocalStorage('isSelectMenuChecked', 1)
     const [tvBoundle, setTvBoundle, removeTvBoundle] = useLocalStorage('tvBoundle', 0)
 
 
@@ -75,7 +75,7 @@ const CalculatorTarifs = ({theme}:any) => {
                         </div>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            <OverpaySlider outerSetter={setTvBoundle}/>
+                            <OverpaySlider outerSetter={setTvBoundle} outer={tvBoundle}/>
                         </div>
                         <div className={`font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden`}>
                             <div className={`flex items-center gap-x-[20px]`}>
