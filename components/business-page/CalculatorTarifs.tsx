@@ -32,7 +32,7 @@ const CalculatorTarifs = ({theme}:any) => {
     // const [isTVChecked, setTVChecker] = useState(false);
     // const [isIPChecked, setIPChecker] = useState(false);
     // const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
-    // const [tvBoundle, setTvBoundle] = useState<number>(0);
+    // const [tvBundle, setTvBundle] = useState<number>(0);
 
     const TVinfo = [
         { id: 0, name: '?' , channels: '0', movies: '0', show: false, button: 'Promo 14 днів', string1: '0 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв', from_col: 'from-[#3E3D39]', to_col: 'to-[#1B211F]', button_col: 'bg-[#303030]' },
@@ -49,14 +49,14 @@ const CalculatorTarifs = ({theme}:any) => {
     const [isTVChecked, setTVChecker, removeTVChecker] = useLocalStorage('isTVChecked', false)
     const [isIPChecked, setIPChecker, removeIPChecker] = useLocalStorage('isIPChecked', false)
     const [isSelectMenuChecked, setSelectMenu, removeSelectMenu] = useLocalStorage('isSelectMenuChecked', 1)
-    const [tvBoundle, setTvBoundle, removeTvBoundle] = useLocalStorage('tvBoundle', 0)
+    const [tvBundle, setTvBundle, removeTvBundle] = useLocalStorage('tvBundle', 0)
 
     const handleTVswitch = () => {
-        setTVChecker;
+        setTVChecker(!isTVChecked);
         if (!isTVChecked) {
-            removeTvBoundle;
+            setTvBundle(1);
         } else {
-            setTvBoundle(1);
+            setTvBundle(0);
         }
         
     }
@@ -86,36 +86,36 @@ const CalculatorTarifs = ({theme}:any) => {
                             {isTarifsSwitch?<TarifsSliderMobile setSpeed={setSpeedUtp} speed={speedUtp}/>:<TarifsSliderMobileGPON setSpeed={setSpeedGpon} speed={speedGpon}/>}
                         </div>
                         <div className={`flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden`}>
-                            <RegularSwitch switchState={setTVChecker} state={isTVChecked}/>
+                            <RegularSwitch switchState={handleTVswitch} state={isTVChecked}/>
                             <p className={`font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]`}>Додай MEGOGО Телебачення</p>
                         </div>
                         <p className={`flex text-center items-center justify-center font-bold mt-[40px] text-[18px] leading-[22px] min-[681px]:hidden`}>Додай MEGOGО Телебачення</p>
                         <div className={`flex items-center justify-center mt-[15px] min-[681px]:hidden`}>
-                            <RegularSwitch switchState={handleTVswitch} state={isTVChecked}/>
+                            <RegularSwitch switchState={setTVChecker} state={isTVChecked}/>
                         </div>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                            <OverpaySlider outerSetter={setTvBoundle} outer={tvBoundle}/>
+                            <OverpaySlider outerSetter={setTvBundle} outer={tvBundle}/>
                         </div>
                         <div className={`font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden`}>
                             <div className={`flex items-center gap-x-[20px]`}>
-                                <Checkbox onCheckedChange={() =>setTvBoundle(1)}  className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBundle(1)}  className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Легка</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox onCheckedChange={() =>setTvBoundle(2)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBundle(2)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Оптимальна</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox onCheckedChange={() =>setTvBoundle(3)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBundle(3)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Максимальна</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox onCheckedChange={() =>setTvBoundle(4)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBundle(4)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Спорт</p>
                             </div>
                             <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                <Checkbox onCheckedChange={() =>setTvBoundle(5)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
+                                <Checkbox onCheckedChange={() =>setTvBundle(5)} className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}/>
                                 <p className={``}>Кіно+</p>
                             </div>
                         </div>
@@ -156,7 +156,7 @@ const CalculatorTarifs = ({theme}:any) => {
                     </div>
                 </div>
                 <div className={``}>
-                    <div className={`col-span-1 col-start-2 max-[1800px]:col-start-1 flex justify-center min-[3644px]:h-[1272px] h-[848px] max-[2377px]:h-[648px] min-[3644px]:gap-[80px] gap-[53px] max-[2377px]:gap-[34px] max-[1200px]:gap-[20px] max-[780px]:hidden`}>
+                    <div className={`col-span-1 col-start-2 max-[1800px]:col-start-1 flex justify-center min-[3644px]:h-[1272px] h-[848px] max-[2377px]:h-[648px] min-[3644px]:gap-[12px] gap-[10px] max-[2377px]:gap-[8px] max-[780px]:hidden`}>
                         <div className={`min-[3644px]:w-[687px] w-[458px] max-[2377px]:w-[350px] max-[880px]:w-[320px] shadow-[0_4px_29px_0px_#E6E3E3] bg-white rounded-[10px] min-w-[320px]`}>
                             <p className={`flex items-center justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:pt-[78px] pt-[52px] max-[2377px]:pt-[40px]`}>Інтернет</p>
                             <div className={`flex items-center justify-center min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] min-[3644px]:pb-[60px] pb-[40px] max-[2377px]:pb-[30px]`}>
@@ -213,28 +213,31 @@ const CalculatorTarifs = ({theme}:any) => {
                                 </div>
                             </div>
                         </div>
-                        <div className={`${TVinfo[tvBoundle].show ? '' : 'opacity-[0.4]'} text-white min-[3644px]:w-[687px] w-[458px] max-[2377px]:w-[350px] max-[880px]:w-[320px] shadow-[0_4px_29px_0px_#E6E3E3] rounded-[10px] bg-gradient-to-r + ${TVinfo[tvBoundle].from_col} + ${TVinfo[tvBoundle].to_col} min-w-[320px]`}>
+                        <div className={`${TVinfo[tvBundle].show ? '' : 'opacity-[0.4]'} min-[3644px]:text-[120px] min-[3644px]:leading-[120px] text-[80px] leading-[80px] max-[2377px]:text-[60px] max-[2377px]:leading-[60px] font-bold text-[#5F6061] flex items-center`}>
+                            <p>+</p>
+                        </div>
+                        <div className={`${TVinfo[tvBundle].show ? '' : 'opacity-[0.4]'} text-white min-[3644px]:w-[687px] w-[458px] max-[2377px]:w-[350px] max-[880px]:w-[320px] shadow-[0_4px_29px_0px_#E6E3E3] rounded-[10px] bg-gradient-to-r + ${TVinfo[tvBundle].from_col} + ${TVinfo[tvBundle].to_col} min-w-[320px]`}>
                             <p className={`flex items-center justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:pt-[78px] pt-[52px] max-[2377px]:pt-[40px]`}>Телебачення</p>
                             <div className={`flex items-center justify-center`}>
                                 <p className={`flex items-center justify-center min-[3644px]:mt-[90px] mt-[62px] max-[2377px]:mt-[48px] rounded-[4px] bg-[#FD363B] min-[3644px]:w-[132px] min-[3644px]:h-[51px] w-[88px] h-[34px] max-[2377px]:w-[67px] max-[2377px]:h-[26px] font-bold min-[3644px]:text-[24px] min-[3644px]:leading-[24px] text-[16px] leading-[16px] max-[2377px]:text-[13px] max-[2377px]:leading-[13px]`}>АКЦIЯ</p>
                             </div>
-                            <p className={`flex items-center justify-center font-bold min-[3644px]:text-[42px] min-[3644px]:leading-[42px] text-[28px] leading-[28px] max-[2377px]:text-[22px] max-[2377px]:leading-[22px] min-[3644px]:pt-[90px] pt-[65px] max-[2377px]:pt-[50px]`}>{TVinfo[tvBoundle].name}</p>
+                            <p className={`flex items-center justify-center font-bold min-[3644px]:text-[42px] min-[3644px]:leading-[42px] text-[28px] leading-[28px] max-[2377px]:text-[22px] max-[2377px]:leading-[22px] min-[3644px]:pt-[90px] pt-[65px] max-[2377px]:pt-[50px]`}>{TVinfo[tvBundle].name}</p>
                             <div className={`flex items-center justify-center text-center font-bold text-[#909090] min-[3644px]:mt-[22px] mt-[16px] max-[2377px]:mt-[12px] min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px]`}>
-                                {TVinfo[tvBoundle].string1} <br/> {TVinfo[tvBoundle].string2}<br/>{TVinfo[tvBoundle].string3}<br/>{TVinfo[tvBoundle].string4}
+                                {TVinfo[tvBundle].string1} <br/> {TVinfo[tvBundle].string2}<br/>{TVinfo[tvBundle].string3}<br/>{TVinfo[tvBundle].string4}
                             </div>
                             <div className={'flex items-center justify-center min-[3644px]:gap-[143px] gap-[89px] max-[2377px]:gap-[49px] font-bold min-[3644px]:mt-[76px] mt-[51px] max-[2377px]:mt-[39px]'}>
                                 <div className={``}>
-                                    <p className={`min-[3644px]:text-[72px] min-[3644px]:leading-[72px] text-[48px] leading-[48px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] flex justify-center`}>{TVinfo[tvBoundle].channels}</p>
+                                    <p className={`min-[3644px]:text-[72px] min-[3644px]:leading-[72px] text-[48px] leading-[48px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] flex justify-center`}>{TVinfo[tvBundle].channels}</p>
                                     <p className={`min-[3644px]:text-[30px] min-[3644px]:leading-[30px] text-[20px] leading-[20px] max-[2377px]:text-[16px] max-[2377px]:leading-[13px] text-[#909090] pt-[9px] flex justify-center`}>каналiв</p>
                                 </div>
                                 <div className={``}>
-                                    <p className={`min-[3644px]:text-[72px] min-[3644px]:leading-[72px] text-[48px] leading-[48px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] flex justify-center`}>{TVinfo[tvBoundle].movies}</p>
+                                    <p className={`min-[3644px]:text-[72px] min-[3644px]:leading-[72px] text-[48px] leading-[48px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] flex justify-center`}>{TVinfo[tvBundle].movies}</p>
                                     <p className={`min-[3644px]:text-[30px] min-[3644px]:leading-[30px] text-[20px] leading-[20px] max-[2377px]:text-[16px] max-[2377px]:leading-[13px] text-[#909090] pt-[9px] flex justify-center`}>фiльмiв</p>
                                 </div>
                             </div>
                             <p className={`font-bold min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] text-[16px] leading-[22px] flex items-center justify-center text-center min-[3644px]:mt-[76px] mt-[51px] max-[2377px]:mt-[39px]`}>Перемотка i ТБ-архiв на <br/>каналах</p>
-                            <div className={`flex items-center justify-center min-[3644px]:w-[519px] min-[3644px]:h-[118px] w-[346px] h-[78px] max-[2377px]:w-[264px] max-[2377px]:h-[60px] border-white border-[1px] rounded-[7px] min-[3644px]:ml-[84px] ml-[56px] max-[2377px]:ml-[43px] max-[880px]:ml-[28px] min-[3644px]:mt-[118px] mt-[76px] max-[2377px]:mt-[51px] + ${TVinfo[tvBoundle].button_col}`}>
-                                <p className={` min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px] font-bold`}>{TVinfo[tvBoundle].button} </p>
+                            <div className={`flex items-center justify-center min-[3644px]:w-[519px] min-[3644px]:h-[118px] w-[346px] h-[78px] max-[2377px]:w-[264px] max-[2377px]:h-[60px] border-white border-[1px] rounded-[7px] min-[3644px]:ml-[84px] ml-[56px] max-[2377px]:ml-[43px] max-[880px]:ml-[28px] min-[3644px]:mt-[118px] mt-[76px] max-[2377px]:mt-[51px] + ${TVinfo[tvBundle].button_col}`}>
+                                <p className={` min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px] font-bold`}>{TVinfo[tvBundle].button} </p>
                             </div>
                         </div>
                     </div>
