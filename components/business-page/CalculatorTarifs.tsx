@@ -34,13 +34,13 @@ const CalculatorTarifs = ({theme}:any) => {
     // const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
     // const [tvBoundle, setTvBoundle] = useState<number>(0);
 
-    const TVmode = [
-        { id: 0, name: '?' , channels: '0', movies: '0', show: false, button: 'Promo 14 днів', string1: '0 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв' },
-        { id: 1, name: 'Легка' , channels: '298', movies: '10000+', show: true, button: 'Promo 14 днів', string1: '298 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв' },
-        { id: 2, name: 'Оптимальна' , channels: '389', movies: '11400+', show: true, button: 'Спробувати за 1 грн*', string1: '389 каналiв i фiльми, ', string2: 'серiали, мультики топових ', string3: 'кiностудiй для поцiновувачiв ', string4: 'кiно' },
-        { id: 3, name: 'Максимальна' , channels: '421', movies: '14700+', show: true, button: 'Promo 14 днів', string1: '421 канал i максимум ', string2: 'фiльмiв та мультикiв, ', string3: 'серiали вiд НВО, весь ', string4: 'спорт' },
-        { id: 4, name: 'Спорт' , channels: '36', movies: '3537+', show: true, button: 'Promo 14 днів', string1: '298 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв' },
-        { id: 5, name: 'Кіно+' , channels: '35', movies: '12000+', show: true, button: 'Promo 14 днів', string1: '298 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв' },
+    const TVinfo = [
+        { id: 0, name: '?' , channels: '0', movies: '0', show: false, button: 'Promo 14 днів', string1: '0 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв', from_col: 'from-[#3E3D39]', to_col: 'to-[#1B211F]', button_col: 'bg-[#303030]' },
+        { id: 1, name: 'Легка' , channels: '298', movies: '10000+', show: true, button: 'Promo 14 днів', string1: '298 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв', from_col: 'from-[#3E3D39]', to_col: 'to-[#1B211F]', button_col: 'bg-[#303030]' },
+        { id: 2, name: 'Оптимальна' , channels: '389', movies: '11400+', show: true, button: 'Спробувати за 1 грн*', string1: '389 каналiв i фiльми, ', string2: 'серiали, мультики топових ', string3: 'кiностудiй для поцiновувачiв ', string4: 'кiно', from_col: 'from-[#333A4C]', to_col: 'to-[#25283B]', button_col: 'bg-[#323A4B]' },
+        { id: 3, name: 'Максимальна' , channels: '421', movies: '14700+', show: true, button: 'Promo 14 днів', string1: '421 канал i максимум ', string2: 'фiльмiв та мультикiв, ', string3: 'серiали вiд НВО, весь ', string4: 'спорт', from_col: 'from-[#523F94]', to_col: 'to-[#1D3032]', button_col: 'bg-[#33365A]' },
+        { id: 4, name: 'Спорт' , channels: '36', movies: '3537+', show: true, button: 'Promo 14 днів', string1: '36 каналiв для ', string2: 'любителiв спорту. Лiга ', string3: 'чемпiонiв, АПЛ, бокс, ', string4: 'Формула-1 та iн', from_col: 'from-[#1E3230]', to_col: 'to-[#203D39]', button_col: 'bg-[#1E3331]' },
+        { id: 5, name: 'Кіно+' , channels: '35', movies: '12000+', show: true, button: 'Promo 14 днів', string1: '35 інтерактивних ', string2: 'фільмових каналів, ', string3: 'колекція фільмів, ', string4: 'серіалів та мультиків', from_col: 'from-[#1E2632]', to_col: 'to-[#202C3D]', button_col: 'bg-[#1E2734]' },
     ]
 
     const [isTarifsSwitch, setTarifsSwitch, removeTarifsSwitch] = useLocalStorage('isTarifsSwitch', false)
@@ -213,28 +213,28 @@ const CalculatorTarifs = ({theme}:any) => {
                                 </div>
                             </div>
                         </div>
-                        <div className={`text-white min-[3644px]:w-[687px] w-[458px] max-[2377px]:w-[350px] max-[880px]:w-[320px] shadow-[0_4px_29px_0px_#E6E3E3] rounded-[10px] bg-gradient-to-r from-[#3E3D39] to-[#1B211F] min-w-[320px]`}>
+                        <div className={`${TVinfo[tvBoundle].show ? '' : 'opacity-[0.4]'} text-white min-[3644px]:w-[687px] w-[458px] max-[2377px]:w-[350px] max-[880px]:w-[320px] shadow-[0_4px_29px_0px_#E6E3E3] rounded-[10px] bg-gradient-to-r + ${TVinfo[tvBoundle].from_col} + ${TVinfo[tvBoundle].to_col} min-w-[320px]`}>
                             <p className={`flex items-center justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:pt-[78px] pt-[52px] max-[2377px]:pt-[40px]`}>Телебачення</p>
                             <div className={`flex items-center justify-center`}>
                                 <p className={`flex items-center justify-center min-[3644px]:mt-[90px] mt-[62px] max-[2377px]:mt-[48px] rounded-[4px] bg-[#FD363B] min-[3644px]:w-[132px] min-[3644px]:h-[51px] w-[88px] h-[34px] max-[2377px]:w-[67px] max-[2377px]:h-[26px] font-bold min-[3644px]:text-[24px] min-[3644px]:leading-[24px] text-[16px] leading-[16px] max-[2377px]:text-[13px] max-[2377px]:leading-[13px]`}>АКЦIЯ</p>
                             </div>
-                            <p className={`flex items-center justify-center font-bold min-[3644px]:text-[42px] min-[3644px]:leading-[42px] text-[28px] leading-[28px] max-[2377px]:text-[22px] max-[2377px]:leading-[22px] min-[3644px]:pt-[90px] pt-[65px] max-[2377px]:pt-[50px]`}>Легка</p>
+                            <p className={`flex items-center justify-center font-bold min-[3644px]:text-[42px] min-[3644px]:leading-[42px] text-[28px] leading-[28px] max-[2377px]:text-[22px] max-[2377px]:leading-[22px] min-[3644px]:pt-[90px] pt-[65px] max-[2377px]:pt-[50px]`}>{TVinfo[tvBoundle].name}</p>
                             <div className={`flex items-center justify-center text-center font-bold text-[#909090] min-[3644px]:mt-[22px] mt-[16px] max-[2377px]:mt-[12px] min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px]`}>
-                                298 каналiв для <br/> любителів ТБ, а також <br/>колекцiя фiльмiв,<br/>мультикiв та серiалiв
+                                {TVinfo[tvBoundle].string1} <br/> {TVinfo[tvBoundle].string2}<br/>{TVinfo[tvBoundle].string3}<br/>{TVinfo[tvBoundle].string4}
                             </div>
                             <div className={'flex items-center justify-center min-[3644px]:gap-[143px] gap-[89px] max-[2377px]:gap-[49px] font-bold min-[3644px]:mt-[76px] mt-[51px] max-[2377px]:mt-[39px]'}>
                                 <div className={``}>
-                                    <p className={`min-[3644px]:text-[72px] min-[3644px]:leading-[72px] text-[48px] leading-[48px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] flex justify-center`}>298</p>
+                                    <p className={`min-[3644px]:text-[72px] min-[3644px]:leading-[72px] text-[48px] leading-[48px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] flex justify-center`}>{TVinfo[tvBoundle].channels}</p>
                                     <p className={`min-[3644px]:text-[30px] min-[3644px]:leading-[30px] text-[20px] leading-[20px] max-[2377px]:text-[16px] max-[2377px]:leading-[13px] text-[#909090] pt-[9px] flex justify-center`}>каналiв</p>
                                 </div>
                                 <div className={``}>
-                                    <p className={`min-[3644px]:text-[72px] min-[3644px]:leading-[72px] text-[48px] leading-[48px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] flex justify-center`}>10000+</p>
+                                    <p className={`min-[3644px]:text-[72px] min-[3644px]:leading-[72px] text-[48px] leading-[48px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] flex justify-center`}>{TVinfo[tvBoundle].movies}</p>
                                     <p className={`min-[3644px]:text-[30px] min-[3644px]:leading-[30px] text-[20px] leading-[20px] max-[2377px]:text-[16px] max-[2377px]:leading-[13px] text-[#909090] pt-[9px] flex justify-center`}>фiльмiв</p>
                                 </div>
                             </div>
                             <p className={`font-bold min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] text-[16px] leading-[22px] flex items-center justify-center text-center min-[3644px]:mt-[76px] mt-[51px] max-[2377px]:mt-[39px]`}>Перемотка i ТБ-архiв на <br/>каналах</p>
-                            <div className={`flex items-center justify-center min-[3644px]:w-[519px] min-[3644px]:h-[118px] w-[346px] h-[78px] max-[2377px]:w-[264px] max-[2377px]:h-[60px] bg-[#303030] border-white border-[1px] rounded-[7px] min-[3644px]:ml-[84px] ml-[56px] max-[2377px]:ml-[43px] max-[880px]:ml-[28px] min-[3644px]:mt-[118px] mt-[76px] max-[2377px]:mt-[51px]`}>
-                                <p className={` min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px] font-bold`}>Promo 14 днів </p>
+                            <div className={`flex items-center justify-center min-[3644px]:w-[519px] min-[3644px]:h-[118px] w-[346px] h-[78px] max-[2377px]:w-[264px] max-[2377px]:h-[60px] border-white border-[1px] rounded-[7px] min-[3644px]:ml-[84px] ml-[56px] max-[2377px]:ml-[43px] max-[880px]:ml-[28px] min-[3644px]:mt-[118px] mt-[76px] max-[2377px]:mt-[51px] + ${TVinfo[tvBoundle].button_col}`}>
+                                <p className={` min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px] font-bold`}>{TVinfo[tvBoundle].button} </p>
                             </div>
                         </div>
                     </div>
