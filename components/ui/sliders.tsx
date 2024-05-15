@@ -350,12 +350,14 @@ export function TarifsSliderGPON({setSpeed, speed}:any){
     setVal(newValue as number);
     setSpeed(newValue as number);
   };
+  var lol = val;
   return (
     <div className={``}>
       <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] ">
         <button className={`${val==MID_G ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[26%]`} onClick={() => setVal(MID_G)}> 300 Мбіт</button>
         <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px]`}>1 Гбіт</span></button>
       </div>
+      <span className='hidden'>{val}</span>
       <DemoSlider
           defaultValue={MID_G}
           step={null}

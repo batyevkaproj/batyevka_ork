@@ -40,6 +40,15 @@ const CalculatorTarifs = ({theme}:any) => {
     const [isSelectMenuChecked, setSelectMenu, removeSelectMenu] = useLocalStorage('isSelectMenuChecked', 1)
     const [tvBoundle, setTvBoundle, removeTvBoundle] = useLocalStorage('tvBoundle', 0)
 
+    const handleTVswitch = () => {
+        setTVChecker;
+        if (!isTVChecked) {
+            removeTvBoundle;
+        } else {
+            setTvBoundle(1);
+        }
+        
+    }
 
     return (
     <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-[30px] + ${theme=='white'?'text-[#5F6061]':'text-white'}`}>
@@ -71,7 +80,7 @@ const CalculatorTarifs = ({theme}:any) => {
                         </div>
                         <p className={`flex text-center items-center justify-center font-bold mt-[40px] text-[18px] leading-[22px] min-[681px]:hidden`}>Додай MEGOGО Телебачення</p>
                         <div className={`flex items-center justify-center mt-[15px] min-[681px]:hidden`}>
-                            <RegularSwitch switchState={setTVChecker} state={isTVChecked}/>
+                            <RegularSwitch switchState={handleTVswitch} state={isTVChecked}/>
                         </div>
                         <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                         <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
@@ -145,7 +154,8 @@ const CalculatorTarifs = ({theme}:any) => {
                             <h2 className="font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex">
                                 Швидкість
                             </h2>
-                            <h2 className="text-[#5984B2] font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">100 Meгабіт</h2>
+                            <h2 className="text-[#5984B2] font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex 
+                            min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">{isTarifsSwitch ? speedUtp : speedGpon}00 Meгабіт</h2>
                             <div className="flex justify-center text-[#5984B2] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                                 <span className="flex mr-[20px] ">
                                     <Image src={galochka_orange} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
