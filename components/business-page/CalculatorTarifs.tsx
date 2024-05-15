@@ -20,6 +20,8 @@ import {
     SelectTrigger,
     SelectValue,
   } from '../ui/select';
+import { count } from "console";
+import { channel } from "diagnostics_channel";
 
   
 const CalculatorTarifs = ({theme}:any) => {
@@ -31,6 +33,15 @@ const CalculatorTarifs = ({theme}:any) => {
     // const [isIPChecked, setIPChecker] = useState(false);
     // const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
     // const [tvBoundle, setTvBoundle] = useState<number>(0);
+
+    const TVmode = [
+        { id: 0, name: '?' , channels: '0', movies: '0', show: false, button: 'Promo 14 днів', string1: '0 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв' },
+        { id: 1, name: 'Легка' , channels: '298', movies: '10000+', show: true, button: 'Promo 14 днів', string1: '298 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв' },
+        { id: 2, name: 'Оптимальна' , channels: '389', movies: '11400+', show: true, button: 'Спробувати за 1 грн*', string1: '389 каналiв i фiльми, ', string2: 'серiали, мультики топових ', string3: 'кiностудiй для поцiновувачiв ', string4: 'кiно' },
+        { id: 3, name: 'Максимальна' , channels: '421', movies: '14700+', show: true, button: 'Promo 14 днів', string1: '421 канал i максимум ', string2: 'фiльмiв та мультикiв, ', string3: 'серiали вiд НВО, весь ', string4: 'спорт' },
+        { id: 4, name: 'Спорт' , channels: '36', movies: '3537+', show: true, button: 'Promo 14 днів', string1: '298 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв' },
+        { id: 5, name: 'Кіно+' , channels: '35', movies: '12000+', show: true, button: 'Promo 14 днів', string1: '298 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв' },
+    ]
 
     const [isTarifsSwitch, setTarifsSwitch, removeTarifsSwitch] = useLocalStorage('isTarifsSwitch', false)
     const [speedUtp, setSpeedUtp, removeSpeedUtp] = useLocalStorage('speedUtp', 1)
@@ -208,7 +219,9 @@ const CalculatorTarifs = ({theme}:any) => {
                                 <p className={`flex items-center justify-center min-[3644px]:mt-[90px] mt-[62px] max-[2377px]:mt-[48px] rounded-[4px] bg-[#FD363B] min-[3644px]:w-[132px] min-[3644px]:h-[51px] w-[88px] h-[34px] max-[2377px]:w-[67px] max-[2377px]:h-[26px] font-bold min-[3644px]:text-[24px] min-[3644px]:leading-[24px] text-[16px] leading-[16px] max-[2377px]:text-[13px] max-[2377px]:leading-[13px]`}>АКЦIЯ</p>
                             </div>
                             <p className={`flex items-center justify-center font-bold min-[3644px]:text-[42px] min-[3644px]:leading-[42px] text-[28px] leading-[28px] max-[2377px]:text-[22px] max-[2377px]:leading-[22px] min-[3644px]:pt-[90px] pt-[65px] max-[2377px]:pt-[50px]`}>Легка</p>
-                            <p className={`flex items-center justify-center text-center font-bold text-[#909090] min-[3644px]:mt-[22px] mt-[16px] max-[2377px]:mt-[12px] min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px]`}>298 каналiв для <br/> любителів ТБ, а також <br/>колекцiя фiльмiв,<br/>мультикiв та серiалiв</p>
+                            <div className={`flex items-center justify-center text-center font-bold text-[#909090] min-[3644px]:mt-[22px] mt-[16px] max-[2377px]:mt-[12px] min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px]`}>
+                                298 каналiв для <br/> любителів ТБ, а також <br/>колекцiя фiльмiв,<br/>мультикiв та серiалiв
+                            </div>
                             <div className={'flex items-center justify-center min-[3644px]:gap-[143px] gap-[89px] max-[2377px]:gap-[49px] font-bold min-[3644px]:mt-[76px] mt-[51px] max-[2377px]:mt-[39px]'}>
                                 <div className={``}>
                                     <p className={`min-[3644px]:text-[72px] min-[3644px]:leading-[72px] text-[48px] leading-[48px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] flex justify-center`}>298</p>
