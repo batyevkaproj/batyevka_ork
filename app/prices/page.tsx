@@ -7,7 +7,6 @@ import AdditionalOptions from '@/components/business-page/AdditionalOptions';
 import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 import WaterText from '@/components/business-page/WaterText';
 import ContactForm from '@/components/business-page/ContactForm';
-import { useEffect } from 'react';
 
 export default function Home() {
   
