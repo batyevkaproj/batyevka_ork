@@ -1,7 +1,15 @@
-import { useModal } from "@/hooks/use-modal-store";
-
 import Image from 'next/image';
 import Link from 'next/link';
+import type { HeaderProps } from '@/types/Header';
+
+import { useModal } from "@/hooks/use-modal-store";
+
+import { Button } from '@/components/ui/button';
+import Navbar from "./Navbar";
+import { ChevronDown } from "lucide-react"
+import SubHeader from "./SubHeader";
+import SubHeaderBusiness from "./SubHeaderBusiness";
+
 import logo from '@/public/img/logo.svg';
 import logo_grey from '@/public/img/logo_grey.svg'
 import arrow_down from '@/public/img/arrow_down.svg';
@@ -17,13 +25,11 @@ import connect from '@/public/img/connect.svg';
 import connectGrey from '@/public/img/cabinet_grey.svg';
 import wrench from '@/public/img/wrench.svg'
 import wkey from '@/public/img/wkey.svg'
-import { Button } from '@/components/ui/button';
-import Navbar from "./Navbar";
-import { ChevronDown } from "lucide-react"
-import SubHeader from "./SubHeader";
-import SubHeaderBusiness from "./SubHeaderBusiness";
 
-const Header = ({theme, business}:any) => {
+
+
+
+const Header = ({ theme, business }: HeaderProps) => {
 
     const { onOpen } = useModal();
 

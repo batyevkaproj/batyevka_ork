@@ -26,8 +26,8 @@ export default function Home() {
       <Advantages />
       <Tarifs />
       <TarifsCountInfo theme="dark"/>
-      <ContactForm />
-      {<InfoBlock />}
+      <ContactForm theme="dark"/>
+      <InfoBlock />
       <Footer theme='dark'/>
     </div>
   )

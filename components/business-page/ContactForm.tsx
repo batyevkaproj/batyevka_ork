@@ -1,4 +1,6 @@
-const ContactForm = ({theme}:any) => {
+import type { ThemeProps } from '@/types/Theme'
+
+const ContactForm = ( {theme}: ThemeProps ) => {
     return ( 
         <div className={`${theme=='white' ? 'mx-0 bg-[#2D2A32]' : 'rounded-[12px] min-[2430px]:mx-[170px] max-[2430px]:mx-[120px] max-[1770px]:mx-[85px] max-[1180px]:mx-[67px] max-[650px]:mx-[35px] max-[690px]:mx-[20px] bg-[#123853] min-[2430px]:mb-[120px] max-[2430px]:mb-[90px] max-[650px]:mb-[60px] max-[690px]:mb-[20px]'} 
             font-normal text-white h-full  

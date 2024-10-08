@@ -1,4 +1,11 @@
-import { TarifsSlider, TarifsSliderGPON, MonthsSlider, OverpaySlider, TarifsSliderMobile, TarifsSliderMobileGPON } from "../ui/sliders";
+import {
+    TarifsSlider,
+    TarifsSliderGPON,
+    MonthsSlider,
+    OverpaySlider,
+    TarifsSliderMobile,
+    TarifsSliderMobileGPON
+} from "../ui/sliders";
 import { TarifsSwitch, RegularSwitch } from "../ui/switches";
 
 import { Checkbox } from "@/components/ui/checkbox_calculator"
@@ -10,8 +17,17 @@ import type { TVinfoItem } from "../tariff-page/TVBlock";
 import InternetBlock from "@/components/tariff-page/InternetBlock";
 import TVBlock from "../tariff-page/TVBlock";
 
+import {
+    GPON_SPEEDS,
+    UTP_SPEEDS
+} from "@/constants/internet_speeds"
 
-const CalculatorTarifs = ({ theme }: any) => {
+type Theme = {
+    theme: string
+}
+
+
+const CalculatorTarifs = ({ theme }: Theme) => {
 
     const [isTarifsSwitch, setTarifsSwitch, removeTarifsSwitch] = useLocalStorage('isTarifsSwitch', false)
     const [speedUtp, setSpeedUtp, removeSpeedUtp] = useLocalStorage('speedUtp', 1)

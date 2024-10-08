@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
+import type { ThemeProps } from '@/types/Theme'
 
 import { ChevronDown, FlipVertical } from "lucide-react"
 import green_galochka from '../../public/img/green_galochka.svg';
 
-const TarifsCountInfo = ({theme}:any) => {
+const TarifsCountInfo = ( {theme}: ThemeProps ) => {
     const [isMechanicVisible_1, setMechanicVisible_1] = useState(false);
     const [isMechanicVisible_2, setMechanicVisible_2] = useState(false);
     const [isMechanicVisible_3, setMechanicVisible_3] = useState(false);
