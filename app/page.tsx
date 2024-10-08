@@ -1,7 +1,5 @@
 "use client"
 
-import { useState } from 'react';
-
 import Header from '@/components/Header'
 import Tarifs from '@/components/business-page/Tarifs';
 import ContactForm from '@/components/business-page/ContactForm';
@@ -22,7 +20,7 @@ export default function Home() {
       <Header theme="dark" business={true}/>
       <ParallaxDemo />
       <Slider />
-      <Heading text={'Ключові переваги для наших бізнес-абонентів'} text_size={42}></Heading>
+      <Heading text="Ключові переваги для наших бізнес-абонентів" text_size={42}></Heading>
       <Advantages />
       <Tarifs />
       <TarifsCountInfo theme="dark"/>

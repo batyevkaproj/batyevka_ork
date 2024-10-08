@@ -1,3 +1,11 @@
+import { useLocalStorage } from 'usehooks-ts'
+import {
+    GPON_SPEEDS,
+    UTP_SPEEDS
+} from "@/constants/internet_speeds"
+import type { TVinfoItem } from "../tariff-page/TVBlock";
+import type { ThemeProps } from '@/types/Theme';
+
 import {
     TarifsSlider,
     TarifsSliderGPON,
@@ -7,27 +15,16 @@ import {
     TarifsSliderMobileGPON
 } from "../ui/sliders";
 import { TarifsSwitch, RegularSwitch } from "../ui/switches";
-
 import { Checkbox } from "@/components/ui/checkbox_calculator"
-import { useLocalStorage } from 'usehooks-ts'
 
-import type { TVinfoItem } from "../tariff-page/TVBlock";
 
 // import { TVinfo } from "@/constants/megogo";
 import InternetBlock from "@/components/tariff-page/InternetBlock";
-import TVBlock from "../tariff-page/TVBlock";
-
-import {
-    GPON_SPEEDS,
-    UTP_SPEEDS
-} from "@/constants/internet_speeds"
-
-type Theme = {
-    theme: string
-}
+import TVBlock from "@/components/tariff-page/TVBlock";
 
 
-const CalculatorTarifs = ({ theme }: Theme) => {
+
+const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
     const [isTarifsSwitch, setTarifsSwitch, removeTarifsSwitch] = useLocalStorage('isTarifsSwitch', false)
     const [speedUtp, setSpeedUtp, removeSpeedUtp] = useLocalStorage('speedUtp', 1)
