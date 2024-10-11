@@ -1,200 +1,31 @@
 import * as React from 'react';
-import Slider from '@mui/material/Slider';
-import { styled } from '@mui/material/styles';
 
 import {
   GPON_SPEEDS,
   UTP_SPEEDS
 } from "@/constants/internet_speeds"
 
-const MIN_MOBILE = 3;
-const MID_G_MOBILE = 4;
-const MID_MOBILE = 5;
-const MAX_MOBILE = 10;
+import {
+  MIN_MOBILE,
+  MID_G_MOBILE,
+  MID_MOBILE,
+  MAX_MOBILE,
+  MIN,
+  MID_G,
+  MID,
+  MAX,
+  marks,
+  marks_mobile,
+  megogo_overpay,
+  months
+} from '@/constants/slider';
 
-const MIN = 1;
-const MID_G = 3;
-const MID = 5;
-const MAX = 10;
+import StyledSlider from '@/components/StyledSlider';
+import StyledSliderMobile from '@/components/StyledSliderMobile';
 
-const marks = [
-    {
-      value: MIN,
-    },
-    {
-      value: MID,
-    },
-    {
-      value: MAX,
-    },
-  ];
-
-const marks_mobile = [
-  {
-    value: MIN_MOBILE,
-  },
-  {
-    value: MID_MOBILE,
-  },
-  {
-    value: MAX_MOBILE,
-  },
-];
-
-const marks_GPON = GPON_SPEEDS.map(speed => ({ value: speed }));
-const marks_UTP = UTP_SPEEDS.map(speed => ({ value: speed }));
-
-const marks_GPON_mobile = GPON_SPEEDS.map(speed => ({ value: speed }));
-
-const megogo_overpay = [
-  {
-    value: 1,
-  },
-  {
-    value: 2,
-  },
-  {
-    value: 3,
-  },
-  {
-    value: 4,
-  },
-  {
-    value: 5,
-  },
-];
-
-const months = [
-  {
-    value: 1,
-  },
-  {
-    value: 2,
-  },
-  {
-    value: 3,
-  },
-  {
-    value: 4,
-  },
-  {
-    value: 5,
-  },
-];
-
-const DemoSlider = styled(Slider)(({ theme }) => ({
-  [theme.breakpoints.down(2378)]: {
-    height: 5,
-  },
-  [theme.breakpoints.up(2378)]: {
-    height: 7,
-  },
-  [theme.breakpoints.up(3644)]: {
-    height: 11,
-  },
-  marginTop: 0,
-  '& .MuiSlider-track': {
-    border: 'none',
-    color: '#DC662D',
-  },
-  '& .MuiSlider-thumb': {
-    [theme.breakpoints.down(2378)]: {
-      width: 16,
-      height: 16,
-    },
-    [theme.breakpoints.up(2378)]: {
-      width: 20,
-      height: 20,
-    },
-    [theme.breakpoints.up(3644)]: {
-      width: 30,
-      height: 30,
-    },
-    backgroundColor: '#DC662D',
-    boxShadow: 'none',
-    '&:focus, &:hover, &.Mui-active': {
-      boxShadow: 'none',
-      
-    },
-  },
-  '& .MuiSlider-mark': {
-    [theme.breakpoints.down(2378)]: {
-      width: 16,
-      height: 16,
-      marginLeft: -7,  
-    },
-    [theme.breakpoints.up(2378)]: {
-      width: 20,
-      height: 20,
-      marginLeft: -9, 
-    },
-    [theme.breakpoints.up(3644)]: {
-      width: 30,
-      height: 30,
-      marginLeft: -14, 
-    },
-    backgroundColor: '#F4F2F2',
-    borderRadius: 30, 
-      
-    opacity: 1
-  },
-  '& .MuiSlider-markActive': {
-    border: '2px solid #DC662D',
-    backgroundColor: 'white',
-  },
-  '& .MuiSlider-rail': {
-    opacity: 1,
-    backgroundColor: '#F4F2F2',
-  },
-  '& .MuiSlider-markLabel': {
-    fontSize: 18,
-    color: '#BDBDBD',
-    fontWeight: 700,
-    fontStyle: 'normal',
-    top: -20,
-  },
-  '& .MuiSlider-markLabelActive': {
-    color: '#5F6061',
-    '&::before, &::after':{
-      color: '#BDBDBD',
-    }
-  },
-  
-}));
-
-const DemoSliderMobile = styled(Slider)({
-  height: 40,
-  marginTop: 0,
-  borderRadius: 50,
-  '& .MuiSlider-track': {
-    border: 'none',
-    color: '#DC662D',
-    boxShadow: '0px 4px 20px 0px #DC662D',
-  },
-  '& .MuiSlider-thumb': {
-    height: 0,
-    width: 0,
-  },
-  '& .MuiSlider-mark': {
-    height: 0,
-    width: 0,
-    opacity: 0,
-  },
-  '& .MuiSlider-rail': {
-    opacity: 1,
-    backgroundColor: '#F4F2F2',
-  },
-  '& .MuiSlider-markLabel': {
-    fontSize: 18,
-    color: '#BDBDBD',
-    fontWeight: 700,
-    fontStyle: 'normal',
-    top: 60,
-  },
-  '& .MuiSlider-markLabelActive': {
-    color: '#5F6061',
-  },
-});
+const marks_GPON = GPON_SPEEDS.map(item => ({ value: item.speed }));
+const marks_UTP = UTP_SPEEDS.map(item => ({ value: item.speed }));
+const marks_GPON_mobile = GPON_SPEEDS.map(item => ({ value: item.speed }));
 
 export function OverpaySlider({outerSetter, outer}:any){
   const [val, setVal] = React.useState<number>(outer??0);
@@ -213,7 +44,7 @@ export function OverpaySlider({outerSetter, outer}:any){
         </div>
         <button className={`${val==(5) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(5)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] `}>Кіно+</span></button>
       </div>
-      <DemoSlider
+      <StyledSlider
         defaultValue={0}
         step={1}
         marks={megogo_overpay}
@@ -243,7 +74,7 @@ export function MonthsSlider({outerSetter, outer}:any){
         </div>
         <button className={`${val==(5) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(5)}><span className={`absolute min-[3644px]:ml-[-54px] ml-[-36px] max-[2377px]:ml-[-26px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] w-[78px] min-[3644px]:w-[120px] max-[2377px]:w-[59px]`}>36 міс</span></button>
       </div>
-      <DemoSlider
+      <StyledSlider
         defaultValue={0}
         step={1}
         marks={months}
@@ -266,7 +97,7 @@ export function TarifsSliderMobile({setSpeed, speed}:any){
   };
   return (
     <div className={``}>
-      <DemoSliderMobile
+      <StyledSliderMobile
           defaultValue={MIN_MOBILE}
           value={val}
           step={null}
@@ -292,7 +123,7 @@ export function TarifsSliderMobileGPON({setSpeed, speed}:any){
   };
   return (
     <div className={``}>
-      <DemoSliderMobile
+      <StyledSliderMobile
           defaultValue={MID_G_MOBILE}
           value={val}
           step={null}
@@ -323,7 +154,7 @@ export function TarifsSlider({setSpeed, speed}:any){
           <button className={`${val==MID ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[14%]`} onClick={() => setVal(MID)}> 500 Мбіт</button>
           <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] w-[70px] min-[3644px]:w-[100px] max-[2377px]:w-[50px]`}>1 Гбіт</span></button>
         </div>
-        <DemoSlider
+        <StyledSlider
             defaultValue={MIN}
             step={null}
             marks={marks}
@@ -358,7 +189,7 @@ export function TarifsSliderGPON({setSpeed, speed}:any){
         ))}
       </div>
       <span className='hidden'>{val}</span>
-      <DemoSlider
+      <StyledSlider
           defaultValue={MID_G}
           step={null}
           marks={marks_GPON}

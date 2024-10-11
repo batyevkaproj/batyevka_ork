@@ -6,7 +6,7 @@ import galochka from '@/public/img/galochka.svg';
 import galochka_orange from '@/public/img/galochka_orange.svg';
 
 type InternetBlockProps = {
-    isTarifsSwitch: any,
+    isTarifsSwitch: boolean,
     speedUtp: number,
     speedGpon: number
 }
@@ -16,7 +16,6 @@ const InternetBlock = ({
     speedUtp,
     speedGpon
 }: InternetBlockProps) => {
-    console.log('isTarifsSwitch' + isTarifsSwitch);
     return (
         <div className={`min-[3644px]:w-[687px] w-[458px] max-[2377px]:w-[350px] max-[880px]:w-[320px] shadow-[0_4px_29px_0px_#E6E3E3] bg-white rounded-[10px] min-w-[320px]`}>
             <p className={`flex items-center justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:pt-[78px] pt-[52px] max-[2377px]:pt-[40px]`}>Інтернет</p>

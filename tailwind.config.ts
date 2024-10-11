@@ -7,24 +7,9 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './constants/**/*.{ts,tsx}',
+
 	],
-  safelist: [
-    'from-[#3E3D39]',
-    'from-[#333A4C]',
-    'from-[#523F94]',
-    'from-[#1E3230]',
-    'from-[#1E2632]',
-    'to-[#1B211F]',
-    'to-[#25283B]',
-    'to-[#1D3032]',
-    'to-[#203D39]',
-    'to-[#202C3D]',
-    'bg-[#303030]',
-    'bg-[#323A4B]',
-    'bg-[#33365A]',
-    'bg-[#1E3331]',
-    'bg-[#1E2734]',
-  ],
   prefix: "",
   theme: {
     container: {
