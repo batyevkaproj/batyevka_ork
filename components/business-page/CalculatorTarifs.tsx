@@ -20,7 +20,6 @@ import { TarifsSwitch, RegularSwitch } from "../ui/switches";
 import { Checkbox } from "@/components/ui/checkbox_calculator"
 
 
-// import { TVinfo } from "@/constants/megogo";
 import InternetBlock from "@/components/tariff-page/InternetBlock";
 import TVBlock from "@/components/tariff-page/TVBlock";
 
