@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from "react";
 
 import {
   GPON_SPEEDS,
@@ -28,7 +28,7 @@ const marks_UTP = UTP_SPEEDS.map(item => ({ value: item.speed }));
 const marks_GPON_mobile = GPON_SPEEDS.map(item => ({ value: item.speed }));
 
 export function OverpaySlider({outerSetter, outer}:any){
-  const [val, setVal] = React.useState<number>(outer??0);
+  const [val, setVal] = useState<number>(outer??0);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number)
     outerSetter(newValue as number)
@@ -37,7 +37,7 @@ export function OverpaySlider({outerSetter, outer}:any){
     <div className={``}>
       <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
         <div className={`flex justify-between w-full mx-[16%]`}>
-          <button className={`${val==(1) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(1)}> Легка</button>
+          <button className={`${val==(1) ? 'text-[#404245]' :'text-[#BDBDBD]'}`} onClick={() => setVal(1)}> Легка</button>
           <button className={`${val==(2) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(2)}> Оптимальна</button>
           <button className={`${val==(3) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(3)}>Максимальна</button>
           <button className={`${val==(4) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(4)}> Спорт</button>
@@ -58,7 +58,7 @@ export function OverpaySlider({outerSetter, outer}:any){
 }
 
 export function MonthsSlider({outerSetter, outer}:any){
-  const [val, setVal] = React.useState<number>(outer??0);
+  const [val, setVal] = useState<number>(outer??0);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     outerSetter(newValue as number);
@@ -90,7 +90,7 @@ export function MonthsSlider({outerSetter, outer}:any){
 
 
 export function TarifsSliderMobile({setSpeed, speed}:any){
-  const [val, setVal] = React.useState<number>(speed??MIN_MOBILE);
+  const [val, setVal] = useState<number>(speed??MIN_MOBILE);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
@@ -116,7 +116,7 @@ export function TarifsSliderMobile({setSpeed, speed}:any){
 }
 
 export function TarifsSliderMobileGPON({setSpeed, speed}:any){
-  const [val, setVal] = React.useState<number>(speed??MID_G_MOBILE);
+  const [val, setVal] = useState<number>(speed??MID_G_MOBILE);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
@@ -142,7 +142,7 @@ export function TarifsSliderMobileGPON({setSpeed, speed}:any){
 }
 
 export function TarifsSlider({setSpeed, speed}:any){
-  const [val, setVal] = React.useState<number>(speed??MIN);
+  const [val, setVal] = useState<number>(speed??MIN);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
@@ -169,7 +169,7 @@ export function TarifsSlider({setSpeed, speed}:any){
 }
 
 export function TarifsSliderGPON({setSpeed, speed}:any){
-  const [val, setVal] = React.useState<number>(speed);
+  const [val, setVal] = useState<number>(speed);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
