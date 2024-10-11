@@ -2,6 +2,11 @@ import * as React from 'react';
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 
+import {
+  GPON_SPEEDS,
+  UTP_SPEEDS
+} from "@/constants/internet_speeds"
+
 const MIN_MOBILE = 3;
 const MID_G_MOBILE = 4;
 const MID_MOBILE = 5;
@@ -36,23 +41,10 @@ const marks_mobile = [
   },
 ];
 
-const marks_GPON = [
-  {
-    value: MID_G,
-  },
-  {
-    value: MAX,
-  },
-];
+const marks_GPON = GPON_SPEEDS.map(speed => ({ value: speed }));
+const marks_UTP = UTP_SPEEDS.map(speed => ({ value: speed }));
 
-const marks_GPON_mobile = [
-  {
-    value: MID_G_MOBILE,
-  },
-  {
-    value: MAX_MOBILE,
-  },
-];
+const marks_GPON_mobile = GPON_SPEEDS.map(speed => ({ value: speed }));
 
 const megogo_overpay = [
   {
@@ -351,14 +343,19 @@ export function TarifsSliderGPON({setSpeed, speed}:any){
     setVal(newValue as number);
     setSpeed(newValue as number);
   };
-  var lol = val;
+  
   return (
     <div className={``}>
-      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] ">
-        <button className={`${val==MID_G ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[26%]`} onClick={() => setVal(MID_G)}> 300 Мбіт</button>
-        <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px]`}>1 Гбіт</span></button>
-        <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px]`}>2,5 Гбіт</span></button>
-        <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px]`}>5 Гбіт</span></button>
+      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
+        {marks_GPON.map((mark, index) => (
+          <button
+            key={index}
+            className={`${val === mark.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
+            onClick={() => setVal(mark.value)}
+          >
+            {`${mark.value} ${mark.value <= 10 ? 'Гбіт' : 'Мбіт'}`}
+          </button>
+        ))}
       </div>
       <span className='hidden'>{val}</span>
       <DemoSlider

@@ -1,4 +1,6 @@
-export const TVinfo = [
+import type { TVinfoItem } from "@/components/tariff-page/TVBlock";
+
+export const TVinfoItems: TVinfoItem[] = [
     { id: 0, name: '?', channels: '0', movies: '0', show: false, button: 'Promo 14 днів', string1: '0 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв', from_col: 'from-[#3E3D39]', to_col: 'to-[#1B211F]', button_col: 'bg-[#303030]' },
     { id: 1, name: 'Легка', channels: '298', movies: '10000+', show: true, button: 'Promo 14 днів', string1: '298 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв', from_col: 'from-[#3E3D39]', to_col: 'to-[#1B211F]', button_col: 'bg-[#303030]' },
     { id: 2, name: 'Оптимальна', channels: '389', movies: '11400+', show: true, button: 'Спробувати за 1 грн*', string1: '389 каналiв i фiльми, ', string2: 'серiали, мультики топових ', string3: 'кiностудiй для поцiновувачiв ', string4: 'кiно', from_col: 'from-[#333A4C]', to_col: 'to-[#25283B]', button_col: 'bg-[#323A4B]' },
