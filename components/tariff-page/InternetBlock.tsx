@@ -1,21 +1,17 @@
 "use client"
 
+import type { SpeedItemProps } from '@/constants/internet_speeds';
+
 import rocket_blue from '@/public/img/rocket_blue.svg';
 import Image from "next/image";
-import galochka from '@/public/img/galochka.svg';
 import galochka_orange from '@/public/img/galochka_orange.svg';
 
-type InternetBlockProps = {
-    isTarifsSwitch: boolean,
-    speedUtp: number,
-    speedGpon: number
-}
+interface InternetBlockProps {
+    speedItem: SpeedItemProps;
+  }
 
-const InternetBlock = ({
-    isTarifsSwitch,
-    speedUtp,
-    speedGpon
-}: InternetBlockProps) => {
+const InternetBlock = ({speedItem}: InternetBlockProps) => {
+    console.log(speedItem);
     return (
         <div className={`min-[3644px]:w-[687px] w-[458px] max-[2377px]:w-[350px] max-[880px]:w-[320px] shadow-[0_4px_29px_0px_#E6E3E3] bg-white rounded-[10px] min-w-[320px]`}>
             <p className={`flex items-center justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:pt-[78px] pt-[52px] max-[2377px]:pt-[40px]`}>Інтернет</p>
@@ -26,7 +22,7 @@ const InternetBlock = ({
                 Швидкість
             </h2>
             <h2 className="text-[#5984B2] font-bold min-[3644px]:text-[70px] min-[3644px]:leading-[70px] text-[47px] leading-[47px] max-[2377px]:text-[36px] max-[2377px]:leading-[36px] justify-center flex min-[3644px]:py-[20px] py-[13px] max-[2377px]:py-[10px]">
-                {isTarifsSwitch ? speedUtp : speedGpon}00 Meгабіт
+            {`${speedItem?.speed} ${speedItem?.measure}`}
             </h2>
             <div className="flex justify-center text-[#5984B2] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">
                 <span className="flex mr-[20px] ">

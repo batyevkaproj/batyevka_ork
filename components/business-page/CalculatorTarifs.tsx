@@ -4,7 +4,7 @@ import {
     GPON_SPEEDS,
     UTP_SPEEDS
 } from "@/constants/internet_speeds"
-import { TVinfoItems } from '@/constants/megogo';
+import { TVinfoItems as TVinfo }  from '@/constants/megogo';
 
 import type { ThemeProps } from '@/types/Theme';
 
@@ -12,7 +12,7 @@ import {
     TarifsSlider,
     TarifsSliderGPON,
     MonthsSlider,
-    OverpaySlider,
+    MegogoSlider,
     TarifsSliderMobile,
     TarifsSliderMobileGPON
 } from "../ui/sliders";
@@ -35,8 +35,6 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [isIPChecked, setIPChecker, removeIPChecker] = useLocalStorage('isIPChecked', false)
     const [isSelectMenuChecked, setSelectMenu, removeSelectMenu] = useLocalStorage('isSelectMenuChecked', 1)
     const [tvBundle, setTvBundle, removeTvBundle] = useLocalStorage('tvBundle', 0)
-
-    const TVinfo = TVinfoItems;
 
     const handleTVswitch = () => {
         setTVChecker(!isTVChecked);
@@ -83,7 +81,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             <>
                                 <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                                 <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                                    <OverpaySlider disableSwap="true" outerSetter={setTvBundle} outer={tvBundle} />
+                                    <MegogoSlider disableSwap="true" outerSetter={setTvBundle} outer={tvBundle} />
                                 </div>
                             </>
                             }  
@@ -129,7 +127,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             <div className="flex grid grid-cols-1 items-center font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px]">
                                 <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                     <h1>* Підключення</h1>
-                                    <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">1 грн.</h1>
+                                    <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">1 500 грн.</h1>
                                 </div>
                                 <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                     <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />ONU HG8010H</span></h1>
@@ -139,7 +137,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 <div className="flex items-start justify-between max-[680px]:grid max-[680px]:grid-cols-2 max-[680px]:grid-rows-1 max-[680px]:border-b-[2px] max-[680px]:border-[#F4F2F2] max-[680px]:border-solid max-[680px]:pb-[10px]">
                                     <h1>* Wi-Fi роутер </h1>
                                     <h1 className="items-center justify-center text-center max-[680px]:hidden">Ультрапреміум <span className="opacity-[0.5]">MERCUSYS MR90X </span> <br />стандарт AX6000 </h1>
-                                    <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">1 грн.</h1>
+                                    <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">3000 грн.</h1>
                                     <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]"><br />Ультрапреміум <span className="opacity-[0.5]">MERCUSYS <br />MR90X </span> стандарт AX6000</p>
                                 </div>
                             </div>
@@ -148,7 +146,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                     <div>
                         <div className="col-span-1 col-start-2 max-[1800px]:col-start-1 flex justify-center min-[3644px]:h-[1272px] h-[848px] max-[2377px]:h-[648px] min-[3644px]:gap-[12px] gap-[10px] max-[2377px]:gap-[8px] max-[780px]:hidden">
                             
-                            <InternetBlock isTarifsSwitch={isTarifsSwitch} speedUtp={speedUtp} speedGpon={speedGpon}/>
+                            <InternetBlock speedItem={(isTarifsSwitch ? UTP_SPEEDS.find(item => item.value === speedUtp) : GPON_SPEEDS.find(item => item.value === speedGpon)) ?? GPON_SPEEDS[0]} />
                             <div className={`${TVinfo[tvBundle].show ? '' : 'opacity-[0.4]'} min-[3644px]:text-[120px] min-[3644px]:leading-[120px] text-[80px] leading-[80px] max-[2377px]:text-[60px] max-[2377px]:leading-[60px] font-bold text-[#5F6061] flex items-center`}>
                                 <p>+</p>
                             </div>
