@@ -1,18 +1,12 @@
 type MegogoBudles = {
     value: number,
-    name:string
+    name:string,
+    price: number
 }
 
 type PrepaidMonths = {
     value: number,
     months: number
-}
-
-type SpeedProps = {
-    value: number,
-    speed: string,
-    price: number,
-    label: string
 }
 
 export const MIN_MOBILE = 3;
@@ -52,27 +46,33 @@ export const marks_mobile = [
 export const megogo_bundles: MegogoBudles[] = [
     {
         value: 1,
-        name: 'Легка'
+        name: 'Легка',
+        price: 199
     },
     {
         value: 2,
-        name: 'Оптимальна'
+        name: 'Оптимальна',
+        price: 299
     },
     {
         value: 3,
-        name: 'Максимальна'
+        name: 'Максимальна',
+        price: 399
     },
     {
         value: 4,
-        name: 'Спорт'
+        name: 'Спорт',
+        price: 599
     },
     {
         value: 5,
-        name: 'Кіно+'
+        name: 'Кіно+',
+        price: 699
     },
     {
         value: 6,
-        name: 'Нац ТБ'
+        name: 'Нац ТБ',
+        price: 99
     }
 ];
 

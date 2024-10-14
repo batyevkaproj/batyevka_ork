@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLocalStorage } from 'usehooks-ts'
 import {
     GPON_SPEEDS,
     UTP_SPEEDS
 } from "@/constants/internet_speeds"
+import { megogo_bundles } from '@/constants/slider';
 import { TVinfoItems as TVinfo }  from '@/constants/megogo';
 
 import type { ThemeProps } from '@/types/Theme';
@@ -35,6 +37,31 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [isIPChecked, setIPChecker, removeIPChecker] = useLocalStorage('isIPChecked', false)
     const [isSelectMenuChecked, setSelectMenu, removeSelectMenu] = useLocalStorage('isSelectMenuChecked', 1)
     const [tvBundle, setTvBundle, removeTvBundle] = useLocalStorage('tvBundle', 0)
+
+    const [internetPrice, setInternetPrice] = useState(0)
+    const [tvPrice, setTvPrice] = useState(0)
+    const [ipPrice, setIpPrice] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
+
+    useEffect(() => {
+        let newInternetPrice = 0;
+        if (isTarifsSwitch) {
+            const selectedUtp = UTP_SPEEDS.find(item => item.value === speedUtp);
+            newInternetPrice = selectedUtp ? selectedUtp.price : 0;
+        } else {
+            const selectedGpon = GPON_SPEEDS.find(item => item.value === speedGpon);
+            newInternetPrice = selectedGpon ? selectedGpon.price : 0;
+        }
+        setInternetPrice(newInternetPrice);
+
+        const newTvPrice = isTVChecked ? megogo_bundles[tvBundle].price : 0;
+        setTvPrice(newTvPrice);
+
+        const newIpPrice = isIPChecked ? 50 : 0; // Assuming static IP costs 50
+        setIpPrice(newIpPrice);
+
+        setTotalPrice(newInternetPrice + newTvPrice + newIpPrice);
+    }, [isTarifsSwitch, speedUtp, speedGpon, isTVChecked, tvBundle, isIPChecked]);
 
     const handleTVswitch = () => {
         setTVChecker(!isTVChecked);
@@ -158,14 +185,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                     <div className="flex items-end justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                         <h1>Акційна абонплата на Перші 4 місяці</h1>
                                         <h1 className="text-[#DC662D] flex items-end justify-between w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
-                                            <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">0</span>
+                                            <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{totalPrice * 0.7}</span>
                                             <span className="min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
                                     </div>
                                     <div className="flex items-end justify-between min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                         <h1>Абонплата з 5го місяця</h1>
                                         <h1 className="text-[#51B18B] flex items-end justify-between w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
-                                            <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">0</span>
+                                            <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{totalPrice}</span>
                                             <span className="min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
                                     </div>
