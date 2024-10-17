@@ -1,7 +1,6 @@
 "use client";
 
 import { useModal } from "@/hooks/use-modal-store";
-import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,

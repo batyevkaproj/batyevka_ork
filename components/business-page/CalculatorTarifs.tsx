@@ -8,6 +8,9 @@ import {
 import { megogo_bundles } from '@/constants/slider';
 import { TVinfoItems as TVinfo }  from '@/constants/megogo';
 
+import { useModal } from '@/hooks/use-modal-store';
+
+
 import type { ThemeProps } from '@/types/Theme';
 
 import {
@@ -24,6 +27,7 @@ import { Checkbox } from "@/components/ui/checkbox_calculator"
 
 import InternetBlock from "@/components/tariff-page/InternetBlock";
 import TVBlock from "@/components/tariff-page/TVBlock";
+import { Button } from '@/components/ui/button';
 
 
 
@@ -71,6 +75,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
             setTvBundle(0);
         }
     }
+
+    const { onOpen } = useModal();
 
     return (
         <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-[30px] + ${theme == 'white' ? 'text-[#5F6061]' : 'text-white'}`}>
@@ -214,7 +220,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                     </div>
                                 </div>
                                 <div className={`min-[3644px]:mt-[66px] mt-[44px] max-[2377px]:mt-[30px] max-[680px]:flex max-[680px]:justify-center`}>
-                                    <button className={`w-full max-[680px]:w-[270px] bg-[#DC662D] text-white font-semibold rounded-full min-[3644px]:h-[118px] h-[78px] max-[2377px]:h-[60px] shadow-[0_4px_20px_0px_#DC662D50] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]`}>Підключитись</button>
+                                    <Button className="w-full max-[680px]:w-[270px] bg-[#DC662D] text-white font-semibold rounded-full min-[3644px]:h-[118px] h-[78px] max-[2377px]:h-[60px] shadow-[0_4px_20px_0px_#DC662D50] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]" onClick={() => onOpen("phone-input")} variant="connect">Підключитись</Button>
                                 </div>
                                 <div className={`flex justify-center min-[3644px]:gap-[30px] gap-[20px] max-[2377px]:gap-[15px] min-[3644px]:mt-[39px] mt-[26px] max-[2377px]:mt-[20px] max-[680px]:hidden`}>
                                     <p className={`font-normal min-[3644px]:text-[27px] min-[3644px]:leading-[42px] text-[18px] leading-[28px] max-[2377px]:text-[14px] max-[2377px]:leading-[22px]`}>Є питання? Ми передзвоним Вам через <span className={`font-semibold`}>30 секунд!</span></p>
