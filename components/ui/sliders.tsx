@@ -73,6 +73,7 @@ export function MonthsSlider({ outerSetter, outer }: any) {
     setVal(newValue as number);
     outerSetter(newValue as number);
   };
+
   const lastIndex = months.length - 1;
 
   return (
@@ -173,6 +174,11 @@ export function TarifsSlider({ setSpeed, speed }: any) {
     setSpeed(newValue as number);
   };
 
+  const handleButtonClick = (newValue: number | number[]) => {
+    setVal(newValue as number);
+    setSpeed(newValue as number);
+  }
+
   const maxIndex = UTP_SPEEDS.length - 1;
 
   return (
@@ -182,7 +188,7 @@ export function TarifsSlider({ setSpeed, speed }: any) {
           <button
             key={index}
             className={`${val === mark.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
-            onClick={() => setVal(mark.value)}
+            onClick={() => handleButtonClick(mark.value)}
           >
             {`${mark.speed} ${mark.measure}`}
           </button>
@@ -208,6 +214,11 @@ export function TarifsSliderGPON({ setSpeed, speed }: any) {
     setSpeed(newValue as number);
   };
 
+  const handleButtonClick = (newValue: number | number[]) => {
+    setVal(newValue as number);
+    setSpeed(newValue as number);
+  }
+
   const min_index = GPON_SPEEDS[0];
   const last_index = GPON_SPEEDS.length - 1;
 
@@ -218,7 +229,7 @@ export function TarifsSliderGPON({ setSpeed, speed }: any) {
           <button
             key={index}
             className={`${val === mark.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
-            onClick={() => setVal(mark.value)}
+            onClick={() => handleButtonClick(mark.value)}
           >
             {`${mark.speed} ${mark.measure}`}
           </button>
