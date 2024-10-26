@@ -6,15 +6,15 @@ import {
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-} from "@/components/ui/accordion"
+} from "@/components/ui/accordion";
 import logo from '../public/img/logo.svg';
-import wallet from '../public/img/wallet.svg'
+import wallet from '../public/img/wallet.svg';
 import _247 from '../public/img/247.svg';
 import telephon from '../public/img/phone.svg';
 import gear from '../public/img/gear.svg';
 import orange_building from '@/public/img/orange_building.svg';
 import orange_house from '@/public/img/house_orange.svg';
-import bc_orange from '@/public/img/br_case_orange.svg'
+import bc_orange from '@/public/img/br_case_orange.svg';
 import key from '@/public/img/key_white.svg';
 import globe from '@/public/img/globe_white.png';
 
@@ -34,15 +34,15 @@ const Sidebar = () => {
                 </Link>
             </div>
             <div className="mt-[15px] ml-[20px] flex flex-col">
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}} >
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")} >
                     <Image src={wallet} className={`w-8 h-8`} alt={'wallet'}></Image>
                         <span className="ml-[15px] font-semibold text-[#51B18B]">Оплата</span>
                 </Link>
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}} >
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")} >
                     <Image src={_247} className={`w-8 h-8`} alt={'options'}></Image>
                         <span className="ml-[15px] font-semibold text-[#56AABF]">Підтримка</span>
                 </Link>
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}}>
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")}>
                     <Image src={gear} className={`w-8 h-8`} alt={'wallet'}></Image>
                         <span className="ml-[15px] font-semibold text-[#5984B3]">Опції</span>
                 </Link>
@@ -114,17 +114,17 @@ const Sidebar = () => {
             </Accordion>
 
             <div className="ml-[20px] mt-[10px]">
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}} >
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")} >
                         <Image src={key} alt={'key'}></Image>
                         <span className="ml-[15px] text-white">Вхід   </span>
                 </Link>
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => {onOpen("payment")}}>
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")}>
                     <Image src={globe} alt={'globe'}></Image>
                     <span className="ml-[15px] text-white">Укр</span>
                 </Link>
             </div>
         </div>
      );
-}
+};
  
 export default Sidebar;

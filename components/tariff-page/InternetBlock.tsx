@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import type { SpeedItemProps } from '@/constants/internet_speeds';
 
@@ -69,7 +69,7 @@ const InternetBlock = ({speedItem}: InternetBlockProps) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default InternetBlock;

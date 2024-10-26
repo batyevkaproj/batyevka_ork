@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {
     GPON_SPEEDS,
     UTP_SPEEDS
-} from "@/constants/internet_speeds"
+} from "@/constants/internet_speeds";
 import {
     UTP_SETUP_PRICES,
     GPON_SETUP_PRICES
@@ -25,7 +25,7 @@ import {
     TarifsSliderMobileGPON
 } from "../ui/sliders";
 import { TarifsSwitch, RegularSwitch } from "../ui/switches";
-import { Checkbox } from "@/components/ui/checkbox_calculator"
+import { Checkbox } from "@/components/ui/checkbox_calculator";
 
 import InternetBlock from "@/components/tariff-page/InternetBlock";
 import TVBlock from "@/components/tariff-page/TVBlock";
@@ -42,11 +42,6 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [prepaidMonths, setPrepaidMonths] = useState<number>(1);
     const [setupPrice, setSetupPrice] = useState<number>(1499);
     const [routerPrice, setRouterPrice] = useState<number>(3000);
-
-
-    const [internetPrice, setInternetPrice] = useState<number>(0);
-    const [tvPrice, setTvPrice] = useState<number>(0);
-    const [ipPrice, setIpPrice] = useState<number>(0);
     const [totalPrice, setTotalPrice] = useState<number>(0);
 
     useEffect(() => {
@@ -59,16 +54,13 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
             const selectedGpon = GPON_SPEEDS.find(item => item.value === speedGpon);
             newInternetPrice = selectedGpon ? selectedGpon.price : 0;
         }
-        setInternetPrice(newInternetPrice);
 
         // Deal with cost of TV bundles
         const newTvPrice = isTVChecked ? MEGOGO_BUNDLES.find((element) => element.value == tvBundle)?.price : 0;
         const newPriceValue = newTvPrice ?? 0;
-        setTvPrice(newPriceValue);
 
         // Deal with static IP addresses
         const newIpPrice = isIPChecked ? 50 : 0; // Monthly payment for Static IP is 50 UAH
-        setIpPrice(newIpPrice);
 
         // Deal with setup price
         let newSetupPrice = (isTarifsSwitch ? UTP_SETUP_PRICES : GPON_SETUP_PRICES).find(tier => prepaidMonths == tier.months)?.price ?? 1499;
@@ -105,7 +97,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         } else {
             setTvBundle(0);
         }
-    }
+    };
 
     const { onOpen } = useModal();
 
@@ -186,7 +178,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             </div>
                             <p className="max-[2377px]:w-full w-[717px] min-[3644px]:w-[994px] text-[#BDBDBD] min-[3644px]:mt-[60px] mt-[20px] max-[2377px]:mt-[15px] max-[680px]:mt-[15px] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">*СТАБІЛЬНІСТЬ ЦІНИ – при внесенні авансового платежу  ми гарантуємо незмінність ціни тарифного плану протягом обраного періоду</p>
 
-                            <div className="flex grid grid-cols-1 items-center font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px]">
+                            <div className="grid grid-cols-1 items-center font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px]">
                                 <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                     <h1>* Підключення</h1>
                                     <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">{setupPrice} грн.</h1>
@@ -219,7 +211,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                         </div>
                         <div className="flex justify-center">
                             <div className="min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] max-[680px]:mt-[-30px] min-[3664px]:mr-[117px] mr-[78px] max-[2377px]:mr-[60px] w-full max-[1800px]:w-[750px] max-[1800px]:mr-[20px] max-[1800px]:ml-[20px]">
-                                <div className="flex grid grid-cols-1 items-center w-full font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:gap-[22px] gap-[15px] max-[2377px]:gap-[12px] max-[680px]:hidden">
+                                <div className="grid grid-cols-1 items-center w-full font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:gap-[22px] gap-[15px] max-[2377px]:gap-[12px] max-[680px]:hidden">
                                     <div className="flex items-end justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                         <h1>Акційна абонплата на Перші 4 місяці</h1>
                                         <h1 className="text-[#DC662D] flex items-end justify-between gap-3 w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
@@ -270,6 +262,6 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
             </div>
         </div>
     );
-}
+};
 
 export default CalculatorTarifs;

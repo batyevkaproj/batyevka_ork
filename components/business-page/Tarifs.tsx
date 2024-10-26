@@ -4,10 +4,7 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
-  } from "@/components/ui/carousel"
-
-import { type CarouselApi } from "@/components/ui/carousel"
-// import { useEffect, useState } from 'react';
+  } from "@/components/ui/carousel";
 
 import WhiteGreyIpCheck from './WhiteGreyIpCheck';
 import galochka from '../../public/img/galochka.svg';
@@ -18,8 +15,7 @@ import prom_large from '../../public/img/prom_large.svg';
 import Image from 'next/image';
 import Heading from '@/components/Heading';
 import OpticCableReverse from "./OpticCableReverse";
-import React, { useState } from 'react'
-import { ChevronDown, FlipVertical } from "lucide-react"
+import React from 'react';
 import OpticCable from '@/components/business-page/OpticCable';
 
 
@@ -49,7 +45,7 @@ const Tarifs = () => {
                     <h1 className="text-center flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем G-PON</h1>
                 </div>
                 <div className="pt-[24px] min-[3644px]:pt-[36px] max-[2377px]:pt-[18px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
-                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">2 599</span>грн.</h1>
+                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[36px]">2 599</span>грн.</h1>
                 </div>
 
 
@@ -245,7 +241,7 @@ const Tarifs = () => {
                     <h1 className="text-center flex items-center justify-center z-10">Підключаємо виділеним ОПТИЧНИМ волокном  із точки обміну трафіком по технології XGS-PON</h1>
                 </div>
                 <div className="pt-[24px] min-[3644px]:pt-[36px] max-[2377px]:pt-[18px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
-                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">14 999</span>грн.</h1>
+                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[36px]">14 999</span>грн.</h1>
                 </div>
                 <div className="flex justify-center box-border max-[2377px]:gap-[40px] max-[1600px]:gap-[30px] gap-[52px] min-[3644px]:gap-[78px]">
 
@@ -430,6 +426,6 @@ const Tarifs = () => {
             
         </>
     );
-}
+};
 
 export default Tarifs;

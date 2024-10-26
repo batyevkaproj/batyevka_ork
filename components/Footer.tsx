@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import type { ThemeProps } from '@/types/Theme'
+import type { ThemeProps } from '@/types/Theme';
 
 import {
     Accordion,
@@ -11,9 +11,7 @@ import {
 
 
 import _1 from '../public/img/1.svg';
-import _2 from '../public/img/2.svg';
 import _3 from '../public/img/3.svg';
-import _4 from '../public/img/4.svg';
 import orange_mini_phone from '../public/img/orange_mini_phone.svg';
 import orange_mini_place_marker from '../public/img/orange_mini_place_marker.svg';
 import orange_mini_tg_logo from '../public/img/orange_mini_tg_logo.svg';
@@ -178,6 +176,6 @@ const Footer = ( {theme}: ThemeProps ) => {
             </div>
         </footer>
      );
-}
+};
  
 export default Footer;

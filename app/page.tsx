@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import Header from '@/components/Header'
+import Header from '@/components/Header';
 import Tarifs from '@/components/business-page/Tarifs';
 import ContactForm from '@/components/business-page/ContactForm';
 import InfoBlock from '@/components/business-page/InfoBlock';
@@ -28,5 +28,5 @@ export default function Home() {
       <InfoBlock />
       <Footer theme='dark'/>
     </div>
-  )
+  );
 }

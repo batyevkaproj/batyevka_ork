@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import Image from 'next/image'
-import type { ThemeProps } from '@/types/Theme'
+import React, { useState } from 'react';
+import Image from 'next/image';
+import type { ThemeProps } from '@/types/Theme';
 
 
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react';
 
-import speedometer from '@/public/img/option_card_1.svg'
-import blue_speedometer from '@/public/img/option_card_2.svg'
-import ip from '@/public/img/option_card_3.svg'
-import snowflake from '@/public/img/option_card_4.svg'
-import something from '@/public/img/option_card_5.svg'
-import messages from '@/public/img/option_card_6.svg'
+import speedometer from '@/public/img/option_card_1.svg';
+import blue_speedometer from '@/public/img/option_card_2.svg';
+import ip from '@/public/img/option_card_3.svg';
+import snowflake from '@/public/img/option_card_4.svg';
+import something from '@/public/img/option_card_5.svg';
+import messages from '@/public/img/option_card_6.svg';
 
 
 
@@ -206,7 +206,7 @@ const AdditionalOptions = ({theme}:ThemeProps) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default AdditionalOptions;

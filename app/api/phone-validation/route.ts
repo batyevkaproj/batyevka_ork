@@ -18,7 +18,7 @@ export async function POST(request: Request) {
             },
                 {
                     status: 400
-                })
+                });
         }
 
         const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
         return NextResponse.json({
             message: 'Код верифікації успішно відправлено',
             smsId: lifecellData.smsId,
-        })
+        });
 
     } catch (error) {
         console.log('There is an error with SMS code verification sending:', error);

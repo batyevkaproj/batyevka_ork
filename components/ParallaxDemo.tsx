@@ -19,11 +19,11 @@ const ParallaxDemo = () => {
     useEffect(() => {
         const getRandomArbitrary = () => {
           return Math.random() * (30 - 10) + 10;
-        }
+        };
     
         const getRandomDuration = () => {
           return Math.random() * (3 - 1) + 1;
-        }
+        };
     
         const intervalId = setInterval(() => {
           const offsetX = getRandomArbitrary();
@@ -86,7 +86,7 @@ const ParallaxDemo = () => {
     
         return () => {
           clearInterval(intervalId);
-        }
+        };
       }, []);
 
 
@@ -122,6 +122,6 @@ const ParallaxDemo = () => {
             </div>
         </>
     );
-}
+};
  
 export default ParallaxDemo;

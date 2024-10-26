@@ -1,31 +1,28 @@
-import infinity from '../../public/img/infinity.png';
-import cable from    '../../public/img/cable.png';
-import sign from     '../../public/img/sign.png';
-import vector from   '../../public/img/Vector.svg';
-
-import vector2 from   '../../public/img/vector2.svg';
-import vector3 from   '../../public/img/vector3.svg';
-import vector4 from   '../../public/img/vector4.svg';
-
-import thumb_flag from '@/public/img/thumb_flag.svg'
-import speed_flag from '@/public/img/speed_flag.svg'
-import speedometer from '@/public/img/speedometer_small.svg'
-import thumb from '@/public/img/thumb_small.svg'
-
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
-
 import { useModal } from "@/hooks/use-modal-store";
-
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
     CarouselNextVariation,
     CarouselPreviousVariation,
-  } from "@/components/ui/carousel"
+  } from "@/components/ui/carousel";
 
-import { type CarouselApi } from "@/components/ui/carousel"
-import { useEffect, useState } from 'react';
+import { type CarouselApi } from "@/components/ui/carousel";
+
+import infinity from '../../public/img/infinity.png';
+import cable from    '../../public/img/cable.png';
+import sign from     '../../public/img/sign.png';
+import vector from   '../../public/img/Vector.svg';
+import vector2 from   '../../public/img/vector2.svg';
+import vector3 from   '../../public/img/vector3.svg';
+import vector4 from   '../../public/img/vector4.svg';
+
+import speedometer from '@/public/img/speedometer_small.svg';
+import thumb from '@/public/img/thumb_small.svg';
+
+
 
 
 const Slider = () => {
@@ -33,22 +30,22 @@ const Slider = () => {
     const { onOpen } = useModal();
     
 
-    const [api, setApi] = useState<CarouselApi>()
-    const [current, setCurrent] = useState(0)
-    const [count, setCount] = useState(0)
+    const [api, setApi] = useState<CarouselApi>();
+    const [current, setCurrent] = useState<number>(0);
+    const [count, setCount] = useState<number>(0);
    
     useEffect(() => {
       if (!api) {
-        return
+        return;
       }
    
-      setCount(api.scrollSnapList().length) 
-      setCurrent(api.selectedScrollSnap() + 1)
+      setCount(api.scrollSnapList().length);
+      setCurrent(api.selectedScrollSnap() + 1);
    
       api.on("select", () => {
-        setCurrent(api.selectedScrollSnap() + 1)
-      })
-    }, [api])
+        setCurrent(api.selectedScrollSnap() + 1);
+      });
+    }, [api]);
 
     const timesArray = Array.from({ length: count });
 
@@ -227,6 +224,6 @@ const Slider = () => {
 </Carousel>
     </>
      );
-}
+};
  
 export default Slider;

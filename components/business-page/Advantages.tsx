@@ -62,6 +62,6 @@ const Advantages = () => {
             </div>
         </div>
      );
-}
+};
  
 export default Advantages;

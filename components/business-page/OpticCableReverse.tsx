@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import flag from '../../public/img/prideFlag.svg'
+import flag from '../../public/img/prideFlag.svg';
 
 
 const OpticCableReverse = () => {
@@ -12,6 +12,6 @@ const OpticCableReverse = () => {
         </div>
 
      );
-}
+};
  
 export default OpticCableReverse;

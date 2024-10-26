@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   GPON_SPEEDS,
   UTP_SPEEDS
-} from "@/constants/internet_speeds"
+} from "@/constants/internet_speeds";
 
 import {
   MIN_MOBILE,
@@ -11,10 +11,6 @@ import {
   MID_MOBILE,
   MAX_MOBILE,
   MIN,
-  MID_G,
-  MID,
-  MAX,
-  marks,
   MARKS_MOBILE,
   MEGOGO_BUNDLES,
   MONTHS
@@ -41,12 +37,12 @@ export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType
       setVal(newValue as number);
       outerSetter(newValue as number);
     }
-  }
+  };
 
   const handleButtonClick = (newValue: number | number[]) => {
     setVal(newValue as number);
     outerSetter(newValue as number);
-  }
+  };
 
   const lastIndex = MEGOGO_BUNDLES.length - 1;
   const mainButtons = MEGOGO_BUNDLES;
@@ -102,7 +98,7 @@ export function MonthsSlider({ outerSetter, outer, setMonths }: MonthsSliderType
     outerSetter(newValue as number);
     setMonths(MONTHS.find((element) => element.value === newValue)?.months ?? 1);
 
-  }
+  };
 
   const lastIndex = MONTHS.length - 1;
 
@@ -210,7 +206,7 @@ export function TarifsSlider({ setSpeed, speed }: TarifsSliderType) {
   const handleButtonClick = (newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
-  }
+  };
 
   const maxIndex = UTP_SPEEDS.length - 1;
 
@@ -250,9 +246,8 @@ export function TarifsSliderGPON({ setSpeed, speed }: TarifsSliderType) {
   const handleButtonClick = (newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
-  }
+  };
 
-  const min_index = GPON_SPEEDS[0];
   const last_index = GPON_SPEEDS.length - 1;
 
   return (

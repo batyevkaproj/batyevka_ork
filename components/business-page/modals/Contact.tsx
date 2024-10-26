@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
 import Link from "next/link";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 import {useSearchParams, usePathname} from "next/navigation";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -15,12 +15,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50)
-})
+});
 
 
 
@@ -36,12 +36,13 @@ const Contact = () => {
         defaultValues: {
         username: "",
         },
-    })
+    });
     
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
+        console.log(values);
     }
 
     return (
@@ -81,6 +82,6 @@ const Contact = () => {
           }
           </>
      );
-}
+};
  
 export default Contact;
