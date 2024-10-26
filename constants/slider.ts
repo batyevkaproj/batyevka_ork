@@ -31,7 +31,7 @@ export const marks = [
     },
 ];
 
-export const marks_mobile = [
+export const MARKS_MOBILE = [
     {
         value: MIN_MOBILE,
     },
@@ -43,7 +43,7 @@ export const marks_mobile = [
     },
 ];
 
-export const megogo_bundles: MegogoBudles[] = [
+export const MEGOGO_BUNDLES: MegogoBudles[] = [
     {
         value: 1,
         name: 'Легка',
@@ -76,7 +76,7 @@ export const megogo_bundles: MegogoBudles[] = [
     }
 ];
 
-export const months: PrepaidMonths[] = [
+export const MONTHS: PrepaidMonths[] = [
     {
         value: 1,
         months: 1

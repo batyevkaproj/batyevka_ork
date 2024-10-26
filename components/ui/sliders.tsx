@@ -15,10 +15,17 @@ import {
   MID,
   MAX,
   marks,
-  marks_mobile,
-  megogo_bundles,
-  months
+  MARKS_MOBILE,
+  MEGOGO_BUNDLES,
+  MONTHS
 } from '@/constants/slider';
+
+type MegogoSliderType = {
+  disableSwap: boolean,
+  outerSetter: (value: number) => void,
+  outer: number,
+  isEnabled: boolean
+}
 
 import StyledSlider from '@/components/StyledSlider';
 import StyledSliderMobile from '@/components/StyledSliderMobile';
@@ -27,15 +34,24 @@ const marks_GPON = GPON_SPEEDS.map(item => ({ value: item.value }));
 const marks_UTP = UTP_SPEEDS.map(item => ({ value: item.value }));
 const marks_GPON_mobile = GPON_SPEEDS.map(item => ({ value: item.value }));
 
-export function MegogoSlider({ outerSetter, outer }: any) {
+export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType) {
   const [val, setVal] = useState<number>(outer ?? 1);
   const handleChange = (_: Event, newValue: number | number[]) => {
+    console.log(newValue);
+    if (isEnabled){
+      setVal(newValue as number);
+      outerSetter(newValue as number);
+    }
+  }
+
+  const handleButtonClick = (newValue: number | number[]) => {
+    console.log(newValue);
     setVal(newValue as number);
     outerSetter(newValue as number);
-  };
+  }
 
-  const lastIndex = megogo_bundles.length - 1;
-  const mainButtons = megogo_bundles;
+  const lastIndex = MEGOGO_BUNDLES.length - 1;
+  const mainButtons = MEGOGO_BUNDLES;
 
   return (
     <div>
@@ -44,8 +60,9 @@ export function MegogoSlider({ outerSetter, outer }: any) {
           {mainButtons.map((bundle) => (
             <button
               key={bundle.value}
+              disabled={!isEnabled}
               className={`${val === bundle.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
-              onClick={() => setVal(bundle.value)}
+              onClick={() => handleButtonClick(bundle.value)}
             >
               {bundle.name}
             </button>
@@ -55,56 +72,73 @@ export function MegogoSlider({ outerSetter, outer }: any) {
       <StyledSlider
         defaultValue={1}
         step={1}
-        marks={megogo_bundles}
+        marks={MEGOGO_BUNDLES}
         min={1}
-        max={megogo_bundles[lastIndex].value}
+        max={MEGOGO_BUNDLES[lastIndex].value}
         value={val}
         aria-label="Default"
         onChange={handleChange}
+        disabled={!isEnabled}
       />
     </div>
   );
 }
 
-export function MonthsSlider({ outerSetter, outer }: any) {
+export type MonthsSliderType = {
+  outerSetter: (number: number) => void,
+  outer: number,
+  setMonths: (number: number) => void,
+}
+
+export function MonthsSlider({ outerSetter, outer, setMonths }: MonthsSliderType) {
   const [val, setVal] = useState<number>(outer ?? 1);
 
   const handleChange = (_: Event, newValue: number | number[]) => {
+    console.log(newValue);
     setVal(newValue as number);
     outerSetter(newValue as number);
+    setMonths(MONTHS.find((element) => element.value === newValue)?.months ?? 1);
   };
 
-  const lastIndex = months.length - 1;
+  const buttonClickHandle = (newValue: number | number[]) => {
+    console.log(newValue);
+    setVal(newValue as number);
+    outerSetter(newValue as number);
+    setMonths(MONTHS.find((element) => element.value === newValue)?.months ?? 1);
+
+  }
+
+  const lastIndex = MONTHS.length - 1;
 
   return (
     <div>
       <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
         <div className={`flex justify-between w-full  mr-[16%]`}>
-          {months.slice(0, -1).map((item) => (
+          {MONTHS.slice(0, -1).map((item) => (
             <button
               key={item.value}
               className={`${val === item.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
-              onClick={() => setVal(item.value)}
+              onClick={() => buttonClickHandle(item.value)}
             >
               {item.months} міс
             </button>
           ))}
         </div>
         <button
-          className={`${val === months[lastIndex].value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
-          onClick={() => setVal(months[lastIndex].value)}
+          className={`${val === MONTHS[lastIndex].value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
+          onClick={() => buttonClickHandle(MONTHS[lastIndex].value)}
         >
           <span className={`absolute min-[3644px]:ml-[-54px] ml-[-36px] max-[2377px]:ml-[-26px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] w-[78px] min-[3644px]:w-[120px] max-[2377px]:w-[59px]`}>
-            {months[lastIndex].months} міс
+            {MONTHS[lastIndex].months} міс
           </span>
         </button>
       </div>
       <StyledSlider
         defaultValue={1}
         step={1}
-        marks={months}
+        marks={MONTHS}
         min={1}
-        max={months[lastIndex].value}
+        max={MONTHS[lastIndex].value}
         value={val}
         aria-label="Default"
         onChange={handleChange}
@@ -113,9 +147,12 @@ export function MonthsSlider({ outerSetter, outer }: any) {
   );
 }
 
+export type TarifsSliderType = {
+  setSpeed: (item: number) => void,
+  speed: number
+}
 
-
-export function TarifsSliderMobile({ setSpeed, speed }: any) {
+export function TarifsSliderMobile({ setSpeed, speed }: TarifsSliderType) {
   const [val, setVal] = useState<number>(speed ?? MIN_MOBILE);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
@@ -127,7 +164,7 @@ export function TarifsSliderMobile({ setSpeed, speed }: any) {
         defaultValue={MIN_MOBILE}
         value={val}
         step={null}
-        marks={marks_mobile}
+        marks={MARKS_MOBILE}
         min={0}
         max={MAX_MOBILE}
         onChange={handleChange}
@@ -141,7 +178,7 @@ export function TarifsSliderMobile({ setSpeed, speed }: any) {
   );
 }
 
-export function TarifsSliderMobileGPON({ setSpeed, speed }: any) {
+export function TarifsSliderMobileGPON({ setSpeed, speed }: TarifsSliderType) {
   const [val, setVal] = useState<number>(speed ?? MID_G_MOBILE);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
@@ -167,7 +204,7 @@ export function TarifsSliderMobileGPON({ setSpeed, speed }: any) {
   );
 }
 
-export function TarifsSlider({ setSpeed, speed }: any) {
+export function TarifsSlider({ setSpeed, speed }: TarifsSliderType) {
   const [val, setVal] = useState<number>(speed ?? MIN);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
@@ -207,7 +244,7 @@ export function TarifsSlider({ setSpeed, speed }: any) {
   );
 }
 
-export function TarifsSliderGPON({ setSpeed, speed }: any) {
+export function TarifsSliderGPON({ setSpeed, speed }: TarifsSliderType) {
   const [val, setVal] = useState<number>(speed);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
@@ -244,6 +281,7 @@ export function TarifsSliderGPON({ setSpeed, speed }: any) {
         value={val}
         aria-label="Default"
         onChange={handleChange}
+
       />
     </div>
   );

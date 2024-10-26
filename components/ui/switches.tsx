@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Switch, { SwitchProps } from '@mui/material/Switch';
-import  { useState } from 'react';
-import cross from '@/public/img/switch_cross.svg';
-import checkmark from '@/public/img/switch_checkmark.svg';
-import pp from '../../public/img/globe_white.png';
-import zIndex from '@mui/material/styles/zIndex';
-
 
 const DemoSwitch = styled((props: SwitchProps) => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />

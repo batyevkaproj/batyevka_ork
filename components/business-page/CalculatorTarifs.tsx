@@ -4,8 +4,8 @@ import {
     GPON_SPEEDS,
     UTP_SPEEDS
 } from "@/constants/internet_speeds"
-import { megogo_bundles } from '@/constants/slider';
-import { TVinfoItems as TVinfo } from '@/constants/megogo';
+import { MEGOGO_BUNDLES } from '@/constants/slider';
+import { TV_INFO_ITEMS as TVinfo } from '@/constants/megogo';
 
 import { useModal } from '@/hooks/use-modal-store';
 
@@ -27,20 +27,25 @@ import TVBlock from "@/components/tariff-page/TVBlock";
 import { Button } from '@/components/ui/button';
 
 const CalculatorTarifs = ({ theme }: ThemeProps) => {
-    const [isTarifsSwitch, setTarifsSwitch] = useState(false);
-    const [speedUtp, setSpeedUtp] = useState(1);
-    const [speedGpon, setSpeedGpon] = useState(5);
-    const [isTVChecked, setTVChecker] = useState(false);
-    const [isIPChecked, setIPChecker] = useState(false);
-    const [isSelectMenuChecked, setSelectMenu] = useState(1);
-    const [tvBundle, setTvBundle] = useState(0);
+    const [isTarifsSwitch, setTarifsSwitch] = useState<boolean>(false);
+    const [speedUtp, setSpeedUtp] = useState<number>(1);
+    const [speedGpon, setSpeedGpon] = useState<number>(5);
+    const [isTVChecked, setTVChecker] = useState<boolean>(false);
+    const [isIPChecked, setIPChecker] = useState<boolean>(false);
+    const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
+    const [tvBundle, setTvBundle] = useState<number>(0);
+    const [prepaidMonths, setPrepaidMonths] = useState<number>(1);
+    const [setupPrice, setSetupPrice] = useState<number>(1499);
+    const [routerPrice, setRouterPrice] = useState<number>(3000);
 
-    const [internetPrice, setInternetPrice] = useState(0);
-    const [tvPrice, setTvPrice] = useState(0);
-    const [ipPrice, setIpPrice] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(0);
+
+    const [internetPrice, setInternetPrice] = useState<number>(0);
+    const [tvPrice, setTvPrice] = useState<number>(0);
+    const [ipPrice, setIpPrice] = useState<number>(0);
+    const [totalPrice, setTotalPrice] = useState<number>(0);
 
     useEffect(() => {
+        // Deal with cost of Internet
         let newInternetPrice = 0;
         if (isTarifsSwitch) {
             const selectedUtp = UTP_SPEEDS.find(item => item.value === speedUtp);
@@ -51,14 +56,57 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         }
         setInternetPrice(newInternetPrice);
 
-        const newTvPrice = isTVChecked ? megogo_bundles[tvBundle]?.price : 0;
-        setTvPrice(newTvPrice);
+        // Deal with cost of TV bundles
+        const newTvPrice = isTVChecked ? MEGOGO_BUNDLES.find((element) => element.value == tvBundle)?.price : 0;
+        const newPriceValue = newTvPrice ?? 0;
+        setTvPrice(newPriceValue);
 
-        const newIpPrice = isIPChecked ? 50 : 0; // Assuming static IP costs 50
+        // Deal with static IP addresses
+        const newIpPrice = isIPChecked ? 50 : 0;
         setIpPrice(newIpPrice);
 
-        setTotalPrice(newInternetPrice + newTvPrice + newIpPrice);
-    }, [isTarifsSwitch, speedUtp, speedGpon, isTVChecked, tvBundle, isIPChecked]);
+        // Deal with setup price
+        let newSetupPrice = 1;
+
+        if (isTarifsSwitch) {
+            // UDP
+            if (prepaidMonths == 1) {
+                newSetupPrice = 499;
+            } else if (prepaidMonths == 6) {
+                newSetupPrice = 199;
+            } else if (prepaidMonths >= 12) {
+                newSetupPrice = 1;
+            }
+
+        } else {
+            // G-PON
+            if (prepaidMonths == 1) {
+                newSetupPrice = 1499;
+            } else if (prepaidMonths == 6) {
+                newSetupPrice = 999;
+            } else if (prepaidMonths == 12) {
+                newSetupPrice = 499;
+            } else if (prepaidMonths == 24) {
+                newSetupPrice = 100;
+            } else if (prepaidMonths == 36) {
+                newSetupPrice = 1;
+            }
+        }
+
+        if (isIPChecked) {
+            newSetupPrice = newSetupPrice + 50;
+        }
+
+        setSetupPrice(newSetupPrice);
+
+        console.log(`Selected month value: ${prepaidMonths}`);
+
+        console.log(`Prices: ${newInternetPrice}, ${newPriceValue}, ${newIpPrice}`);
+
+
+        // Calculating new price
+        setTotalPrice(newInternetPrice + newPriceValue + newIpPrice);
+    }, [isTarifsSwitch, speedUtp, speedGpon, isTVChecked, tvBundle, isIPChecked, prepaidMonths, routerPrice]);
 
     const handleTVswitch = () => {
         setTVChecker(!isTVChecked);
@@ -103,14 +151,12 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             <div className="flex items-center justify-center mt-[15px] min-[681px]:hidden">
                                 <RegularSwitch switchState={setTVChecker} state={isTVChecked} />
                             </div>
-                            {isTVChecked &&
                                 <>
                                     <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                                     <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                                        <MegogoSlider disableSwap="true" outerSetter={setTvBundle} outer={tvBundle} />
+                                        <MegogoSlider disableSwap={true} outerSetter={setTvBundle} outer={tvBundle} isEnabled={isTVChecked} />
                                     </div>
                                 </>
-                            }
                             <div className="font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden">
                                 <div className={`flex items-center gap-x-[20px]`}>
                                     <Checkbox onCheckedChange={() => setTvBundle(1)} className="size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]" />
@@ -143,7 +189,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             </div>
                             <p className="max-[680px]:flex max-[680px]:text-center max-[680px]:justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px]">Внесіть авансом абонплату та отримайте знижку на підключення та обладнання </p>
                             <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                                <MonthsSlider outerSetter={setSelectMenu} outer={isSelectMenuChecked} />
+                                <MonthsSlider outerSetter={setSelectMenu} setMonths={setPrepaidMonths} outer={isSelectMenuChecked} />
                             </div>
                             <div className="mt-[20px] w-full min-[681px]:hidden">
 
@@ -153,17 +199,20 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             <div className="flex grid grid-cols-1 items-center font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px]">
                                 <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                     <h1>* Підключення</h1>
-                                    <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">1 500 грн.</h1>
+                                    <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">{setupPrice} грн.</h1>
                                 </div>
-                                <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
+                                {
+                                    !isTarifsSwitch && <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                     <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />ONU HG8010H</span></h1>
                                     <h1 className="opacity-[0.5] max-[680px]:hidden">ONU HG8010H</h1>
                                     <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">безкоштовна оренда</h1>
                                 </div>
+                                }
+                                
                                 <div className="flex items-start justify-between max-[680px]:grid max-[680px]:grid-cols-2 max-[680px]:grid-rows-1 max-[680px]:border-b-[2px] max-[680px]:border-[#F4F2F2] max-[680px]:border-solid max-[680px]:pb-[10px]">
                                     <h1>* Wi-Fi роутер </h1>
                                     <h1 className="items-center justify-center text-center max-[680px]:hidden">Ультрапреміум <span className="opacity-[0.5]">MERCUSYS MR90X </span> <br />стандарт AX6000 </h1>
-                                    <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">3000 грн.</h1>
+                                    <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">{routerPrice} грн.</h1>
                                     <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]"><br />Ультрапреміум <span className="opacity-[0.5]">MERCUSYS <br />MR90X </span> стандарт AX6000</p>
                                 </div>
                             </div>
