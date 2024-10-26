@@ -37,7 +37,6 @@ const marks_GPON_mobile = GPON_SPEEDS.map(item => ({ value: item.value }));
 export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType) {
   const [val, setVal] = useState<number>(outer ?? 1);
   const handleChange = (_: Event, newValue: number | number[]) => {
-    console.log(newValue);
     if (isEnabled){
       setVal(newValue as number);
       outerSetter(newValue as number);
@@ -45,7 +44,6 @@ export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType
   }
 
   const handleButtonClick = (newValue: number | number[]) => {
-    console.log(newValue);
     setVal(newValue as number);
     outerSetter(newValue as number);
   }
@@ -94,14 +92,12 @@ export function MonthsSlider({ outerSetter, outer, setMonths }: MonthsSliderType
   const [val, setVal] = useState<number>(outer ?? 1);
 
   const handleChange = (_: Event, newValue: number | number[]) => {
-    console.log(newValue);
     setVal(newValue as number);
     outerSetter(newValue as number);
     setMonths(MONTHS.find((element) => element.value === newValue)?.months ?? 1);
   };
 
   const buttonClickHandle = (newValue: number | number[]) => {
-    console.log(newValue);
     setVal(newValue as number);
     outerSetter(newValue as number);
     setMonths(MONTHS.find((element) => element.value === newValue)?.months ?? 1);

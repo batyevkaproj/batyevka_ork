@@ -4,6 +4,11 @@ import {
     GPON_SPEEDS,
     UTP_SPEEDS
 } from "@/constants/internet_speeds"
+import {
+    UTP_SETUP_PRICES,
+    GPON_SETUP_PRICES
+} from "@/constants/setup_prices";
+import { ROUTER_PRICE } from '@/constants/router_price';
 import { MEGOGO_BUNDLES } from '@/constants/slider';
 import { TV_INFO_ITEMS as TVinfo } from '@/constants/megogo';
 
@@ -62,51 +67,36 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         setTvPrice(newPriceValue);
 
         // Deal with static IP addresses
-        const newIpPrice = isIPChecked ? 50 : 0;
+        const newIpPrice = isIPChecked ? 50 : 0; // Monthly payment for Static IP is 50 UAH
         setIpPrice(newIpPrice);
 
         // Deal with setup price
-        let newSetupPrice = 1;
-
-        if (isTarifsSwitch) {
-            // UDP
-            if (prepaidMonths == 1) {
-                newSetupPrice = 499;
-            } else if (prepaidMonths == 6) {
-                newSetupPrice = 199;
-            } else if (prepaidMonths >= 12) {
-                newSetupPrice = 1;
-            }
-
-        } else {
-            // G-PON
-            if (prepaidMonths == 1) {
-                newSetupPrice = 1499;
-            } else if (prepaidMonths == 6) {
-                newSetupPrice = 999;
-            } else if (prepaidMonths == 12) {
-                newSetupPrice = 499;
-            } else if (prepaidMonths == 24) {
-                newSetupPrice = 100;
-            } else if (prepaidMonths == 36) {
-                newSetupPrice = 1;
-            }
-        }
+        let newSetupPrice = (isTarifsSwitch ? UTP_SETUP_PRICES : GPON_SETUP_PRICES).find(tier => prepaidMonths == tier.months)?.price ?? 1499;
 
         if (isIPChecked) {
-            newSetupPrice = newSetupPrice + 50;
+            newSetupPrice = newSetupPrice + 100; // Setup price for static IP is 100 UAH
         }
 
         setSetupPrice(newSetupPrice);
 
-        console.log(`Selected month value: ${prepaidMonths}`);
+        // Deal with router price
 
-        console.log(`Prices: ${newInternetPrice}, ${newPriceValue}, ${newIpPrice}`);
+        const newRouterPrice = ROUTER_PRICE.find(tier => prepaidMonths == tier.months)?.price ?? 3000;
 
+        setRouterPrice(newRouterPrice);
 
         // Calculating new price
         setTotalPrice(newInternetPrice + newPriceValue + newIpPrice);
-    }, [isTarifsSwitch, speedUtp, speedGpon, isTVChecked, tvBundle, isIPChecked, prepaidMonths, routerPrice]);
+    }, [
+        isTarifsSwitch,
+        speedUtp,
+        speedGpon,
+        isTVChecked,
+        tvBundle,
+        isIPChecked,
+        prepaidMonths,
+        routerPrice
+    ]);
 
     const handleTVswitch = () => {
         setTVChecker(!isTVChecked);
@@ -232,14 +222,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 <div className="flex grid grid-cols-1 items-center w-full font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:gap-[22px] gap-[15px] max-[2377px]:gap-[12px] max-[680px]:hidden">
                                     <div className="flex items-end justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                         <h1>Акційна абонплата на Перші 4 місяці</h1>
-                                        <h1 className="text-[#DC662D] flex items-end justify-between w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
+                                        <h1 className="text-[#DC662D] flex items-end justify-between gap-3 w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
                                             <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{Math.round(totalPrice * 0.6)}</span>
                                             <span className="min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
                                     </div>
                                     <div className="flex items-end justify-between min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                         <h1>Абонплата з 5го місяця</h1>
-                                        <h1 className="text-[#51B18B] flex items-end justify-between w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
+                                        <h1 className="text-[#51B18B] flex items-end justify-between gap-3 w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
                                             <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{Math.round(totalPrice)}</span>
                                             <span className="min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
@@ -249,14 +239,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                     <div className="border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]">
                                         <h1 className={`mt-[20px] mb-[10px]`}>Акційна абонплата на Перші 4 місяці</h1>
                                         <div className={`flex justify-end items-end text-[#DC662D]`}>
-                                            <h1 className={`text-[70px] leading-[70px] `}>0</h1>
+                                            <h1 className={`text-[70px] leading-[70px] `}>{Math.round(totalPrice * 0.6)}</h1>
                                             <h1 className={`flex justify-end text-[30px] leading-[35px] w-[200px]`}>грн/міс</h1>
                                         </div>
                                     </div>
                                     <div className={`border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]`}>
                                         <h1 className={`mt-[20px] mb-[10px]`}>Абонплата з 5го місяця</h1>
                                         <div className={`text-[#51B18B] flex items-end justify-end`}>
-                                            <h1 className={`text-[70px] leading-[70px]`}>0</h1>
+                                            <h1 className={`text-[70px] leading-[70px]`}>{Math.round(totalPrice)}</h1>
                                             <h1 className={`flex justify-end text-[30px] leading-[35px] w-[200px]`}>грн/міс</h1>
                                         </div>
                                     </div>
