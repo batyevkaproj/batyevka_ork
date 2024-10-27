@@ -78,7 +78,7 @@ export const PhoneInputModal = ({ theme }: any) => {
             toast({
                 variant: "destructive",
                 title: "Шкода...",
-                description: "'Помилка відправки коду. Спробуйте ще раз.'",
+                description: "Помилка відправки коду. Спробуйте ще раз.",
               });
             console.error('Error:', error);
         } finally {
