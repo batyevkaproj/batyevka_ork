@@ -16,6 +16,18 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
         border: 'none',
         color: '#DC662D',
     },
+    '&.Mui-disabled': {
+        '& .MuiSlider-track': {
+            color: '#F0F0F0',
+        },
+        '& .MuiSlider-thumb': {
+            backgroundColor: '#F0F0F0',
+        },
+        '& .MuiSlider-markActive': {
+            border: '2px solid #F0F0F0',
+            backgroundColor: 'white',
+        },
+    },
     '& .MuiSlider-thumb': {
         [theme.breakpoints.down(2378)]: {
             width: 16,
@@ -33,7 +45,6 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
         boxShadow: 'none',
         '&:focus, &:hover, &.Mui-active': {
             boxShadow: 'none',
-
         },
     },
     '& .MuiSlider-mark': {
@@ -54,7 +65,6 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
         },
         backgroundColor: '#F4F2F2',
         borderRadius: 30,
-
         opacity: 1
     },
     '& .MuiSlider-markActive': {
@@ -78,7 +88,6 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
             color: '#BDBDBD',
         }
     },
-
 }));
 
 export default StyledSlider;

@@ -216,14 +216,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                         <h1>Акційна абонплата на Перші 4 місяці</h1>
                                         <h1 className="text-[#DC662D] flex items-end justify-between gap-3 w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
                                             <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{Math.round(totalPrice * 0.6)}</span>
-                                            <span className="min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
+                                            <span className="text-nowrap min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
                                     </div>
                                     <div className="flex items-end justify-between min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                         <h1>Абонплата з 5го місяця</h1>
                                         <h1 className="text-[#51B18B] flex items-end justify-between gap-3 w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
                                             <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{Math.round(totalPrice)}</span>
-                                            <span className="min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
+                                            <span className="text-nowrap min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
                                     </div>
                                 </div>
@@ -232,14 +232,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                         <h1 className={`mt-[20px] mb-[10px]`}>Акційна абонплата на Перші 4 місяці</h1>
                                         <div className={`flex justify-end items-end text-[#DC662D]`}>
                                             <h1 className={`text-[70px] leading-[70px] `}>{Math.round(totalPrice * 0.6)}</h1>
-                                            <h1 className={`flex justify-end text-[30px] leading-[35px] w-[200px]`}>грн/міс</h1>
+                                            <h1 className="text-nowrap text-[30px] leading-[35px] w-[200px]">грн/міс</h1>
                                         </div>
                                     </div>
                                     <div className={`border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]`}>
                                         <h1 className={`mt-[20px] mb-[10px]`}>Абонплата з 5го місяця</h1>
                                         <div className={`text-[#51B18B] flex items-end justify-end`}>
                                             <h1 className={`text-[70px] leading-[70px]`}>{Math.round(totalPrice)}</h1>
-                                            <h1 className={`flex justify-end text-[30px] leading-[35px] w-[200px]`}>грн/міс</h1>
+                                            <h1 className="text-nowrap text-[30px] leading-[35px] w-[200px]">грн/міс</h1>
                                         </div>
                                     </div>
                                 </div>
