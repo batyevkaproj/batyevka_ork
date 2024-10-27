@@ -29,7 +29,7 @@ export const PhoneInputModal = ({ theme }: any) => {
     });
 
     const [smsCode, setSmsCode] = useState(['', '', '', '', '', '']);
-    const inputRefs = useRef([]);
+    const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
     const phoneRegex = /^(?:\+38|38)?0(50|63|66|67|68|73|93|95|96|97|98|99)\d{7}$/;
 
@@ -39,15 +39,16 @@ export const PhoneInputModal = ({ theme }: any) => {
             newCode[index] = value;
             setSmsCode(newCode);
 
-            if (value && index < 5) {
-                inputRefs.current[index + 1].focus();
+            // Теперь проверяем существование элемента перед вызовом focus
+            if (value && index < 5 && inputRefs.current[index + 1]) {
+                inputRefs.current[index + 1]?.focus();
             }
         }
     };
 
     const handleKeyDown = (index: number, e: any) => {
         if (e.key === 'Backspace' && !smsCode[index] && index > 0) {
-            inputRefs.current[index - 1].focus();
+            inputRefs.current[index - 1]?.focus();
         }
     };
 
@@ -224,10 +225,10 @@ export const PhoneInputModal = ({ theme }: any) => {
                         </p>
 
                         <div className="flex gap-4 justify-center">
-                            {smsCode.map((digit, index) => (
+                        {smsCode.map((digit, index) => (
                                 <input
                                     key={index}
-                                    ref={el => inputRefs.current[index] = el}
+                                    ref={el => { inputRefs.current[index] = el; }}
                                     type="tel"
                                     maxLength={1}
                                     value={digit}
