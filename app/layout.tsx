@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import { ModalProvider } from "@/providers/modal-provider";
 import { Montserrat } from 'next/font/google';
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: Readonly<{
       <body>
         <ModalProvider />
         {children}
+        <Toaster />
         </body>
     </html>
   );

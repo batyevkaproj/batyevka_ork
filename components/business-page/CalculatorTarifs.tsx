@@ -34,7 +34,7 @@ import { Button } from '@/components/ui/button';
 const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [isTarifsSwitch, setTarifsSwitch] = useState<boolean>(false);
     const [speedUtp, setSpeedUtp] = useState<number>(1);
-    const [speedGpon, setSpeedGpon] = useState<number>(5);
+    const [speedGpon, setSpeedGpon] = useState<number>(1);
     const [isTVChecked, setTVChecker] = useState<boolean>(false);
     const [isIPChecked, setIPChecker] = useState<boolean>(false);
     const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
