@@ -1,6 +1,7 @@
 declare namespace NodeJS {
     interface ProcessEnv {
-        LIFECELL_API_URL: string;
-        LIFECELL_API_KEY: string;
+        TELEGRAM_CHAT_ID: string,
+        TELEGRAM_BOT_TOKEN: string,
+        OMNICELL_PASSWORD: string;
     }
 }

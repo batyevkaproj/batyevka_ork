@@ -13,9 +13,10 @@ export class VerificationService {
   private static readonly MAX_ATTEMPTS = 3;
   private static readonly PREFIX = 'phone_verify:';
 
+
   static async generateCode(phone: string): Promise<string> {
     // Генерируем 6-значный код
-    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    const code = Array.from({ length: 6 }, () => Math.floor(Math.random() * 10)).join('');
     const key = this.PREFIX + phone;
 
     // Сохраняем код и метаданные в Redis

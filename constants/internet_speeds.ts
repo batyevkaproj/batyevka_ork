@@ -7,8 +7,8 @@ export type SpeedItemProps = {
 }
 
 export const GPON_SPEEDS: SpeedItemProps[] = [
-    { value: 1, speed: 300, measure: 'Мбіт', price: 399 },
-    { value: 2, speed: 1, measure: 'Гбіт', price: 499 },
+    { value: 1, speed: 300, measure: 'Мбіт', price: 389 },
+    { value: 2, speed: 1, measure: 'Гбіт', price: 399 },
     { value: 3, speed: 2.5, measure: 'Гбіт', price: 1120 },
     { value: 4, speed: 5, measure: 'Гбіт', price: 2245 }
 ];
