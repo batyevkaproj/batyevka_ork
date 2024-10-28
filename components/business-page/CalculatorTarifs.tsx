@@ -27,12 +27,13 @@ import {
     TarifsSliderMobileGPON
 } from "../ui/sliders";
 import { TarifsSwitch, RegularSwitch } from "../ui/switches";
-import MobileTVSelector from '@/components/business-page/MobileTVSelector';
+import MegogoSliderMobile from '@/components/business-page/MegogoSliderMobile';
 
 
 import InternetBlock from "@/components/tariff-page/InternetBlock";
 import TVBlock from "@/components/tariff-page/TVBlock";
 import { Button } from '@/components/ui/button';
+import MobileMonthsSelect from './MobileMonthsSelect';
 
 const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [isTarifsSwitch, setTarifsSwitch] = useState<boolean>(false);
@@ -219,11 +220,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                     <MegogoSlider disableSwap={true} outerSetter={setTvBundle} outer={tvBundle} isEnabled={isTVChecked} />
                                 </div>
                             </>
-                            <MobileTVSelector
-                                selectedBundle={tvBundle}
-                                onBundleSelect={setTvBundle}
-                                isEnabled={isTVChecked}
-                            />
+                            <MegogoSliderMobile selectedBundle={tvBundle} onBundleSelect={setTvBundle} isEnabled={isTVChecked} />
                             <div className="flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden">
                                 <RegularSwitch switchState={setIPChecker} state={isIPChecked} />
                                 <p className="font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">Додай зовнішню постійну ІР адресу</p>
@@ -233,6 +230,15 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 <RegularSwitch switchState={setIPChecker} state={isIPChecked} />
                             </div>
                             <p className="max-[680px]:flex max-[680px]:text-center max-[680px]:justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px]">Внесіть авансом абонплату та отримайте знижку на підключення та обладнання </p>
+                            
+                            <div className="mt-[20px] w-full min-[681px]:hidden">
+                              <MobileMonthsSelect 
+                                outerSetter={setSelectMenu}
+                                outer={isSelectMenuChecked}
+                                setMonths={setPrepaidMonths}
+                              />
+                            </div>
+                            
                             <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
                                 <MonthsSlider outerSetter={setSelectMenu} setMonths={setPrepaidMonths} outer={isSelectMenuChecked} />
                             </div>
@@ -305,7 +311,18 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                             <h1 className="text-nowrap text-[30px] leading-[35px]">грн/міс</h1>
                                         </div>
                                     </div>
+                                    
                                 </div>
+                                <div className="flex justify-center">
+                                    <Button
+                                        onClick={() => handleOpenModal()} 
+                                        className="mt-10"
+                                        variant="MobConnect2"
+                                    >
+                                        Підключитись
+                                    </Button>
+                                </div>
+                                
                                 <div className={`min-[3644px]:mt-[66px] mt-[44px] max-[2377px]:mt-[30px] max-[680px]:flex max-[680px]:justify-center`}>
                                     <Button className="w-full max-[680px]:w-[270px] bg-[#DC662D] text-white font-semibold rounded-full min-[3644px]:h-[118px] h-[78px] max-[2377px]:h-[60px] shadow-[0_4px_20px_0px_#DC662D50] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]" onClick={() => handleOpenModal()} variant="connect">Підключитись</Button>
                                 </div>

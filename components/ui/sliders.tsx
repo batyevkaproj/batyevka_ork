@@ -6,12 +6,7 @@ import {
 } from "@/constants/internet_speeds";
 
 import {
-  MIN_MOBILE,
-  MID_G_MOBILE,
-  MID_MOBILE,
-  MAX_MOBILE,
   MIN,
-  MARKS_MOBILE,
   MEGOGO_BUNDLES,
   MONTHS
 } from '@/constants/slider';
@@ -28,12 +23,11 @@ import StyledSliderMobile from '@/components/StyledSliderMobile';
 
 const marks_GPON = GPON_SPEEDS.map(item => ({ value: item.value }));
 const marks_UTP = UTP_SPEEDS.map(item => ({ value: item.value }));
-const marks_GPON_mobile = GPON_SPEEDS.map(item => ({ value: item.value }));
 
 export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType) {
   const [val, setVal] = useState<number>(outer ?? 1);
   const handleChange = (_: Event, newValue: number | number[]) => {
-    if (isEnabled){
+    if (isEnabled) {
       setVal(newValue as number);
       outerSetter(newValue as number);
     }
@@ -145,52 +139,86 @@ export type TarifsSliderType = {
 }
 
 export function TarifsSliderMobile({ setSpeed, speed }: TarifsSliderType) {
-  const [val, setVal] = useState<number>(speed ?? MIN_MOBILE);
+  const [val, setVal] = useState<number>(speed ?? UTP_SPEEDS[0].value);
+
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
   };
+
+  const handleButtonClick = (newValue: number) => {
+    setVal(newValue);
+    setSpeed(newValue);
+  };
+
+  const marks = UTP_SPEEDS.map(item => ({ value: item.value }));
+
   return (
-    <div className={``}>
+    <div>
       <StyledSliderMobile
-        defaultValue={MIN_MOBILE}
+        defaultValue={UTP_SPEEDS[0].value}
         value={val}
         step={null}
-        marks={MARKS_MOBILE}
+        marks={marks}
         min={0}
-        max={MAX_MOBILE}
+        max={UTP_SPEEDS[UTP_SPEEDS.length - 1].value}
         onChange={handleChange}
       />
       <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
-        <button className={`${val == MIN_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'} ml-[10%]`} onClick={() => setVal(MIN_MOBILE)}> 100 Мбіт</button>
-        <button className={`${val == MID_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'} mr-[10%]`} onClick={() => setVal(MID_MOBILE)}> 500 Мбіт</button>
-        <button className={`${val == MAX_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>1 Гбіт</button>
+        {UTP_SPEEDS.map((speed, index) => (
+          <button
+            key={index}
+            className={`${val === speed.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'} 
+              ${index === 0 ? 'ml-[10%]' : ''} 
+              ${index === UTP_SPEEDS.length - 1 ? 'mr-[10%]' : ''}`}
+            onClick={() => handleButtonClick(speed.value)}
+          >
+            {speed.speed} {speed.measure}
+          </button>
+        ))}
       </div>
     </div>
   );
 }
 
 export function TarifsSliderMobileGPON({ setSpeed, speed }: TarifsSliderType) {
-  const [val, setVal] = useState<number>(speed ?? MID_G_MOBILE);
+  const [val, setVal] = useState<number>(speed ?? GPON_SPEEDS[0].value);
+
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
   };
+
+  const handleButtonClick = (newValue: number) => {
+    setVal(newValue);
+    setSpeed(newValue);
+  };
+
+  const marks = GPON_SPEEDS.map(item => ({ value: item.value }));
+
   return (
-    <div className={``}>
+    <div>
       <StyledSliderMobile
-        defaultValue={MID_G_MOBILE}
+        defaultValue={GPON_SPEEDS[0].value}
         value={val}
-        step={1}
-        marks={marks_GPON_mobile}
-        max={MAX_MOBILE}
+        step={null}
+        marks={marks}
+        min={0}
+        max={GPON_SPEEDS[GPON_SPEEDS.length - 1].value}
         onChange={handleChange}
       />
-      <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
-        <button className={`${val == MID_G_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'} ml-[24%]`} onClick={() => setVal(MID_G_MOBILE)}> 300 Мбіт</button>
-        <button className={`${val == MAX_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>1 Гбіт</button>
-        <button className={`${val == MAX_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>2,5 Гбіт</button>
-        <button className={`${val == MAX_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>5 Гбіт</button>
+      <div className="flex justify-between flex-wrap font-bold leading-[22px] text-[18px] relative top-[-11px]">
+        {GPON_SPEEDS.map((speed, index) => (
+          <button
+            key={index}
+            className={`${val === speed.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}
+              ${index === 0 ? 'ml-[5%]' : ''}
+              ${index === GPON_SPEEDS.length - 1 ? 'mr-[5%]' : ''}`}
+            onClick={() => handleButtonClick(speed.value)}
+          >
+            {speed.speed} {speed.measure}
+          </button>
+        ))}
       </div>
     </div>
   );
@@ -272,7 +300,6 @@ export function TarifsSliderGPON({ setSpeed, speed }: TarifsSliderType) {
         value={val}
         aria-label="Default"
         onChange={handleChange}
-
       />
     </div>
   );
