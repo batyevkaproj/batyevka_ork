@@ -3,7 +3,6 @@ import { useState, useRef } from 'react';
 import { useModal } from "@/hooks/use-modal-store";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
-import type { OrderData } from '@/hooks/use-modal-store';
 
 
 import { Button } from "@/components/ui/button";
