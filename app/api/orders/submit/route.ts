@@ -11,7 +11,7 @@ export async function POST(req: Request) {
       phone_client_business_req: body.customerPhone,
       
       internet_type_business_req: body.internetType,
-      internet_speed_business_req: `${body.internetSpeed} ${body.internetSpeed >= 1000 ? 'Гбіт' : 'Мбіт'}`,
+      internet_speed_business_req: `${body.internetSpeed} ${body.internetMeasure}`,
       tv_package_business_req: body.hasTV ? body.tvPackage?.name : 'Без ТБ',
       static_ip_business_req: body.hasStaticIP ? 'Так' : 'Ні',
       

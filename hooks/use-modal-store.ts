@@ -5,6 +5,7 @@ import { create } from "zustand";
 export type OrderData = {
   internetType: string;
   internetSpeed: number;
+  internetMeasure: string,
   internetPrice: number;
   hasTV: boolean;
   tvPackage?: {
@@ -17,6 +18,7 @@ export type OrderData = {
   setupPrice: number;
   routerPrice: number;
   totalMonthlyPrice: number;
+  additionalInfo?: string
 }
 
 export type ModalType = "call" | "contact" | "order" | "payment" | "phone-input" | "sms-verify";
