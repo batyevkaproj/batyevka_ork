@@ -7,7 +7,7 @@ type MobileTVSelectorProps = {
   isEnabled: boolean;
 }
 
-const MobileTVSelector = ({ selectedBundle, onBundleSelect, isEnabled }: MobileTVSelectorProps) => {
+const MegogoSliderMobile = ({ selectedBundle, onBundleSelect, isEnabled }: MobileTVSelectorProps) => {
   return (
     <div className="font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden">
       {MEGOGO_BUNDLES.filter(bundle => bundle.value !== 0).map((bundle) => (
@@ -22,7 +22,7 @@ const MobileTVSelector = ({ selectedBundle, onBundleSelect, isEnabled }: MobileT
             disabled={!isEnabled}
             className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}
           />
-          <p className={`${selectedBundle === bundle.value ? 'text-[#DC662D]' : ''} ${!isEnabled ? 'text-[#DBDBDB]' : ''}`}>
+          <p className={`${selectedBundle === bundle.value && isEnabled ? 'text-[#DC662D]' : ''} ${!isEnabled ? 'text-[#DBDBDB]': ''}`}>
             {bundle.name}
           </p>
         </div>
@@ -31,4 +31,4 @@ const MobileTVSelector = ({ selectedBundle, onBundleSelect, isEnabled }: MobileT
   );
 };
 
-export default MobileTVSelector;
+export default MegogoSliderMobile;
