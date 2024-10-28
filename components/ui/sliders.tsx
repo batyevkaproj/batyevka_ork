@@ -1,262 +1,136 @@
-import * as React from 'react';
-import Slider from '@mui/material/Slider';
-import { styled } from '@mui/material/styles';
-import { Montserrat } from 'next/font/google';
+import { useState } from "react";
 
-const MIN_MOBILE = 3;
-const MID_G_MOBILE = 4;
-const MID_MOBILE = 5;
-const MAX_MOBILE = 10;
+import {
+  GPON_SPEEDS,
+  UTP_SPEEDS
+} from "@/constants/internet_speeds";
 
-const MIN = 1;
-const MID_G = 3;
-const MID = 5;
-const MAX = 10;
+import {
+  MIN_MOBILE,
+  MID_G_MOBILE,
+  MID_MOBILE,
+  MAX_MOBILE,
+  MIN,
+  MARKS_MOBILE,
+  MEGOGO_BUNDLES,
+  MONTHS
+} from '@/constants/slider';
 
-const marks = [
-    {
-      value: MIN,
-    },
-    {
-      value: MID,
-    },
-    {
-      value: MAX,
-    },
-  ];
-
-const marks_mobile = [
-  {
-    value: MIN_MOBILE,
-  },
-  {
-    value: MID_MOBILE,
-  },
-  {
-    value: MAX_MOBILE,
-  },
-];
-
-const marks_GPON = [
-  {
-    value: MID_G,
-  },
-  {
-    value: MAX,
-  },
-];
-
-const marks_GPON_mobile = [
-  {
-    value: MID_G_MOBILE,
-  },
-  {
-    value: MAX_MOBILE,
-  },
-];
-
-const megogo_overpay = [
-  {
-    value: 1,
-  },
-  {
-    value: 2,
-  },
-  {
-    value: 3,
-  },
-  {
-    value: 4,
-  },
-  {
-    value: 5,
-  },
-];
-
-const months = [
-  {
-    value: 1,
-  },
-  {
-    value: 2,
-  },
-  {
-    value: 3,
-  },
-  {
-    value: 4,
-  },
-  {
-    value: 5,
-  },
-];
-
-const DemoSlider = styled(Slider)(({ theme }) => ({
-  [theme.breakpoints.down(2378)]: {
-    height: 5,
-  },
-  [theme.breakpoints.up(2378)]: {
-    height: 7,
-  },
-  [theme.breakpoints.up(3644)]: {
-    height: 11,
-  },
-  marginTop: 0,
-  '& .MuiSlider-track': {
-    border: 'none',
-    color: '#DC662D',
-  },
-  '& .MuiSlider-thumb': {
-    [theme.breakpoints.down(2378)]: {
-      width: 16,
-      height: 16,
-    },
-    [theme.breakpoints.up(2378)]: {
-      width: 20,
-      height: 20,
-    },
-    [theme.breakpoints.up(3644)]: {
-      width: 30,
-      height: 30,
-    },
-    backgroundColor: '#DC662D',
-    boxShadow: 'none',
-    '&:focus, &:hover, &.Mui-active': {
-      boxShadow: 'none',
-      
-    },
-  },
-  '& .MuiSlider-mark': {
-    [theme.breakpoints.down(2378)]: {
-      width: 16,
-      height: 16,
-      marginLeft: -7,  
-    },
-    [theme.breakpoints.up(2378)]: {
-      width: 20,
-      height: 20,
-      marginLeft: -9, 
-    },
-    [theme.breakpoints.up(3644)]: {
-      width: 30,
-      height: 30,
-      marginLeft: -14, 
-    },
-    backgroundColor: '#F4F2F2',
-    borderRadius: 30, 
-      
-    opacity: 1
-  },
-  '& .MuiSlider-markActive': {
-    border: '2px solid #DC662D',
-    backgroundColor: 'white',
-  },
-  '& .MuiSlider-rail': {
-    opacity: 1,
-    backgroundColor: '#F4F2F2',
-  },
-  '& .MuiSlider-markLabel': {
-    fontSize: 18,
-    color: '#BDBDBD',
-    fontWeight: 700,
-    fontStyle: 'normal',
-    top: -20,
-  },
-  '& .MuiSlider-markLabelActive': {
-    color: '#5F6061',
-    '&::before, &::after':{
-      color: '#BDBDBD',
-    }
-  },
-  
-}));
-
-const DemoSliderMobile = styled(Slider)({
-  height: 40,
-  marginTop: 0,
-  borderRadius: 50,
-  '& .MuiSlider-track': {
-    border: 'none',
-    color: '#DC662D',
-    boxShadow: '0px 4px 20px 0px #DC662D',
-  },
-  '& .MuiSlider-thumb': {
-    height: 0,
-    width: 0,
-  },
-  '& .MuiSlider-mark': {
-    height: 0,
-    width: 0,
-    opacity: 0,
-  },
-  '& .MuiSlider-rail': {
-    opacity: 1,
-    backgroundColor: '#F4F2F2',
-  },
-  '& .MuiSlider-markLabel': {
-    fontSize: 18,
-    color: '#BDBDBD',
-    fontWeight: 700,
-    fontStyle: 'normal',
-    top: 60,
-  },
-  '& .MuiSlider-markLabelActive': {
-    color: '#5F6061',
-  },
-});
-
-export function OverpaySlider({outerSetter}:any){
-  const [val, setVal] = React.useState<number>(0);
-  const handleChange = (_: Event, newValue: number | number[]) => {
-    setVal(newValue as number)
-    outerSetter(newValue as number)
-  };
-  return (
-    <div className={``}>
-      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
-        <div className={`flex justify-between w-full mx-[16%]`}>
-          <button className={`${val==(1) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(1)}> Легка</button>
-          <button className={`${val==(2) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(2)}> Оптимальна</button>
-          <button className={`${val==(3) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(3)}>Максимальна</button>
-          <button className={`${val==(4) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(4)}> Спорт</button>
-        </div>
-        <button className={`${val==(5) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(5)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] `}>Кіно+</span></button>
-      </div>
-      <DemoSlider
-        defaultValue={0}
-        step={1}
-        marks={megogo_overpay}
-        max={5}
-        value={val}
-        aria-label="Default"
-        onChange={handleChange}
-      />
-    </div>
-  );
+type MegogoSliderType = {
+  disableSwap: boolean,
+  outerSetter: (value: number) => void,
+  outer: number,
+  isEnabled: boolean
 }
 
-export function MonthsSlider({outerSetter}:any){
-  const [val, setVal] = React.useState<number>(0);
+import StyledSlider from '@/components/StyledSlider';
+import StyledSliderMobile from '@/components/StyledSliderMobile';
+
+const marks_GPON = GPON_SPEEDS.map(item => ({ value: item.value }));
+const marks_UTP = UTP_SPEEDS.map(item => ({ value: item.value }));
+const marks_GPON_mobile = GPON_SPEEDS.map(item => ({ value: item.value }));
+
+export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType) {
+  const [val, setVal] = useState<number>(outer ?? 1);
   const handleChange = (_: Event, newValue: number | number[]) => {
+    if (isEnabled){
+      setVal(newValue as number);
+      outerSetter(newValue as number);
+    }
+  };
+
+  const handleButtonClick = (newValue: number | number[]) => {
     setVal(newValue as number);
     outerSetter(newValue as number);
   };
+
+  const lastIndex = MEGOGO_BUNDLES.length - 1;
+  const mainButtons = MEGOGO_BUNDLES;
+
   return (
-    <div className={``}>
+    <div>
       <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
-        <div className={`flex justify-between w-full ml-[17%] mr-[16%]`}>
-          <button className={`${val==(1) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(1)}> 1 міс</button>
-          <button className={`${val==(2) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(2)}> 6 міс</button>
-          <button className={`${val==(3) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(3)}>12 міс</button>
-          <button className={`${val==(4) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(4)}> 24 міс</button>
+        <div className="flex justify-between w-full">
+          {mainButtons.map((bundle) => (
+            <button
+              key={bundle.value}
+              disabled={!isEnabled}
+              className={`${val === bundle.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
+              onClick={() => handleButtonClick(bundle.value)}
+            >
+              {bundle.name}
+            </button>
+          ))}
         </div>
-        <button className={`${val==(5) ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(5)}><span className={`absolute min-[3644px]:ml-[-54px] ml-[-36px] max-[2377px]:ml-[-26px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] w-[78px] min-[3644px]:w-[120px] max-[2377px]:w-[59px]`}>36 міс</span></button>
       </div>
-      <DemoSlider
-        defaultValue={0}
+      <StyledSlider
+        defaultValue={1}
         step={1}
-        marks={months}
-        max={5}
+        marks={MEGOGO_BUNDLES}
+        min={1}
+        max={MEGOGO_BUNDLES[lastIndex].value}
+        value={val}
+        aria-label="Default"
+        onChange={handleChange}
+        disabled={!isEnabled}
+      />
+    </div>
+  );
+}
+
+export type MonthsSliderType = {
+  outerSetter: (number: number) => void,
+  outer: number,
+  setMonths: (number: number) => void,
+}
+
+export function MonthsSlider({ outerSetter, outer, setMonths }: MonthsSliderType) {
+  const [val, setVal] = useState<number>(outer ?? 1);
+
+  const handleChange = (_: Event, newValue: number | number[]) => {
+    setVal(newValue as number);
+    outerSetter(newValue as number);
+    setMonths(MONTHS.find((element) => element.value === newValue)?.months ?? 1);
+  };
+
+  const buttonClickHandle = (newValue: number | number[]) => {
+    setVal(newValue as number);
+    outerSetter(newValue as number);
+    setMonths(MONTHS.find((element) => element.value === newValue)?.months ?? 1);
+
+  };
+
+  const lastIndex = MONTHS.length - 1;
+
+  return (
+    <div>
+      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
+        <div className={`flex justify-between w-full  mr-[16%]`}>
+          {MONTHS.slice(0, -1).map((item) => (
+            <button
+              key={item.value}
+              className={`${val === item.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
+              onClick={() => buttonClickHandle(item.value)}
+            >
+              {item.months} міс
+            </button>
+          ))}
+        </div>
+        <button
+          className={`${val === MONTHS[lastIndex].value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
+          onClick={() => buttonClickHandle(MONTHS[lastIndex].value)}
+        >
+          <span className={`absolute min-[3644px]:ml-[-54px] ml-[-36px] max-[2377px]:ml-[-26px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] w-[78px] min-[3644px]:w-[120px] max-[2377px]:w-[59px]`}>
+            {MONTHS[lastIndex].months} міс
+          </span>
+        </button>
+      </div>
+      <StyledSlider
+        defaultValue={1}
+        step={1}
+        marks={MONTHS}
+        min={1}
+        max={MONTHS[lastIndex].value}
         value={val}
         aria-label="Default"
         onChange={handleChange}
@@ -265,106 +139,141 @@ export function MonthsSlider({outerSetter}:any){
   );
 }
 
+export type TarifsSliderType = {
+  setSpeed: (item: number) => void,
+  speed: number
+}
 
-
-export function TarifsSliderMobile({setSpeed, speed}:any){
-  const [val, setVal] = React.useState<number>(speed??MIN_MOBILE);
+export function TarifsSliderMobile({ setSpeed, speed }: TarifsSliderType) {
+  const [val, setVal] = useState<number>(speed ?? MIN_MOBILE);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
   };
   return (
     <div className={``}>
-      <DemoSliderMobile
-          defaultValue={MIN_MOBILE}
-          value={val}
-          step={null}
-          marks={marks_mobile}
-          min={0}
-          max={MAX_MOBILE}
-          onChange={handleChange}
+      <StyledSliderMobile
+        defaultValue={MIN_MOBILE}
+        value={val}
+        step={null}
+        marks={MARKS_MOBILE}
+        min={0}
+        max={MAX_MOBILE}
+        onChange={handleChange}
       />
       <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
-          <button className={`${val==MIN_MOBILE ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[10%]`} onClick={() => setVal(MIN_MOBILE)}> 100 Мбіт</button>
-          <button className={`${val==MID_MOBILE ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[10%]`} onClick={() => setVal(MID_MOBILE)}> 500 Мбіт</button>
-          <button className={`${val==MAX_MOBILE ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>1 Гбіт</button>
+        <button className={`${val == MIN_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'} ml-[10%]`} onClick={() => setVal(MIN_MOBILE)}> 100 Мбіт</button>
+        <button className={`${val == MID_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'} mr-[10%]`} onClick={() => setVal(MID_MOBILE)}> 500 Мбіт</button>
+        <button className={`${val == MAX_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>1 Гбіт</button>
       </div>
-      </div>
+    </div>
   );
 }
 
-export function TarifsSliderMobileGPON({setSpeed, speed}:any){
-  const [val, setVal] = React.useState<number>(speed??MID_G_MOBILE);
+export function TarifsSliderMobileGPON({ setSpeed, speed }: TarifsSliderType) {
+  const [val, setVal] = useState<number>(speed ?? MID_G_MOBILE);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
   };
   return (
     <div className={``}>
-      <DemoSliderMobile
-          defaultValue={MID_G_MOBILE}
-          value={val}
-          step={null}
-          marks={marks_GPON_mobile}
-          max={MAX_MOBILE}
-          onChange={handleChange}
+      <StyledSliderMobile
+        defaultValue={MID_G_MOBILE}
+        value={val}
+        step={1}
+        marks={marks_GPON_mobile}
+        max={MAX_MOBILE}
+        onChange={handleChange}
       />
       <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
-          <button className={`${val==MID_G_MOBILE ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[24%]`} onClick={() => setVal(MID_G_MOBILE)}> 300 Мбіт</button>
-          <button className={`${val==MAX_MOBILE ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>1 Гбіт</button>
+        <button className={`${val == MID_G_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'} ml-[24%]`} onClick={() => setVal(MID_G_MOBILE)}> 300 Мбіт</button>
+        <button className={`${val == MAX_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>1 Гбіт</button>
+        <button className={`${val == MAX_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>2,5 Гбіт</button>
+        <button className={`${val == MAX_MOBILE ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`} onClick={() => setVal(MAX_MOBILE)}>5 Гбіт</button>
       </div>
-      </div>
+    </div>
   );
 }
 
-export function TarifsSlider({setSpeed, speed}:any){
-  const [val, setVal] = React.useState<number>(speed??MIN);
+export function TarifsSlider({ setSpeed, speed }: TarifsSliderType) {
+  const [val, setVal] = useState<number>(speed ?? MIN);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
   };
-    return (
-      <div className={``}>
-        <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
-          <button className={`${val==MIN ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[6%]`} onClick={() => setVal(MIN)}> 100 Мбіт</button>
-          <button className={`${val==MID ? 'text-[#5F6061]' :'text-[#BDBDBD]'} mr-[14%]`} onClick={() => setVal(MID)}> 500 Мбіт</button>
-          <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px] w-[70px] min-[3644px]:w-[100px] max-[2377px]:w-[50px]`}>1 Гбіт</span></button>
-        </div>
-        <DemoSlider
-            defaultValue={MIN}
-            step={null}
-            marks={marks}
-            max={MAX}
-            value={val}
-            aria-label="Default"
-            onChange={handleChange}
-        />
-        
-      </div>
-    );
-}
 
-export function TarifsSliderGPON({setSpeed, speed}:any){
-  const [val, setVal] = React.useState<number>(speed);
-  const handleChange = (_: Event, newValue: number | number[]) => {
+  const handleButtonClick = (newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
   };
+
+  const maxIndex = UTP_SPEEDS.length - 1;
+
   return (
     <div className={``}>
-      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] ">
-        <button className={`${val==MID_G ? 'text-[#5F6061]' :'text-[#BDBDBD]'} ml-[26%]`} onClick={() => setVal(MID_G)}> 300 Мбіт</button>
-        <button className={`${val==MAX ? 'text-[#5F6061]' :'text-[#BDBDBD]'}`} onClick={() => setVal(MAX)}><span className={`absolute min-[3644px]:ml-[-50px] ml-[-34px] max-[2377px]:ml-[-24px] mt-[-13px] min-[3644px]:mt-[-20px] max-[2377px]:mt-[-11px]`}>1 Гбіт</span></button>
-      </div>
-      <DemoSlider
-          defaultValue={MID_G}
-          step={null}
-          marks={marks_GPON}
-          max={MAX}
-          value={val}
-          aria-label="Default"
-          onChange={handleChange}
+      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
+        {UTP_SPEEDS.map((mark, index) => (
+          <button
+            key={index}
+            className={`${val === mark.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
+            onClick={() => handleButtonClick(mark.value)}
+          >
+            {`${mark.speed} ${mark.measure}`}
+          </button>
+        ))}</div>
+      <StyledSlider
+        defaultValue={1}
+        step={null}
+        marks={marks_UTP}
+        max={UTP_SPEEDS[maxIndex].value}
+        value={val}
+        aria-label="Default"
+        onChange={handleChange}
       />
+
+    </div>
+  );
+}
+
+export function TarifsSliderGPON({ setSpeed, speed }: TarifsSliderType) {
+  const [val, setVal] = useState<number>(speed);
+  const handleChange = (_: Event, newValue: number | number[]) => {
+    setVal(newValue as number);
+    setSpeed(newValue as number);
+  };
+
+  const handleButtonClick = (newValue: number | number[]) => {
+    setVal(newValue as number);
+    setSpeed(newValue as number);
+  };
+
+  const last_index = GPON_SPEEDS.length - 1;
+
+  return (
+    <div className={``}>
+      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
+        {GPON_SPEEDS.map((mark, index) => (
+          <button
+            key={index}
+            className={`${val === mark.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
+            onClick={() => handleButtonClick(mark.value)}
+          >
+            {`${mark.speed} ${mark.measure}`}
+          </button>
+        ))}
       </div>
+      <span className='hidden'>{val}</span>
+      <StyledSlider
+        defaultValue={1}
+        step={null}
+        marks={marks_GPON}
+        max={GPON_SPEEDS[last_index].value}
+        value={val}
+        aria-label="Default"
+        onChange={handleChange}
+
+      />
+    </div>
   );
 }

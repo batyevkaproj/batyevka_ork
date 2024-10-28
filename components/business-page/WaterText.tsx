@@ -1,7 +1,9 @@
-import react, { useState } from 'react'
-import { ChevronDown } from "lucide-react"
+import { useState } from 'react';
+import { ChevronDown } from "lucide-react";
 
-const WaterText = ({theme}:any) => {
+import type { ThemeProps } from '@/types/Theme';
+
+const WaterText = ( {theme}: ThemeProps) => {
     const [isInfo1Visible, setIsInfo1Visible] = useState(false);
     const [isInfo2Visible, setIsInfo2Visible] = useState(false);
     const [isInfo3Visible, setIsInfo3Visible] = useState(false);
@@ -90,6 +92,6 @@ const WaterText = ({theme}:any) => {
             </div>
         </div>
     );
-}
+};
 
 export default WaterText;

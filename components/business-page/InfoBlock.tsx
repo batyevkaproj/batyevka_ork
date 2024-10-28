@@ -1,5 +1,5 @@
-import { ChevronDown } from "lucide-react"
-import React, { useState } from 'react'
+import { ChevronDown } from "lucide-react";
+import React, { useState } from 'react';
 
 const InfoBlock = () => {
     const [isAboutVisible, setIsAboutVisible] = useState(false);
@@ -70,6 +70,6 @@ const InfoBlock = () => {
             </div>
         </div>
      );
-}
+};
  
 export default InfoBlock;

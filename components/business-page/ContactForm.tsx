@@ -1,4 +1,6 @@
-const ContactForm = ({theme}:any) => {
+import type { ThemeProps } from '@/types/Theme';
+
+const ContactForm = ( {theme}: ThemeProps ) => {
     return ( 
         <div className={`${theme=='white' ? 'mx-0 bg-[#2D2A32]' : 'rounded-[12px] min-[2430px]:mx-[170px] max-[2430px]:mx-[120px] max-[1770px]:mx-[85px] max-[1180px]:mx-[67px] max-[650px]:mx-[35px] max-[690px]:mx-[20px] bg-[#123853] min-[2430px]:mb-[120px] max-[2430px]:mb-[90px] max-[650px]:mb-[60px] max-[690px]:mb-[20px]'} 
             font-normal text-white h-full  
@@ -13,7 +15,7 @@ const ContactForm = ({theme}:any) => {
             
             <div className={`flex mt-[50px] min-[2430px]:mt-[75px] min-[3644px]:mt-[113px] max-[650px]:mt-[30px] min-[2430px]:gap-[60px] max-[2430px]:gap-[45px] max-[1770px]:gap-[28px] max-[1180px]:gap-[22px] max-[540px]:gap-[20px] max-[1000px]:flex-col max-[1000px]:items-center min-[2430px]:mb-[78px] min-[2430px]:mx-[78px] mb-[60px] mx-[60px] min-[3644px]:mb-[117px] max-[650px]:mb-[32px] max-[650px]:mx-[32px]`}>
                 <div className="h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] flex items-center w-3/4">
-                    <input type={`text`} className={`w-full h-full rounded-full text-[16px] leading-[22px] bg-transparent border pl-[30px] bg-transparent placeholder:text-slate-300 min-[2430px]:text-[20px] min-[3644px]:text-[30px] min-[2430px]:leading-[26px] min-[3644px]:leading-[39px] pl-[22px] min-[2430px]:pl-[28px] min-[3644px]:pl-[42px]`} placeholder="Ім’я"/>
+                    <input type={`text`} className={`w-full h-full rounded-full text-[16px] leading-[22px] bg-transparent border placeholder:text-slate-300 min-[2430px]:text-[20px] min-[3644px]:text-[30px] min-[2430px]:leading-[26px] min-[3644px]:leading-[39px] pl-[22px] min-[2430px]:pl-[28px] min-[3644px]:pl-[42px]`} placeholder="Ім’я"/>
                 </div>
                 <div className="h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] flex items-center w-3/4">
                     <input type={`text`} className={`${theme=='white' ? 'border-[#DC662D]' : 'border-[#56AABF]'} w-full h-full rounded-full text-[16px] leading-[22px] min-[2430px]:text-[20px] min-[3644px]:text-[30px] min-[2430px]:leading-[26px] min-[3644px]:leading-[39px] bg-transparent border pl-[22px] min-[2430px]:pl-[28px] min-[3644px]:pl-[42px] placeholder:text-slate-300`} placeholder="Телефон"/>
@@ -22,6 +24,6 @@ const ContactForm = ({theme}:any) => {
             </div>
         </div>
      );
-}
+};
  
 export default ContactForm;

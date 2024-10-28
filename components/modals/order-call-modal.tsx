@@ -1,15 +1,13 @@
 "use client";
 
 import { useModal } from "@/hooks/use-modal-store";
-import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
     DialogDescription,
     DialogFooter,
     DialogHeader,
-    DialogTitle,
-    DialogClose
+    DialogTitle
 } from "@/components/ui/dialog";
 
 export const OrderCallModal = () => {
@@ -28,7 +26,7 @@ export const OrderCallModal = () => {
                 </DialogHeader>     
                 <div className={`flex mt-[30px] gap-[30px] flex-col items-center mb-[60px] w-full`}>
                     <div className="h-[60px] flex items-center w-3/4">
-                        <input type={`text`} className={`w-full h-full rounded-full text-[16px] leading-[22px] text-[#ABD5DF] border-[#2A5574] bg-transparent border bg-transparent pl-[22px] placeholder:text-slate-300`} placeholder="Ім’я"/>
+                        <input type={`text`} className={`w-full h-full rounded-full text-[16px] leading-[22px] text-[#ABD5DF] border-[#2A5574] border bg-transparent pl-[22px] placeholder:text-slate-300`} placeholder="Ім’я"/>
                     </div>
                     <div className="h-[60px] flex items-center w-3/4">
                         <input type={`text`} className={`w-full h-full rounded-full text-[16px] leading-[22px] bg-transparent border border-[#56AABF] pl-[22px] placeholder:text-slate-300`} placeholder="Телефон"/>
@@ -42,5 +40,5 @@ export const OrderCallModal = () => {
 
     );
 
-}
+};
 

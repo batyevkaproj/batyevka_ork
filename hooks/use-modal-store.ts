@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type ModalType = "call" | "contact" | "order" | "payment";
+export type ModalType = "call" | "contact" | "order" | "payment" | "phone-input" |"sms-verify";
 
 interface ModalStore {
   type: ModalType | null;

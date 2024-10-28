@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
+import type { ThemeProps } from '@/types/Theme';
 
-import { ChevronDown, FlipVertical } from "lucide-react"
+import { ChevronDown } from "lucide-react";
 import green_galochka from '../../public/img/green_galochka.svg';
 
-const TarifsCountInfo = ({theme}:any) => {
-    const [isMechanicVisible_1, setMechanicVisible_1] = useState(false);
-    const [isMechanicVisible_2, setMechanicVisible_2] = useState(false);
-    const [isMechanicVisible_3, setMechanicVisible_3] = useState(false);
-    const [isMechanicVisible_4, setMechanicVisible_4] = useState(false);
+const TarifsCountInfo = ( {theme}: ThemeProps ) => {
+    const [isMechanicVisible_1, setMechanicVisible_1] = useState<boolean>(false);
+    const [isMechanicVisible_2, setMechanicVisible_2] = useState<boolean>(false);
+    const [isMechanicVisible_3, setMechanicVisible_3] = useState<boolean>(false);
+    const [isMechanicVisible_4, setMechanicVisible_4] = useState<boolean>(false);
     
 
     const toggleMechanicVisibility_1 = () => {
@@ -36,17 +37,17 @@ const TarifsCountInfo = ({theme}:any) => {
                             <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
                             <p>При підключенні, Абоненту за замовчуванням надається внутрішня ІР-адреса. Всі тарифи безлімітні по трафіку Мир та Україна – немає поділу. Швидкість Входу та Виходу однакові.</p>
                         </div>
-                        <div className="flex flex mb-[40px] max-[2377px]:mb-[20px] min-[3644px]:mb-[60px]">
+                        <div className="flex mb-[40px] max-[2377px]:mb-[20px] min-[3644px]:mb-[60px]">
                             <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
                             <p>Абонентна плата нараховується за календарний місяць та оплачується шляхом передоплати. Для безперервного користування послугою Абонент до 1-го числа кожного місяця вносить на свій особовий рахунок суму в розмірі абонентної плати та всіх замовлених додаткових послуг (рекомендуємо внести гроші за 3 дні до вказаної дати).</p>
                         </div>
                     </div>
                     <div className="min-[2378px]:col-span-1">
-                        <div className="flex flex mb-[40px] max-[2377px]:mb-[20px] min-[3644px]:mb-[60px]">
+                        <div className="flex mb-[40px] max-[2377px]:mb-[20px] min-[3644px]:mb-[60px]">
                             <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
                             <p>Якщо Абонент не сплатив більше 40 днів від останнього дня надання послуг, його договір /ликовий рахунок блокується (дія тарифу, акцій, у яких Абонент брав участь, припиняється). Повторна активація договору платна - у розмірі вартості підключення на обраному тарифі.</p>
                         </div>
-                        <div className="flex flex mb-[40px] max-[2377px]:mb-[20px] min-[3644px]:mb-[60px]">
+                        <div className="flex mb-[40px] max-[2377px]:mb-[20px] min-[3644px]:mb-[60px]">
                             <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
                             <p>Перехід на тариф Інтернет з меншою вартістю – 100 грн. разово тариф змінюється з 1 числа наступного місяця. Перехід на тариф Інтернет із більшою вартістю – 45 грн. разово тариф змінюється з наступного робочого дня з перерахунком абонентної плати. Увімкнення/вимкнення передплати Телебачення від МЕГОГО – безкоштовно.</p>
                         </div>
@@ -88,6 +89,6 @@ const TarifsCountInfo = ({theme}:any) => {
             </div>
         </div>
     );
-}
+};
 
 export default TarifsCountInfo;

@@ -1,29 +1,35 @@
-import { useModal } from "@/hooks/use-modal-store";
-
 import Image from 'next/image';
 import Link from 'next/link';
+import type { HeaderProps } from '@/types/Header';
+
+import { useModal } from "@/hooks/use-modal-store";
+
+import { Button } from '@/components/ui/button';
+import Navbar from "./Navbar";
+import { ChevronDown } from "lucide-react";
+import SubHeader from "./SubHeader";
+import SubHeaderBusiness from "./SubHeaderBusiness";
+
 import logo from '@/public/img/logo.svg';
-import logo_grey from '@/public/img/logo_grey.svg'
+import logo_grey from '@/public/img/logo_grey.svg';
 import arrow_down from '@/public/img/arrow_down.svg';
 import globe_small from '@/public/img/globe_small.svg';
 import wallet_white from '@/public/img/wallet_white.svg';
 import _247 from '@/public/img/247.svg';
 import telephon from '@/public/img/phone.svg';
 import telephon_grey from '@/public/img/telephon_grey.svg';
-import arrow_down_grey from '@/public/img/arrow_down_grey.svg'
+import arrow_down_grey from '@/public/img/arrow_down_grey.svg';
 import rectangle from '@/public/img/rectangle.svg';
 import rectangle_grey from '@/public/img/rectangle_grey.svg';
 import connect from '@/public/img/connect.svg';
 import connectGrey from '@/public/img/cabinet_grey.svg';
-import wrench from '@/public/img/wrench.svg'
-import wkey from '@/public/img/wkey.svg'
-import { Button } from '@/components/ui/button';
-import Navbar from "./Navbar";
-import { ChevronDown } from "lucide-react"
-import SubHeader from "./SubHeader";
-import SubHeaderBusiness from "./SubHeaderBusiness";
+import wrench from '@/public/img/wrench.svg';
+import wkey from '@/public/img/wkey.svg';
 
-const Header = ({theme, business}:any) => {
+
+
+
+const Header = ({ theme, business }: HeaderProps) => {
 
     const { onOpen } = useModal();
 
@@ -107,9 +113,9 @@ const Header = ({theme, business}:any) => {
                 business?<SubHeaderBusiness/>:<SubHeader/>
             }
         </div>
-        <Navbar/>
+        <Navbar theme={theme}/>
         </header>
     );
-}
+};
 
 export default Header;

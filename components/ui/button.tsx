@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { Slot } from '@radix-ui/react-slot'
-import { cva, type VariantProps } from 'class-variance-authority'
+import * as React from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -32,6 +32,7 @@ const buttonVariants = cva(
         payMenuBurger: 'justify-items-start',
         payMobMob: 'bg-[#51B18B] text-white rounded-full font-semibold h-[60px] w-[63px] shadow-[0_4px_20px_0_#51B18B] min-[1861px]:hidden mr-[24px]',
         cabinetMobMob: 'bg-[#0E2D43] text-white rounded-full border-[2px] border-solid border-[#56AABF] font-semibold h-[60px] w-[63px] min-[1861px]:hidden mr-[24px]',
+        cabinetGreyMobMob: 'bg-white text-white rounded-full border-[2px] border-solid border-[#5F6061] font-semibold h-[60px] w-[63px] min-[1861px]:hidden mr-[24px]',
         connectMobMob: 'bg-[#DC662D] text-white rounded-full h-[60px] w-[63px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] min-[1026px]:hidden ',
         menuMob: 'solid h-[48px] w-[52px] ml-[48px] flex items-center',
         MobConnect: 'bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] min-[781px]:hidden mt-[89px]'
@@ -44,7 +45,7 @@ const buttonVariants = cva(
       }
     }
   }
-)
+);
 
 
 export interface ButtonProps
@@ -55,16 +56,16 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button'
+    const Comp = asChild ? Slot : 'button';
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       />
-    )
+    );
   }
-)
-Button.displayName = 'Button'
+);
+Button.displayName = 'Button';
 
-export { Button, buttonVariants }
+export { Button, buttonVariants };

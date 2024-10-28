@@ -1,14 +1,20 @@
-import speedometer from '@/public/img/option_card_1.svg'
-import blue_speedometer from '@/public/img/option_card_2.svg'
-import ip from '@/public/img/option_card_3.svg'
-import snowflake from '@/public/img/option_card_4.svg'
-import something from '@/public/img/option_card_5.svg'
-import messages from '@/public/img/option_card_6.svg'
-import Image from 'next/image'
-import { ChevronDown } from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Image from 'next/image';
+import type { ThemeProps } from '@/types/Theme';
 
-const AdditionalOptions = ({theme}:any) => {
+
+import { ChevronDown } from 'lucide-react';
+
+import speedometer from '@/public/img/option_card_1.svg';
+import blue_speedometer from '@/public/img/option_card_2.svg';
+import ip from '@/public/img/option_card_3.svg';
+import snowflake from '@/public/img/option_card_4.svg';
+import something from '@/public/img/option_card_5.svg';
+import messages from '@/public/img/option_card_6.svg';
+
+
+
+const AdditionalOptions = ({theme}:ThemeProps) => {
 
     const [isFast1, setIsFast1Visible] = useState(false);
     const [isFast5, setIsFast5Visible] = useState(false);
@@ -200,7 +206,7 @@ const AdditionalOptions = ({theme}:any) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default AdditionalOptions;

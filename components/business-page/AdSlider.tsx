@@ -40,6 +40,6 @@ const AdSlider = () => {
         </div>
     </div>
      );
-}
+};
  
 export default AdSlider;

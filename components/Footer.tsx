@@ -1,22 +1,23 @@
-import _1 from '../public/img/1.svg';
-import _2 from '../public/img/2.svg';
-import _3 from '../public/img/3.svg';
-import _4 from '../public/img/4.svg';
-import orange_mini_phone from '../public/img/orange_mini_phone.svg';
-import orange_mini_place_marker from '../public/img/orange_mini_place_marker.svg';
-import orange_mini_tg_logo from '../public/img/orange_mini_tg_logo.svg';
-import orange_mini_mail from '../public/img/orange_mini_mail.svg';
+import Link from 'next/link';
+import Image from 'next/image';
+import type { ThemeProps } from '@/types/Theme';
+
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion_footer";
-import Link from 'next/link';
 
-import Image from 'next/image';
 
-const Footer = ({theme}:any) => {
+import _1 from '../public/img/1.svg';
+import _3 from '../public/img/3.svg';
+import orange_mini_phone from '../public/img/orange_mini_phone.svg';
+import orange_mini_place_marker from '../public/img/orange_mini_place_marker.svg';
+import orange_mini_tg_logo from '../public/img/orange_mini_tg_logo.svg';
+import orange_mini_mail from '../public/img/orange_mini_mail.svg';
+
+const Footer = ( {theme}: ThemeProps ) => {
     return ( 
         <footer className={`${theme=='white'?'bg-white text-[#5F6061]':'bg-[#0E2D43] text-white shadow-[0_4px_29px_0_rgba(8,35,27)]'}  max-[558px]:shadow-none`}>
             <div className={'max-[932px]:hidden'}>
@@ -101,7 +102,7 @@ const Footer = ({theme}:any) => {
             </AccordionItem>
             <AccordionItem value="item-3">
                 <AccordionTrigger className="flex items-center w-full">
-                    <h3 className={`w-full font-medium text-left`}>Інформація абонентам</h3>              
+                    <h3 className={`w-full font-medium text-left`}>Інформація абонентам</h3>
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col">
                     <Link href={'#'} className='hover:text-[#DC662D]'>
@@ -175,6 +176,6 @@ const Footer = ({theme}:any) => {
             </div>
         </footer>
      );
-}
+};
  
 export default Footer;

@@ -1,13 +1,12 @@
-"use client"
+"use client";
 
-import Header from '@/components/Header'
+import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CalculatorTarifs from '@/components/business-page/CalculatorTarifs';
 import AdditionalOptions from '@/components/business-page/AdditionalOptions';
 import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 import WaterText from '@/components/business-page/WaterText';
 import ContactForm from '@/components/business-page/ContactForm';
-import { useEffect } from 'react';
 
 export default function Home() {
   
@@ -21,5 +20,5 @@ export default function Home() {
       <ContactForm theme = {'white'}/>
       <Footer theme={'white'}/>
     </div>
-  )
+  );
 }
