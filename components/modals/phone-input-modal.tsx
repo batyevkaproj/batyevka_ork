@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
@@ -90,7 +89,7 @@ export const PhoneInputModal = ({ theme }: any) => {
         setIsLoading(true);
         try {
             const code = smsCode.join('');
-            const response = await fetch('/api/verify/verify-code', {
+            const verifyResponse = await fetch('/api/verify/verify-code', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,53 +100,57 @@ export const PhoneInputModal = ({ theme }: any) => {
                 })
             });
 
-            const result = await response.json();
+            const verifyResult = await verifyResponse.json();
 
-            if (!response.ok) {
-                if (result.error === 'MAX_ATTEMPTS_EXCEEDED') {
-                    toast({
-                        variant: "destructive",
-                        title: "Перевищено кількість спроб!",
-                        description: "Перевищено кількість спроб. Спробуйте пізніше.",
-                      });
-                    setStep(1); // Возвращаемся к началу
-                } else if (result.error === 'CODE_EXPIRED') {
-                    toast({
-                        variant: "destructive",
-                        title: "Код застарів",
-                        description: "Код верифікації застарів. Спробуйте отримати новий код.",
-                      });
-                    setStep(1);
-                } else {
-                    toast({
-                        variant: "destructive",
-                        title: "Невірний код.",
-                        description: `Невірний код. Залишилось спроб: ${result.attemptsLeft}`,
-                      });
-                }
+            if (!verifyResponse.ok) {
+                console.log(verifyResult);
                 return;
             }
 
-            // Успешная верификация
+            // Проверяем наличие данных заказа
+            if (!data?.orderData) {
+                throw new Error('Order data is missing');
+            }
+
+            // Отправляем заявку
+            const orderResponse = await fetch('/api/orders/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...data.orderData,
+                    customerName: watch('name'),
+                    customerPhone: watch('phone')
+                })
+            });
+
+            const orderResult = await orderResponse.json();
+
+            if (!orderResponse.ok) {
+                throw new Error(orderResult.error);
+            }
+
             toast({
-                title: "Чудово!",
-                description: "Номер телефону підтверджено! Відправляємо Вашу заявку на підключення",
-              });
+                title: "Дякуємо за заявку!",
+                description: "Наш менеджер зв'яжеться з вами найближчим часом для уточнення деталей та оформлення підключення.",
+            });
+
             handleClose();
-            // Здесь можно добавить колбэк для дальнейших действий
 
         } catch (error) {
-            toast({
-                title: "Помилка перевірки коду",
-                description: "Помилка перевірки коду. Спробуйте ще раз.",
-              });
             console.error('Error:', error);
+            toast({
+                variant: "destructive",
+                title: "Помилка",
+                description: "Не вдалося відправити заявку. Будь ласка, спробуйте пізніше або зв'яжіться з нами за телефоном.",
+            });
         } finally {
             setIsLoading(false);
         }
     };
 
-    const { isOpen, onClose, type } = useModal();
+    const { isOpen, onClose, type, data } = useModal();
     const isModalOpen = isOpen && type === "phone-input";
 
     const handleClose = () => {

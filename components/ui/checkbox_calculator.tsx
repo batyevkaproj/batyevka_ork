@@ -9,7 +9,7 @@ import Image from "next/image";
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
+>(({ className, disabled, ...props }, ref) => (
   <CheckboxPrimitive.Root
     ref={ref}
     className={cn(
@@ -21,7 +21,7 @@ const Checkbox = React.forwardRef<
     <CheckboxPrimitive.Indicator
       className={cn("flex items-center justify-center text-[#56AABF]")}
     >
-      <Image src={check_calc} alt={'check'} className={`w-[25px] h-[26px] flex items-center justify-center`}/>
+      {!disabled && <Image src={check_calc} alt={'check'} className={`w-[25px] h-[26px] flex items-center justify-center`}/>}
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 ));

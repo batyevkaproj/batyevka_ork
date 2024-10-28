@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useToast } from "@/hooks/use-toast";
 import {
     GPON_SPEEDS,
     UTP_SPEEDS
@@ -15,6 +16,7 @@ import { TV_INFO_ITEMS as TVinfo } from '@/constants/megogo';
 import { useModal } from '@/hooks/use-modal-store';
 
 import type { ThemeProps } from '@/types/Theme';
+import type { OrderData as OrderDataProps } from '@/hooks/use-modal-store';
 
 import {
     TarifsSlider,
@@ -25,7 +27,8 @@ import {
     TarifsSliderMobileGPON
 } from "../ui/sliders";
 import { TarifsSwitch, RegularSwitch } from "../ui/switches";
-import { Checkbox } from "@/components/ui/checkbox_calculator";
+import MobileTVSelector from '@/components/business-page/MobileTVSelector';
+
 
 import InternetBlock from "@/components/tariff-page/InternetBlock";
 import TVBlock from "@/components/tariff-page/TVBlock";
@@ -43,6 +46,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [setupPrice, setSetupPrice] = useState<number>(1499);
     const [routerPrice, setRouterPrice] = useState<number>(3000);
     const [totalPrice, setTotalPrice] = useState<number>(0);
+
+    const { toast } = useToast();
 
     useEffect(() => {
         // Deal with cost of Internet
@@ -101,6 +106,81 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
     const { onOpen } = useModal();
 
+    const prepareOrderData = () => {
+        // Получаем данные о выбранной скорости интернета
+        const selectedSpeed = isTarifsSwitch
+            ? UTP_SPEEDS.find(item => item.value === speedUtp)
+            : GPON_SPEEDS.find(item => item.value === speedGpon);
+
+        // Получаем данные о выбранном ТВ пакете
+        const tvPackage = isTVChecked && tvBundle ? {
+            id: tvBundle,
+            name: TVinfo[tvBundle].name,
+            price: MEGOGO_BUNDLES.find(bundle => bundle.value === tvBundle)?.price || 0
+        } : undefined;
+
+        // Формируем итоговые данные заказа
+        const orderData: OrderDataProps = {
+            // Тип подключения
+            internetType: isTarifsSwitch ? "UTP" : "GPON",
+
+            // Интернет
+            internetSpeed: selectedSpeed?.speed || 0,
+            internetMeasure: selectedSpeed?.measure || 'мбіт',
+            internetPrice: selectedSpeed?.price || 0,
+
+            // Телевидение
+            hasTV: isTVChecked,
+            tvPackage,
+
+            // Статический IP
+            hasStaticIP: isIPChecked,
+
+            // Данные о предоплате и стоимости
+            prepaidMonths,
+            setupPrice,
+            routerPrice,
+            totalMonthlyPrice: totalPrice,
+
+            // Дополнительная информация
+            additionalInfo: [
+                `${isTarifsSwitch ? 'UTP' : 'GPON'} ${selectedSpeed?.speed}${selectedSpeed?.measure}`,
+                isTVChecked ? `ТВ пакет: ${TVinfo[tvBundle].name}` : 'Без ТВ',
+                isIPChecked ? 'Зі статичною IP-адресою' : 'Без статичної IP-адреси',
+                `Передплата на ${prepaidMonths} місяців`,
+                `Вартість підключення: ${setupPrice} грн`,
+                `Вартість роутера: ${routerPrice} грн`,
+                `Щомісячний платіж: ${totalPrice} грн`
+            ].join('\n')
+        };
+
+        // Проверяем корректность данных перед отправкой
+        if (!selectedSpeed) {
+            throw new Error('Не вибрана швидкість інтернету');
+        }
+
+        if (isTVChecked && !tvPackage) {
+            throw new Error('Не вибраний пакет телебачення');
+        }
+
+        return orderData;
+    };
+
+
+    const handleOpenModal = () => {
+        try {
+            const orderData = prepareOrderData();
+            console.log(orderData);
+            onOpen("phone-input", { orderData });
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Помилка",
+                description: error instanceof Error ? error.message : "Помилка формування заявки"
+            });
+        }
+    };
+
     return (
         <div className={`min-[3644px]:mx-[240px] mx-[170px] max-[2377px]:mx-[120px] max-[1800px]:mx-[85px] max-[1247px]:mx-[67px] max-[932px]:mx-[35px] max-[680px]:mx-0 min-[3644px]:mt-[90px] mt-[60px] max-[2377px]:mt-[45px] max-[932px]:mt-[30px] max-[680px]:mt-[30px] + ${theme == 'white' ? 'text-[#5F6061]' : 'text-white'}`}>
             <div className={`${theme == 'white' ? 'shadow-[0_4px_29px_0px_#E6E3E3]' : 'shadow-[0_4px_29px_0px_#0B273C]'} max-[680px]:shadow-none w-full`}>
@@ -113,7 +193,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                         <TarifsSwitch isTarifsSwitch={isTarifsSwitch} setTarifsSwitch={setTarifsSwitch} />
                         <p className={`font-bold min-[3644px]:ml-[30px] ml-[20px] max-[2377px]:ml-[15px]`}>UTP</p>
                     </div>
-                    <div className={`min-[3644px]:h-[60px] h-[40px] max-[2377px]:h-[30px]`}></div>
+                    <div className="min-[3644px]:h-[60px] h-[40px] max-[2377px]:h-[30px]"></div>
                 </div>
                 <div className={`${theme == 'white' ? 'bg-white' : 'bg-[#0E2D43]'} grid grid-cols-2 max-[1800px]:grid-cols-1 min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] min-[3644px]:gap-[170px] gap-[100px] max-[2377px]:gap-[60px] min-[3644px]:pb-[117px] pb-[78px] max-[2377px]:pb-[60px] max-[680px]:pb-0`}>
                     <div className={`col-span-1 min-[3644px]:ml-[117px] ml-[78px] max-[2377px]:ml-[60px] max-[1800px]:mr-[60px] max-[1000px]:mx-[35px] max-[680px]:mx-[20px] flex justify-center`}>
@@ -133,34 +213,17 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             <div className="flex items-center justify-center mt-[15px] min-[681px]:hidden">
                                 <RegularSwitch switchState={setTVChecker} state={isTVChecked} />
                             </div>
-                                <>
-                                    <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
-                                    <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                                        <MegogoSlider disableSwap={true} outerSetter={setTvBundle} outer={tvBundle} isEnabled={isTVChecked} />
-                                    </div>
-                                </>
-                            <div className="font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden">
-                                <div className={`flex items-center gap-x-[20px]`}>
-                                    <Checkbox onCheckedChange={() => setTvBundle(1)} className="size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]" />
-                                    <p>Легка</p>
+                            <>
+                                <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
+                                <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
+                                    <MegogoSlider disableSwap={true} outerSetter={setTvBundle} outer={tvBundle} isEnabled={isTVChecked} />
                                 </div>
-                                <div className="flex items-center gap-x-[20px] mt-[16px]">
-                                    <Checkbox onCheckedChange={() => setTvBundle(2)} className="size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]" />
-                                    <p>Оптимальна</p>
-                                </div>
-                                <div className={`flex items-center gap-x-[20px] mt-[16px]`}>
-                                    <Checkbox onCheckedChange={() => setTvBundle(3)} className="size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]" />
-                                    <p>Максимальна</p>
-                                </div>
-                                <div className="flex items-center gap-x-[20px] mt-[16px]">
-                                    <Checkbox onCheckedChange={() => setTvBundle(4)} className="size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]" />
-                                    <p>Спорт</p>
-                                </div>
-                                <div className="flex items-center gap-x-[20px] mt-[16px]">
-                                    <Checkbox onCheckedChange={() => setTvBundle(5)} className="size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]" />
-                                    <p>Кіно+</p>
-                                </div>
-                            </div>
+                            </>
+                            <MobileTVSelector
+                                selectedBundle={tvBundle}
+                                onBundleSelect={setTvBundle}
+                                isEnabled={isTVChecked}
+                            />
                             <div className="flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden">
                                 <RegularSwitch switchState={setIPChecker} state={isIPChecked} />
                                 <p className="font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">Додай зовнішню постійну ІР адресу</p>
@@ -185,12 +248,12 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 </div>
                                 {
                                     !isTarifsSwitch && <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
-                                    <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />ONU HG8010H</span></h1>
-                                    <h1 className="opacity-[0.5] max-[680px]:hidden">ONU HG8010H</h1>
-                                    <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">безкоштовна оренда</h1>
-                                </div>
+                                        <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />ONU HG8010H</span></h1>
+                                        <h1 className="opacity-[0.5] max-[680px]:hidden">ONU HG8010H</h1>
+                                        <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">безкоштовна оренда</h1>
+                                    </div>
                                 }
-                                
+
                                 <div className="flex items-start justify-between max-[680px]:grid max-[680px]:grid-cols-2 max-[680px]:grid-rows-1 max-[680px]:border-b-[2px] max-[680px]:border-[#F4F2F2] max-[680px]:border-solid max-[680px]:pb-[10px]">
                                     <h1>* Wi-Fi роутер </h1>
                                     <h1 className="items-center justify-center text-center max-[680px]:hidden">Ультрапреміум <span className="opacity-[0.5]">MERCUSYS MR90X </span> <br />стандарт AX6000 </h1>
@@ -230,21 +293,21 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 <div className="w-full font-bold text-[18px] leading-[22px] min-[681px]:hidden">
                                     <div className="border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]">
                                         <h1 className={`mt-[20px] mb-[10px]`}>Акційна абонплата на Перші 4 місяці</h1>
-                                        <div className={`flex justify-end items-end text-[#DC662D]`}>
-                                            <h1 className={`text-[70px] leading-[70px] `}>{Math.round(totalPrice * 0.6)}</h1>
-                                            <h1 className="text-nowrap text-[30px] leading-[35px] w-[200px]">грн/міс</h1>
+                                        <div className="flex justify-between items-end text-[#DC662D]">
+                                            <h1 className="text-[70px] leading-[70px]">{Math.round(totalPrice * 0.6)}</h1>
+                                            <h1 className="text-nowrap text-[30px] leading-[35px]">грн/міс</h1>
                                         </div>
                                     </div>
                                     <div className={`border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]`}>
                                         <h1 className={`mt-[20px] mb-[10px]`}>Абонплата з 5го місяця</h1>
-                                        <div className={`text-[#51B18B] flex items-end justify-end`}>
+                                        <div className={`text-[#51B18B] flex items-end justify-between`}>
                                             <h1 className={`text-[70px] leading-[70px]`}>{Math.round(totalPrice)}</h1>
-                                            <h1 className="text-nowrap text-[30px] leading-[35px] w-[200px]">грн/міс</h1>
+                                            <h1 className="text-nowrap text-[30px] leading-[35px]">грн/міс</h1>
                                         </div>
                                     </div>
                                 </div>
                                 <div className={`min-[3644px]:mt-[66px] mt-[44px] max-[2377px]:mt-[30px] max-[680px]:flex max-[680px]:justify-center`}>
-                                    <Button className="w-full max-[680px]:w-[270px] bg-[#DC662D] text-white font-semibold rounded-full min-[3644px]:h-[118px] h-[78px] max-[2377px]:h-[60px] shadow-[0_4px_20px_0px_#DC662D50] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]" onClick={() => onOpen("phone-input")} variant="connect">Підключитись</Button>
+                                    <Button className="w-full max-[680px]:w-[270px] bg-[#DC662D] text-white font-semibold rounded-full min-[3644px]:h-[118px] h-[78px] max-[2377px]:h-[60px] shadow-[0_4px_20px_0px_#DC662D50] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]" onClick={() => handleOpenModal()} variant="connect">Підключитись</Button>
                                 </div>
                                 <div className={`flex justify-center min-[3644px]:gap-[30px] gap-[20px] max-[2377px]:gap-[15px] min-[3644px]:mt-[39px] mt-[26px] max-[2377px]:mt-[20px] max-[680px]:hidden`}>
                                     <p className={`font-normal min-[3644px]:text-[27px] min-[3644px]:leading-[42px] text-[18px] leading-[28px] max-[2377px]:text-[14px] max-[2377px]:leading-[22px]`}>Є питання? Ми передзвоним Вам через <span className={`font-semibold`}>30 секунд!</span></p>
