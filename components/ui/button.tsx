@@ -36,7 +36,7 @@ const buttonVariants = cva(
         connectMobMob: 'bg-[#DC662D] text-white rounded-full h-[60px] w-[63px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] min-[1026px]:hidden ',
         menuMob: 'solid h-[48px] w-[52px] ml-[48px] flex items-center',
         MobConnect: 'bg-[#DC662D] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#DC662D80] min-[781px]:hidden mt-[89px]',
-        MobConnect2: 'w-[270px] bg-[#DC662D] text-white font-semibold cursor-pointer rounded-full h-[60px] shadow-[0_4px_20px_0px_#DC662D50] text-[18px] leading-[22px]'
+        MobConnect2: 'w-[270px] bg-[#DC662D] text-white font-semibold cursor-pointer rounded-full h-[60px] shadow-[0_4px_20px_0px_#DC662D50] text-[18px] leading-[22px] min-[1025px]:hidden'
       },
       size: {
         default: 'h-10 px-4 py-2',
