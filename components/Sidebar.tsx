@@ -22,101 +22,101 @@ const Sidebar = () => {
 
     const { onOpen } = useModal();
 
-    return ( 
-        <div className="w-[375px] h-[100vh] bg-[#0E2D43]"> 
+    return (
+        <div className="w-[375px] h-[100vh] bg-[#0E2D43]">
             <div className="w-full h-[60px] bg-[#0D2A40] flex items-center justify-center">
-                <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'}/>
+                <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'} />
                 <a className='font-semibold text-white text-[24px] leading-[22px]' href={`tel:0800303230`}>0 800 30 32 30</a>
             </div>
             <div className="ml-[20px] mt-[20px]">
                 <Link href='/' className="">
-                    <Image src={logo} height={1} className={`flex-shrink-0 min-w-max w-[203px] h-[35px]`} alt={'Batyevka logo'}/>
+                    <Image src={logo} height={1} className={`flex-shrink-0 min-w-max w-[203px] h-[35px]`} alt={'Batyevka logo'} />
                 </Link>
             </div>
             <div className="mt-[15px] ml-[20px] flex flex-col">
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")} >
+                <Link className="flex mb-[20px] items-center" href={"https://next.privat24.ua/payments/form/%7B%22token%22:%22a163f3a4-7bfa-4921-8d8e-4c4737e6c0f4%22%7D"} onClick={() => onOpen("payment")} >
                     <Image src={wallet} className={`w-8 h-8`} alt={'wallet'}></Image>
-                        <span className="ml-[15px] font-semibold text-[#51B18B]">Оплата</span>
+                    <span className="ml-[15px] font-semibold text-[#51B18B]">Оплата</span>
                 </Link>
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")} >
+                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("contact")} >
                     <Image src={_247} className={`w-8 h-8`} alt={'options'}></Image>
-                        <span className="ml-[15px] font-semibold text-[#56AABF]">Підтримка</span>
+                    <span className="ml-[15px] font-semibold text-[#56AABF]">Підтримка</span>
                 </Link>
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")}>
+                <Link className="flex mb-[20px] items-center" href={"#"}>
                     <Image src={gear} className={`w-8 h-8`} alt={'wallet'}></Image>
-                        <span className="ml-[15px] font-semibold text-[#5984B3]">Опції</span>
+                    <span className="ml-[15px] font-semibold text-[#5984B3]">Опції</span>
                 </Link>
             </div>
             <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-                <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
-                    <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
-                    <span className="ml-[15px] uppercase font-semibold text-[#DC662D]">для багатоповерхівок</span>
-                </AccordionTrigger>
-                <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
-                    <Link href={'#'} className="mt-[10px]">
-                        Інтернет
-                    </Link>
-                    <Link href={'#'} className="mt-[10px]">
-                        Інтернет + ТВ
-                    </Link>
-                    <Link href={'#'} className="mt-[10px]">
-                        Телебачення
-                    </Link>
-                    <Link href={'#'} className="mt-[10px]">
-                        Комп'ютерна допомога
-                    </Link>
-                    <Link href={'#'} className="mt-[10px]">
-                        Всі опції
-                    </Link>
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-                <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
-                    <Image src={orange_house} alt={'orange'} className="ml-[20px]"></Image>
-                    <span className="ml-[10px] uppercase font-semibold text-[#DC662D]">Приватному сектору</span>
-                </AccordionTrigger>
-                <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
-                    <Link href={'#'} className="mt-[10px]">
-                        Інтернет
-                    </Link>
-                    <Link href={'#'} className="mt-[10px]">
-                        Інтернет + ТВ
-                    </Link>
-                    <Link href={'#'} className="mt-[10px]">
-                        Комп'ютерна допомога
-                    </Link>
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-                <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
-                    <Image src={bc_orange} alt={'orange'} className="ml-[24px]"></Image>
-                    <span className="ml-[13px] uppercase font-semibold text-[#DC662D]">бiзнесу</span>
-                </AccordionTrigger>
-                <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
-                    <Link href={'#'} className="mt-[10px]">
-                        Акції
-                    </Link>
-                    <Link href={'#'} className="mt-[10px]">
-                        Тарифи
-                    </Link>
-                    <Link href={'#'} className="mt-[10px]">
-                        Мапа покриття
-                    </Link>
-                    <Link href={'#'} className="mt-[10px]">
-                        Абоненту
-                    </Link>
-                    <Link href={'#'} className="mt-[10px]">
-                        Всі опції
-                    </Link>
-                </AccordionContent>
-            </AccordionItem>
+                <AccordionItem value="item-1">
+                    <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
+                        <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
+                        <span className="ml-[15px] uppercase font-semibold text-[#DC662D]">для багатоповерхівок</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
+                        <Link href={'https://www.batyevka.net/uk/internet'} className="mt-[10px]">
+                            Інтернет
+                        </Link>
+                        <Link href={'#'} className="mt-[10px]">
+                            Інтернет + ТВ
+                        </Link>
+                        <Link href={'https://www.batyevka.net/uk/tv-unlimited'} className="mt-[10px]">
+                            Телебачення
+                        </Link>
+                        <Link href={'https://www.batyevka.net/uk/computer-help'} className="mt-[10px]">
+                            Комп'ютерна допомога
+                        </Link>
+                        <Link href={'#'} className="mt-[10px]">
+                            Всі опції
+                        </Link>
+                    </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                    <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
+                        <Image src={orange_house} alt={'orange'} className="ml-[20px]"></Image>
+                        <span className="ml-[10px] uppercase font-semibold text-[#DC662D]">Приватному сектору</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
+                        <Link href={'https://www.batyevka.net/uk/internet-tv-home'} className="mt-[10px]">
+                            Інтернет
+                        </Link>
+                        <Link href={'https://www.batyevka.net/uk/internet-tv-home'} className="mt-[10px]">
+                            Інтернет + ТВ
+                        </Link>
+                        <Link href={'https://www.batyevka.net/uk/computer-help'} className="mt-[10px]">
+                            Комп'ютерна допомога
+                        </Link>
+                    </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-3">
+                    <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
+                        <Image src={bc_orange} alt={'orange'} className="ml-[24px]"></Image>
+                        <span className="ml-[13px] uppercase font-semibold text-[#DC662D]">бiзнесу</span>
+                    </AccordionTrigger>
+                    <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
+                        <Link href={'#'} className="mt-[10px]">
+                            Акції
+                        </Link>
+                        <Link href={'#'} className="mt-[10px]">
+                            Тарифи
+                        </Link>
+                        <Link href={'#'} className="mt-[10px]">
+                            Мапа покриття
+                        </Link>
+                        <Link href={'#'} className="mt-[10px]">
+                            Абоненту
+                        </Link>
+                        <Link href={'#'} className="mt-[10px]">
+                            Всі опції
+                        </Link>
+                    </AccordionContent>
+                </AccordionItem>
             </Accordion>
 
             <div className="ml-[20px] mt-[10px]">
                 <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")} >
-                        <Image src={key} alt={'key'}></Image>
-                        <span className="ml-[15px] text-white">Вхід   </span>
+                    <Image src={key} alt={'key'}></Image>
+                    <span className="ml-[15px] text-white">Вхід   </span>
                 </Link>
                 <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")}>
                     <Image src={globe} alt={'globe'}></Image>
@@ -124,7 +124,7 @@ const Sidebar = () => {
                 </Link>
             </div>
         </div>
-     );
+    );
 };
- 
+
 export default Sidebar;

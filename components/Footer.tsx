@@ -52,7 +52,9 @@ const Footer = ( {theme}: ThemeProps ) => {
                         <ul>
                             <li className='hover:text-[#DC662D]'>Публічний договір</li>
                             <li className='hover:text-[#DC662D]'>Мапа покриття</li>
-                            <li className='hover:text-[#DC662D]'>Особитстий кабінет</li>
+                            <li className='hover:text-[#DC662D]'>
+                                <Link href="https://my.batyevka.net/cgi-bin/index.cgi" >Особитстий кабінет</Link>
+                                </li>
                             <li className='hover:text-[#DC662D]'>Додаткові опції</li>
                             <li className='hover:text-[#DC662D]'>Ще щось цікаве</li>
                         </ul>
