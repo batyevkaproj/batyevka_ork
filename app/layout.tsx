@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import { ModalProvider } from "@/providers/modal-provider";
 import { Montserrat } from 'next/font/google';
+import BinotelScripts from "@/components/BinotelScripts";
 
 const montserrat = Montserrat({
   weight: ['300', '400', '500', '600', '700'],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{
         <ModalProvider />
         {children}
         <Toaster />
+        <BinotelScripts />
         </body>
     </html>
   );
