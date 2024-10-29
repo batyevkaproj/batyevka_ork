@@ -270,9 +270,9 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
                                 <div className="flex items-start justify-between max-[680px]:grid max-[680px]:grid-cols-2 max-[680px]:grid-rows-1 max-[680px]:border-b-[2px] max-[680px]:border-[#F4F2F2] max-[680px]:border-solid max-[680px]:pb-[10px]">
                                     <h1>* Wi-Fi роутер </h1>
-                                    <h1 className="items-center justify-center text-center max-[680px]:hidden">Ультрапреміум <span className="opacity-[0.5]">MERCUSYS MR80X </span> <br />стандарт AX6000 </h1>
+                                    <h1 className="items-center justify-center text-center max-[680px]:hidden"><span className="opacity-[0.5]">MERCUSYS MR50G </span></h1>
                                     <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">{routerPrice} грн.</h1>
-                                    <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]"><br />Ультрапреміум <span className="opacity-[0.5]">MERCUSYS <br />MR80X </span> стандарт AX6000</p>
+                                    <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]"><br /><span className="opacity-[0.5]">MERCUSYS <br />MR50G </span></p>
                                 </div>
                             </div>
                         </div>
