@@ -39,6 +39,7 @@ async function sendSMSViaOmnicell(phone: string, code: string) {
 export async function POST(req: Request) {
   try {
     const { phone } = await req.json();
+    console.log(phone);
 
     if (!phone) {
       return NextResponse.json(

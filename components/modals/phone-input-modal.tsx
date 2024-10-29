@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useModal } from "@/hooks/use-modal-store";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
@@ -18,19 +18,59 @@ import {
 export const PhoneInputModal = ({ theme }: any) => {
     const [step, setStep] = useState(1); // 1 = ввод имени и телефона, 2 = ввод кода
     const [isLoading, setIsLoading] = useState(false);
+    const [rawPhoneNumber, setRawPhoneNumber] = useState('380');
     const { toast } = useToast();
 
-    const { register, handleSubmit, formState: { errors }, watch } = useForm({
+    const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm({
         defaultValues: {
             name: "",
-            phone: ""
+            phone: "+380"
         }
     });
 
     const [smsCode, setSmsCode] = useState(['', '', '', '', '', '']);
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+    const phoneRef = useRef<HTMLInputElement>(null);
 
-    const phoneRegex = /^(?:\+38|38)?0(50|63|66|67|68|73|93|95|96|97|98|99)\d{7}$/;
+    const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let value = e.target.value.replace(/\D/g, '');
+
+        if (!value.startsWith('380')) {
+            value = '380' + value.slice(3);
+        }
+
+        value = value.slice(0, 12);
+
+        setRawPhoneNumber(value);
+
+        let formattedValue = '+' + value;
+        if (value.length > 3) {
+            formattedValue = formattedValue.slice(0, 4) + ' ' + formattedValue.slice(4);
+        }
+        if (value.length > 5) {
+            formattedValue = formattedValue.slice(0, 7) + ' ' + formattedValue.slice(7);
+        }
+
+        setValue('phone', formattedValue);
+    };
+
+    const handlePhoneKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        const value = (e.target as HTMLInputElement).value.replace(/\D/g, '');
+        if (e.key === 'Backspace' && value.length <= 3) {
+            e.preventDefault();
+        }
+    };
+
+    useEffect(() => {
+        if (phoneRef.current) {
+            phoneRef.current.addEventListener('focus', () => {
+                const len = phoneRef.current?.value.length || 0;
+                setTimeout(() => {
+                    phoneRef.current?.setSelectionRange(len, len);
+                }, 0);
+            });
+        }
+    }, []);
 
     const handleCodeChange = (index: number, value: string) => {
         if (value.length <= 1 && /^\d*$/.test(value)) {
@@ -38,7 +78,6 @@ export const PhoneInputModal = ({ theme }: any) => {
             newCode[index] = value;
             setSmsCode(newCode);
 
-            // Теперь проверяем существование элемента перед вызовом focus
             if (value && index < 5 && inputRefs.current[index + 1]) {
                 inputRefs.current[index + 1]?.focus();
             }
@@ -60,7 +99,7 @@ export const PhoneInputModal = ({ theme }: any) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    phone: data.phone,
+                    phone: rawPhoneNumber,
                     name: data.name
                 })
             });
@@ -71,14 +110,13 @@ export const PhoneInputModal = ({ theme }: any) => {
                 throw new Error(result.error);
             }
 
-            // Переходим к вводу кода
             setStep(2);
         } catch (error) {
             toast({
                 variant: "destructive",
                 title: "Шкода...",
                 description: "Помилка відправки коду. Спробуйте ще раз.",
-              });
+            });
             console.error('Error:', error);
         } finally {
             setIsLoading(false);
@@ -95,7 +133,7 @@ export const PhoneInputModal = ({ theme }: any) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    phone: watch('phone'),
+                    phone: rawPhoneNumber,
                     code
                 })
             });
@@ -107,12 +145,10 @@ export const PhoneInputModal = ({ theme }: any) => {
                 return;
             }
 
-            // Проверяем наличие данных заказа
             if (!data?.orderData) {
                 throw new Error('Order data is missing');
             }
 
-            // Отправляем заявку
             const orderResponse = await fetch('/api/orders/submit', {
                 method: 'POST',
                 headers: {
@@ -164,7 +200,7 @@ export const PhoneInputModal = ({ theme }: any) => {
             <DialogContent className="bg-white p-8">
                 <DialogHeader>
                     <DialogTitle>
-                        <h1 className="font-bold text-[42px] leading-[50px] text-center mb-6">
+                        <h1 className="font-bold leading-[50px] text-3xl text-center mb-6 text-[#BDBDBD]">
                             {step === 1 ? "Введіть ваші дані" : "Перевірка номера телефону"}
                         </h1>
                     </DialogTitle>
@@ -182,9 +218,9 @@ export const PhoneInputModal = ({ theme }: any) => {
                                         message: "Ім'я має містити мінімум 2 символи"
                                     }
                                 })}
-                                className={`w-full h-[60px] rounded-full text-[16px] bg-transparent border 
-                                    ${theme === 'white' ? 'border-[#DC662D]' : 'border-[#56AABF]'}
-                                    pl-[22px] placeholder:text-slate-300 mb-4`}
+                                className={`w-full h-[60px] rounded-full text-[20px] bg-transparent border 
+                                ${theme === 'white' ? 'border-[#DC662D]' : 'border-[#56AABF]'}
+                                pl-[22px] placeholder:text-slate-300 mb-4`}
                                 placeholder="Ваше ім'я"
                             />
                             {errors.name && (
@@ -193,17 +229,14 @@ export const PhoneInputModal = ({ theme }: any) => {
 
                             <input
                                 type="tel"
-                                {...register("phone", {
-                                    required: "Номер телефону обов'язковий",
-                                    pattern: {
-                                        value: phoneRegex,
-                                        message: "Введіть коректний український номер"
-                                    }
-                                })}
-                                className={`w-full h-[60px] rounded-full text-[16px] bg-transparent border 
-                                    ${theme === 'white' ? 'border-[#DC662D]' : 'border-[#56AABF]'}
-                                    pl-[22px] placeholder:text-slate-300`}
-                                placeholder="+380501234567"
+                                ref={phoneRef}
+                                {...register("phone")}
+                                onChange={handlePhoneInput}
+                                onKeyDown={handlePhoneKeyDown}
+                                className={`w-full h-[60px] rounded-full text-[20px] bg-transparent border 
+                                ${theme === 'white' ? 'border-[#DC662D]' : 'border-[#56AABF]'}
+                                pl-[22px] placeholder:text-slate-300 font-medium tracking-wide`}
+                                placeholder="+380 XX XXX XX XX"
                             />
                             {errors.phone && (
                                 <p className="text-red-500 mt-2 text-sm">{errors.phone.message}</p>
@@ -212,10 +245,10 @@ export const PhoneInputModal = ({ theme }: any) => {
 
                         <button
                             type="submit"
-                            disabled={isLoading}
+                            disabled={isLoading || rawPhoneNumber.length !== 12}
                             className={`${theme === 'white' ? 'bg-[#DC662D] shadow-[0_4px_20px_0_#DC662D80]' : 'bg-[#56AABF] shadow-[0_4px_20px_0_#56AABF80]'}
-                                w-full max-w-md rounded-full h-[60px] text-white text-[18px] font-semibold
-                                disabled:opacity-50 disabled:cursor-not-allowed`}
+                            w-full max-w-md rounded-full h-[60px] text-white text-[20px] font-semibold
+                            disabled:opacity-50 disabled:cursor-not-allowed`}
                         >
                             {isLoading ? "Відправляємо код..." : "Отримати код"}
                         </button>
@@ -228,7 +261,7 @@ export const PhoneInputModal = ({ theme }: any) => {
                         </p>
 
                         <div className="flex gap-4 justify-center">
-                        {smsCode.map((digit, index) => (
+                            {smsCode.map((digit, index) => (
                                 <input
                                     key={index}
                                     ref={el => { inputRefs.current[index] = el; }}
@@ -268,7 +301,7 @@ export const PhoneInputModal = ({ theme }: any) => {
 
                 <DialogFooter className="mt-4">
                     <DialogClose asChild>
-                        <Button onClick={handleClose} type="button" variant="secondary">
+                        <Button onClick={handleClose} variant="outline">
                             Закрити
                         </Button>
                     </DialogClose>
