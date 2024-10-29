@@ -14,15 +14,15 @@ before_script:
 deploy:
   stage: deploy
   only:
-    - master
+    - non-of-existing-branch
   script: 
-    - ssh www-root@server.icstudio.online "bash batyevka.sh" -vvv
+    - ssh www-root@server2.icstudio.online "bash batyevka.sh" -vvv
     - echo "Deployed"
 
 deploy-dev:
   stage: deploy
   only:
-    - testing
+    - non-of-existing-branch2
   script: 
-    - ssh www-root@server.icstudio.online "bash batyevka-dev.sh" -vvv
+    - ssh www-root@server2.icstudio.online "bash batyevka-dev.sh" -vvv
     - echo "Deployed"

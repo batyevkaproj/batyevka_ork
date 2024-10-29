@@ -70,6 +70,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
         // Deal with setup price
         let newSetupPrice = (isTarifsSwitch ? UTP_SETUP_PRICES : GPON_SETUP_PRICES).find(tier => prepaidMonths == tier.months)?.price ?? 1499;
+        
+        // Special pricing for high-speed G-PON
+        if (!isTarifsSwitch) { // If G-PON is selected
+            const selectedSpeed = GPON_SPEEDS.find(item => item.value === speedGpon);
+            if (selectedSpeed && (selectedSpeed.speed === 2.5 || selectedSpeed.speed === 5)) {
+                newSetupPrice = 8500; // Override setup price for 2.5G and 5G speeds
+            }
+        }
 
         if (isIPChecked) {
             newSetupPrice = newSetupPrice + 100; // Setup price for static IP is 100 UAH
