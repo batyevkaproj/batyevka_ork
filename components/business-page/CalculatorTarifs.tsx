@@ -179,7 +179,6 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const handleOpenModal = () => {
         try {
             const orderData = prepareOrderData();
-            console.log(orderData);
             onOpen("phone-input", { orderData });
         } catch (error) {
             toast({

@@ -16,8 +16,6 @@ export async function POST(req: Request) {
   try {
     const { phone, code } = await req.json();
 
-    console.log(phone, code);
-
     const cleanedPhone = cleanPhoneNumber(phone);
 
     if (!isValidPhoneNumber(cleanedPhone)) {
