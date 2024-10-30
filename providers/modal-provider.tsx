@@ -21,7 +21,7 @@ export const ModalProvider = () => {
     <>
       <OrderCallModal />
       <PaymentModal />
-      <PhoneInputModal />
+      <PhoneInputModal theme="white"/>
     </>
   )
 }
