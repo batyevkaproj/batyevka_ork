@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import { useModal } from "@/hooks/use-modal-store";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
 
 
@@ -21,28 +21,35 @@ export const PhoneInputModal = ({ theme }: any) => {
     const [rawPhoneNumber, setRawPhoneNumber] = useState('380');
     const { toast } = useToast();
 
-    const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm({
+    const form = useForm({
         defaultValues: {
             name: "",
             phone: "+380"
         }
     });
 
+    const { control, register, handleSubmit, formState: { errors }, watch, setValue } = form;
+
     const [smsCode, setSmsCode] = useState(['', '', '', '', '', '']);
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-    const phoneRef = useRef<HTMLInputElement>(null);
+    const phoneRef = useRef<HTMLInputElement | null>(null);
 
     const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value.replace(/\D/g, '');
-
+    
         if (!value.startsWith('380')) {
-            value = '380' + value.slice(3);
+            value = '380';
         }
-
+    
         value = value.slice(0, 12);
-
+        
         setRawPhoneNumber(value);
-
+    
+        if (value === '380') {
+            setValue('phone', '+380');
+            return;
+        }
+    
         let formattedValue = '+' + value;
         if (value.length > 3) {
             formattedValue = formattedValue.slice(0, 4) + ' ' + formattedValue.slice(4);
@@ -50,7 +57,7 @@ export const PhoneInputModal = ({ theme }: any) => {
         if (value.length > 5) {
             formattedValue = formattedValue.slice(0, 7) + ' ' + formattedValue.slice(7);
         }
-
+    
         setValue('phone', formattedValue);
     };
 
@@ -226,17 +233,45 @@ export const PhoneInputModal = ({ theme }: any) => {
                             {errors.name && (
                                 <p className="text-red-500 mt-2 text-sm">{errors.name.message}</p>
                             )}
-
-                            <input
-                                type="tel"
-                                ref={phoneRef}
-                                {...register("phone")}
-                                onChange={handlePhoneInput}
-                                onKeyDown={handlePhoneKeyDown}
-                                className={`w-full h-[60px] rounded-full text-[20px] bg-transparent border 
-                                ${theme === 'white' ? 'border-[#DC662D]' : 'border-[#56AABF]'}
-                                pl-[22px] placeholder:text-slate-300 font-medium tracking-wide`}
-                                placeholder="+380 XX XXX XX XX"
+                            <Controller
+                                name="phone"
+                                control={control}
+                                rules={{
+                                    required: "Номер телефону обов'язковий",
+                                    validate: (value) => {
+                                        // Проверяем, что номер полный
+                                        const digitsOnly = value.replace(/\D/g, '');
+                                        if (digitsOnly.length !== 12) {
+                                            return "Введіть повний номер телефону";
+                                        }
+                                        // Проверяем, что начинается с 380
+                                        if (!digitsOnly.startsWith('380')) {
+                                            return "Номер повинен починатися з 380";
+                                        }
+                                        return true;
+                                    }
+                                }}
+                                render={({ field, fieldState: { error } }) => (
+                                    <div>
+                                        <input
+                                            type="tel"
+                                            ref={phoneRef}
+                                            value={field.value}
+                                            onChange={(e) => {
+                                                handlePhoneInput(e);
+                                            }}
+                                            onKeyDown={handlePhoneKeyDown}
+                                            className={`w-full h-[60px] rounded-full text-[20px] bg-transparent border 
+                    ${theme === 'white' ? 'border-[#DC662D]' : 'border-[#56AABF]'}
+                    ${error ? 'border-red-500' : ''}
+                    pl-[22px] placeholder:text-slate-300 font-medium tracking-wide`}
+                                            placeholder="+380 XX XXX XX XX"
+                                        />
+                                        {error && (
+                                            <p className="text-red-500 mt-2 text-sm pl-4">{error.message}</p>
+                                        )}
+                                    </div>
+                                )}
                             />
                             {errors.phone && (
                                 <p className="text-red-500 mt-2 text-sm">{errors.phone.message}</p>
