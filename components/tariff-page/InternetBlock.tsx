@@ -45,20 +45,19 @@ const InternetBlock = ({speedItem}: InternetBlockProps) => {
                 </div>
                 <div className={`min-[3644px]:mt-[22px] mt-[15px] max-[2377px]:mt-[10px] flex items-start`}>
                     <Image src={galochka_orange} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
+                    <div className='flex flex-col'>
                     <p className="font-semibold ">
-                        Виклик майстра для <br /> будь-якого ремонту безкоштовно
+                    Абонентське обслуговування. <br />
                     </p>
+                    <p className="text-sm">
+                        У тариф включена вартість Виклику майстра для сервісного обслуговування комунікаційного устаткування
+                    </p>
+                    </div>
                 </div>
                 <div className={`min-[3644px]:mt-[22px] mt-[15px] max-[2377px]:mt-[10px] flex items-start`}>
                     <Image src={galochka_orange} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                     <p>
-                        Оптичний модем <br /> безкоштовно *
-                    </p>
-                </div>
-                <div className={`min-[3644px]:mt-[22px] mt-[15px] max-[2377px]:mt-[10px] flex items-start`}>
-                    <Image src={galochka_orange} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
-                    <p className="">
-                        Wi-Fi 6 роутер <br />безкоштовно *
+                        Оптичний термінал <br /> безкоштовно *
                     </p>
                 </div>
                 <div className={`min-[3644px]:mt-[22px] mt-[15px] max-[2377px]:mt-[10px] flex items-start`}>

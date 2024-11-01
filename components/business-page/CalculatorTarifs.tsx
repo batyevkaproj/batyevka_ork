@@ -261,8 +261,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 </div>
                                 {
                                     !isTarifsSwitch && <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
-                                        <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />ONU HG8010H</span></h1>
-                                        <h1 className="opacity-[0.5] max-[680px]:hidden">ONU HG8010H</h1>
+                                        <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />ONU  XGS-PON</span></h1>
+                                        <h1 className="opacity-[0.5] max-[680px]:hidden">ONU  XGS-PON</h1>
                                         <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">безкоштовна оренда</h1>
                                     </div>
                                 }
