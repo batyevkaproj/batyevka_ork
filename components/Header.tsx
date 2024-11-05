@@ -99,9 +99,7 @@ const Header = ({ theme, business }: HeaderProps) => {
                         <Image src={theme == 'white' ? connectGrey : connect} alt='connect' className={``}>
                         </Image>
                     </Button>
-                    <Link href="/prices">
-                        <Button variant="connect">Заявка на підключення</Button>
-                    </Link>
+                        <Button onClick={() => onOpen("call")} variant="connect">Заявка на підключення</Button>
                     <Button onClick={() => onOpen("call")} variant="connectMob">
                         <Image src={wkey} alt='wkey'>
                         </Image>
