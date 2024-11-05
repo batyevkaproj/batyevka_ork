@@ -5,8 +5,9 @@ type RouterPriceProps = {
 }
 
 export const ROUTER_PRICE: RouterPriceProps[] = [
-    { months: 1, price: 3000, default: true },
-    { months: 12, price: 2500 },
-    { months: 24, price: 1500 },
-    { months: 36, price: 499 }
-]
+    { months: 1, price: 1799, default: true },
+    { months: 6, price: 1299 },
+    { months: 12, price: 799 },
+    { months: 24, price: 299 },
+    { months: 36, price: 100 }
+];

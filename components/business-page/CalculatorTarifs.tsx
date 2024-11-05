@@ -70,6 +70,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
         // Deal with setup price
         let newSetupPrice = (isTarifsSwitch ? UTP_SETUP_PRICES : GPON_SETUP_PRICES).find(tier => prepaidMonths == tier.months)?.price ?? 1499;
+        
+        // Special pricing for high-speed G-PON
+        if (!isTarifsSwitch) { // If G-PON is selected
+            const selectedSpeed = GPON_SPEEDS.find(item => item.value === speedGpon);
+            if (selectedSpeed && (selectedSpeed.speed === 2.5 || selectedSpeed.speed === 5)) {
+                newSetupPrice = 8500; // Override setup price for 2.5G and 5G speeds
+            }
+        }
 
         if (isIPChecked) {
             newSetupPrice = newSetupPrice + 100; // Setup price for static IP is 100 UAH
@@ -171,7 +179,6 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const handleOpenModal = () => {
         try {
             const orderData = prepareOrderData();
-            console.log(orderData);
             onOpen("phone-input", { orderData });
         } catch (error) {
             toast({
@@ -254,17 +261,17 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 </div>
                                 {
                                     !isTarifsSwitch && <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
-                                        <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />ONU HG8010H</span></h1>
-                                        <h1 className="opacity-[0.5] max-[680px]:hidden">ONU HG8010H</h1>
+                                        <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />ONU  XGS-PON</span></h1>
+                                        <h1 className="opacity-[0.5] max-[680px]:hidden">ONU  XGS-PON</h1>
                                         <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">безкоштовна оренда</h1>
                                     </div>
                                 }
 
                                 <div className="flex items-start justify-between max-[680px]:grid max-[680px]:grid-cols-2 max-[680px]:grid-rows-1 max-[680px]:border-b-[2px] max-[680px]:border-[#F4F2F2] max-[680px]:border-solid max-[680px]:pb-[10px]">
                                     <h1>* Wi-Fi роутер </h1>
-                                    <h1 className="items-center justify-center text-center max-[680px]:hidden">Ультрапреміум <span className="opacity-[0.5]">MERCUSYS MR90X </span> <br />стандарт AX6000 </h1>
+                                    <h1 className="items-center justify-center text-center max-[680px]:hidden"><span className="opacity-[0.5]">MERCUSYS MR50G </span></h1>
                                     <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">{routerPrice} грн.</h1>
-                                    <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]"><br />Ультрапреміум <span className="opacity-[0.5]">MERCUSYS <br />MR90X </span> стандарт AX6000</p>
+                                    <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]"><br /><span className="opacity-[0.5]">MERCUSYS <br />MR50G </span></p>
                                 </div>
                             </div>
                         </div>
@@ -283,14 +290,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 <div className="grid grid-cols-1 items-center w-full font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:gap-[22px] gap-[15px] max-[2377px]:gap-[12px] max-[680px]:hidden">
                                     <div className="flex items-end justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                         <h1>Акційна абонплата на Перші 4 місяці</h1>
-                                        <h1 className="text-[#DC662D] flex items-end justify-between gap-3 w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
+                                        <h1 className="text-[#DC662D] flex items-end justify-between gap-3">
                                             <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{Math.round(totalPrice * 0.6)}</span>
                                             <span className="text-nowrap min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
                                     </div>
                                     <div className="flex items-end justify-between min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                         <h1>Абонплата з 5го місяця</h1>
-                                        <h1 className="text-[#51B18B] flex items-end justify-between gap-3 w-[287px] min-[3644px]:w-[430px] max-[2377px]:w-[258px]">
+                                        <h1 className="text-[#51B18B] flex items-end justify-between gap-3">
                                             <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{Math.round(totalPrice)}</span>
                                             <span className="text-nowrap min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
