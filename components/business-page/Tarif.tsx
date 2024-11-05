@@ -10,8 +10,9 @@ import prom_small from '../../public/img/prom_small.svg';
 import prom_middle from '../../public/img/prom_middle.svg';
 import prom_large from '../../public/img/prom_large.svg';
 
-
 import { TariffProps } from "@/types/home";
+
+import { REAL_IP_PRICE } from '@/constants/internet_speeds';
 
 
 interface TarifGponBiggestProps {
@@ -19,12 +20,13 @@ interface TarifGponBiggestProps {
 }
 
 export const TarifGponBiggest = ({ tarif }: TarifGponBiggestProps) => {
+
     const { onOpen } = useModal();
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + 85));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + 85));
+    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
+    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
     const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
@@ -39,9 +41,12 @@ export const TarifGponBiggest = ({ tarif }: TarifGponBiggestProps) => {
                 грн/міс
             </h2>
             <h2 className={`text-[#8B6CB0] font-semibold min-[3644px]:text-[48px] min-[3644px]:leading-[48px] text-[32px] leading-[32px] max-[2377px]:text-[22px] max-[2377px]:leading-[24px] justify-center flex min-[3644px]:pb-[72px] pb-[48px] max-[2377px]:pb-[40px] ${tarif.promotion ? '' : 'min-[3644px]:pb-[120px] pb-[80px] max-[2377px]:pb-[64px]'}`}>
-                <span className={tarif.promotion ? '' : 'hidden'}>
-                    {`${tarif.promotion} з 5 місяця ${realIpChecked ? tarifNonPromoPriceWithIp : tarifNonPromoPrice} грн.`}
-                </span>
+                {tarif.promotion && 
+                    <span>
+                        {`з 5 місяця ${realIpChecked ? tarifNonPromoPriceWithIp : tarifNonPromoPrice} грн.`}
+                    </span>
+                }
+                
             </h2>
             <h2 className="text-[#56AABF] font-semibold min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] justify-center flex">
                 Швидкість
@@ -92,8 +97,8 @@ export const TarifGponMiddle = ({ tarif }: TarifGponMiddleProps) => {
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + 85));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + 85));
+    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
+    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
     const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
@@ -133,9 +138,9 @@ export const TarifGponMiddle = ({ tarif }: TarifGponMiddleProps) => {
                     </h2>
                     <div className="flex justify-center mb-[30px]">
                         <WhiteGreyIpCheck
-                    checked={realIpChecked}
-                    setChecked={setIpChecked}
-                />
+                            checked={realIpChecked}
+                            setChecked={setIpChecked}
+                        />
                     </div>
                     <div className="flex justify-center">
                         <button onClick={() => onOpen("call")} className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
@@ -156,8 +161,8 @@ export const TarifGponMobile = ({ tarif }: TarifGponMobileProps) => {
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + 85));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + 85));
+    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
+    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
     const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
@@ -217,8 +222,8 @@ export const TarifXGponBiggest = ({ tarif }: TarifXGponBiggestProps) => {
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + 85));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + 85));
+    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
+    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
     const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
@@ -279,8 +284,8 @@ export const TarifXGponMiddle = ({ tarif }: TarifXGponMiddleProps) => {
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + 85));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + 85));
+    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
+    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
     const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
@@ -343,8 +348,8 @@ export const TarifXGponMobile = ({ tarif }: TarifXGponMobileProps) => {
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + 85));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + 85));
+    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
+    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
     const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
