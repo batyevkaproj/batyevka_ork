@@ -18,6 +18,7 @@ import bc_orange from '@/public/img/br_case_orange.svg';
 import key from '@/public/img/key_white.svg';
 import globe from '@/public/img/globe_white.png';
 import LogoMobileComponent from "./LogoMobileComponent";
+import { Button } from "./ui/button";
 
 const Sidebar = () => {
 
@@ -35,11 +36,11 @@ const Sidebar = () => {
                     <Image src={wallet} className={`w-8 h-8`} alt={'wallet'}></Image>
                     <span className="ml-[15px] font-semibold text-[#51B18B]">Оплата</span>
                 </Link>
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("contact")} >
+                <Button className="flex justify-start mb-[20px]" onClick={() => onOpen("call")} >
                     <Image src={_247} className={`w-8 h-8`} alt={'options'}></Image>
                     <span className="ml-[15px] font-semibold text-[#56AABF]">Підтримка</span>
-                </Link>
-                <Link className="flex mb-[20px] items-center" href={"#"}>
+                </Button>
+                <Link className="flex mb-[20px] items-center" href="#">
                     <Image src={gear} className={`w-8 h-8`} alt={'wallet'}></Image>
                     <span className="ml-[15px] font-semibold text-[#5984B3]">Опції</span>
                 </Link>
