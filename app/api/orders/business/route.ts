@@ -44,6 +44,7 @@ export async function POST(req: Request) {
       `Статичний IP: ${body.hasStaticIP ? 'Так' : 'Ні'}`,
       `Регулярна ціна: ${body.regularPrice} грн/міс`,
       `Вартість: ${body.totalMonthlyPrice} грн/міс`,
+      `Вартість підключення: ${body.setupPrice} грн.`,
       `Адреса: ${body.customerAddress}`,
       `Тип абонента: БІЗНЕС`,
 

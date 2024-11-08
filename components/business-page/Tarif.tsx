@@ -33,7 +33,7 @@ export const TarifGponBiggest = ({ tarif }: TarifGponBiggestProps) => {
             nonPromoPrice: tarif.nonPromoPrice,
             promotion: tarif.promotion,
             hasStaticIp: realIpChecked,
-            setupPrice: 0
+            setupPrice: tarif.setupPrice
           });
     };
 
@@ -118,7 +118,7 @@ export const TarifGponMiddle = ({ tarif }: TarifGponMiddleProps) => {
             nonPromoPrice: tarif.nonPromoPrice,
             promotion: tarif.promotion,
             hasStaticIp: realIpChecked,
-            setupPrice: 0
+            setupPrice: tarif.setupPrice
           });
       };
 
@@ -198,7 +198,7 @@ export const TarifGponMobile = ({ tarif }: TarifGponMobileProps) => {
             nonPromoPrice: tarif.nonPromoPrice,
             promotion: tarif.promotion,
             hasStaticIp: realIpChecked,
-            setupPrice: 0
+            setupPrice: tarif.setupPrice
           });
       };
 
@@ -272,7 +272,7 @@ export const TarifXGponBiggest = ({ tarif }: TarifXGponBiggestProps) => {
             nonPromoPrice: tarif.nonPromoPrice,
             promotion: tarif.promotion,
             hasStaticIp: realIpChecked,
-            setupPrice: 0
+            setupPrice: tarif.setupPrice
           });
     };
 
@@ -347,7 +347,7 @@ export const TarifXGponMiddle = ({ tarif }: TarifXGponMiddleProps) => {
             nonPromoPrice: tarif.nonPromoPrice,
             promotion: tarif.promotion,
             hasStaticIp: realIpChecked,
-            setupPrice: 0
+            setupPrice: tarif.setupPrice
           });
     };
 
@@ -424,7 +424,7 @@ export const TarifXGponMobile = ({ tarif }: TarifXGponMobileProps) => {
             nonPromoPrice: tarif.nonPromoPrice,
             promotion: tarif.promotion,
             hasStaticIp: realIpChecked,
-            setupPrice: 0
+            setupPrice: tarif.setupPrice
           });
     };
 
