@@ -21,7 +21,7 @@ export type OrderData = {
   additionalInfo?: string
 }
 
-export type ModalType = "call" | "contact" | "order" | "payment" | "phone-input" | "sms-verify";
+export type ModalType = "call" | "contact" | "order" | "payment" | "phone-input" | "sms-verify"| "request-connection";
 
 export type ModalData = {
   orderData?: OrderData;
