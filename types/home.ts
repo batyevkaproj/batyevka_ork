@@ -5,5 +5,6 @@ export type TariffProps = {
     checked: boolean;
     promotion?: boolean;
     speed: string;
-    type?: "G-PON" | "XGS-PON"
+    type?: "G-PON" | "XGS-PON";
+    setupPrice?: number;
 }
