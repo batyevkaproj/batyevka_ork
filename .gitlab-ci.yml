@@ -9,20 +9,20 @@ before_script:
   ##
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
-  - ssh-keyscan server.icstudio.online >> ~/.ssh/known_hosts
+  - ssh-keyscan server2.icstudio.online >> ~/.ssh/known_hosts
 
 deploy:
   stage: deploy
   only:
-    - non-of-existing-branch
+    - testing
   script: 
-    - ssh www-root@server2.icstudio.online "bash batyevka.sh" -vvv
+    - ssh batyevka@server2.icstudio.online "bash bb.sh" -vvv
     - echo "Deployed"
 
 deploy-dev:
   stage: deploy
   only:
-    - non-of-existing-branch2
+    - master
   script: 
-    - ssh www-root@server2.icstudio.online "bash batyevka-dev.sh" -vvv
+    - ssh batyevka@server2.icstudio.online "bash bb-test.sh" -vvv
     - echo "Deployed"
