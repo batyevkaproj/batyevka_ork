@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useModal } from "@/hooks/use-modal-store";
 import WhiteGreyIpCheck from './WhiteGreyIpCheck';
-import { inserSpaceInDecimal } from "@/lib/utils";
+import { insertSpaceInDecimal } from "@/lib/utils";
 
 import galochka from '../../public/img/galochka.svg';
 import prom_small from '../../public/img/prom_small.svg';
@@ -37,10 +37,10 @@ export const TarifGponBiggest = ({ tarif }: TarifGponBiggestProps) => {
           });
     };
 
-    const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
-    const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
+    const tarifPrice = insertSpaceInDecimal(tarif.price);
+    const tarifNonPromoPrice = insertSpaceInDecimal(tarif.nonPromoPrice);
+    const tarifPriceWithIp = insertSpaceInDecimal(tarif.price + REAL_IP_PRICE);
+    const tarifNonPromoPriceWithIp = insertSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE);
 
     return (
         <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px] min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853] z-10">
@@ -123,10 +123,10 @@ export const TarifGponMiddle = ({ tarif }: TarifGponMiddleProps) => {
       };
 
 
-    const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
-    const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
+    const tarifPrice = insertSpaceInDecimal(tarif.price);
+    const tarifNonPromoPrice = insertSpaceInDecimal(tarif.nonPromoPrice);
+    const tarifPriceWithIp = insertSpaceInDecimal(tarif.price + REAL_IP_PRICE);
+    const tarifNonPromoPriceWithIp = insertSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE);
 
     return (
         <div className="p-1">
@@ -202,10 +202,10 @@ export const TarifGponMobile = ({ tarif }: TarifGponMobileProps) => {
           });
       };
 
-    const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
-    const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
+    const tarifPrice = insertSpaceInDecimal(tarif.price);
+    const tarifNonPromoPrice = insertSpaceInDecimal(tarif.nonPromoPrice);
+    const tarifPriceWithIp = insertSpaceInDecimal(tarif.price + REAL_IP_PRICE);
+    const tarifNonPromoPriceWithIp = insertSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE);
 
     return (
         <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853] z-10">
@@ -276,10 +276,10 @@ export const TarifXGponBiggest = ({ tarif }: TarifXGponBiggestProps) => {
           });
     };
 
-    const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
-    const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
+    const tarifPrice = insertSpaceInDecimal(tarif.price);
+    const tarifNonPromoPrice = insertSpaceInDecimal(tarif.nonPromoPrice);
+    const tarifPriceWithIp = insertSpaceInDecimal(tarif.price + REAL_IP_PRICE);
+    const tarifNonPromoPriceWithIp = insertSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE);
 
     return (
         <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
@@ -351,10 +351,10 @@ export const TarifXGponMiddle = ({ tarif }: TarifXGponMiddleProps) => {
           });
     };
 
-    const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
-    const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
+    const tarifPrice = insertSpaceInDecimal(tarif.price);
+    const tarifNonPromoPrice = insertSpaceInDecimal(tarif.nonPromoPrice);
+    const tarifPriceWithIp = insertSpaceInDecimal(tarif.price + REAL_IP_PRICE);
+    const tarifNonPromoPriceWithIp = insertSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE);
 
     return (
         <div className="p-1">
@@ -428,10 +428,10 @@ export const TarifXGponMobile = ({ tarif }: TarifXGponMobileProps) => {
           });
     };
 
-    const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
-    const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
-    const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
-    const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
+    const tarifPrice = insertSpaceInDecimal(tarif.price);
+    const tarifNonPromoPrice = insertSpaceInDecimal(tarif.nonPromoPrice);
+    const tarifPriceWithIp = insertSpaceInDecimal(tarif.price + REAL_IP_PRICE);
+    const tarifNonPromoPriceWithIp = insertSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE);
 
     return (
         <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853] z-10">

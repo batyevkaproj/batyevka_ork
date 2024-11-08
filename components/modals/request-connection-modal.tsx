@@ -78,7 +78,7 @@ export const RequestConnectionModal = () => {
 
             const orderData = {
                 customerName: formData.name,
-                customerPhone: formData.phone,
+                customerPhone: rawPhoneNumber,
                 customerAddress: formData.address,
                 
                 internetType: data.type || 'G-PON', // or XGS-PON
