@@ -17,7 +17,7 @@ deploy:
     - testing
   script: 
     - ssh batyevka@server2.icstudio.online "bash bb.sh" -vvv
-    - echo "Deployed"
+    - echo "Deployed on DevServer. Bracnh testing."
 
 deploy-dev:
   stage: deploy
@@ -25,4 +25,11 @@ deploy-dev:
     - master
   script: 
     - ssh batyevka@server2.icstudio.online "bash bb-test.sh" -vvv
-    - echo "Deployed"
+    - echo "Deployed on DevServer. Brach master"
+deploy-prod:
+  stage: deploy
+  only:
+    - production
+  script:
+    - ssh ssh www-root@srv.batyevka.net "bash bb-prod.sh" -vvv
+    - echo "Deployed on Production"
