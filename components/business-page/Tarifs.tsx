@@ -24,16 +24,16 @@ import {
 const Tarifs = () => {
 
     const TARIFF_SIMPLE: TariffProps[] = [
-        { id: 1, price: 499, speed: '100 Мегабіт', promotion: true, nonPromoPrice: 799, checked: false },
-        { id: 2, price: 799, speed: '300 Мегабіт', promotion: true, nonPromoPrice: 1299, checked: false },
-        { id: 3, price: 999, speed: '1000 Мегабіт', promotion: true, nonPromoPrice: 1599, checked: false }
+        { id: 1, price: 499, speed: '100 Мегабіт', promotion: true, nonPromoPrice: 799, checked: false, type: 'G-PON' },
+        { id: 2, price: 799, speed: '300 Мегабіт', promotion: true, nonPromoPrice: 1299, checked: false, type: 'G-PON' },
+        { id: 3, price: 999, speed: '1000 Мегабіт', promotion: true, nonPromoPrice: 1599, checked: false, type: 'G-PON' }
 
     ];
 
     const TARIFF_PREMIUM: TariffProps[] = [
-        { id: 1, price: 999, speed: '1 Гбіт', promotion: true, nonPromoPrice: 1599, checked: false },
-        { id: 2, price: 1999, speed: '2,5 Гбіт', promotion: true, nonPromoPrice: 2999, checked: false },
-        { id: 3, price: 2999, speed: '5 Гбіт', promotion: true, nonPromoPrice: 3999, checked: false }
+        { id: 1, price: 999, speed: '1 Гбіт', promotion: true, nonPromoPrice: 1599, checked: false, type: 'XGS-PON' },
+        { id: 2, price: 1999, speed: '2,5 Гбіт', promotion: true, nonPromoPrice: 2999, checked: false, type: 'XGS-PON' },
+        { id: 3, price: 2999, speed: '5 Гбіт', promotion: true, nonPromoPrice: 3999, checked: false, type: 'XGS-PON' }
     ];
 
     return (

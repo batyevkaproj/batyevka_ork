@@ -22,12 +22,25 @@ interface TarifGponBiggestProps {
 export const TarifGponBiggest = ({ tarif }: TarifGponBiggestProps) => {
 
     const { onOpen } = useModal();
+    const [realIpChecked, setIpChecked] = useState(tarif.checked);
+
+    const handleConnectClick = (tarif: TariffProps) => {
+        onOpen("request-connection", {
+            type: "G-PON", // или "XGS-PON"
+            speed: tarif.speed,
+            measure: '',
+            price: tarif.price,
+            nonPromoPrice: tarif.nonPromoPrice,
+            promotion: tarif.promotion,
+            hasStaticIp: realIpChecked,
+            setupPrice: 0
+          });
+    };
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
     const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
     const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
-    const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
         <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px] min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853] z-10">
@@ -75,7 +88,7 @@ export const TarifGponBiggest = ({ tarif }: TarifGponBiggestProps) => {
             </div>
             <div className="flex justify-center">
                 <button 
-                    onClick={() => onOpen("call")} 
+                    onClick={() => handleConnectClick(tarif)} 
                     className="bg-[#56AABF] mx-[32px] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]"
                 >
                     Підключити
@@ -94,12 +107,26 @@ interface TarifGponMiddleProps {
 export const TarifGponMiddle = ({ tarif }: TarifGponMiddleProps) => {
 
     const { onOpen } = useModal();
+    const [realIpChecked, setIpChecked] = useState(tarif.checked);
+
+    const handleConnectClick = (tarif: TariffProps) => {
+        onOpen("request-connection", {
+            type: "G-PON", // или "XGS-PON"
+            speed: tarif.speed,
+            measure: '',
+            price: tarif.price,
+            nonPromoPrice: tarif.nonPromoPrice,
+            promotion: tarif.promotion,
+            hasStaticIp: realIpChecked,
+            setupPrice: 0
+          });
+      };
+
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
     const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
     const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
-    const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
         <div className="p-1">
@@ -143,7 +170,7 @@ export const TarifGponMiddle = ({ tarif }: TarifGponMiddleProps) => {
                         />
                     </div>
                     <div className="flex justify-center">
-                        <button onClick={() => onOpen("call")} className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                        <button onClick={() => handleConnectClick(tarif)} className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                     </div>
                 </div>
             </div>
@@ -158,12 +185,27 @@ interface TarifGponMobileProps {
 export const TarifGponMobile = ({ tarif }: TarifGponMobileProps) => {
 
     const { onOpen } = useModal();
+    const [realIpChecked, setIpChecked] = useState(tarif.checked);
+
+    
+
+    const handleConnectClick = (tarif: TariffProps) => {
+        onOpen("request-connection", {
+            type: "G-PON", // или "XGS-PON"
+            speed: tarif.speed,
+            measure: '',
+            price: tarif.price,
+            nonPromoPrice: tarif.nonPromoPrice,
+            promotion: tarif.promotion,
+            hasStaticIp: realIpChecked,
+            setupPrice: 0
+          });
+      };
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
     const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
     const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
-    const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
         <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853] z-10">
@@ -206,7 +248,7 @@ export const TarifGponMobile = ({ tarif }: TarifGponMobileProps) => {
                 />
             </div>
             <div className="flex justify-center">
-                <button onClick={() => onOpen("call")} className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                <button onClick={() => handleConnectClick(tarif)} className="bg-[#56AABF] mx-[32px] text-white rounded-full h-[60px] w-[270px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
             </div>
         </div>
     );
@@ -219,12 +261,25 @@ interface TarifXGponBiggestProps {
 export const TarifXGponBiggest = ({ tarif }: TarifXGponBiggestProps) => {
 
     const { onOpen } = useModal();
+    const [realIpChecked, setIpChecked] = useState(tarif.checked);
+
+    const handleConnectClick = (tarif: TariffProps) => {
+        onOpen("request-connection", {
+            type: "XGS-PON",
+            speed: tarif.speed,
+            measure: '',
+            price: tarif.price,
+            nonPromoPrice: tarif.nonPromoPrice,
+            promotion: tarif.promotion,
+            hasStaticIp: realIpChecked,
+            setupPrice: 0
+          });
+    };
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
     const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
     const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
-    const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
         <div className="max-[2377px]:h-[573px] max-[2377px]:w-[350px] w-[458px] h-[750px]  min-[3644px]:h-[1125px] min-[3644px]:w-[693px] rounded-md bg-[#123853]">
@@ -268,7 +323,7 @@ export const TarifXGponBiggest = ({ tarif }: TarifXGponBiggestProps) => {
                 />
             </div>
             <div className="flex justify-center">
-                <button onClick={() => onOpen("call")} className="bg-[#56AABF] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] mx-[32px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                <button onClick={() => handleConnectClick(tarif)} className="bg-[#56AABF] text-white rounded-full min-[3644px]:h-[118px] min-[3644px]:w-[531px] h-[78px] w-[351px] max-[2377px]:h-[60px] max-[2377px]:w-[270px] mx-[32px] min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
             </div>
         </div>
     );
@@ -281,12 +336,25 @@ interface TarifXGponMiddleProps {
 export const TarifXGponMiddle = ({ tarif }: TarifXGponMiddleProps) => {
 
     const { onOpen } = useModal();
+    const [realIpChecked, setIpChecked] = useState(tarif.checked);
+
+    const handleConnectClick = (tarif: TariffProps) => {
+        onOpen("request-connection", {
+            type: "XGS-PON",
+            speed: tarif.speed,
+            measure: '',
+            price: tarif.price,
+            nonPromoPrice: tarif.nonPromoPrice,
+            promotion: tarif.promotion,
+            hasStaticIp: realIpChecked,
+            setupPrice: 0
+          });
+    };
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
     const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
     const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
-    const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
         <div className="p-1">
@@ -330,7 +398,7 @@ export const TarifXGponMiddle = ({ tarif }: TarifXGponMiddleProps) => {
                 />
                     </div>
                     <div className="flex justify-center">
-                        <button onClick={() => onOpen("call")} className="bg-[#56AABF] text-white rounded-full h-[60px] w-[270px] mx-[32px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                        <button onClick={() => handleConnectClick(tarif)} className="bg-[#56AABF] text-white rounded-full h-[60px] w-[270px] mx-[32px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
                     </div>
                 </div>
             </div>
@@ -345,12 +413,25 @@ interface TarifXGponMobileProps {
 export const TarifXGponMobile = ({ tarif }: TarifXGponMobileProps) => {
 
     const { onOpen } = useModal();
+    const [realIpChecked, setIpChecked] = useState(tarif.checked);
+
+    const handleConnectClick = (tarif: TariffProps) => {
+        onOpen("request-connection", {
+            type: "XGS-PON",
+            speed: tarif.speed,
+            measure: '',
+            price: tarif.price,
+            nonPromoPrice: tarif.nonPromoPrice,
+            promotion: tarif.promotion,
+            hasStaticIp: realIpChecked,
+            setupPrice: 0
+          });
+    };
 
     const [tarifPrice, setTarifPrice] = useState(inserSpaceInDecimal(tarif.price));
     const [tarifNonPromoPrice, setTarifNonPromoPrice] = useState(inserSpaceInDecimal(tarif.nonPromoPrice));
     const [tarifPriceWithIp, setTarifPriceWithIp] = useState(inserSpaceInDecimal(tarif.price + REAL_IP_PRICE));
     const [tarifNonPromoPriceWithIp, setTarifNonPromoPriceWithIp] = useState(inserSpaceInDecimal(tarif.nonPromoPrice + REAL_IP_PRICE));
-    const [realIpChecked, setIpChecked] = useState(tarif.checked);
 
     return (
         <div className="h-[573px] w-[350px] mx-[20px] rounded-md bg-[#123853] z-10">
@@ -393,7 +474,7 @@ export const TarifXGponMobile = ({ tarif }: TarifXGponMobileProps) => {
                 />
             </div>
             <div className="flex justify-center">
-                <button onClick={() => onOpen("call")} className="bg-[#56AABF] text-white rounded-full h-[60px] w-[270px] mx-[32px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
+                <button onClick={() => handleConnectClick(tarif)} className="bg-[#56AABF] text-white rounded-full h-[60px] w-[270px] mx-[32px] cursor-pointer  font-semibold shadow-[0_4px_20px_0_#56AABF80]">Підключити</button>
             </div>
         </div>
     );

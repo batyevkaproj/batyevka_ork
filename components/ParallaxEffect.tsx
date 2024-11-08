@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import line from '../public/img/parallax_line.svg';
 import wave from '../public/img/parallax_wave.svg';
@@ -6,7 +6,7 @@ import tri from '../public/img/parallax_triangle.svg';
 
 import Image from 'next/image';
 
-const ParallaxDemo = () => {
+const ParallaxEffect = () => {
 
     const parallaxRef = useRef(null);
     const parallaxRef1 = useRef(null);
@@ -124,4 +124,4 @@ const ParallaxDemo = () => {
     );
 };
  
-export default ParallaxDemo;
+export default ParallaxEffect;
