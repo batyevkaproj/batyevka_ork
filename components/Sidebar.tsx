@@ -17,6 +17,7 @@ import orange_house from '@/public/img/house_orange.svg';
 import bc_orange from '@/public/img/br_case_orange.svg';
 import key from '@/public/img/key_white.svg';
 import globe from '@/public/img/globe_white.png';
+import LogoMobileComponent from "./LogoMobileComponent";
 
 const Sidebar = () => {
 
@@ -28,11 +29,7 @@ const Sidebar = () => {
                 <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'} />
                 <a className='font-semibold text-white text-[24px] leading-[22px]' href={`tel:0800303230`}>0 800 30 32 30</a>
             </div>
-            <div className="ml-[20px] mt-[20px]">
-                <Link href='/' className="">
-                    <Image src={logo} height={1} className={`flex-shrink-0 min-w-max w-[203px] h-[35px]`} alt={'Batyevka logo'} />
-                </Link>
-            </div>
+            <LogoMobileComponent />
             <div className="mt-[15px] ml-[20px] flex flex-col">
                 <Link className="flex mb-[20px] items-center" href={"https://next.privat24.ua/payments/form/%7B%22token%22:%22a163f3a4-7bfa-4921-8d8e-4c4737e6c0f4%22%7D"} onClick={() => onOpen("payment")} >
                     <Image src={wallet} className={`w-8 h-8`} alt={'wallet'}></Image>

@@ -10,8 +10,6 @@ import { ChevronDown } from "lucide-react";
 import SubHeader from "./SubHeader";
 import SubHeaderBusiness from "./SubHeaderBusiness";
 
-import logo from '@/public/img/logo.svg';
-import logo_grey from '@/public/img/logo_grey.svg';
 import arrow_down from '@/public/img/arrow_down.svg';
 import globe_small from '@/public/img/globe_small.svg';
 import wallet_white from '@/public/img/wallet_white.svg';
@@ -25,9 +23,7 @@ import connect from '@/public/img/connect.svg';
 import connectGrey from '@/public/img/cabinet_grey.svg';
 import wrench from '@/public/img/wrench.svg';
 import wkey from '@/public/img/wkey.svg';
-
-
-
+import LogoComponent from './LogoComponent';
 
 const Header = ({ theme, business }: HeaderProps) => {
 
@@ -56,13 +52,11 @@ const Header = ({ theme, business }: HeaderProps) => {
 
             <div className={`flex justify-between items-center my-[30px] max-[720px]:h-[50px] max-[720px]:my-0 min-[2430px]:h-[92px] px-[50px] min-[2430px]:px-[65px] max-[780px]:hidden`}>
                 <nav className={`flex items-center max-[2430px]:space-x-4 max-[720px]:ml-[20px] max-[833px]:space-x-0`}>
-                    <Link href='#' className={`min-[2429px]:mr-[78px] min-[1920px]:mr-[33px] mr-[22px]`}>
-                        <Image src={theme == 'white' ? logo_grey : logo} height={1} className={`flex-shrink-0 min-w-max max-[720px]:w-[203px] max-[720px]:h-[35px] min-[2430px]:h-[70px] min-[3644px]:h-[104px] max-[1080px]:w-[308px] max-[1080px]:h-[53px] min-[1080px]:w-[308px] min-[1080px]:h-[53px] min-[2430px]:w-[403px]`} alt={'Batyevka logo'} />
-                    </Link>
+                    <LogoComponent theme={theme} />
                     <div>
                         <div className={`${theme == 'white' ? 'bg-white text-[#5F6061]' : 'bg-[#8B6CB0] text-white'} w-[275px] h-[60px] flex items-center justify-center max-[1280px]:hidden min-[2430px]:w-[360px] min-[2430px]:h-[78px] rounded-[5px]`}>
                             <Image src={theme == 'white' ? telephon_grey : telephon} className={`w-[20px] h-[20px] mr-[9.75px] min-[2430px]:w-[26px] min-[2430px]:h-[26px]`} alt={'phone'} />
-                            <a className='font-semibold text-[24px] leading-[22px] min-[2430px]:text-[32px]' href={`tel:0800303230`}>0 800 30 32 30</a>
+                            <Link className='font-semibold text-[24px] leading-[22px] min-[2430px]:text-[32px]' href={`tel:0800303230`}>0 800 30 32 30</Link>
                             <Image src={theme == 'white' ? arrow_down_grey : arrow_down} width={4} height={4} className={`w-[10px] h-[6px] ml-[12px] min-[2430px]:w-[17px] min-[2430px]:h-[13px]`} alt={'ArrowDown'} />
                         </div>
                     </div>
@@ -88,7 +82,7 @@ const Header = ({ theme, business }: HeaderProps) => {
                             <Image src={wallet_white} className={`relative w-7 h-7 fill-white `} alt={'wallet'}></Image>
                         </Button>
                     </Link>
-                    <Link href="https://my.batyevka.net/cgi-bin/index.cgi   ">
+                    <Link href="https://my.batyevka.net/cgi-bin/index.cgi">
                         <Button variant={theme == 'white' ? 'cabinetGrey' : 'cabinet'}>
                             <Image src={theme == 'white' ? connectGrey : connect} alt='connect' className={`pr-2 min-[2430px]:w-[34px] min-[2430px]:h-[34px]`}>
                             </Image>
@@ -96,13 +90,11 @@ const Header = ({ theme, business }: HeaderProps) => {
                         </Button>
                     </Link>
                     <Button variant={theme == 'white' ? 'cabinetGreyMob' : 'cabinetMob'}>
-                        <Image src={theme == 'white' ? connectGrey : connect} alt='connect' className={``}>
-                        </Image>
+                        <Image src={theme == 'white' ? connectGrey : connect} alt='connect' className={``} />
                     </Button>
                         <Button onClick={() => onOpen("call")} variant="connect">Заявка на підключення</Button>
                     <Button onClick={() => onOpen("call")} variant="connectMob">
-                        <Image src={wkey} alt='wkey'>
-                        </Image>
+                        <Image src={wkey} alt='wkey' />
                     </Button>
                 </nav>
             </div>
