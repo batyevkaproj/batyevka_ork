@@ -1,5 +1,3 @@
-// app/api/orders/tariff/route.ts
-
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
@@ -23,14 +21,6 @@ export async function POST(req: Request) {
 
       address_business_req: body.customerAddress,
     };
-
-    console.log(`[BUSINESS ROUTE] ${JSON.stringify(servdeskData)}`);
-
-
-    return NextResponse.json({
-      success: true,
-      servdesk_id: 100
-    });
 
     const formData = new URLSearchParams();
     Object.entries(servdeskData).forEach(([key, value]) => {

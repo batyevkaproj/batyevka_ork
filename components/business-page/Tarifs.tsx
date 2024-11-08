@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { TariffProps } from "@/types/home";
 import OpticCableReverse from "./OpticCableReverse";
 
@@ -192,6 +191,6 @@ const Tarifs = () => {
 
         </>
     );
-}
+};
 
 export default Tarifs;
