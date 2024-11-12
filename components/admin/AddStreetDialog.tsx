@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -29,24 +30,26 @@ export function AddStreetDialog({ isOpen, onClose, onAdd }: AddStreetDialogProps
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent className="p-6">
         <DialogHeader>
           <DialogTitle>Добавить улицу</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <Input
             placeholder="Название улицы"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="h-12 w-full placeholder:pl-1 border border-gray-200 rounded-md hover:border-gray-300 focus:border-blue-500 focus:ring-0"
           />
-          <div className="flex justify-end space-x-2">
-            <Button type="button" variant="outline" onClick={onClose}>
-              Отмена
-            </Button>
-            <Button type="submit" disabled={!name.trim()}>
+          <DialogFooter>
+            <Button
+              type="submit"
+              disabled={!name.trim()}
+              className="bg-blue-600 hover:bg-blue-700 text-white w-full px-3 py-3"
+            >
               Добавить
             </Button>
-          </div>
+          </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>

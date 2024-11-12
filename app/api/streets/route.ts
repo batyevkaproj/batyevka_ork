@@ -19,7 +19,6 @@ export async function GET() {
     });
     return NextResponse.json(streets);
   } catch (error) {
-    console.error("Error fetching streets:", error);
     return NextResponse.json(
       { error: "Ошибка при получении списка улиц" },
       { status: 500 }

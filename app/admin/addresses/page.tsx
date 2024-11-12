@@ -1,10 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import AddressManager from "@/components/admin/AddressManager";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
 
 const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "batyevka2024";
 
@@ -12,7 +10,6 @@ export default function AdminAddressesPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("admin_token");
@@ -73,7 +70,7 @@ export default function AdminAddressesPage() {
           <div className="flex justify-between items-center py-4">
             <h1 className="text-2xl font-bold text-gray-900">Управление адресами</h1>
             <Button
-              variant="destructive"
+              variant="batyevka"
               onClick={handleLogout}
             >
               Выйти

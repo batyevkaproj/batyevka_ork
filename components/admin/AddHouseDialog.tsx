@@ -42,16 +42,17 @@ export function AddHouseDialog({
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent>
+            <DialogContent className="p-8">
                 <DialogHeader>
                     <DialogTitle>
                         Добавить дом на улицу {street?.name}
                     </DialogTitle>
                 </DialogHeader>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
                         <Label htmlFor="number">Номер дома</Label>
                         <Input
+                        className="h-12 pl-1 w-full placeholder:pl-1 border border-gray-200 rounded-md hover:border-gray-300 focus:border-blue-500 focus:ring-0"
                             id="number"
                             placeholder="Номер дома"
                             value={number}
@@ -64,14 +65,14 @@ export function AddHouseDialog({
                             checked={isActive}
                             onCheckedChange={setIsActive}
                         />
-                        <Label htmlFor="active">Доступен для подключения</Label>
+                        <Label htmlFor="active" className="text-black">Доступен для подключения</Label>
                     </div>
                     <div className="flex justify-end space-x-2">
-                        <Button type="button" variant="outline" onClick={onClose}>
-                            Отмена
-                        </Button>
-                        <Button type="submit" disabled={!number.trim() || !street}>
+                        <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full px-3 py-3" type="submit" disabled={!number.trim() || !street}>
                             Добавить
+                        </Button>
+                        <Button className="px-3" type="button" variant="destructive" onClick={onClose}>
+                            Отмена
                         </Button>
                     </div>
                 </form>

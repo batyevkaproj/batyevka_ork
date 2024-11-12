@@ -22,7 +22,7 @@ export default function HouseList({ houses, onDelete }: HouseListProps) {
               ) : (
                 <XCircle className="h-5 w-5 text-red-500" />
               )}
-              <span className="text-gray-900">{house.number}</span>
+              <span className="text-gray-900">{house.street.name}, {house.number}</span>
             </div>
             <Button
               variant="ghost"
