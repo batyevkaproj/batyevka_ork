@@ -7,7 +7,6 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import logo from '../public/img/logo.svg';
 import wallet from '../public/img/wallet.svg';
 import _247 from '../public/img/247.svg';
 import telephon from '../public/img/phone.svg';

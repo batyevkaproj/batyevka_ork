@@ -12,6 +12,7 @@ before_script:
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - ssh-keyscan server2.icstudio.online >> ~/.ssh/known_hosts
+  - ssh-keyscan srv.batyevka.net >> ~/.ssh/known_hosts
 
 deploy:
   stage: deploy
@@ -20,7 +21,6 @@ deploy:
   script: 
     - ssh batyevka@server2.icstudio.online "bash bb.sh" -vvv
     - echo "Deployed on DevServer. Bracnh testing."
-
 deploy-dev:
   stage: deploy
   only:
@@ -33,5 +33,5 @@ deploy-prod:
   only:
     - production
   script:
-    - ssh ssh www-root@srv.batyevka.net "bash bb-prod.sh" -vvv
+    - ssh www-root@srv.batyevka.net "bash bb-prod.sh" -vvv
     - echo "Deployed on Production"
