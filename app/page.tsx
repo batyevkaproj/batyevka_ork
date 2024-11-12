@@ -8,7 +8,7 @@ import Advantages from '@/components/business-page/Advantages';
 import Slider from '@/components/business-page/Slider';
 import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
-import ParallaxDemo from '@/components/ParallaxDemo';
+import ParallaxEffect from '@/components/ParallaxEffect';
 import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div className={'min-w-[350px] bg-[#0E2D43]'}>
       <Header theme="dark" business={true}/>
-      <ParallaxDemo />
+      <ParallaxEffect />
       <Slider />
       <Heading text="Ключові переваги для наших бізнес-абонентів" text_size={42}></Heading>
       <Advantages />
