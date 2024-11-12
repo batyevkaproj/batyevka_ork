@@ -1,15 +1,11 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import StreetList from "./StreetList";
-import HouseList from "./HouseList";
 import { AddStreetDialog } from "./AddStreetDialog";
 import { AddHouseDialog } from "./AddHouseDialog";
-import { SearchAndFilter } from "./SearchAndFilter";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { Street, House } from "@prisma/client";
-import { FilterOptions } from "./AddressFilter";
 
 import { EditStreetDialog } from "./EditStreetDialog";
 import { EditHouseDialog } from "./EditHouseDialog";
@@ -26,11 +22,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
-interface FilteredData {
-  streets: Street[];
-  houses: House[];
-  totalItems: number;
-}
 
 export default function AddressManager() {
   const [streets, setStreets] = useState<Street[]>([]);
@@ -161,36 +152,6 @@ export default function AddressManager() {
     });
   }, [houses, selectedStreet, searchTerm, showInactive]);
 
-  const handleToggleHouseStatus = async (id: number, isActive: boolean) => {
-    try {
-      const res = await fetch(`/api/houses/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ isActive })
-      });
-
-      if (!res.ok) {
-        const error = await res.json();
-        throw new Error(error.error);
-      }
-
-      const updatedHouse = await res.json();
-      setHouses(prev => prev.map(house =>
-        house.id === id ? updatedHouse : house
-      ));
-
-      toast({
-        title: "Успешно",
-        description: `Статус дома ${isActive ? 'активирован' : 'деактивирован'}`
-      });
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Ошибка",
-        description: error instanceof Error ? error.message : "Не удалось обновить статус дома"
-      });
-    }
-  };
 
 
   // Обработчики для улиц
@@ -405,7 +366,7 @@ export default function AddressManager() {
                   <div className="flex items-center space-x-3">
                     <div className={`h-2 w-2 rounded-full ${house.isActive ? 'bg-green-500' : 'bg-red-500'
                       }`} />
-                    <span>{house.street.name}, {house.number}</span>
+                    <span>{house.number}</span>
                   </div>
                   <div className="flex items-center space-x-2">
                   <Button
