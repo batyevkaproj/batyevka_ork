@@ -1,4 +1,4 @@
-import { House, Street } from "@prisma/client";
+import { House } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { Trash2, CheckCircle, XCircle } from "lucide-react";
 
