@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useRef } from "react";
+import axios from 'axios';
 import { useModal } from "@/hooks/use-modal-store";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
-import axios from 'axios';
+import { Street, House } from "@prisma/client";
 
 import {
     Dialog,
@@ -14,12 +15,20 @@ import {
     DialogDescription,
 } from "@/components/ui/dialog";
 
+import { AddressSelect } from "@/components/address-select/AddressSelect";
 import { PhoneInput } from "../business-page/PhoneInput";
 
 interface RequestConnectionFormData {
     name: string;
     phone: string;
-    address: string;
+}
+
+interface AddressData {
+    street: Street | null;
+    house: House | null;
+    entrance?: string;
+    floor?: string;
+    apartment?: string;
 }
 
 export const RequestConnectionModal = () => {
@@ -28,12 +37,15 @@ export const RequestConnectionModal = () => {
     const [rawPhoneNumber, setRawPhoneNumber] = useState("");
     const phoneRef = useRef<HTMLInputElement>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [selectedAddress, setSelectedAddress] = useState<AddressData>({
+        street: null,
+        house: null
+    });
 
     const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<RequestConnectionFormData>({
         defaultValues: {
             phone: "+380",
-            name: "",
-            address: ""
+            name: ""
         }
     });
 
@@ -73,24 +85,45 @@ export const RequestConnectionModal = () => {
     };
 
     const onSubmit = async (formData: RequestConnectionFormData) => {
+        if (!selectedAddress.street || !selectedAddress.house) {
+            toast({
+                variant: "destructive",
+                title: "Помилка",
+                description: "Будь ласка, оберіть адресу підключення",
+            });
+            return;
+        }
         try {
             setIsLoading(true);
 
             const orderData = {
                 customerName: formData.name,
                 customerPhone: rawPhoneNumber,
-                customerAddress: formData.address,
-                
+
+                streetId: selectedAddress.street.id,
+                streetName: selectedAddress.street.name,
+                houseId: selectedAddress.house.id,
+                houseNumber: selectedAddress.house.number,
+                entrance: selectedAddress.entrance,
+                floor: selectedAddress.floor,
+                apartment: selectedAddress.apartment,
+
+                fullAddress: `${selectedAddress.street.name}, ${selectedAddress.house.number}${selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
+                    }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''}${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''
+                    }`,
+
                 internetType: data.type || 'G-PON', // or XGS-PON
                 internetSpeed: data.speed,
                 internetMeasure: data.measure,
                 hasStaticIP: data.hasStaticIp || false,
-                
+
                 totalMonthlyPrice: data.price,
                 regularPrice: data.nonPromoPrice,
                 setupPrice: data.setupPrice || 0,
-                
-                comment: `Заявка на БІЗНЕС підключення через головну сторінку. Адреса: ${formData.address}`
+
+                comment: `Заявка на БІЗНЕС підключення через головну сторінку. Адреса: ${selectedAddress.street.name}, ${selectedAddress.house.number}${selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
+                }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''}${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''
+                }`
             };
 
             const response = await axios.post('/api/orders/business', orderData);
@@ -168,29 +201,13 @@ export const RequestConnectionModal = () => {
                     {errors.phone && (
                         <span className="text-red-500 text-sm mt-[-20px]">{errors.phone.message}</span>
                     )}
-                    
-                    <div className="h-[60px] flex items-center w-3/4">
-                        <input
-                            type="text"
-                            className="w-full h-full rounded-full text-[20px] text-white bg-transparent border border-[#56AABF] pl-[22px] placeholder:text-slate-300"
-                            placeholder="Адреса підключення"
-                            {...register("address", {
-                                required: "Адреса обов'язкова",
-                                minLength: {
-                                    value: 5,
-                                    message: "Адреса занадто коротка"
-                                },
-                                maxLength: {
-                                    value: 100,
-                                    message: "Адреса занадто довга"
-                                }
-                            })}
+
+                    <div className="w-3/4">
+                        <AddressSelect
+                            onAddressSelect={setSelectedAddress}
+                            className="w-full"
                         />
                     </div>
-                    {errors.address && (
-                        <span className="text-red-500 text-sm mt-[-20px]">{errors.address.message}</span>
-                    )}
-
                     <button
                         type="submit"
                         disabled={isLoading}
