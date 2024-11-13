@@ -5,6 +5,7 @@ import axios from "axios";
 import { useModal } from "@/hooks/use-modal-store";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
+import { Street, House } from "@prisma/client";
 
 import {
     Dialog,
@@ -15,10 +16,19 @@ import {
 } from "@/components/ui/dialog";
 
 import { PhoneInput } from "../business-page/PhoneInput";
+import { AddressSelect } from "@/components/address-select/AddressSelect";
 
-type OrderCallFormData = {
+interface OrderCallFormData {
     name: string;
     phone: string;
+}
+
+interface AddressData {
+    street: Street | null;
+    house: House | null;
+    entrance?: string;
+    floor?: string;
+    apartment?: string;
 }
 
 export const OrderCallModal = () => {
@@ -27,6 +37,10 @@ export const OrderCallModal = () => {
     const [rawPhoneNumber, setRawPhoneNumber] = useState("");
     const phoneRef = useRef<HTMLInputElement>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [selectedAddress, setSelectedAddress] = useState<AddressData>({
+        street: null,
+        house: null
+    });
 
     const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<OrderCallFormData>({
         defaultValues: {
@@ -73,23 +87,36 @@ export const OrderCallModal = () => {
     const onSubmit = async (formData: OrderCallFormData) => {
         try {
             setIsLoading(true);
-    
+
             const orderData = {
                 customerName: formData.name,
                 customerPhone: rawPhoneNumber,
+                address: selectedAddress.street && selectedAddress.house ? {
+                    streetId: selectedAddress.street.id,
+                    streetName: selectedAddress.street.name,
+                    houseId: selectedAddress.house.id,
+                    houseNumber: selectedAddress.house.number,
+                    entrance: selectedAddress.entrance,
+                    floor: selectedAddress.floor,
+                    apartment: selectedAddress.apartment,
+                    fullAddress: `${selectedAddress.street.name}, ${selectedAddress.house.number}${selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
+                        }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''
+                        }${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''
+                        }`
+                } : null
             };
-    
+
             const response = await axios.post('/api/orders/call', orderData);
-    
+
             if (!response.data.success) {
                 throw new Error('Failed to submit call request');
             }
-    
+
             toast({
                 title: "Заявка відправлена",
                 description: "Наш менеджер зв'яжеться з вами найближчим часом",
             });
-    
+
             onClose();
         } catch (error) {
             console.error('Error submitting call request:', error);
@@ -148,6 +175,13 @@ export const OrderCallModal = () => {
                     {errors.phone && (
                         <span className="text-red-500 text-sm mt-[-20px]">{errors.phone.message}</span>
                     )}
+
+                    <div className="w-3/4">
+                        <AddressSelect
+                            onAddressSelect={setSelectedAddress}
+                            className="w-full"
+                        />
+                    </div>
 
                     <button
                         type="submit"
