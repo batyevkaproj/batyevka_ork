@@ -92,7 +92,7 @@ const Header = ({ theme, business }: HeaderProps) => {
                     <Button variant={theme == 'white' ? 'cabinetGreyMob' : 'cabinetMob'}>
                         <Image src={theme == 'white' ? connectGrey : connect} alt='connect' className={``} />
                     </Button>
-                        <Button onClick={() => onOpen("call")} variant="connect">Заявка на підключення</Button>
+                        <Button onClick={() => onOpen("call")} variant="connect">Стати абонентом</Button>
                     <Button onClick={() => onOpen("call")} variant="connectMob">
                         <Image src={wkey} alt='wkey' />
                     </Button>
