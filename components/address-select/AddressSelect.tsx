@@ -26,13 +26,9 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
   const [isLoadingStreets, setIsLoadingStreets] = useState(true);
   const [isLoadingHouses, setIsLoadingHouses] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-
-  // Дополнительные поля
   const [entrance, setEntrance] = useState("");
   const [floor, setFloor] = useState("");
   const [apartment, setApartment] = useState("");
-
-  // Состояния для выпадающих списков
   const [openStreet, setOpenStreet] = useState(false);
   const [openHouse, setOpenHouse] = useState(false);
 
@@ -40,7 +36,7 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
     const fetchStreets = async () => {
       try {
         const response = await fetch("/api/streets");
-        if (!response.ok) throw new Error("Ошибка загрузки улиц");
+        if (!response.ok) throw new Error("Помилка завантаження вулиць");
         const data = await response.json();
         setStreets(data || []);
       } catch (error) {
@@ -66,7 +62,7 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
         const response = await fetch(
           `/api/houses?streetId=${selectedStreet.id}&isActive=true`
         );
-        if (!response.ok) throw new Error("Ошибка загрузки домов");
+        if (!response.ok) throw new Error("Помилка завантаження будинків");
         const data = await response.json();
         setHouses(data || []);
       } catch (error) {
@@ -85,7 +81,6 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
     street.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Обновление данных формы
   useEffect(() => {
     onAddressSelect({
       street: selectedStreet,
@@ -95,6 +90,42 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
       apartment
     });
   }, [selectedStreet, selectedHouse, entrance, floor, apartment, onAddressSelect]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const streetDropdown = document.getElementById('street-dropdown');
+      const houseDropdown = document.getElementById('house-dropdown');
+      const streetButton = document.getElementById('street-button');
+      const houseButton = document.getElementById('house-button');
+
+      if (streetDropdown && !streetDropdown.contains(event.target as Node) &&
+        streetButton && !streetButton.contains(event.target as Node)) {
+        setOpenStreet(false);
+      }
+
+      if (houseDropdown && !houseDropdown.contains(event.target as Node) &&
+        houseButton && !houseButton.contains(event.target as Node)) {
+        setOpenHouse(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleStreetButtonClick = () => {
+    setOpenHouse(false);
+    setOpenStreet(!openStreet);
+  };
+
+  const handleHouseButtonClick = () => {
+    if (!selectedStreet) return;
+    setOpenStreet(false);
+    setOpenHouse(!openHouse);
+  };
 
 
   if (isLoadingStreets) {
@@ -107,11 +138,11 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
 
   return (
     <div className={cn("space-y-4", className)}>
-      {/* Выбор улицы */}
       <div className="relative w-full bg-[#133853] border border-[#2A5574] rounded-full">
         <Button
+          id="street-button"
           type="button"
-          onClick={() => setOpenStreet(!openStreet)}
+          onClick={handleStreetButtonClick}
           className="w-full h-[60px] bg-transparent px-10 border-[#2A5574] rounded-full text-white justify-between hover:bg-[#0E2D43] hover:text-white"
         >
           {selectedStreet ? selectedStreet.name : "Оберіть вулицю"}
@@ -119,7 +150,7 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
         </Button>
 
         {openStreet && (
-          <div className="absolute w-full z-50 mt-1 bg-[#133853] border border-[#2A5574] rounded-md shadow-lg">
+          <div id="street-dropdown" className="absolute w-full z-50 mt-1 bg-[#133853] border border-[#2A5574] rounded-md shadow-lg">
             <input
               type="text"
               placeholder="Пошук вулиці..."
@@ -152,8 +183,9 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
 
       <div className="relative w-full mt-1 bg-[#133853] border border-[#2A5574] rounded-full">
         <Button
+          id="house-button"
           type="button"
-          onClick={() => selectedStreet && setOpenHouse(!openHouse)}
+          onClick={handleHouseButtonClick}
           disabled={!selectedStreet}
           className="w-full h-[60px] px-10 bg-transparent border-[#2A5574] text-white justify-between rounded-full hover:bg-[#0E2D43] hover:text-white disabled:opacity-50"
         >
@@ -162,7 +194,7 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
         </Button>
 
         {openHouse && (
-          <div className="absolute w-full z-50 mt-1 bg-[#133853] border border-[#2A5574] rounded-md shadow-lg">
+          <div id="house-dropdown" className="absolute w-full z-50 mt-1 bg-[#133853] border border-[#2A5574] rounded-md shadow-lg">
             {isLoadingHouses ? (
               <div className="p-4 text-center text-white">
                 <div className="animate-spin rounded-full h-6 w-6 border-2 border-white border-t-transparent mx-auto" />
@@ -190,16 +222,13 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
         )}
       </div>
 
-      {/* Подъезд и этаж */}
       <div className="space-y-2">
-        {/* Labels */}
         <div className="flex gap-8 px-4">
           <label className="flex-1 text-[14px] text-white/70">Під'їзд</label>
           <label className="flex-1 text-[14px] text-white/70">Поверх</label>
           <label className="flex-1 text-[14px] text-white/70">Квартира</label>
         </div>
 
-        {/* Inputs */}
         <div className="flex gap-2">
           <Input
             type="number"
@@ -235,8 +264,6 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
           />
         </div>
       </div>
-
-
     </div>
   );
 }
