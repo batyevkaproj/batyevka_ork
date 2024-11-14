@@ -135,10 +135,10 @@ export const OrderCallModal = () => {
             <DialogContent className="shadow-[0_4px_29px_0px_#0B273C] bg-[#133853] rounded-[10px] max-w-[620px] p-0 m-0 border-0">
                 <DialogHeader>
                     <DialogTitle className="flex justify-center text-[24px] font-bold text-white mt-[60px]">
-                        Передзвонимо через 30 секунд
+                    Введіть Ваші дані
                     </DialogTitle>
                     <DialogDescription className="flex justify-center text-[16px] mt-[15px] font-light text-white">
-                        Залиште свій номер телефону і чекайте дзвінка
+                    Наш менеджер зв'яжеться з вами упродовж дня
                     </DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex mt-[30px] gap-[30px] flex-col items-center mb-[60px] w-full">
