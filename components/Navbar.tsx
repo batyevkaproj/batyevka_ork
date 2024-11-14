@@ -73,7 +73,7 @@ const Navbar = ({ theme }: any) => {
             </div>
             <div className={`flex justify-center items-center w-full + ${theme == 'white' ? 'hidden' : ''}`}>
                 <Button onClick={() => onOpen("call")} variant="MobConnect">
-                    Заявка на підключення
+                    Стати абонентом
                 </Button>
             </div>
         </>

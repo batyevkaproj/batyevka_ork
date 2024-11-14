@@ -5,6 +5,14 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
+    const fullAddress = `${body.streetName}, ${body.houseNumber}${
+      body.entrance ? `, під'їзд ${body.entrance}` : ''
+    }${
+      body.floor ? `, поверх ${body.floor}` : ''
+    }${
+      body.apartment ? `, кв. ${body.apartment}` : ''
+    }`;
+
     const servdeskData = {
       name_client_business_req: body.customerName,
       phone_client_business_req: body.customerPhone,
@@ -19,7 +27,13 @@ export async function POST(req: Request) {
 
       comment_business_req: body.comment || 'Заявка на підключення через сторінку бізнес',
 
-      address_business_req: body.customerAddress,
+      address_business_req: fullAddress,
+      
+      street_business_req: body.streetName,
+      house_business_req: body.houseNumber,
+      entrance_business_req: body.entrance,
+      floor_business_req: body.floor,
+      apartment_business_req: body.apartment,
     };
 
     const formData = new URLSearchParams();
@@ -42,18 +56,39 @@ export async function POST(req: Request) {
     const tariffDetails = [
       `Тариф: ${body.internetType} ${body.internetSpeed} ${body.internetMeasure}`,
       `Статичний IP: ${body.hasStaticIP ? 'Так' : 'Ні'}`,
-      `Регулярна ціна: ${body.regularPrice} грн/міс`,
+      body.regularPrice ? `Регулярна ціна: ${body.regularPrice} грн/міс` : null,
       `Вартість: ${body.totalMonthlyPrice} грн/міс`,
-      `Вартість підключення: ${body.setupPrice} грн.`,
-      `Адреса: ${body.customerAddress}`,
-      `Тип абонента: БІЗНЕС`,
+      body.setupPrice ? `Вартість підключення: ${body.setupPrice} грн.` : null,
+    ].filter(Boolean).join('\n');
 
+    const addressDetails = [
+      'Адреса:',
+      `• Вулиця: ${body.streetName}`,
+      `• Будинок: ${body.houseNumber}`,
+      body.entrance ? `• Під'їзд: ${body.entrance}` : null,
+      body.floor ? `• Поверх: ${body.floor}` : null,
+      body.apartment ? `• Квартира: ${body.apartment}` : null,
+    ].filter(Boolean).join('\n');
+
+    const telegramMessage = [
+      'Нова заявка на БІЗНЕС підключення!',
+      '',
+      `Клієнт: ${body.customerName}`,
+      `Телефон: ${body.customerPhone}`,
+      '',
+      tariffDetails,
+      '',
+      addressDetails,
+      '',
+      'Тип абонента: БІЗНЕС',
+      '',
+      `ServDesk ID: ${servdesk_id}`,
     ].join('\n');
 
-    // Отправляем в Telegram
     const telegramData = {
       chat_id: process.env.TELEGRAM_CHAT_ID,
-      text: `Нова заявка на БІЗНЕС підключення!\n\nКлієнт: ${body.customerName}\nТелефон: ${body.customerPhone}\n\n${tariffDetails}\n\nServDesk ID: ${servdesk_id}`,
+      text: telegramMessage,
+      parse_mode: 'HTML'
     };
 
     await axios.post(
@@ -67,7 +102,7 @@ export async function POST(req: Request) {
     });
 
   } catch (error) {
-    console.error('Error submitting order:', error);
+    console.error('[BUSINESS_ORDER_ERROR]: Error submitting order:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to submit order' },
       { status: 500 }
