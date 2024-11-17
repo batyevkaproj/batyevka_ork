@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import axios from "axios";
+import axios from 'axios';
 import { useModal } from "@/hooks/use-modal-store";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
@@ -15,10 +15,10 @@ import {
     DialogDescription,
 } from "@/components/ui/dialog";
 
-import { PhoneInput } from "../business-page/PhoneInput";
 import { AddressSelect } from "@/components/address-select/AddressSelect";
+import { PhoneInput } from "../business-page/PhoneInput";
 
-interface OrderCallFormData {
+interface RequestConnectionFormData {
     name: string;
     phone: string;
 }
@@ -31,8 +31,8 @@ interface AddressData {
     apartment?: string;
 }
 
-export const OrderCallModal = () => {
-    const { isOpen, onClose, type } = useModal();
+export const RequestConnectionModal = () => {
+    const { isOpen, onClose, type, data } = useModal();
     const { toast } = useToast();
     const [rawPhoneNumber, setRawPhoneNumber] = useState("");
     const phoneRef = useRef<HTMLInputElement>(null);
@@ -42,14 +42,14 @@ export const OrderCallModal = () => {
         house: null
     });
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<OrderCallFormData>({
+    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<RequestConnectionFormData>({
         defaultValues: {
             phone: "+380",
             name: ""
         }
     });
 
-    const isModalOpen = isOpen && type === "call";
+    const isModalOpen = isOpen && type === "request-connection";
 
     const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value.replace(/\D/g, '');
@@ -84,32 +84,52 @@ export const OrderCallModal = () => {
         }
     };
 
-    const onSubmit = async (formData: OrderCallFormData) => {
+    const onSubmit = async (formData: RequestConnectionFormData) => {
+        if (!selectedAddress.street || !selectedAddress.house) {
+            toast({
+                variant: "destructive",
+                title: "Помилка",
+                description: "Будь ласка, оберіть адресу підключення",
+            });
+            return;
+        }
         try {
             setIsLoading(true);
 
             const orderData = {
                 customerName: formData.name,
                 customerPhone: rawPhoneNumber,
-                address: selectedAddress.street && selectedAddress.house ? {
-                    streetId: selectedAddress.street.id,
-                    streetName: selectedAddress.street.name,
-                    houseId: selectedAddress.house.id,
-                    houseNumber: selectedAddress.house.number,
-                    entrance: selectedAddress.entrance,
-                    floor: selectedAddress.floor,
-                    apartment: selectedAddress.apartment,
-                    fullAddress: `${selectedAddress.street.name}, ${selectedAddress.house.number}${selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
-                        }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''
-                        }${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''
-                        }`
-                } : null
+
+                streetId: selectedAddress.street.id,
+                streetName: selectedAddress.street.name,
+                houseId: selectedAddress.house.id,
+                houseNumber: selectedAddress.house.number,
+                entrance: selectedAddress.entrance,
+                floor: selectedAddress.floor,
+                apartment: selectedAddress.apartment,
+
+                fullAddress: `${selectedAddress.street.name}, ${selectedAddress.house.number}${selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
+                    }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''}${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''
+                    }`,
+
+                internetType: data.type || 'G-PON', // or XGS-PON
+                internetSpeed: data.speed,
+                internetMeasure: data.measure,
+                hasStaticIP: data.hasStaticIp || false,
+
+                totalMonthlyPrice: data.price,
+                regularPrice: data.nonPromoPrice,
+                setupPrice: data.setupPrice || 0,
+
+                comment: `Заявка на БІЗНЕС підключення через головну сторінку. Адреса: ${selectedAddress.street.name}, ${selectedAddress.house.number}${selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
+                }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''}${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''
+                }`
             };
 
-            const response = await axios.post('/api/orders/call', orderData);
+            const response = await axios.post('/api/orders/business', orderData);
 
             if (!response.data.success) {
-                throw new Error('Failed to submit call request');
+                throw new Error('Failed to submit order');
             }
 
             toast({
@@ -119,7 +139,7 @@ export const OrderCallModal = () => {
 
             onClose();
         } catch (error) {
-            console.error('Error submitting call request:', error);
+            console.error('Error submitting order:', error);
             toast({
                 variant: "destructive",
                 title: "Помилка",
@@ -135,10 +155,16 @@ export const OrderCallModal = () => {
             <DialogContent className="shadow-[0_4px_29px_0px_#0B273C] bg-[#133853] rounded-[10px] max-w-[620px] p-0 m-0 border-0">
                 <DialogHeader>
                     <DialogTitle className="flex justify-center text-[24px] font-bold text-white mt-[60px]">
-                    Введіть Ваші дані
+                        Заявка на підключення
                     </DialogTitle>
-                    <DialogDescription className="flex justify-center text-[16px] mt-[15px] font-light text-white">
-                    Наш менеджер зв'яжеться з вами упродовж дня
+                    <DialogDescription className="flex flex-col items-center text-[16px] mt-[15px] font-light text-white">
+                        <p>{data?.speed} {data?.measure} - {data?.price} грн/міс</p>
+                        {data?.hasStaticIp && (
+                            <p className="text-[#56AABF]">+ Статичний IP</p>
+                        )}
+                        {data?.promotion && (
+                            <p className="text-[#8B6CB0]">з 5 місяця {data.nonPromoPrice} грн/міс</p>
+                        )}
                     </DialogDescription>
                 </DialogHeader>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex mt-[30px] gap-[30px] flex-col items-center mb-[60px] w-full">
@@ -182,13 +208,12 @@ export const OrderCallModal = () => {
                             className="w-full"
                         />
                     </div>
-
                     <button
                         type="submit"
                         disabled={isLoading}
                         className="w-3/4 rounded-full bg-[#2F94AD] h-[60px] text-[18px] leading-[22px] font-semibold text-[#133853] shadow-[0_4px_20px_0_#56AABF80] disabled:opacity-50"
                     >
-                        {isLoading ? "Відправлення..." : "Зателефонуйте мені"}
+                        {isLoading ? "Відправлення..." : "Відправити заявку"}
                     </button>
                 </form>
             </DialogContent>

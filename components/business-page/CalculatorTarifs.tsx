@@ -70,7 +70,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
         // Deal with setup price
         let newSetupPrice = (isTarifsSwitch ? UTP_SETUP_PRICES : GPON_SETUP_PRICES).find(tier => prepaidMonths == tier.months)?.price ?? 1499;
-        
+
         // Special pricing for high-speed G-PON
         if (!isTarifsSwitch) { // If G-PON is selected
             const selectedSpeed = GPON_SPEEDS.find(item => item.value === speedGpon);
@@ -237,15 +237,15 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 <RegularSwitch switchState={setIPChecker} state={isIPChecked} />
                             </div>
                             <p className="max-[680px]:flex max-[680px]:text-center max-[680px]:justify-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px]">Внесіть авансом абонплату та отримайте знижку на підключення та обладнання </p>
-                            
+
                             <div className="mt-[20px] w-full min-[681px]:hidden">
-                              <MobileMonthsSelect 
-                                outerSetter={setSelectMenu}
-                                outer={isSelectMenuChecked}
-                                setMonths={setPrepaidMonths}
-                              />
+                                <MobileMonthsSelect
+                                    outerSetter={setSelectMenu}
+                                    outer={isSelectMenuChecked}
+                                    setMonths={setPrepaidMonths}
+                                />
                             </div>
-                            
+
                             <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
                                 <MonthsSlider outerSetter={setSelectMenu} setMonths={setPrepaidMonths} outer={isSelectMenuChecked} />
                             </div>
@@ -318,29 +318,29 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                             <h1 className="text-nowrap text-[30px] leading-[35px]">грн/міс</h1>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div className="flex justify-center">
                                     <Button
-                                        onClick={() => handleOpenModal()} 
+                                        onClick={() => handleOpenModal()}
                                         className="mt-10"
                                         variant="MobConnect2"
                                     >
                                         Підключитись
                                     </Button>
                                 </div>
-                                
+
                                 <div className={`min-[3644px]:mt-[66px] mt-[44px] max-[2377px]:mt-[30px] max-[680px]:flex max-[680px]:justify-center`}>
                                     <Button className="w-full max-[680px]:w-[270px] bg-[#DC662D] text-white font-semibold rounded-full min-[3644px]:h-[118px] h-[78px] max-[2377px]:h-[60px] shadow-[0_4px_20px_0px_#DC662D50] min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]" onClick={() => handleOpenModal()} variant="connect">Підключитись</Button>
                                 </div>
                                 <div className={`flex justify-center min-[3644px]:gap-[30px] gap-[20px] max-[2377px]:gap-[15px] min-[3644px]:mt-[39px] mt-[26px] max-[2377px]:mt-[20px] max-[680px]:hidden`}>
                                     <p className={`font-normal min-[3644px]:text-[27px] min-[3644px]:leading-[42px] text-[18px] leading-[28px] max-[2377px]:text-[14px] max-[2377px]:leading-[22px]`}>Є питання? Ми передзвоним Вам через <span className={`font-semibold`}>30 секунд!</span></p>
-                                    <Link href={'#'} className={`font-normal text-[#DC662D] underline underline-offset-[3px] min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px]`}>Передзвонити мені</Link>
+                                    <div onClick={() => onOpen("call")} className={`cursor-pointer font-normal text-[#DC662D] underline underline-offset-[3px] min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px]`}>Передзвонити мені</div>
                                 </div>
                                 <div className={`min-[681px]:hidden`}>
                                     <p className={`flex justify-center font-normal text-[14px] leading-[22px] mt-[15px]`}>Є питання? Ми передзвоним</p>
                                     <p className={`flex justify-center font-normal text-[14px] leading-[22px]`}>Вам через <span className={`font-semibold`}>&nbsp;30 секунд!</span></p>
-                                    <Link href={'#'} className={`flex justify-center font-normal text-[#DC662D] underline underline-offset-[3px] text-[16px] leading-[22px] mt-[10px]`}>Передзвонити мені</Link>
+                                    <div onClick={() => onOpen("call")} className={`flex justify-center font-normal text-[#DC662D] underline underline-offset-[3px] text-[16px] leading-[22px] mt-[10px]`}>Передзвонити мені</div>
                                 </div>
                             </div>
                         </div>

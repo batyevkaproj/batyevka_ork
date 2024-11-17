@@ -93,6 +93,16 @@ const config = {
         "wiggle": "wiggle 200ms ease-in-out",
         "slide": "rightslide 500ms ease-in-out forwards"
       },
+      backgroundColor: {
+        'primary': '#0E2D43',
+        'secondary': '#56AABF',
+        'accent': '#DC662D',
+      },
+      textColor: {
+        'primary': '#ffffff',
+        'secondary': '#56AABF',
+        'accent': '#DC662D',
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

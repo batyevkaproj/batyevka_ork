@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { OrderCallModal} from "@/components/modals/order-call-modal";
 import { PaymentModal } from "@/components/modals/payment-modal";
 import { PhoneInputModal } from "@/components/modals/phone-input-modal";
+import { RequestConnectionModal } from "@/components/modals/request-connection-modal";
+
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,6 +24,7 @@ export const ModalProvider = () => {
       <OrderCallModal />
       <PaymentModal />
       <PhoneInputModal theme="white"/>
+      <RequestConnectionModal />
     </>
-  )
-}
+  );
+};
