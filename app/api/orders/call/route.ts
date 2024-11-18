@@ -1,38 +1,79 @@
-import { NextResponse } from "next/server";
-import axios from "axios";
+import { NextResponse } from 'next/server';
+import axios from 'axios';
+
+async function sendInServdesk(data: any) {
+    const sdesk_url = "https://servdesk.batyevka.net/sblog/contact_br.php";
+
+    try {
+        const formData = new URLSearchParams();
+        for (const [key, value] of Object.entries(data)) {
+            formData.append(key, value as string);
+        }
+
+        const response = await fetch(sdesk_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            return false;
+        }
+
+        const result = await response.text();
+        return result;
+
+    } catch (error) {
+        console.error('ServDesk API error:', error);
+        return false;
+    }
+}
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
 
-        let addressString = '';
-        if (body.address) {
-            addressString = `\nАдреса: ${body.address.fullAddress}`;
+        if (!body.customerName) {
+            return NextResponse.json({ status: false });
         }
 
-        const servdeskData = {
-            name_client_call_req: body.customerName,
-            phone_client_call_req: body.customerPhone,
-            comment_call_req: `Заявка на зворотній дзвінок${addressString}`,
-        };
-
-        const formData = new URLSearchParams();
-        Object.entries(servdeskData).forEach(([key, value]) => {
-            if (value) formData.append(key, value);
+        let phone = body.customerPhone;
+        const chars_to_remove = ["+38", "(", ")", " ", "-"];
+        chars_to_remove.forEach(char => {
+            phone = phone.replace(char, "");
         });
 
-        // Отправляем запрос в ServDesk
-        const response = await axios.post(
-            'https://servdesk.batyevka.net/addons/add_req.php',
-            formData,
-            {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                }
-            }
-        );
+        // Строим адрес, если он есть
+        let addressString = '';
+        let addressData = {};
 
-        const servdesk_id = response.data;
+        if (body.address) {
+            addressString = `${body.address.streetName} буд. ${body.address.houseNumber} ${body.address.entrance ? `під. ${body.address.entrance}` : ''
+                } ${body.address.floor ? `поверх ${body.address.floor}` : ''
+                } ${body.address.apartment ? `кв ${body.address.apartment}` : ''
+                }`;
+
+            addressData = {
+                'cli_street': body.address.streetName,
+                'cli_house': body.address.houseNumber,
+                'cli_enter': body.address.entrance || '',
+                'cli_flat': body.address.apartment || '',
+                'cli_ele': body.address.floor || '',
+                'cli_addr': addressString,
+            };
+        }
+
+        const data = {
+            'type': 'data',
+            'cli_name': body.customerName,
+            'cli_phone': phone,
+            'cli_descr': `Заявка на зворотній дзвінок${body.address ? '\nАдреса: ' + addressString : ''}`,
+            ...addressData
+        };
+
+        const servdesk_id = await sendInServdesk(data) || "1";
 
         let telegramText = `Нова заявка на зворотній дзвінок!\n\nКлієнт: ${body.customerName}\nТелефон: ${body.customerPhone}`;
 
@@ -69,15 +110,10 @@ export async function POST(req: Request) {
         });
 
     } catch (error) {
-        console.error(`[ORDER_CALL_ERROR]: Error submiting call request`, error);
-
-        return NextResponse.json(
-            {
-                success: false,
-                error: 'Failed to submit call request'
-            },
-            {
-                status: 500
-            });
+        console.error('[CALL_REQUEST_ERROR]: Error submitting call request:', error);
+        return NextResponse.json({
+            status: false,
+            error: "Internal server error"
+        }, { status: 500 });
     }
 }

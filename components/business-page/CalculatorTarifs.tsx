@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { useToast } from "@/hooks/use-toast";
 import {
     GPON_SPEEDS,
