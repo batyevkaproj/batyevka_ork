@@ -1,111 +1,136 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
+async function sendInServdesk(data: any) {
+    const sdesk_url = "https://servdesk.batyevka.net/sblog/contact_br.php";
+    
+    try {
+        const formData = new URLSearchParams();
+        for (const [key, value] of Object.entries(data)) {
+            formData.append(key, value as string);
+        }
+
+        const response = await fetch(sdesk_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            return false;
+        }
+
+        const result = await response.text();
+        return result;
+        
+    } catch (error) {
+        console.error('ServDesk API error:', error);
+        return false;
+    }
+}
+
 export async function POST(req: Request) {
-  try {
-    const body = await req.json();
+    try {
+        const body = await req.json();
 
-    const fullAddress = `${body.streetName}, ${body.houseNumber}${
-      body.entrance ? `, під'їзд ${body.entrance}` : ''
-    }${
-      body.floor ? `, поверх ${body.floor}` : ''
-    }${
-      body.apartment ? `, кв. ${body.apartment}` : ''
-    }`;
+        if (!body.customerName) {
+            return NextResponse.json({ status: false });
+        }
 
-    const servdeskData = {
-      name_client_business_req: body.customerName,
-      phone_client_business_req: body.customerPhone,
+        let phone = body.customerPhone;
+        const chars_to_remove = ["+38", "(", ")", " ", "-"];
+        chars_to_remove.forEach(char => {
+            phone = phone.replace(char, "");
+        });
 
-      internet_type_business_req: body.internetType,
-      internet_speed_business_req: `${body.internetSpeed} ${body.internetMeasure}`,
-      static_ip_business_req: body.hasStaticIP ? 'Так' : 'Ні',
+        const data = {
+            'type': 'data',
+            'cli_name': body.customerName,
+            'cli_phone': phone,
+            'cli_street': body.streetName,
+            'cli_house': body.houseNumber,
+            'cli_enter': body.entrance,
+            'cli_flat': body.apartment,
+            'cli_tarif': `${body.internetSpeed} ${body.internetMeasure}`,
+            'cli_addr': `${body.streetName} буд. ${body.houseNumber} ${
+                body.entrance ? `під. ${body.entrance}` : ''
+            } ${
+                body.floor ? `поверх ${body.floor}` : ''
+            } ${
+                body.apartment ? `кв ${body.apartment}` : ''
+            }`,
+            'cli_descr': `${body.internetType} ${body.internetSpeed} ${body.internetMeasure}${
+                body.hasStaticIP ? ' + Static IP' : ''
+            }`,
+            'cli_ele': body.floor
+        };
 
-      total_price_business_req: body.totalMonthlyPrice.toString(),
-      regular_price_business_req: body.regularPrice?.toString(),
-      setup_price_business_req: body.setupPrice?.toString(),
 
-      comment_business_req: body.comment || 'Заявка на підключення через сторінку бізнес',
 
-      address_business_req: fullAddress,
-      
-      street_business_req: body.streetName,
-      house_business_req: body.houseNumber,
-      entrance_business_req: body.entrance,
-      floor_business_req: body.floor,
-      apartment_business_req: body.apartment,
-    };
+        const servdesk_id = await sendInServdesk(data) || 1;
 
-    const formData = new URLSearchParams();
-    Object.entries(servdeskData).forEach(([key, value]) => {
-      if (value) formData.append(key, value);
-    });
+        if (!servdesk_id) {
+            return NextResponse.json({
+                status: false,
+                error: "Failed to create order in ServDesk"
+            }, { status: 500 });
+        }
 
-    const response = await axios.post(
-      'https://servdesk.batyevka.net/addons/add_req.php',
-      formData,
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      }
-    );
+        const tariffDetails = [
+            `Тариф: ${body.internetType} ${body.internetSpeed} ${body.internetMeasure}`,
+            `Статичний IP: ${body.hasStaticIP ? 'Так' : 'Ні'}`,
+            body.regularPrice ? `Регулярна ціна: ${body.regularPrice} грн/міс` : null,
+            `Вартість: ${body.totalMonthlyPrice} грн/міс`,
+            body.setupPrice ? `Вартість підключення: ${body.setupPrice} грн.` : null,
+        ].filter(Boolean).join('\n');
 
-    const servdesk_id = response.data;
+        const addressDetails = [
+            'Адреса:',
+            `• Вулиця: ${body.streetName}`,
+            `• Будинок: ${body.houseNumber}`,
+            body.entrance ? `• Під'їзд: ${body.entrance}` : null,
+            body.floor ? `• Поверх: ${body.floor}` : null,
+            body.apartment ? `• Квартира: ${body.apartment}` : null,
+        ].filter(Boolean).join('\n');
 
-    const tariffDetails = [
-      `Тариф: ${body.internetType} ${body.internetSpeed} ${body.internetMeasure}`,
-      `Статичний IP: ${body.hasStaticIP ? 'Так' : 'Ні'}`,
-      body.regularPrice ? `Регулярна ціна: ${body.regularPrice} грн/міс` : null,
-      `Вартість: ${body.totalMonthlyPrice} грн/міс`,
-      body.setupPrice ? `Вартість підключення: ${body.setupPrice} грн.` : null,
-    ].filter(Boolean).join('\n');
+        const telegramMessage = [
+            'Нова заявка на БІЗНЕС підключення!',
+            '',
+            `Клієнт: ${body.customerName}`,
+            `Телефон: ${body.customerPhone}`,
+            '',
+            tariffDetails,
+            '',
+            addressDetails,
+            '',
+            'Тип абонента: БІЗНЕС',
+            '',
+            `ServDesk ID: ${servdesk_id}`,
+        ].join('\n');
 
-    const addressDetails = [
-      'Адреса:',
-      `• Вулиця: ${body.streetName}`,
-      `• Будинок: ${body.houseNumber}`,
-      body.entrance ? `• Під'їзд: ${body.entrance}` : null,
-      body.floor ? `• Поверх: ${body.floor}` : null,
-      body.apartment ? `• Квартира: ${body.apartment}` : null,
-    ].filter(Boolean).join('\n');
+        const telegramData = {
+            chat_id: process.env.TELEGRAM_CHAT_ID,
+            text: telegramMessage,
+            parse_mode: 'HTML'
+        };
 
-    const telegramMessage = [
-      'Нова заявка на БІЗНЕС підключення!',
-      '',
-      `Клієнт: ${body.customerName}`,
-      `Телефон: ${body.customerPhone}`,
-      '',
-      tariffDetails,
-      '',
-      addressDetails,
-      '',
-      'Тип абонента: БІЗНЕС',
-      '',
-      `ServDesk ID: ${servdesk_id}`,
-    ].join('\n');
+        await axios.post(
+            `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+            telegramData
+        );
 
-    const telegramData = {
-      chat_id: process.env.TELEGRAM_CHAT_ID,
-      text: telegramMessage,
-      parse_mode: 'HTML'
-    };
+        return NextResponse.json({
+            success: true,
+            servdesk_id
+        });
 
-    await axios.post(
-      `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
-      telegramData
-    );
-
-    return NextResponse.json({
-      success: true,
-      servdesk_id
-    });
-
-  } catch (error) {
-    console.error('[BUSINESS_ORDER_ERROR]: Error submitting order:', error);
-    return NextResponse.json(
-      { success: false, error: 'Failed to submit order' },
-      { status: 500 }
-    );
-  }
+    } catch (error) {
+        console.error('[BUSINESS_ORDER_ERROR]: Error submitting order:', error);
+        return NextResponse.json({
+            status: false,
+            error: "Internal server error"
+        }, { status: 500 });
+    }
 }
