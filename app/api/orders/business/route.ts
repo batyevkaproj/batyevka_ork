@@ -3,7 +3,7 @@ import axios from 'axios';
 
 async function sendInServdesk(data: any) {
     const sdesk_url = "https://servdesk.batyevka.net/sblog/contact_br.php";
-    
+
     try {
         const formData = new URLSearchParams();
         for (const [key, value] of Object.entries(data)) {
@@ -24,7 +24,7 @@ async function sendInServdesk(data: any) {
 
         const result = await response.text();
         return result;
-        
+
     } catch (error) {
         console.error('ServDesk API error:', error);
         return false;
@@ -54,16 +54,12 @@ export async function POST(req: Request) {
             'cli_enter': body.entrance,
             'cli_flat': body.apartment,
             'cli_tarif': `${body.internetSpeed} ${body.internetMeasure}`,
-            'cli_addr': `${body.streetName} буд. ${body.houseNumber} ${
-                body.entrance ? `під. ${body.entrance}` : ''
-            } ${
-                body.floor ? `поверх ${body.floor}` : ''
-            } ${
-                body.apartment ? `кв ${body.apartment}` : ''
-            }`,
-            'cli_descr': `${body.internetType} ${body.internetSpeed} ${body.internetMeasure}${
-                body.hasStaticIP ? ' + Static IP' : ''
-            }`,
+            'cli_addr': `${body.streetName} буд. ${body.houseNumber} ${body.entrance ? `під. ${body.entrance}` : ''
+                } ${body.floor ? `поверх ${body.floor}` : ''
+                } ${body.apartment ? `кв ${body.apartment}` : ''
+                }`,
+            'cli_descr': `${body.internetType} ${body.internetSpeed} ${body.internetMeasure}${body.hasStaticIP ? ' + Static IP' : ''
+                }`,
             'cli_ele': body.floor
         };
 

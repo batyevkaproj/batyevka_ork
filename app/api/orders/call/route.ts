@@ -3,7 +3,7 @@ import axios from 'axios';
 
 async function sendInServdesk(data: any) {
     const sdesk_url = "https://servdesk.batyevka.net/sblog/contact_br.php";
-    
+
     try {
         const formData = new URLSearchParams();
         for (const [key, value] of Object.entries(data)) {
@@ -24,7 +24,7 @@ async function sendInServdesk(data: any) {
 
         const result = await response.text();
         return result;
-        
+
     } catch (error) {
         console.error('ServDesk API error:', error);
         return false;
@@ -48,15 +48,12 @@ export async function POST(req: Request) {
         // Строим адрес, если он есть
         let addressString = '';
         let addressData = {};
-        
+
         if (body.address) {
-            addressString = `${body.address.streetName} буд. ${body.address.houseNumber} ${
-                body.address.entrance ? `під. ${body.address.entrance}` : ''
-            } ${
-                body.address.floor ? `поверх ${body.address.floor}` : ''
-            } ${
-                body.address.apartment ? `кв ${body.address.apartment}` : ''
-            }`;
+            addressString = `${body.address.streetName} буд. ${body.address.houseNumber} ${body.address.entrance ? `під. ${body.address.entrance}` : ''
+                } ${body.address.floor ? `поверх ${body.address.floor}` : ''
+                } ${body.address.apartment ? `кв ${body.address.apartment}` : ''
+                }`;
 
             addressData = {
                 'cli_street': body.address.streetName,
