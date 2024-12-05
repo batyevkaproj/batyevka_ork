@@ -112,6 +112,10 @@ export const OrderCallModal = () => {
                 throw new Error('Failed to submit call request');
             }
 
+            if (response.data.redirectUrl) {
+                window.location.href = response.data.redirectUrl;
+            }
+
             toast({
                 title: "Заявка відправлена",
                 description: "Наш менеджер зв'яжеться з вами найближчим часом",

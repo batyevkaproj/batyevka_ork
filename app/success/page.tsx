@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import successIcon from '@/public/img/checkmark_calculator.svg';
 
-export default function SuccessPage() {
+const SuccessContent = function () {
     const router = useRouter();
     const searchParams = useSearchParams();
     const servdeskId = searchParams.get('id');
@@ -72,5 +72,13 @@ export default function SuccessPage() {
                 </Button>
             </div>
         </div>
+    );
+};
+
+export default function SuccessPage() {
+    return (
+        <Suspense>
+            <SuccessContent />
+        </Suspense>
     );
 }

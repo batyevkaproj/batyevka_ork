@@ -7,7 +7,9 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-interface AddressSelectProps {
+type AddressSelectTheme = 'light' | 'dark';
+
+type AddressSelectProps = {
   onAddressSelect: (data: {
     street: Street | null;
     house: House | null;
@@ -16,9 +18,59 @@ interface AddressSelectProps {
     apartment?: string;
   }) => void;
   className?: string;
+  theme?: AddressSelectTheme;
 }
 
-export function AddressSelect({ onAddressSelect, className }: AddressSelectProps) {
+const themeStyles = {
+  light: {
+    background: 'bg-white',
+    text: 'text-[#5F6061]',
+    border: 'border-[#DC662D]',
+    input: 'bg-white border-[#DC662D]',
+    placeholder: 'placeholder:text-gray-400',
+    hover: 'hover:bg-gray-50',
+    dropdown: {
+      background: 'bg-white',
+      border: 'border-[#DC662D]',
+      hoverItem: 'hover:bg-[#F4F2F2]',
+      text: 'text-[#5F6061]',
+      searchInput: 'border-[#DC662D] bg-white text-[#5F6061] placeholder:text-gray-400',
+    },
+    labels: 'text-[#5F6061]/70',
+    button: {
+      default: 'bg-white text-[#5F6061] border-[#DC662D] hover:bg-[#F4F2F2]',
+      disabled: 'disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-300',
+    },
+    numberInput: 'bg-white text-[#5F6061] border-[#DC662D] placeholder:text-gray-400'
+  },
+  dark: {
+    background: 'bg-[#133853]',
+    text: 'text-white',
+    border: 'border-[#2A5574]',
+    input: 'bg-[#133853] border-[#2A5574]',
+    placeholder: 'placeholder:text-slate-300',
+    hover: 'hover:bg-[#0E2D43]',
+    dropdown: {
+      background: 'bg-[#133853]',
+      border: 'border-[#2A5574]',
+      hoverItem: 'hover:bg-[#0E2D43]',
+      text: 'text-white',
+      searchInput: 'border-[#2A5574] bg-[#133853] text-white placeholder:text-slate-300',
+    },
+    labels: 'text-white/70',
+    button: {
+      default: 'bg-[#133853] text-white border-[#2A5574] hover:bg-[#0E2D43]',
+      disabled: 'disabled:opacity-50 disabled:hover:bg-[#133853]',
+    },
+    numberInput: 'bg-[#133853] text-white border-[#2A5574] placeholder:text-slate-300'
+  }
+};
+
+export function AddressSelect({
+  onAddressSelect,
+  className,
+  theme = 'dark'
+}: AddressSelectProps) {
   const [streets, setStreets] = useState<Street[]>([]);
   const [houses, setHouses] = useState<House[]>([]);
   const [selectedStreet, setSelectedStreet] = useState<Street | null>(null);
@@ -138,23 +190,26 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
 
   return (
     <div className={cn("space-y-4", className)}>
-      <div className="relative w-full bg-[#133853] border border-[#2A5574] rounded-full">
+      <div className={`relative w-full border ${themeStyles[theme].background} ${themeStyles[theme].border} rounded-full`}>
         <Button
           id="street-button"
           type="button"
           onClick={handleStreetButtonClick}
-          className="w-full h-[60px] bg-transparent px-10 border-[#2A5574] rounded-full text-white justify-between hover:bg-[#0E2D43] hover:text-white"
+          className={`w-full h-[60px] px-10 rounded-full justify-between transition-colors duration-200 ${themeStyles[theme].button.default}`}
         >
           {selectedStreet ? selectedStreet.name : "Оберіть вулицю"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
 
         {openStreet && (
-          <div id="street-dropdown" className="absolute w-full z-50 mt-1 bg-[#133853] border border-[#2A5574] rounded-md shadow-lg">
+          <div 
+            id="street-dropdown" 
+            className={`absolute w-full z-50 mt-1 border rounded-md shadow-lg ${themeStyles[theme].dropdown.background} ${themeStyles[theme].dropdown.border}`}
+          >
             <input
               type="text"
               placeholder="Пошук вулиці..."
-              className="w-full p-2 bg-transparent border-b border-[#2A5574] text-white focus:outline-none"
+              className={`w-full p-2 focus:outline-none border-b ${themeStyles[theme].dropdown.searchInput}`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -162,7 +217,7 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
               {filteredStreets.map((street) => (
                 <div
                   key={street.id}
-                  className="p-2 hover:bg-[#0E2D43] cursor-pointer text-white flex items-center"
+                  className={`p-2 cursor-pointer flex items-center ${themeStyles[theme].dropdown.text} ${themeStyles[theme].dropdown.hoverItem}`}
                   onClick={() => {
                     setSelectedStreet(street);
                     setSelectedHouse(null);
@@ -181,30 +236,35 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
         )}
       </div>
 
-      <div className="relative w-full mt-1 bg-[#133853] border border-[#2A5574] rounded-full">
+      <div className={`relative w-full mt-1 border ${themeStyles[theme].background} ${themeStyles[theme].border} rounded-full`}>
         <Button
           id="house-button"
           type="button"
           onClick={handleHouseButtonClick}
           disabled={!selectedStreet}
-          className="w-full h-[60px] px-10 bg-transparent border-[#2A5574] text-white justify-between rounded-full hover:bg-[#0E2D43] hover:text-white disabled:opacity-50"
+          className={`w-full h-[60px] px-10 rounded-full justify-between transition-colors duration-200 
+            ${themeStyles[theme].button.default} ${themeStyles[theme].button.disabled}`}
         >
           {selectedHouse ? selectedHouse.number : "Оберіть будинок"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
 
+        {/* House dropdown with similar theme styling */}
         {openHouse && (
-          <div id="house-dropdown" className="absolute w-full z-50 mt-1 bg-[#133853] border border-[#2A5574] rounded-md shadow-lg">
+          <div 
+            id="house-dropdown" 
+            className={`absolute w-full z-50 mt-1 rounded-md shadow-lg ${themeStyles[theme].dropdown.background} ${themeStyles[theme].dropdown.border}`}
+          >
             {isLoadingHouses ? (
-              <div className="p-4 text-center text-white">
-                <div className="animate-spin rounded-full h-6 w-6 border-2 border-white border-t-transparent mx-auto" />
+              <div className={`p-4 text-center ${themeStyles[theme].text}`}>
+                <div className={`animate-spin rounded-full h-6 w-6 border-2 border-t-transparent mx-auto ${themeStyles[theme].border}`} />
               </div>
             ) : (
               <div className="max-h-[300px] overflow-y-auto">
                 {houses.map((house) => (
                   <div
                     key={house.id}
-                    className="p-2 hover:bg-[#0E2D43] cursor-pointer text-white flex items-center"
+                    className={`p-2 cursor-pointer flex items-center ${themeStyles[theme].dropdown.text} ${themeStyles[theme].dropdown.hoverItem}`}
                     onClick={() => {
                       setSelectedHouse(house);
                       setOpenHouse(false);
@@ -222,14 +282,16 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
         )}
       </div>
 
+      {/* Additional fields section */}
       <div className="space-y-2">
         <div className="flex gap-8 px-4">
-          <label className="flex-1 text-[14px] text-white/70">Під'їзд</label>
-          <label className="flex-1 text-[14px] text-white/70">Поверх</label>
-          <label className="flex-1 text-[14px] text-white/70">Квартира</label>
+          <label className={`flex-1 text-[14px] ${themeStyles[theme].labels}`}>Під'їзд</label>
+          <label className={`flex-1 text-[14px] ${themeStyles[theme].labels}`}>Поверх</label>
+          <label className={`flex-1 text-[14px] ${themeStyles[theme].labels}`}>Квартира</label>
         </div>
 
         <div className="flex gap-2">
+          {/* Entrance input */}
           <Input
             type="number"
             min={1}
@@ -241,8 +303,9 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
                 setEntrance(e.target.value);
               }
             }}
-            className="flex-1 h-[60px] w-1/3 bg-transparent text-white text-[20px] bg-[#133853] border border-[#2A5574] rounded-full px-6"
+            className={`flex-1 h-[60px] w-1/3 text-[20px] border rounded-full px-6 ${themeStyles[theme].numberInput}`}
           />
+          {/* Floor input */}
           <Input
             type="number"
             min={1}
@@ -254,13 +317,14 @@ export function AddressSelect({ onAddressSelect, className }: AddressSelectProps
                 setFloor(e.target.value);
               }
             }}
-            className="flex-1 w-1/3 h-[60px] bg-transparent text-white text-[20px] bg-[#133853] border border-[#2A5574] rounded-full px-6"
+            className={`flex-1 w-1/3 h-[60px] text-[20px] border rounded-full px-6 ${themeStyles[theme].numberInput}`}
           />
+          {/* Apartment input */}
           <Input
             type="number"
             value={apartment}
             onChange={(e) => setApartment(e.target.value)}
-            className="flex-1 w-1/3 h-[60px] bg-transparent text-white text-[20px] bg-[#133853] border border-[#2A5574] rounded-full px-6"
+            className={`flex-1 w-1/3 h-[60px] text-[20px] border rounded-full px-6 ${themeStyles[theme].numberInput}`}
           />
         </div>
       </div>

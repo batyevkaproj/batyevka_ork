@@ -27,7 +27,7 @@ const orderSchema = z.object({
   address: addressSchema,
 
   // Информация о тарифе (опциональна, так как может быть заявка без тарифа)
-  internetType: z.enum(["G-PON", "XGS-PON"]).optional(),
+  internetType: z.enum(["GPON","UTP","G-PON", "XGS-PON"]).optional(),
   internetSpeed: z.number().optional(),
   internetMeasure: z.string().optional(),
   hasTV: z.boolean().optional(),
