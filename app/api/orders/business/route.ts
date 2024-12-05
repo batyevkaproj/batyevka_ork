@@ -119,7 +119,8 @@ export async function POST(req: Request) {
 
         return NextResponse.json({
             success: true,
-            servdesk_id
+            servdeskId: servdesk_id,
+            redirectUrl: `/success?id=${servdesk_id}&type=connection`
         });
 
     } catch (error) {

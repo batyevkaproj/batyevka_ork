@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
+import { smsService } from "@/services/SMSService";
+
 
 async function sendInServdesk(data: any) {
     const sdesk_url = "https://servdesk.batyevka.net/sblog/contact_br.php";
@@ -104,9 +106,21 @@ export async function POST(req: Request) {
             telegramData
         );
 
+
+        const notificationSent = await smsService.sendNotification(
+            'callbackRequest',
+            phone,
+            servdesk_id
+        );
+
+        if (!notificationSent) {
+            console.warn(`[CALLBACK_${servdesk_id}]: Failed to send SMS notification`);
+        }
+
         return NextResponse.json({
             success: true,
-            servdesk_id
+            servdeskId: servdesk_id,
+            redirectUrl: `/success?id=${servdesk_id}&type=callback`
         });
 
     } catch (error) {
