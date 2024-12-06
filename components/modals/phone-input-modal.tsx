@@ -1,13 +1,11 @@
-"use client";
 import { useState } from "react";
 import { useModal } from "@/hooks/use-modal-store";
 import { useToast } from "@/hooks/use-toast";
 import { Street, House } from "@prisma/client";
 import axios from 'axios';
 
-import { VerificationFormTheme, THEMES } from '@/components/verification/VerificationFormBase';
+import { VerificationFormBase, VerificationFormTheme, THEMES } from '@/components/verification/VerificationFormBase';
 
-import { VerificationFormBase } from "@/components/verification/VerificationFormBase";
 import { PhoneInput } from '@/components/business-page/PhoneInput';
 import { usePhoneVerification } from '@/hooks/use-phone-verification';
 import { AddressSelect } from "@/components/address-select/AddressSelect";
@@ -32,8 +30,10 @@ export const PhoneInputModal = ({
         street: null,
         house: null
     });
+    
     const isModalOpen = isOpen && type === "phone-input";
 
+    // Handler for successful phone verification
     const handleSuccess = async () => {
         try {
             if (!data?.orderData) return;
@@ -47,6 +47,7 @@ export const PhoneInputModal = ({
                 return;
             }
 
+            // Prepare order data
             if (data?.orderData) {
                 const orderData = {
                     ...data.orderData,
@@ -105,7 +106,7 @@ export const PhoneInputModal = ({
         handlePhoneKeyDown,
         handleCodeChange,
         handleKeyDown,
-        //onSubmitInitialForm,
+        onSubmitInitialForm,
         onSubmitCode,
         reset
     } = usePhoneVerification(handleSuccess);
@@ -116,7 +117,7 @@ export const PhoneInputModal = ({
         onClose();
     };
 
-    // Контент для первого шага - ввод данных
+    // Content for first step - data input
     const initialFormContent = (
         <div className="space-y-6">
             <Input
@@ -145,14 +146,12 @@ export const PhoneInputModal = ({
         </div>
     );
 
-    // Контент для второго шага - верификация
     const verificationFormContent = (
         <div className="space-y-6">
             <p className="text-center text-lg">
                 Введіть код, надісланий на номер<br />
                 <span className="font-semibold">{form.watch('phone')}</span>
             </p>
-            {/* Компонент для ввода кода верификации */}
             <div className="flex justify-center gap-4">
                 {smsCode.map((digit, index) => (
                     <input
@@ -182,7 +181,7 @@ export const PhoneInputModal = ({
             form={form}
             beforeVerificationContent={initialFormContent}
             verificationContent={verificationFormContent}
-            onSubmitInitialForm={form.handleSubmit(handleSuccess)}
+            onSubmitInitialForm={onSubmitInitialForm}
             onSubmitVerificationCode={onSubmitCode}
             onBack={() => reset()}
         />
