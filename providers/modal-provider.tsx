@@ -7,6 +7,7 @@ import { PaymentModal } from "@/components/modals/payment-modal";
 import { PhoneInputModal } from "@/components/modals/phone-input-modal";
 import { RequestConnectionModal } from "@/components/modals/request-connection-modal";
 
+import { THEMES } from "@/components/verification/VerificationFormBase";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -23,7 +24,7 @@ export const ModalProvider = () => {
     <>
       <OrderCallModal />
       <PaymentModal />
-      <PhoneInputModal theme="white"/>
+      <PhoneInputModal theme={THEMES.LIGHT}/>
       <RequestConnectionModal />
     </>
   );

@@ -1,43 +1,81 @@
-"use client";
+import { useState } from "react";
 import { useModal } from "@/hooks/use-modal-store";
 import { useToast } from "@/hooks/use-toast";
+import { Street, House } from "@prisma/client";
+import axios from 'axios';
 
+import { VerificationFormBase, VerificationFormTheme, THEMES } from '@/components/verification/VerificationFormBase';
 
-import { Button } from "@/components/ui/button";
-import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogClose
-} from "@/components/ui/dialog";
-import { InitialForm } from '../business-page/InitialForm';
-import { VerificationForm } from '../business-page/VerificationForm';
+import { PhoneInput } from '@/components/business-page/PhoneInput';
 import { usePhoneVerification } from '@/hooks/use-phone-verification';
+import { AddressSelect } from "@/components/address-select/AddressSelect";
+import { Input } from "@/components/ui/input";
 
-export const PhoneInputModal = ({ theme }: { theme: string }) => {
+type AddressData = {
+    street: Street | null;
+    house: House | null;
+    entrance?: string;
+    floor?: string;
+    apartment?: string;
+}
+
+export const PhoneInputModal = ({ 
+    theme = THEMES.DARK
+  }: { 
+    theme: VerificationFormTheme 
+  }) => {
     const { isOpen, onClose, type, data } = useModal();
     const { toast } = useToast();
+    const [selectedAddress, setSelectedAddress] = useState<AddressData>({
+        street: null,
+        house: null
+    });
+    
     const isModalOpen = isOpen && type === "phone-input";
 
+    // Handler for successful phone verification
     const handleSuccess = async () => {
         try {
-            if (data?.orderData) {
-                const orderResponse = await fetch('/api/orders/submit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        ...data.orderData,
-                        customerName: form.getValues('name'),
-                        customerPhone: rawPhoneNumber
-                    })
-                });
+            if (!data?.orderData) return;
 
-                if (!orderResponse.ok) {
+            if (!selectedAddress.street || !selectedAddress.house) {
+                toast({
+                    variant: "destructive",
+                    title: "Помилка",
+                    description: "Будь ласка, оберіть адресу підключення",
+                });
+                return;
+            }
+
+            // Prepare order data
+            if (data?.orderData) {
+                const orderData = {
+                    ...data.orderData,
+                    customerName: form.getValues('name'),
+                    customerPhone: rawPhoneNumber,
+                    address: {
+                        streetId: selectedAddress.street.id,
+                        streetName: selectedAddress.street.name,
+                        houseId: selectedAddress.house.id,
+                        houseNumber: selectedAddress.house.number,
+                        entrance: selectedAddress.entrance,
+                        floor: selectedAddress.floor,
+                        apartment: selectedAddress.apartment,
+                        fullAddress: `${selectedAddress.street.name}, ${selectedAddress.house.number}${
+                            selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
+                        }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''
+                        }${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''}`
+                    }
+                };
+
+                const response = await axios.post('/api/orders/submit', orderData);
+
+                if (!response.data.success) {
                     throw new Error('Failed to submit order');
+                }
+
+                if (response.data.redirectUrl) {
+                    window.location.href = response.data.redirectUrl;
                 }
 
                 toast({
@@ -75,53 +113,77 @@ export const PhoneInputModal = ({ theme }: { theme: string }) => {
 
     const handleClose = () => {
         reset();
+        setSelectedAddress({ street: null, house: null });
         onClose();
     };
 
+    // Content for first step - data input
+    const initialFormContent = (
+        <div className="space-y-6">
+            <Input
+                type="text"
+                placeholder="Ваше ім'я"
+                className={`w-full h-[60px] rounded-full text-[20px] pl-[22px] border ${theme === 'light' ? 'border-[#DC662D]' : 'border-[#2A5574]'}`}
+                {...form.register("name", {
+                    required: "Ім'я обов'язкове",
+                    minLength: { value: 2, message: "Ім'я має містити мінімум 2 символи" }
+                })}
+            />
+            
+            <PhoneInput
+                control={form.control}
+                theme='light'
+                phoneRef={phoneRef}
+                handlePhoneInput={handlePhoneInput}
+                handlePhoneKeyDown={handlePhoneKeyDown}
+            />
+
+            <AddressSelect
+                onAddressSelect={setSelectedAddress}
+                theme={theme}
+                className="w-full"
+            />
+        </div>
+    );
+
+    const verificationFormContent = (
+        <div className="space-y-6">
+            <p className="text-center text-lg">
+                Введіть код, надісланий на номер<br />
+                <span className="font-semibold">{form.watch('phone')}</span>
+            </p>
+            <div className="flex justify-center gap-4">
+                {smsCode.map((digit, index) => (
+                    <input
+                        key={index}
+                        ref={el => { inputRefs.current[index] = el; }}
+                        type="tel"
+                        maxLength={1}
+                        value={digit}
+                        onChange={(e) => handleCodeChange(index, e.target.value)}
+                        onKeyDown={(e) => handleKeyDown(index, e)}
+                        className={`w-12 h-12 text-center text-2xl rounded-lg border-2
+                            ${theme === 'light' ? 'border-[#DC662D]' : 'border-[#2A5574]'}
+                            focus:outline-none focus:ring-2`}
+                    />
+                ))}
+            </div>
+        </div>
+    );  
+
     return (
-        <Dialog open={isModalOpen} onOpenChange={handleClose}>
-            <DialogContent className="bg-white p-8">
-                <DialogHeader>
-                    <DialogTitle>
-                        <h1 className="font-bold leading-[50px] text-3xl text-center mb-6 text-[#BDBDBD]">
-                            {step === 1 ? "Введіть ваші дані" : "Перевірка номера телефону"}
-                        </h1>
-                    </DialogTitle>
-                </DialogHeader>
-
-                {step === 1 ? (
-                    <InitialForm
-                        form={form}
-                        theme={theme}
-                        isLoading={isLoading}
-                        rawPhoneNumber={rawPhoneNumber}
-                        handlePhoneInput={handlePhoneInput}
-                        handlePhoneKeyDown={handlePhoneKeyDown}
-                        phoneRef={phoneRef}
-                        onSubmit={onSubmitInitialForm}
-                    />
-                ) : (
-                    <VerificationForm
-                        theme={theme}
-                        isLoading={isLoading}
-                        phoneNumber={form.watch('phone')}
-                        smsCode={smsCode}
-                        inputRefs={inputRefs}
-                        handleCodeChange={handleCodeChange}
-                        handleKeyDown={handleKeyDown}
-                        onSubmitCode={onSubmitCode}
-                        onBack={() => reset()}
-                    />
-                )}
-
-                <DialogFooter className="mt-4">
-                    <DialogClose asChild>
-                        <Button onClick={handleClose} variant="outline">
-                            Закрити
-                        </Button>
-                    </DialogClose>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
+        <VerificationFormBase
+            isOpen={isModalOpen}
+            onClose={handleClose}
+            theme={theme}
+            step={step}
+            isLoading={isLoading}
+            form={form}
+            beforeVerificationContent={initialFormContent}
+            verificationContent={verificationFormContent}
+            onSubmitInitialForm={onSubmitInitialForm}
+            onSubmitVerificationCode={onSubmitCode}
+            onBack={() => reset()}
+        />
     );
 };
