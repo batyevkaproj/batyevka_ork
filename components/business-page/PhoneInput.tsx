@@ -33,7 +33,7 @@ export const PhoneInput = ({
         }[inputSize];
 
         const variantStyles = {
-            default: `${theme === 'white' ? 'border-[#DC662D] text-[#5F6061]' : 'border-[#56AABF] text-white'}`,
+            default: `${theme === 'light' ? 'border-[#DC662D] text-[#5F6061] placeholder:text-slate-300' : 'border-[#56AABF] text-white'}`,
             modal: 'border-[#2A5574] text-[#ABD5DF]'
         }[variant];
 
