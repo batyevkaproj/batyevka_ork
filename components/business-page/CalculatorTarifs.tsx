@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { useToast } from "@/hooks/use-toast";
 import {
     GPON_SPEEDS,
@@ -38,11 +37,11 @@ import MobileMonthsSelect from './MobileMonthsSelect';
 const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [isTarifsSwitch, setTarifsSwitch] = useState<boolean>(false);
     const [speedUtp, setSpeedUtp] = useState<number>(1);
-    const [speedGpon, setSpeedGpon] = useState<number>(1);
-    const [isTVChecked, setTVChecker] = useState<boolean>(false);
+    const [speedGpon, setSpeedGpon] = useState<number>(2);
+    const [isTVChecked, setTVChecker] = useState<boolean>(true);
     const [isIPChecked, setIPChecker] = useState<boolean>(false);
-    const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
-    const [tvBundle, setTvBundle] = useState<number>(0);
+    const [isSelectMenuChecked, setSelectMenu] = useState<number>(2);
+    const [tvBundle, setTvBundle] = useState<number>(2);
     const [prepaidMonths, setPrepaidMonths] = useState<number>(1);
     const [setupPrice, setSetupPrice] = useState<number>(1499);
     const [routerPrice, setRouterPrice] = useState<number>(3000);
@@ -268,7 +267,10 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 }
 
                                 <div className="flex items-start justify-between max-[680px]:grid max-[680px]:grid-cols-2 max-[680px]:grid-rows-1 max-[680px]:border-b-[2px] max-[680px]:border-[#F4F2F2] max-[680px]:border-solid max-[680px]:pb-[10px]">
-                                    <h1>* Wi-Fi роутер </h1>
+                                    <div className='text-center'>
+                                        <h1>* Wi-Fi роутер </h1>
+                                        <p className='text-sm'>За потреби</p>
+                                    </div>
                                     <h1 className="items-center justify-center text-center max-[680px]:hidden"><span className="opacity-[0.5]">MERCUSYS MR50G </span></h1>
                                     <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">{routerPrice} грн.</h1>
                                     <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]"><br /><span className="opacity-[0.5]">MERCUSYS <br />MR50G </span></p>

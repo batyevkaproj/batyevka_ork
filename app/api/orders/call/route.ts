@@ -1,83 +1,148 @@
-import { NextResponse } from "next/server";
-import axios from "axios";
+import { NextResponse } from 'next/server';
+import axios from 'axios';
+import { smsService } from "@/services/SMSService";
+
+// Helper function for ServDesk API calls
+async function sendInServdesk(data: any) {
+    const sdesk_url = "https://servdesk.batyevka.net/sblog/contact_br.php";
+
+    try {
+        const formData = new URLSearchParams();
+        for (const [key, value] of Object.entries(data)) {
+            formData.append(key, value as string);
+        }
+
+        const response = await fetch(sdesk_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            return false;
+        }
+
+        const result = await response.text();
+        return result;
+
+    } catch (error) {
+        console.error('ServDesk API error:', error);
+        return false;
+    }
+}
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
 
-        let addressString = '';
-        if (body.address) {
-            addressString = `\nАдреса: ${body.address.fullAddress}`;
+        if (!body.customerName) {
+            return NextResponse.json({ status: false });
         }
 
-        const servdeskData = {
-            name_client_call_req: body.customerName,
-            phone_client_call_req: body.customerPhone,
-            comment_call_req: `Заявка на зворотній дзвінок${addressString}`,
-        };
-
-        const formData = new URLSearchParams();
-        Object.entries(servdeskData).forEach(([key, value]) => {
-            if (value) formData.append(key, value);
+        // Clean up phone number
+        let phone = body.customerPhone;
+        const chars_to_remove = ["+38", "(", ")", " ", "-"];
+        chars_to_remove.forEach(char => {
+            phone = phone.replace(char, "");
         });
 
-        // Отправляем запрос в ServDesk
-        const response = await axios.post(
-            'https://servdesk.batyevka.net/addons/add_req.php',
-            formData,
-            {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                }
-            }
-        );
+        // Check environment
+        const isTestEnvironment = process.env.NODE_ENV === 'development' ||
+            process.env.NODE_ENV === 'test' ||
+            process.env.NEXT_PUBLIC_API_ENV === 'local';
 
-        const servdesk_id = response.data;
+        let servdesk_id: string;
 
-        let telegramText = `Нова заявка на зворотній дзвінок!\n\nКлієнт: ${body.customerName}\nТелефон: ${body.customerPhone}`;
+        // Process address data if provided
+        let addressString = '';
+        let addressData = {};
 
         if (body.address) {
-            telegramText += `\n\nАдреса:\n• Вулиця: ${body.address.streetName}\n• Будинок: ${body.address.houseNumber}`;
+            addressString = `${body.address.streetName} буд. ${body.address.houseNumber} ${body.address.entrance ? `під. ${body.address.entrance}` : ''
+                } ${body.address.floor ? `поверх ${body.address.floor}` : ''
+                } ${body.address.apartment ? `кв ${body.address.apartment}` : ''
+                }`;
 
-            if (body.address.entrance) {
-                telegramText += `\n• Під'їзд: ${body.address.entrance}`;
+            addressData = {
+                'cli_street': body.address.streetName,
+                'cli_house': body.address.houseNumber,
+                'cli_enter': body.address.entrance || '',
+                'cli_flat': body.address.apartment || '',
+                'cli_ele': body.address.floor || '',
+                'cli_addr': addressString,
+            };
+        }
+
+        if (isTestEnvironment) {
+            // Use mock data for test environment
+            console.log('[TEST_ENV] Using mock ServDesk ID for callback request');
+            servdesk_id = "54321"; // Hardcoded test ID for callbacks
+
+            // Log the data that would have been sent in production
+            console.log('[TEST_ENV] Request data:', {
+                customerName: body.customerName,
+                phone: phone,
+                address: addressString || 'Not provided'
+            });
+        } else {
+            // Production environment - real API calls
+            const data = {
+                'type': 'data',
+                'cli_name': body.customerName,
+                'cli_phone': phone,
+                'cli_descr': `Заявка на зворотній дзвінок${body.address ? '\nАдреса: ' + addressString : ''}`,
+                ...addressData
+            };
+
+            servdesk_id = await sendInServdesk(data) || "1";
+
+            // Send Telegram notification only in production
+            let telegramText = `Нова заявка на зворотній дзвінок!\n\nКлієнт: ${body.customerName}\nТелефон: ${body.customerPhone}`;
+
+            if (body.address) {
+                telegramText += `\n\nАдреса:\n• Вулиця: ${body.address.streetName}\n• Будинок: ${body.address.houseNumber}`;
+                if (body.address.entrance) telegramText += `\n• Під'їзд: ${body.address.entrance}`;
+                if (body.address.floor) telegramText += `\n• Поверх: ${body.address.floor}`;
+                if (body.address.apartment) telegramText += `\n• Квартира: ${body.address.apartment}`;
             }
-            if (body.address.floor) {
-                telegramText += `\n• Поверх: ${body.address.floor}`;
-            }
-            if (body.address.apartment) {
-                telegramText += `\n• Квартира: ${body.address.apartment}`;
+
+            telegramText += `\n\nServDesk ID: ${servdesk_id}`;
+
+            await axios.post(
+                `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+                {
+                    chat_id: process.env.TELEGRAM_CHAT_ID,
+                    text: telegramText,
+                    parse_mode: 'HTML'
+                }
+            );
+
+            // Send SMS notification (can be handled by SMSService's own test mode)
+            const notificationSent = await smsService.sendNotification(
+                'callbackRequest',
+                phone,
+                servdesk_id
+            );
+
+            if (!notificationSent) {
+                console.warn(`[CALLBACK_${servdesk_id}]: Failed to send SMS notification`);
             }
         }
 
-        telegramText += `\n\nServDesk ID: ${servdesk_id}`;
-
-        const telegramData = {
-            chat_id: process.env.TELEGRAM_CHAT_ID,
-            text: telegramText,
-            parse_mode: 'HTML'
-        };
-
-        await axios.post(
-            `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
-            telegramData
-        );
 
         return NextResponse.json({
             success: true,
-            servdesk_id
+            servdeskId: servdesk_id,
+            redirectUrl: `/success?id=${servdesk_id}&type=callback`
         });
 
     } catch (error) {
-        console.error(`[ORDER_CALL_ERROR]: Error submiting call request`, error);
-
-        return NextResponse.json(
-            {
-                success: false,
-                error: 'Failed to submit call request'
-            },
-            {
-                status: 500
-            });
+        console.error('[CALL_REQUEST_ERROR]: Error submitting call request:', error);
+        return NextResponse.json({
+            success: false,
+            error: "Internal server error"
+        }, { status: 500 });
     }
 }
