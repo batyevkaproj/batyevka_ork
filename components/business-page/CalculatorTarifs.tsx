@@ -85,7 +85,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                 setDiscountValue(100);
             }
             if (selectedSpeed && (selectedSpeed.speed === 2.5 || selectedSpeed.speed === 5)) {
-                newSetupPrice = 8500; // Override setup price for 2.5G and 5G speeds
+                newSetupPrice = 6500; // Override setup price for 2.5G and 5G speeds
             }
         } else {
             if(speedUtp == 1) {
