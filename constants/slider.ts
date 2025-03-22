@@ -6,7 +6,8 @@ type MegogoBudles = {
 
 type PrepaidMonths = {
     value: number,
-    months: number
+    months: number,
+    sum: number
 }
 
 export const MIN_MOBILE = 3;
@@ -69,14 +70,17 @@ export const MEGOGO_BUNDLES: MegogoBudles[] = [
 export const MONTHS: PrepaidMonths[] = [
     {
         value: 1,
-        months: 1
+        months: 1,
+        sum: 0
     },
     {
         value: 2,
-        months: 6
+        months: 6,
+        sum: 20
     },
     {
         value: 3,
-        months: 12
+        months: 12,
+        sum: 30
     }
 ];

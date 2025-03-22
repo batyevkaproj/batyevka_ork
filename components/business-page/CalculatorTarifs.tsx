@@ -11,6 +11,7 @@ import {
 } from "@/constants/setup_prices";
 import { ROUTER_PRICE } from '@/constants/router_price';
 import { MEGOGO_BUNDLES } from '@/constants/slider';
+import { MONTHS } from '@/constants/slider';
 import { TV_INFO_ITEMS as TVinfo } from '@/constants/megogo';
 
 import { useModal } from '@/hooks/use-modal-store';
@@ -48,6 +49,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [routerPrice, setRouterPrice] = useState<number>(3000);
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [discountValue, setDiscountValue] = useState<number>(100);
+    const [periodDiscountValue, setPeriodDiscountValue] = useState<number>(1);
 
     const { toast } = useToast();
 
@@ -62,6 +64,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
             newInternetPrice = selectedGpon ? selectedGpon.price : 0;
         }
 
+        const periodDiscount = prepaidMonths !== undefined ? MONTHS.find((element) => element.months == prepaidMonths)?.sum : 1;
+        setPeriodDiscountValue(periodDiscount??1);
         // Deal with cost of TV bundles
         const newTvPrice = isTVChecked ? MEGOGO_BUNDLES.find((element) => element.value == tvBundle)?.price : 0;
         const newPriceValue = newTvPrice ?? 0;
@@ -319,7 +323,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                     <div className="flex items-end justify-between min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
                                         <h1>Абонплата з 13го місяця</h1>
                                         <h1 className="text-[#51B18B] flex items-end justify-between gap-3">
-                                            <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{ totalPrice }</span>
+                                            <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{ totalPrice - periodDiscountValue }</span>
                                             <span className="text-nowrap min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
                                     </div>
@@ -333,9 +337,9 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                         </div>
                                     </div>
                                     <div className={`border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]`}>
-                                        <h1 className={`mt-[20px] mb-[10px]`}>Абонплата з 12го місяця</h1>
+                                        <h1 className={`mt-[20px] mb-[10px]`}>Абонплата з 13го місяця</h1>
                                         <div className={`text-[#51B18B] flex items-end justify-between`}>
-                                            <h1 className={`text-[70px] leading-[70px]`}>{totalPrice}</h1>
+                                            <h1 className={`text-[70px] leading-[70px]`}>{totalPrice - periodDiscountValue}</h1>
                                             <h1 className="text-nowrap text-[30px] leading-[35px]">грн/міс</h1>
                                         </div>
                                     </div>
