@@ -1,28 +1,17 @@
 "use client";
-
-import { useState, useRef } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { useModal } from "@/hooks/use-modal-store";
-import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
 import { Street, House } from "@prisma/client";
+import axios from 'axios';
 
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogDescription,
-} from "@/components/ui/dialog";
-
-import { PhoneInput } from "../business-page/PhoneInput";
+import { VerificationFormBase, THEMES } from "@/components/verification/VerificationFormBase";
+import { PhoneInput } from '@/components/business-page/PhoneInput';
+import { usePhoneVerification } from '@/hooks/use-phone-verification';
 import { AddressSelect } from "@/components/address-select/AddressSelect";
+import { Input } from "@/components/ui/input";
 
-interface OrderCallFormData {
-    name: string;
-    phone: string;
-}
-
+// Define types for the address data structure
 interface AddressData {
     street: Street | null;
     house: House | null;
@@ -34,164 +23,158 @@ interface AddressData {
 export const OrderCallModal = () => {
     const { isOpen, onClose, type } = useModal();
     const { toast } = useToast();
-    const [rawPhoneNumber, setRawPhoneNumber] = useState("");
-    const phoneRef = useRef<HTMLInputElement>(null);
-    const [isLoading, setIsLoading] = useState(false);
     const [selectedAddress, setSelectedAddress] = useState<AddressData>({
         street: null,
         house: null
     });
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<OrderCallFormData>({
-        defaultValues: {
-            phone: "+380",
-            name: ""
-        }
-    });
-
+    // Check if this modal should be open
     const isModalOpen = isOpen && type === "call";
 
-    const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let value = e.target.value.replace(/\D/g, '');
-
-        if (!value.startsWith('380')) {
-            value = '380';
-        }
-
-        value = value.slice(0, 12);
-        setRawPhoneNumber(value);
-
-        if (value === '380') {
-            setValue('phone', '+380');
-            return;
-        }
-
-        let formattedValue = '+' + value;
-        if (value.length > 3) {
-            formattedValue = formattedValue.slice(0, 4) + ' ' + formattedValue.slice(4);
-        }
-        if (value.length > 5) {
-            formattedValue = formattedValue.slice(0, 7) + ' ' + formattedValue.slice(7);
-        }
-
-        setValue('phone', formattedValue);
-    };
-
-    const handlePhoneKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        const value = (e.target as HTMLInputElement).value.replace(/\D/g, '');
-        if (e.key === 'Backspace' && value.length <= 3) {
-            e.preventDefault();
-        }
-    };
-
-    const onSubmit = async (formData: OrderCallFormData) => {
+    // Define success handler for after verification
+    const handleSuccess = async () => {
         try {
-            setIsLoading(true);
-
+            // Prepare the data for submission
             const orderData = {
-                customerName: formData.name,
+                customerName: form.getValues('name'),
                 customerPhone: rawPhoneNumber,
-                address: selectedAddress.street && selectedAddress.house ? {
-                    streetId: selectedAddress.street.id,
-                    streetName: selectedAddress.street.name,
-                    houseId: selectedAddress.house.id,
-                    houseNumber: selectedAddress.house.number,
-                    entrance: selectedAddress.entrance,
-                    floor: selectedAddress.floor,
-                    apartment: selectedAddress.apartment,
-                    fullAddress: `${selectedAddress.street.name}, ${selectedAddress.house.number}${selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
-                        }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''
-                        }${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''
-                        }`
-                } : null
+                // Include address data if it was provided
+                ...(selectedAddress.street && selectedAddress.house ? {
+                    address: {
+                        streetId: selectedAddress.street.id,
+                        streetName: selectedAddress.street.name,
+                        houseId: selectedAddress.house.id,
+                        houseNumber: selectedAddress.house.number,
+                        entrance: selectedAddress.entrance,
+                        floor: selectedAddress.floor,
+                        apartment: selectedAddress.apartment
+                    }
+                } : {})
             };
 
+            // Send the request to the API
             const response = await axios.post('/api/orders/call', orderData);
 
             if (!response.data.success) {
-                throw new Error('Failed to submit call request');
+                throw new Error('Failed to submit callback request');
+            }
+
+            // Handle redirect if provided
+            if (response.data.redirectUrl) {
+                window.location.href = response.data.redirectUrl;
             }
 
             toast({
-                title: "Заявка відправлена",
+                title: "Заявку прийнято",
                 description: "Наш менеджер зв'яжеться з вами найближчим часом",
             });
 
-            onClose();
+            handleClose();
         } catch (error) {
-            console.error('Error submitting call request:', error);
+            console.error('Error submitting callback request:', error);
             toast({
                 variant: "destructive",
                 title: "Помилка",
                 description: "Не вдалося відправити заявку. Спробуйте пізніше.",
             });
-        } finally {
-            setIsLoading(false);
         }
     };
 
-    return (
-        <Dialog open={isModalOpen} onOpenChange={onClose}>
-            <DialogContent className="shadow-[0_4px_29px_0px_#0B273C] bg-[#133853] rounded-[10px] max-w-[620px] p-0 m-0 border-0">
-                <DialogHeader>
-                    <DialogTitle className="flex justify-center text-[24px] font-bold text-white mt-[60px]">
-                    Введіть Ваші дані
-                    </DialogTitle>
-                    <DialogDescription className="flex justify-center text-[16px] mt-[15px] font-light text-white">
-                    Наш менеджер зв'яжеться з вами упродовж дня
-                    </DialogDescription>
-                </DialogHeader>
-                <form onSubmit={handleSubmit(onSubmit)} className="flex mt-[30px] gap-[30px] flex-col items-center mb-[60px] w-full">
-                    <div className="h-[60px] flex items-center w-3/4">
-                        <input
-                            type="text"
-                            className="w-full h-full rounded-full text-[20px] text-white bg-transparent border border-[#2A5574] pl-[22px] placeholder:text-slate-300"
-                            placeholder="Ваше ім'я"
-                            {...register("name", {
-                                required: "Ім'я обов'язкове",
-                                minLength: {
-                                    value: 2,
-                                    message: "Ім'я має містити мінімум 2 символи"
-                                },
-                                maxLength: {
-                                    value: 50,
-                                    message: "Ім'я занадто довге"
-                                }
-                            })}
-                        />
-                    </div>
-                    {errors.name && (
-                        <span className="text-red-500 text-sm mt-[-20px]">{errors.name.message}</span>
-                    )}
+    // Initialize our verification hook
+    const {
+        step,
+        isLoading,
+        rawPhoneNumber,
+        smsCode,
+        form,
+        inputRefs,
+        phoneRef,
+        handlePhoneInput,
+        handlePhoneKeyDown,
+        handleCodeChange,
+        handleKeyDown,
+        onSubmitInitialForm,
+        onSubmitCode,
+        reset
+    } = usePhoneVerification(handleSuccess);
 
-                    <PhoneInput
-                        variant="modal"
-                        control={control}
-                        theme={'dark'}
-                        phoneRef={phoneRef}
-                        handlePhoneInput={handlePhoneInput}
-                        handlePhoneKeyDown={handlePhoneKeyDown}
+    // Handle modal closing
+    const handleClose = () => {
+        reset();
+        setSelectedAddress({ street: null, house: null });
+        onClose();
+    };
+
+    // Initial form content with name, phone, and address fields
+    const initialFormContent = (
+        <div className="space-y-6">
+            <Input
+                type="text"
+                placeholder="Ваше ім'я"
+                className="w-full h-[60px] rounded-full text-[20px] bg-transparent border border-[#2A5574] pl-[22px] placeholder:text-slate-300 text-white"
+                {...form.register("name", {
+                    required: "Ім'я обов'язкове",
+                    minLength: {
+                        value: 2,
+                        message: "Ім'я має містити мінімум 2 символи"
+                    }
+                })}
+            />
+            
+            <PhoneInput
+                control={form.control}
+                theme={'dark'}
+                phoneRef={phoneRef}
+                handlePhoneInput={handlePhoneInput}
+                handlePhoneKeyDown={handlePhoneKeyDown}
+            />
+
+            <AddressSelect
+                onAddressSelect={setSelectedAddress}
+                className="w-full"
+            />
+        </div>
+    );
+
+    // Verification step content with SMS code inputs
+    const verificationFormContent = (
+        <div className="space-y-6">
+            <p className="text-center text-lg text-white">
+                Введіть код, надісланий на номер<br />
+                <span className="font-semibold">{form.watch('phone')}</span>
+            </p>
+            <div className="flex justify-center gap-4">
+                {smsCode.map((digit, index) => (
+                    <input
+                        key={index}
+                        ref={el => { inputRefs.current[index] = el; }}
+                        type="tel"
+                        maxLength={1}
+                        value={digit}
+                        onChange={(e) => handleCodeChange(index, e.target.value)}
+                        onKeyDown={(e) => handleKeyDown(index, e)}
+                        className="w-12 h-12 text-center text-2xl rounded-lg border-2 
+                            border-[#2A5574] bg-transparent text-white
+                            focus:outline-none focus:ring-2 focus:ring-[#56AABF]"
                     />
-                    {errors.phone && (
-                        <span className="text-red-500 text-sm mt-[-20px]">{errors.phone.message}</span>
-                    )}
+                ))}
+            </div>
+        </div>
+    );
 
-                    <div className="w-3/4">
-                        <AddressSelect
-                            onAddressSelect={setSelectedAddress}
-                            className="w-full"
-                        />
-                    </div>
-
-                    <button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-3/4 rounded-full bg-[#2F94AD] h-[60px] text-[18px] leading-[22px] font-semibold text-[#133853] shadow-[0_4px_20px_0_#56AABF80] disabled:opacity-50"
-                    >
-                        {isLoading ? "Відправлення..." : "Зателефонуйте мені"}
-                    </button>
-                </form>
-            </DialogContent>
-        </Dialog>
+    return (
+        <VerificationFormBase
+            isOpen={isModalOpen}
+            onClose={handleClose}
+            theme={THEMES.DARK}
+            step={step}
+            isLoading={isLoading}
+            form={form}
+            beforeVerificationContent={initialFormContent}
+            verificationContent={verificationFormContent}
+            onSubmitInitialForm={onSubmitInitialForm}
+            onSubmitVerificationCode={onSubmitCode}
+            onBack={() => reset()}
+        />
     );
 };

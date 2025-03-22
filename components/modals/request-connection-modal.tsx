@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useRef } from "react";
-import axios from 'axios';
 import { useModal } from "@/hooks/use-modal-store";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
 import { Street, House } from "@prisma/client";
+
+import axios from 'axios';
 
 import {
     Dialog,
@@ -130,6 +131,10 @@ export const RequestConnectionModal = () => {
 
             if (!response.data.success) {
                 throw new Error('Failed to submit order');
+            }
+
+            if (response.data.redirectUrl) {
+                window.location.href = response.data.redirectUrl;
             }
 
             toast({
