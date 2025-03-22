@@ -47,32 +47,22 @@ export const MEGOGO_BUNDLES: MegogoBudles[] = [
     {
         value: 1,
         name: 'Легка',
-        price: 129
+        price: 100
     },
     {
         value: 2,
         name: 'Оптимальна',
-        price: 199
+        price: 150
     },
     {
         value: 3,
         name: 'Максимальна',
-        price: 279
+        price: 300
     },
     {
         value: 4,
-        name: 'Спорт',
-        price: 599
-    },
-    {
-        value: 5,
-        name: 'Кіно+',
-        price: 699
-    },
-    {
-        value: 6,
         name: 'Нац ТБ',
-        price: 99
+        price: 50
     }
 ];
 
@@ -88,13 +78,5 @@ export const MONTHS: PrepaidMonths[] = [
     {
         value: 3,
         months: 12
-    },
-    {
-        value: 4,
-        months: 24
-    },
-    {
-        value: 5,
-        months: 36
     }
 ];
