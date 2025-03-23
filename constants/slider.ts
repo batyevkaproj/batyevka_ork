@@ -47,23 +47,23 @@ export const MARKS_MOBILE = [
 export const MEGOGO_BUNDLES: MegogoBudles[] = [
     {
         value: 1,
+        name: 'Нац ТБ',
+        price: 50
+    },
+    {
+        value: 2,
         name: 'Легка',
         price: 100
     },
     {
-        value: 2,
+        value: 3,
         name: 'Оптимальна',
         price: 150
     },
     {
-        value: 3,
+        value: 4,
         name: 'Максимальна',
         price: 300
-    },
-    {
-        value: 4,
-        name: 'Нац ТБ',
-        price: 50
     }
 ];
 
