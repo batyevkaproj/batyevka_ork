@@ -65,7 +65,7 @@ const AdditionalOptions = ({theme}:ThemeProps) => {
                         <Image src={blue_speedometer} alt='blue_speedometer'/>
                     </div>
                     <p className={`flex justify-center items-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] max-[2377px]:mt-[10px] mt-[15px] min-[3644px]:mt-[22px]`}>Форсаж 5000</p>
-                    <p className={`flex justify-center items-center text-[#DC662D] font-bold min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[36px] max-[2377px]:mt-[20px] mt-[27px] min-[3644px]:mt-[40px]`}>2000 грн</p>
+                    <p className={`flex justify-center items-center text-[#DC662D] font-bold min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[36px] max-[2377px]:mt-[20px] mt-[27px] min-[3644px]:mt-[40px]`}>500 грн</p>
                     <p className={`flex justify-center items-center text-center font-normal min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] max-[2377px]:mt-[20px] mt-[27px] min-[3644px]:mt-[40px]`}>Збільшує швидкість доступу в Інтернет до кінця місяця на  <br/>5000 Мегабіт</p>
                     <a href='#' className={`flex justify-center items-center underline text-[#DC662D] font-normal min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px] max-[2377px]:mt-[42px] mt-[56px] min-[3644px]:mt-[79px]`}>Детальніше</a>
                 </div>
@@ -74,7 +74,7 @@ const AdditionalOptions = ({theme}:ThemeProps) => {
                         <Image src={ip} alt='ip'/>
                     </div>
                     <p className={`flex justify-center items-center font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] max-[2377px]:mt-[10px] mt-[15px] min-[3644px]:mt-[22px]`}>Зовнішній IP</p>
-                    <p className={`flex justify-center items-center text-[#DC662D] font-bold min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[36px] max-[2377px]:mt-[20px] mt-[27px] min-[3644px]:mt-[40px]`}>50 грн</p>
+                    <p className={`flex justify-center items-center text-[#DC662D] font-bold min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[36px] max-[2377px]:mt-[20px] mt-[27px] min-[3644px]:mt-[40px]`}>25 грн</p>
                     <p className={`flex justify-center items-center text-center font-normal min-[3644px]:text-[36px] min-[3644px]:leading-[45px] text-[24px] leading-[30px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] max-[2377px]:mt-[20px] mt-[27px] min-[3644px]:mt-[40px]`}>Зовнішня статична IP для <br/> особистих потреб, наприклад, <br/> підняття сервера або <br/>відеонагляду</p>
                     <a href='#' className={`flex justify-center items-center underline text-[#DC662D] font-normal min-[3644px]:text-[30px] min-[3644px]:leading-[42px] text-[20px] leading-[28px] max-[2377px]:text-[16px] max-[2377px]:leading-[22px] max-[2377px]:mt-[20px] mt-[23px] min-[3644px]:mt-[34px]`}>Детальніше</a>
                 </div>
@@ -133,7 +133,7 @@ const AdditionalOptions = ({theme}:ThemeProps) => {
                             </div>
                             <div className={`${isFast5 ? '':'hidden'}`}>
                                 <p className={`flex justify-center items-center font-bold text-[24px] leading-[36px] mt-[10px]`}>Форсаж 5000</p>
-                                <p className={`flex justify-center items-center text-[#DC662D] font-bold text-[30px] leading-[36px] mt-[20px]`}>2000 грн</p>
+                                <p className={`flex justify-center items-center text-[#DC662D] font-bold text-[30px] leading-[36px] mt-[20px]`}>500 грн</p>
                                 <p className={`flex justify-center items-center text-center font-normal text-[18px] leading-[22px] mt-[20px]`}>Збільшує швидкість доступу в <br/>Інтернет до кінця місяця на  <br/>5000 Мегабіт</p>
                                 <a href='#' className={`flex justify-center items-center underline text-[#DC662D] font-normal text-[16px] leading-[22px] mt-[42px] `}>Детальніше</a>
                             </div>
@@ -148,7 +148,7 @@ const AdditionalOptions = ({theme}:ThemeProps) => {
                             </div>
                             <div className={`${isIP ? '':'hidden'}`}>
                                 <p className={`flex justify-center items-center font-bold text-[24px] leading-[36px] mt-[10px]`}>Зовнішній IP</p>
-                                <p className={`flex justify-center items-center text-[#DC662D] font-bold text-[30px] leading-[36px] mt-[20px]`}>50 грн/міс</p>
+                                <p className={`flex justify-center items-center text-[#DC662D] font-bold text-[30px] leading-[36px] mt-[20px]`}>25 грн/міс</p>
                                 <p className={`flex justify-center items-center text-center font-normal text-[18px] leading-[22px] mt-[20px]`}>Зовнішня статична IP для <br/> особистих потреб, наприклад, <br/> підняття сервера або <br/>відеонагляду</p>
                                 <a href='#' className={`flex justify-center items-center underline text-[#DC662D] font-normal text-[16px] leading-[22px] mt-[20px] `}>Детальніше</a>
                             </div>

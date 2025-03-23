@@ -45,7 +45,7 @@ const TarifsCountInfo = ( {theme}: ThemeProps ) => {
                     <div className="min-[2378px]:col-span-1">
                         <div className="flex mb-[40px] max-[2377px]:mb-[20px] min-[3644px]:mb-[60px]">
                             <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
-                            <p>Якщо Абонент не сплатив більше 40 днів від останнього дня надання послуг, його договір /ликовий рахунок блокується (дія тарифу, акцій, у яких Абонент брав участь, припиняється). Повторна активація договору платна - у розмірі вартості підключення на обраному тарифі.</p>
+                            <p>Якщо Абонент не сплатив більше 40 днів від останнього дня надання послуг, його договір/обліковий рахунок блокується (дія тарифу, акцій, у яких Абонент брав участь, припиняється). Повторна активація договору платна - 99грн.</p>
                         </div>
                         <div className="flex mb-[40px] max-[2377px]:mb-[20px] min-[3644px]:mb-[60px]">
                             <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
@@ -74,7 +74,7 @@ const TarifsCountInfo = ( {theme}: ThemeProps ) => {
                     <div className="flex mb-[10px]" onClick={toggleMechanicVisibility_3}>
                         <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
                         <p>Якщо Абонент <span></span>не сплатив більше 40 днів від останнього дня надання послуг, його договір<span className={isMechanicVisible_3 ? 'hidden' : ''}>...</span>
-                        <span className={isMechanicVisible_3 ? '' : 'hidden'}>/особистий рахунок блокується (дія тарифу, акцій, в яких брав участь Абонент, припиняється).  Повторна активація договору платна - у розмірі вартості підключення на обраному тарифі.</span>
+                        <span className={isMechanicVisible_3 ? '' : 'hidden'}>/особистий рахунок блокується (дія тарифу, акцій, в яких брав участь Абонент, припиняється).  Повторна активація договору платна - 99 грн.</span>
                         <ChevronDown className={`inline-flex absolute right-0 end h-4 w-4 transition-transform + ${isMechanicVisible_3 ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`} />
                         </p>
                     </div>

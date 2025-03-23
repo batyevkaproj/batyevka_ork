@@ -316,7 +316,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             <div className="min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] max-[680px]:mt-[-30px] min-[3664px]:mr-[117px] mr-[78px] max-[2377px]:mr-[60px] w-full max-[1800px]:w-[750px] max-[1800px]:mr-[20px] max-[1800px]:ml-[20px]">
                                 <div className="grid grid-cols-1 items-center w-full font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:gap-[22px] gap-[15px] max-[2377px]:gap-[12px] max-[680px]:hidden">
                                     <div className="flex items-end justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
-                                        <h1>Акційна абонплата на Перші 12 місяців</h1>
+                                        <h1>Акційна абонплата на перші 12 місяців</h1>
                                         <h1 className="text-[#DC662D] flex items-end justify-between gap-3">
                                             <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{ totalPrice - discountValue}</span>
                                             <span className="text-nowrap min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
@@ -332,7 +332,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 </div>
                                 <div className="w-full font-bold text-[18px] leading-[22px] min-[681px]:hidden">
                                     <div className="border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]">
-                                        <h1 className={`mt-[20px] mb-[10px]`}>Акційна абонплата на Перші 12 місяців</h1>
+                                        <h1 className={`mt-[20px] mb-[10px]`}>Акційна абонплата на перші 12 місяців</h1>
                                         <div className="flex justify-between items-end text-[#DC662D]">
                                             <h1 className="text-[70px] leading-[70px]">{totalPrice - discountValue}</h1>
                                             <h1 className="text-nowrap text-[30px] leading-[35px]">грн/міс</h1>
