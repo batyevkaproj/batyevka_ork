@@ -4,7 +4,6 @@ export type SetupPriceProps = {
     default?: boolean;
 }
 
-
 export const UTP_SETUP_PRICES: SetupPriceProps[] = [
     { months: 1, price: 1, default: true },
     { months: 6, price: 1 },

@@ -260,7 +260,6 @@ export function TarifsSlider({ setSpeed, speed }: TarifsSliderType) {
         aria-label="Default"
         onChange={handleChange}
       />
-
     </div>
   );
 }
@@ -280,7 +279,7 @@ export function TarifsSliderGPON({ setSpeed, speed }: TarifsSliderType) {
   const last_index = GPON_SPEEDS.length - 1;
 
   return (
-    <div className={``}>
+    <div>
       <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
         {GPON_SPEEDS.map((mark, index) => (
           <button
@@ -294,7 +293,7 @@ export function TarifsSliderGPON({ setSpeed, speed }: TarifsSliderType) {
       </div>
       <span className='hidden'>{val}</span>
       <StyledSlider
-        defaultValue={1}
+        defaultValue={2}
         step={null}
         marks={marks_GPON}
         max={GPON_SPEEDS[last_index].value}
