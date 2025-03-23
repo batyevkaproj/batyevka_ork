@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import {
     GPON_SPEEDS,
-    UTP_SPEEDS
+    UTP_SPEEDS,
+    REAL_IP_PRICE
 } from "@/constants/internet_speeds";
 import {
     UTP_SETUP_PRICES,
@@ -38,11 +39,11 @@ import MobileMonthsSelect from './MobileMonthsSelect';
 const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [isTarifsSwitch, setTarifsSwitch] = useState<boolean>(false);
     const [speedUtp, setSpeedUtp] = useState<number>(1);
-    const [speedGpon, setSpeedGpon] = useState<number>(2);
-    const [isTVChecked, setTVChecker] = useState<boolean>(true);
+    const [speedGpon, setSpeedGpon] = useState<number>(1);
+    const [isTVChecked, setTVChecker] = useState<boolean>(false);
     const [isIPChecked, setIPChecker] = useState<boolean>(false);
-    const [isSelectMenuChecked, setSelectMenu] = useState<number>(2);
-    const [tvBundle, setTvBundle] = useState<number>(2);
+    const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
+    const [tvBundle, setTvBundle] = useState<number>(1);
     const [prepaidMonths, setPrepaidMonths] = useState<number>(1);
     const [setupPrice, setSetupPrice] = useState<number>(1499);
     const [routerPrice, setRouterPrice] = useState<number>(3000);
@@ -70,7 +71,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         const newPriceValue = newTvPrice ?? 0;
 
         // Deal with static IP addresses
-        const newIpPrice = isIPChecked ? 50 : 0; // Monthly payment for Static IP is 50 UAH
+        const newIpPrice = isIPChecked ? REAL_IP_PRICE : 0; // Monthly payment for Static IP is 50 UAH
 
         // Deal with setup price
         let newSetupPrice = (isTarifsSwitch ? UTP_SETUP_PRICES : GPON_SETUP_PRICES).find(tier => prepaidMonths == tier.months)?.price ?? 1499;
