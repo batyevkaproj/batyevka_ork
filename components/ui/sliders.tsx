@@ -99,7 +99,8 @@ export function MonthsSlider({ outerSetter, outer, setMonths }: MonthsSliderType
   return (
     <div>
       <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
-        <div className={`flex justify-between w-full  mr-[16%]`}>
+        <div className={`flex justify-between w-full  mr-[47%]`}> 
+          {/* All Right, Agent 47  */}
           {MONTHS.slice(0, -1).map((item) => (
             <button
               key={item.value}

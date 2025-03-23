@@ -10,6 +10,7 @@ import {
 } from "@/constants/setup_prices";
 import { ROUTER_PRICE } from '@/constants/router_price';
 import { MEGOGO_BUNDLES } from '@/constants/slider';
+import { MONTHS } from '@/constants/slider';
 import { TV_INFO_ITEMS as TVinfo } from '@/constants/megogo';
 
 import { useModal } from '@/hooks/use-modal-store';
@@ -46,6 +47,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [setupPrice, setSetupPrice] = useState<number>(1499);
     const [routerPrice, setRouterPrice] = useState<number>(3000);
     const [totalPrice, setTotalPrice] = useState<number>(0);
+    const [discountValue, setDiscountValue] = useState<number>(100);
+    const [periodDiscountValue, setPeriodDiscountValue] = useState<number>(1);
 
     const { toast } = useToast();
 
@@ -60,6 +63,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
             newInternetPrice = selectedGpon ? selectedGpon.price : 0;
         }
 
+        const periodDiscount = prepaidMonths !== undefined ? MONTHS.find((element) => element.months == prepaidMonths)?.sum : 1;
+        setPeriodDiscountValue(periodDiscount??1);
         // Deal with cost of TV bundles
         const newTvPrice = isTVChecked ? MEGOGO_BUNDLES.find((element) => element.value == tvBundle)?.price : 0;
         const newPriceValue = newTvPrice ?? 0;
@@ -73,8 +78,23 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         // Special pricing for high-speed G-PON
         if (!isTarifsSwitch) { // If G-PON is selected
             const selectedSpeed = GPON_SPEEDS.find(item => item.value === speedGpon);
+            if(speedGpon == 1) {
+                setDiscountValue(100);
+            } else if (speedGpon == 2) {
+                setDiscountValue(125);
+            } else if (speedGpon == 3) {
+                setDiscountValue(100);
+            } else if (speedGpon == 4) {
+                setDiscountValue(100);
+            }
             if (selectedSpeed && (selectedSpeed.speed === 2.5 || selectedSpeed.speed === 5)) {
-                newSetupPrice = 8500; // Override setup price for 2.5G and 5G speeds
+                newSetupPrice = 6500; // Override setup price for 2.5G and 5G speeds
+            }
+        } else {
+            if(speedUtp == 1) {
+                setDiscountValue(100);
+            } else if (speedUtp == 2) {
+                setDiscountValue(125);
             }
         }
 
@@ -120,6 +140,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
             ? UTP_SPEEDS.find(item => item.value === speedUtp)
             : GPON_SPEEDS.find(item => item.value === speedGpon);
 
+        
+
         // Получаем данные о выбранном ТВ пакете
         const tvPackage = isTVChecked && tvBundle ? {
             id: tvBundle,
@@ -136,6 +158,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
             internetSpeed: selectedSpeed?.speed || 0,
             internetMeasure: selectedSpeed?.measure || 'мбіт',
             internetPrice: selectedSpeed?.price || 0,
+
+            
 
             // Телевидение
             hasTV: isTVChecked,
@@ -161,6 +185,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                 `Щомісячний платіж: ${totalPrice} грн`
             ].join('\n')
         };
+
 
         // Проверяем корректность данных перед отправкой
         if (!selectedSpeed) {
@@ -291,32 +316,32 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             <div className="min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] max-[680px]:mt-[-30px] min-[3664px]:mr-[117px] mr-[78px] max-[2377px]:mr-[60px] w-full max-[1800px]:w-[750px] max-[1800px]:mr-[20px] max-[1800px]:ml-[20px]">
                                 <div className="grid grid-cols-1 items-center w-full font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:gap-[22px] gap-[15px] max-[2377px]:gap-[12px] max-[680px]:hidden">
                                     <div className="flex items-end justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
-                                        <h1>Акційна абонплата на Перші 4 місяці</h1>
+                                        <h1>Акційна абонплата на Перші 12 місяців</h1>
                                         <h1 className="text-[#DC662D] flex items-end justify-between gap-3">
-                                            <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{Math.round(totalPrice * 0.6)}</span>
+                                            <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{ totalPrice - discountValue}</span>
                                             <span className="text-nowrap min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
                                     </div>
                                     <div className="flex items-end justify-between min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
-                                        <h1>Абонплата з 5го місяця</h1>
+                                        <h1>Абонплата з 13го місяця</h1>
                                         <h1 className="text-[#51B18B] flex items-end justify-between gap-3">
-                                            <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{Math.round(totalPrice)}</span>
+                                            <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{ totalPrice - periodDiscountValue }</span>
                                             <span className="text-nowrap min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
                                     </div>
                                 </div>
                                 <div className="w-full font-bold text-[18px] leading-[22px] min-[681px]:hidden">
                                     <div className="border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]">
-                                        <h1 className={`mt-[20px] mb-[10px]`}>Акційна абонплата на Перші 4 місяці</h1>
+                                        <h1 className={`mt-[20px] mb-[10px]`}>Акційна абонплата на Перші 12 місяців</h1>
                                         <div className="flex justify-between items-end text-[#DC662D]">
-                                            <h1 className="text-[70px] leading-[70px]">{Math.round(totalPrice * 0.6)}</h1>
+                                            <h1 className="text-[70px] leading-[70px]">{totalPrice - discountValue}</h1>
                                             <h1 className="text-nowrap text-[30px] leading-[35px]">грн/міс</h1>
                                         </div>
                                     </div>
                                     <div className={`border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]`}>
-                                        <h1 className={`mt-[20px] mb-[10px]`}>Абонплата з 5го місяця</h1>
+                                        <h1 className={`mt-[20px] mb-[10px]`}>Абонплата з 13го місяця</h1>
                                         <div className={`text-[#51B18B] flex items-end justify-between`}>
-                                            <h1 className={`text-[70px] leading-[70px]`}>{Math.round(totalPrice)}</h1>
+                                            <h1 className={`text-[70px] leading-[70px]`}>{totalPrice - periodDiscountValue}</h1>
                                             <h1 className="text-nowrap text-[30px] leading-[35px]">грн/міс</h1>
                                         </div>
                                     </div>
