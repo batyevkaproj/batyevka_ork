@@ -130,16 +130,18 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const handleTVswitch = () => {
         const newIsTVChecked = !isTVChecked;
         setTVChecker(newIsTVChecked);
-
+    
         if (newIsTVChecked) { // TV is being turned ON
-            // Restore the last active bundle. If lastActiveTvBundle was 0 (initial or explicitly set to none), default to 1.
+            // If lastActiveTvBundle was 0 (initial or 'Безкоштовне ТБ'), default to 1 ('Нац ТБ').
+            // Otherwise, restore the previously active bundle.
             setTvBundle(lastActiveTvBundle === 0 ? 1 : lastActiveTvBundle);
         } else { // TV is being turned OFF
-            // Before setting tvBundle to 0, save its current value if it's a real bundle
-            if (tvBundle !== 0) { // Only save if it's an actual bundle, not already the 'off' state
+            // Before setting tvBundle to 0 (Безкоштовне ТБ), save its current value
+            // if it's an actual bundle (not already 0).
+            if (tvBundle !== 0) {
                 setLastActiveTvBundle(tvBundle);
             }
-            setTvBundle(0); // Set tvBundle to 0 to indicate no TV package is active
+            setTvBundle(0); // Set tvBundle to 0 to indicate no TV package is active (or Безкоштовне ТБ)
         }
     };
 
