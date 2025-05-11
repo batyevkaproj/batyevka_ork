@@ -43,7 +43,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [isTVChecked, setTVChecker] = useState<boolean>(false);
     const [isIPChecked, setIPChecker] = useState<boolean>(false);
     const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
-    const [tvBundle, setTvBundle] = useState<number>(1);
+    const [tvBundle, setTvBundle] = useState<number>(0);
     const [prepaidMonths, setPrepaidMonths] = useState<number>(1);
     const [setupPrice, setSetupPrice] = useState<number>(1499);
     const [routerPrice, setRouterPrice] = useState<number>(3000);
@@ -51,9 +51,12 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [discountValue, setDiscountValue] = useState<number>(100);
     const [periodDiscountValue, setPeriodDiscountValue] = useState<number>(1);
 
+    const [lastActiveTvBundle, setLastActiveTvBundle] = useState<number>(0); // Stores the bundle when TV was last on
+
     const { toast } = useToast();
 
     useEffect(() => {
+        console.log(tvBundle)
         // Deal with cost of Internet
         let newInternetPrice = 0;
         if (isTarifsSwitch) {
@@ -125,11 +128,18 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     ]);
 
     const handleTVswitch = () => {
-        setTVChecker(!isTVChecked);
-        if (!isTVChecked) {
-            setTvBundle(1);
-        } else {
-            setTvBundle(0);
+        const newIsTVChecked = !isTVChecked;
+        setTVChecker(newIsTVChecked);
+
+        if (newIsTVChecked) { // TV is being turned ON
+            // Restore the last active bundle. If lastActiveTvBundle was 0 (initial or explicitly set to none), default to 1.
+            setTvBundle(lastActiveTvBundle === 0 ? 1 : lastActiveTvBundle);
+        } else { // TV is being turned OFF
+            // Before setting tvBundle to 0, save its current value if it's a real bundle
+            if (tvBundle !== 0) { // Only save if it's an actual bundle, not already the 'off' state
+                setLastActiveTvBundle(tvBundle);
+            }
+            setTvBundle(0); // Set tvBundle to 0 to indicate no TV package is active
         }
     };
 
