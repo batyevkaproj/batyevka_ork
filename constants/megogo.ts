@@ -1,7 +1,7 @@
 import type { TVinfoItem } from "@/components/tariff-page/TVBlock";
 
 export const TV_INFO_ITEMS: TVinfoItem[] = [
-    { id: 0, name: 'Безкоштовне ТБ', channels: '173', movies: '0', show: false, button: 'Promo 14 днів', string1: '0 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв', from_col: 'from-[#3E3D39]', to_col: 'to-[#1B211F]', button_col: 'bg-[#303030]' },
+    { id: 0, name: 'Безкоштовне ТБ', channels: '170', movies: '6000', show: true, button: 'Кожному Абоненту', string1: '0 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв', from_col: 'from-[#3E3D39]', to_col: 'to-[#1B211F]', button_col: 'bg-[#303030]' },
     { id: 1, name: 'Національне ТБ', channels: '268', movies: '6000+', show: true, button: 'Promo 14 днів', string1: '170 інформаційних ', string2: 'та розважальних каналів, ', string3: 'колекція фільмів, ', string4: 'серіалів та мультиків', from_col: 'from-[#2D4B8F]', to_col: 'to-[#1E2A3D]', button_col: 'bg-[#1E2734]' },
     { id: 2, name: 'Легка', channels: '325', movies: '10000+', show: true, button: 'Promo 14 днів', string1: '325 каналiв для ', string2: 'любителів ТБ, а також ', string3: 'колекцiя фiльмiв, ', string4: 'мультикiв та серiалiв', from_col: 'from-[#3E3D39]', to_col: 'to-[#1B211F]', button_col: 'bg-[#303030]' },
     { id: 3, name: 'Оптимальна', channels: '425', movies: '11400+', show: true, button: 'Спробувати за 1 грн*', string1: '425 каналiв i фiльми, ', string2: 'серiали, мультики топових ', string3: 'кiностудiй для поцiновувачiв ', string4: 'кiно', from_col: 'from-[#333A4C]', to_col: 'to-[#25283B]', button_col: 'bg-[#323A4B]' },

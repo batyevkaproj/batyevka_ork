@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   GPON_SPEEDS,
@@ -25,20 +25,35 @@ const marks_GPON = GPON_SPEEDS.map(item => ({ value: item.value }));
 const marks_UTP = UTP_SPEEDS.map(item => ({ value: item.value }));
 
 export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType) {
-  const [val, setVal] = useState<number>(outer ?? 1);
+  // Initialize val: if outer is 0 (e.g., "Безкоштовне ТБ"), default slider's internal val to 1.
+  const [val, setVal] = useState<number>(outer === 0 ? 1 : outer);
+
+  // ADD THIS useEffect block:
+  // This synchronizes the slider's internal value (`val`)
+  // with the `outer` prop (which is `tvBundle` from the parent).
+  useEffect(() => {
+    // If outer is 0 (TV off or "Безкоштовне ТБ"), set slider's internal val to 1 ("Нац. ТБ").
+    // Otherwise, use the `outer` value.
+    setVal(outer === 0 ? 1 : outer);
+  }, [outer]); // This effect runs when the `outer` prop changes.
+
   const handleChange = (_: Event, newValue: number | number[]) => {
     if (isEnabled) {
-      setVal(newValue as number);
-      outerSetter(newValue as number);
+      const newSliderValue = newValue as number;
+      setVal(newSliderValue);
+      outerSetter(newSliderValue);
     }
   };
 
-  const handleButtonClick = (newValue: number | number[]) => {
-    setVal(newValue as number);
-    outerSetter(newValue as number);
+  const handleButtonClick = (newSliderValue: number) => {
+    if (isEnabled) {
+        setVal(newSliderValue);
+        outerSetter(newSliderValue);
+    }
   };
 
   const lastIndex = MEGOGO_BUNDLES.length - 1;
+  // Use all MEGOGO_BUNDLES for button mapping, slider `min` will handle the visual start.
   const mainButtons = MEGOGO_BUNDLES;
 
   return (
@@ -58,12 +73,12 @@ export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType
         </div>
       </div>
       <StyledSlider
-        defaultValue={1}
+        defaultValue={1} // Default visual position for the thumb
         step={1}
-        marks={MEGOGO_BUNDLES}
-        min={1}
+        marks={MEGOGO_BUNDLES.map(b => ({ value: b.value }))} // Ensure marks have a `value` property
+        min={1} // Minimum selectable value on the slider is "Нац. ТБ" (value 1)
         max={MEGOGO_BUNDLES[lastIndex].value}
-        value={val}
+        value={val} // Slider position is controlled by `val`
         aria-label="Default"
         onChange={handleChange}
         disabled={!isEnabled}
