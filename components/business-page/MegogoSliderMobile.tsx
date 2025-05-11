@@ -10,7 +10,7 @@ type MobileTVSelectorProps = {
 const MegogoSliderMobile = ({ selectedBundle, onBundleSelect, isEnabled }: MobileTVSelectorProps) => {
   return (
     <div className="font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden">
-      {MEGOGO_BUNDLES.filter(bundle => bundle.value !== 0).map((bundle) => (
+      {MEGOGO_BUNDLES.map((bundle) => (
         <div key={bundle.value} className="flex items-center gap-x-[20px] first:mt-0 mt-[16px]">
           <Checkbox 
             checked={selectedBundle === bundle.value}

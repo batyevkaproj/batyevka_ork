@@ -40,7 +40,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [isTarifsSwitch, setTarifsSwitch] = useState<boolean>(false);
     const [speedUtp, setSpeedUtp] = useState<number>(1);
     const [speedGpon, setSpeedGpon] = useState<number>(1);
-    const [isTVChecked, setTVChecker] = useState<boolean>(false);
+    const [isTVChecked, setTVChecker] = useState<boolean>(true);
     const [isIPChecked, setIPChecker] = useState<boolean>(false);
     const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
     const [tvBundle, setTvBundle] = useState<number>(0);
@@ -129,12 +129,13 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
     const handleTVswitch = () => {
         const newIsTVChecked = !isTVChecked;
-        setTVChecker(newIsTVChecked);
+        //setTVChecker(newIsTVChecked);
+        setTVChecker(true);
     
         if (newIsTVChecked) { // TV is being turned ON
             // If lastActiveTvBundle was 0 (initial or 'Безкоштовне ТБ'), default to 1 ('Нац ТБ').
             // Otherwise, restore the previously active bundle.
-            setTvBundle(lastActiveTvBundle === 0 ? 1 : lastActiveTvBundle);
+            setTvBundle(lastActiveTvBundle === 0 ? 0 : lastActiveTvBundle);
         } else { // TV is being turned OFF
             // Before setting tvBundle to 0 (Безкоштовне ТБ), save its current value
             // if it's an actual bundle (not already 0).
@@ -256,7 +257,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             </div>
                             <p className="flex text-center items-center justify-center font-bold mt-[40px] text-[18px] leading-[22px] min-[681px]:hidden">Додай MEGOGО Телебачення</p>
                             <div className="flex items-center justify-center mt-[15px] min-[681px]:hidden">
-                                <RegularSwitch switchState={setTVChecker} state={isTVChecked} />
+                                {/* <RegularSwitch switchState={setTVChecker} state={isTVChecked} /> */}
                             </div>
                             <>
                                 <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>

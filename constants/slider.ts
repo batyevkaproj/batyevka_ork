@@ -46,6 +46,11 @@ export const MARKS_MOBILE = [
 
 export const MEGOGO_BUNDLES: MegogoBudles[] = [
     {
+        value: 0,
+        name: 'Безкоштовне ТБ',
+        price: 0
+    },
+    {
         value: 1,
         name: 'Нац ТБ',
         price: 50
