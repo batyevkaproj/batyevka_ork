@@ -310,9 +310,9 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                         <h1>* Wi-Fi роутер </h1>
                                         <p className='text-sm'>За потреби</p>
                                     </div>
-                                    <h1 className="items-center justify-center text-center max-[680px]:hidden"><span className="opacity-[0.5]">MERCUSYS MR50G </span></h1>
+                                    <h1 className="items-center justify-center text-center max-[680px]:hidden"><span className="opacity-[0.5]">MERCUSYS MR80X </span></h1>
                                     <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">{routerPrice} грн.</h1>
-                                    <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]"><br /><span className="opacity-[0.5]">MERCUSYS <br />MR50G </span></p>
+                                    <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]"><br /><span className="opacity-[0.5]">MERCUSYS <br />MR80X </span></p>
                                 </div>
                             </div>
                         </div>
