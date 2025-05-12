@@ -206,9 +206,9 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
             throw new Error('Не вибрана швидкість інтернету');
         }
 
-        if (isTVChecked && !tvPackage) {
-            throw new Error('Не вибраний пакет телебачення');
-        }
+        // if (isTVChecked && !tvPackage) {
+        //     throw new Error('Не вибраний пакет телебачення');
+        // }
 
         return orderData;
     };
