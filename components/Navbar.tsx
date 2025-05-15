@@ -49,10 +49,13 @@ const Navbar = ({ theme }: any) => {
                         <Image src={wallet_white} className={`relative w-7 h-7 fill-white`} alt={'wallet'}></Image>
                     </Button>
                 </Link>
-                <Button variant={theme == 'white' ? 'cabinetGreyMobMob' : 'cabinetMobMob'}>
-                    <Image src={theme == 'white' ? connect_grey : connect} alt='connect' className={`fill-white`}>
-                    </Image>
-                </Button>
+
+                <Link href="https://my.batyevka.net/cgi-bin/index.cgi">
+                    <Button variant={theme == 'white' ? 'cabinetGreyMobMob' : 'cabinetMobMob'}>
+                        <Image src={theme == 'white' ? connect_grey : connect} alt='connect' className={`fill-white`}>
+                        </Image>
+                    </Button>
+                </Link>
                 <Button onClick={() => onOpen("call")} variant="connectMobMob">
                     <Image src={wkey} alt='wkey'>
                     </Image>
