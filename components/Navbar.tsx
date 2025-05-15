@@ -2,7 +2,7 @@ import { useModal } from "@/hooks/use-modal-store";
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from '@/components/ui/button';
-
+import Link from 'next/link';
 import Image from 'next/image';
 import wallet_white from '../public/img/wallet_white.svg';
 import phone from '../public/img/phone.svg';
@@ -43,9 +43,12 @@ const Navbar = ({ theme }: any) => {
                 </div>
             </div>
             <div className="mt-[16px] min-[781px]:hidden flex items-center justify-center">
-                <Button onClick={() => onOpen("payment")} variant="payMobMob">
-                    <Image src={wallet_white} className={`relative w-7 h-7 fill-white`} alt={'wallet'}></Image>
-                </Button>
+
+                <Link href={"https://next.privat24.ua/payments/form/%7B%22token%22:%22a163f3a4-7bfa-4921-8d8e-4c4737e6c0f4%22%7D"} >
+                    <Button variant="payMobMob">
+                        <Image src={wallet_white} className={`relative w-7 h-7 fill-white`} alt={'wallet'}></Image>
+                    </Button>
+                </Link>
                 <Button variant={theme == 'white' ? 'cabinetGreyMobMob' : 'cabinetMobMob'}>
                     <Image src={theme == 'white' ? connect_grey : connect} alt='connect' className={`fill-white`}>
                     </Image>

@@ -31,7 +31,7 @@ const Sidebar = () => {
             </div>
             <LogoMobileComponent />
             <div className="mt-[15px] ml-[20px] flex flex-col">
-                <Link className="flex mb-[20px] items-center" href={"https://next.privat24.ua/payments/form/%7B%22token%22:%22a163f3a4-7bfa-4921-8d8e-4c4737e6c0f4%22%7D"} onClick={() => onOpen("payment")} >
+                <Link className="flex mb-[20px] items-center" href={"https://next.privat24.ua/payments/form/%7B%22token%22:%22a163f3a4-7bfa-4921-8d8e-4c4737e6c0f4%22%7D"} >
                     <Image src={wallet} className={`w-8 h-8`} alt={'wallet'}></Image>
                     <span className="ml-[15px] font-semibold text-[#51B18B]">Оплата</span>
                 </Link>
