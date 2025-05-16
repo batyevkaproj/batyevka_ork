@@ -33,7 +33,7 @@ const Header = ({ theme, business }: HeaderProps) => {
         <header>
             <div className={`flex justify-between items-center ${theme == 'white' ? 'bg-white text-[#5F6061]' : 'bg-[#56AABF] text-white'} h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] min-[3644px]:text-[27px] max-[720px]:bg-[#0E2D43] px-[50px] min-[2430px]:px-[65px] max-[780px]:hidden min-[2430px]:text-[18px]`}>
                 <nav className={`space-x-4`}>
-                    <Link href='https://www.batyevka.net/uk/promotions'>Акції</Link>
+                    <Link href='https://www.batyevka.net/uk/blog'>Абоненту</Link>
                     <Link href='https://www.batyevka.net/uk/coverage-map'>Мапа покриття</Link>
                 </nav>
                 <nav className={`items-center flex justify-between max-[720px]:min-w-full`}>
@@ -64,7 +64,7 @@ const Header = ({ theme, business }: HeaderProps) => {
 
                 <nav className={`flex items-center`}>
                     <div className={`flex items-center justify-end font-semibold min-[2430px]:w-[699px]`}>
-                        <Link href='#' className={`text-[#56AABF] flex items-center h-[60px] font-semibold mr-[25px] min-[2430px]:mr-[40px]`}>
+                        <Link href='https://www.batyevka.net/uk/computer-help' className={`text-[#56AABF] flex items-center h-[60px] font-semibold mr-[25px] min-[2430px]:mr-[40px]`}>
                             <Image src={_247} className={`relative w-8 h-8 min-w-max min-[2430px]:w-[42px] min-[2430px]:h-[42px]`} alt={'_247'}></Image><span className={`ml-[15px] min-[2430px]:text-[21px] max-[1920px]:hidden`}>Підтримка</span>
                         </Link>
                         <Link href='https://www.batyevka.net/uk/network-hardware' className={`text-[#5984B3] flex items-center h-[60px] font-semibold min-[2430px]:mr-[40px] mr-[25px]`}>

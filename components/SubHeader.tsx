@@ -18,7 +18,7 @@ const SubHeader = () => {
             <Link href='https://www.batyevka.net/uk/tv-unlimited' className={` font-semibold text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>Телебачення</Link>
         </div>
         <div className="bg-none px-[50px] hover:text-[#DC662D]">
-            <Link href='https://www.batyevka.net/uk/blog' className={`inline-flex font-semibold  text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center `}>Абоненту <ChevronDown className={`inline-flex ml-[12px] mt-[3px] size-[18px] min-[2430px]:size-[22px]`}/></Link>
+            <Link href='https://www.batyevka.net/uk/promotions' className={`inline-flex font-semibold  text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center `}>Акції <ChevronDown className={`inline-flex ml-[12px] mt-[3px] size-[18px] min-[2430px]:size-[22px]`}/></Link>
         </div>
     </div>
     );

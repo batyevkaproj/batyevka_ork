@@ -35,14 +35,14 @@ const Sidebar = () => {
                     <Image src={wallet} className={`w-8 h-8`} alt={'wallet'}></Image>
                     <span className="ml-[15px] font-semibold text-[#51B18B]">Оплата</span>
                 </Link>
-                <Button className="flex justify-start mb-[20px]" onClick={() => onOpen("call")} >
+                <Link className="flex justify-start mb-[20px]" href={"https://www.batyevka.net/uk/computer-help"} >
                     <Image src={_247} className={`w-8 h-8`} alt={'options'}></Image>
                     <span className="ml-[15px] font-semibold text-[#56AABF]">Підтримка</span>
-                </Button>
-                <Link className="flex mb-[20px] items-center" href="#">
+                </Link>
+                {/* <Link className="flex mb-[20px] items-center" href="#">
                     <Image src={gear} className={`w-8 h-8`} alt={'wallet'}></Image>
                     <span className="ml-[15px] font-semibold text-[#5984B3]">Опції</span>
-                </Link>
+                </Link> */}
             </div>
             <Accordion type="single" collapsible>
                 <AccordionItem value="item-1">
