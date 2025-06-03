@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import type { HeaderProps } from '@/types/Header';
@@ -94,7 +96,7 @@ const Header = ({ theme, business }: HeaderProps) => {
                             <Image src={theme == 'white' ? connectGrey : connect} alt='connect' className={``} />
                         </Button>
                     </Link>
-                        <Button onClick={() => onOpen("call")} variant="connect">Стати абонентом</Button>
+                    <Button onClick={() => onOpen("call")} variant="connect">Стати абонентом</Button>
                     <Button onClick={() => onOpen("call")} variant="connectMob">
                         <Image src={wkey} alt='wkey' />
                     </Button>

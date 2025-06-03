@@ -1,3 +1,4 @@
+"use client";
 import { useModal } from "@/hooks/use-modal-store";
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
