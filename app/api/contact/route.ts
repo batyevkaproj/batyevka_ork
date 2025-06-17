@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   let clientData;
   try {
     clientData = await request.json();
-    let { name, phone } = clientData;
+    const { name, phone } = clientData;
 
     if (!name || !phone) {
       return NextResponse.json({ error: 'Ім\'я та телефон обов\'язкові для заповнення.' }, { status: 400 });

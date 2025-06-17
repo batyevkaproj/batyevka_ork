@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Next.js: debug server-side (batyevka-ork)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      // Since ${workspaceFolder} is /home/keyman/hosting/batyevka-ork,
+      // this will correctly set the cwd to that directory.
+      "cwd": "${workspaceFolder}",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "openExternally"
+      }
+    },
+    {
+      "name": "Next.js: debug client-side (batyevka-ork)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      // webRoot should point to the root of your client-side source files,
+      // which is usually the project root for Next.js.
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Next.js: full stack (batyevka-ork)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      // Since ${workspaceFolder} is /home/keyman/hosting/batyevka-ork,
+      // this will correctly set the cwd to that directory.
+      "cwd": "${workspaceFolder}",
+      "serverReadyAction": {
+        "action": "debugWithChrome"
+      }
+    }
+  ]
+}
