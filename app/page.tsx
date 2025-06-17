@@ -14,6 +14,7 @@ import Heading from '@/components/Heading';
 import Footer from '@/components/Footer';
 import ParallaxEffect from '@/components/ParallaxEffect';
 import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
+import SliderHome from '@/components/legacy/SliderHome';
 
 function HomeContent() {
 
@@ -30,17 +31,17 @@ function HomeContent() {
 
 
   return (
-    <div className={'min-w-[350px] bg-[#0E2D43]'}>
-      <Header theme="dark" business={true} />
-      <ParallaxEffect />
-      <Slider />
-      <Heading text="Ключові переваги для наших бізнес-абонентів" text_size={42}></Heading>
-      <Advantages />
-      <Tarifs />
-      <TarifsCountInfo theme="dark" />
-      <ContactForm theme="dark" />
+    <div className={'min-w-[350px] bg-white'}>
+      <Header theme="white" business={false} />
+      {/* <ParallaxEffect /> */}
+      <SliderHome theme="white" business={false} />
+      {/* <Heading text="Ключові переваги для наших бізнес-абонентів" text_size={42}></Heading> */}
+      {/* <Advantages /> */}
+      {/* <Tarifs /> */}
+      {/* <TarifsCountInfo theme="white" /> */}
+      <ContactForm theme="white" />
       <InfoBlock />
-      <Footer theme='dark' />
+      <Footer theme='white' />
     </div>
   );
 }
