@@ -18,6 +18,7 @@ import vector from   '../../public/img/Vector.svg';
 import vector2 from   '../../public/img/vector2.svg';
 import vector3 from   '../../public/img/vector3.svg';
 import vector4 from   '../../public/img/vector4.svg';
+import Ticket from      '@/components/legacy/Tickets'
 
 import speedometer from '@/public/img/speedometer_small.svg';
 import thumb from '@/public/img/thumb_small.svg';
@@ -54,6 +55,7 @@ const SliderHome = ({ theme, business }: HeaderProps) => {
     return (
     <>
 
+{/* <Ticket/> */}
 
 <Carousel className={`min-[2430px]:mt-[60px] mt-[45px]`} setApi={setApi}>
     <div className='absolute max-[910px]:hidden top-[159px] max-[2377px]:left-[-160px] left-[-210px] h-[139px] max-[2377px]:w-[240px] w-[320px] z-[1]'>
@@ -93,28 +95,28 @@ const SliderHome = ({ theme, business }: HeaderProps) => {
   <CarouselContent className='flex'>
     <CarouselItem className='flex justify-center items-center max-[910px]:flex-col-reverse '>
         <div className='min-[2430px]:ml-[170px] ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
-            <h1 className={`text-[60px] font-bold text-white shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#56AABF]`}>В офіс</span></h1>
-            <div className={`list-none text-white min-[2430px]:my-[40px] my-[30px] min-[2430px]:text-[21px] min-[2430px]:leading-[30px] text-[16px] leading-[24px] max-[910px]:text-[14px]`}>
+            <h1 className={`text-[60px] font-bold shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет <span className={`text-[#dc622d]`}>В офіс</span></h1>
+            <div className={`list-none min-[2430px]:my-[40px] my-[30px] min-[2430px]:text-[21px] min-[2430px]:leading-[30px] text-[16px] leading-[24px] max-[910px]:text-[14px]`}>
                 <div className={`flex`}>
                     <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
-                        <Image src={infinity} alt='infinity' className={`mt-[7px] min-[2430px]:mt-[9px] min-[3644px]:mt-[14px] w-[21px] h-[10px] min-[2430px]:w-[27px] min-[2430px]:h-[13px] min-[3644px]:w-[40px] min-[3644px]:h-[19px]`}/>
+                        {/* <Image src={infinity} alt='infinity' className={`mt-[7px] min-[2430px]:mt-[9px] min-[3644px]:mt-[14px] w-[21px] h-[10px] min-[2430px]:w-[27px] min-[2430px]:h-[13px] min-[3644px]:w-[40px] min-[3644px]:h-[19px] color`}/> */}
                     </div>
                     <p>Безлімітні та необмежені тарифні плани</p>
                 </div>
                 <div className={`flex mt-[15px] min-[2430px]:mt-[20px] min-[3644px]:mt-[30px]`}>
                     <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
-                        <Image src={sign} alt='sign' className={`ml-[6px] min-[2430px]:ml-[7px] min-[3644px]:ml-[11px] mt-[5px] min-[2430px]:mt-[6px] min-[3644px]:mt-[9px] w-[10px] h-[16px] min-[2430px]:w-[13px] min-[2430px]:h-[20px] min-[3644px]:w-[19px] min-[3644px]:h-[30px]`}/>
+                        {/* <Image src={sign} alt='sign' className={`ml-[6px] min-[2430px]:ml-[7px] min-[3644px]:ml-[11px] mt-[5px] min-[2430px]:mt-[6px] min-[3644px]:mt-[9px] w-[10px] h-[16px] min-[2430px]:w-[13px] min-[2430px]:h-[20px] min-[3644px]:w-[19px] min-[3644px]:h-[30px]`}/> */}
                     </div>
                     <p className={``}>Гарантована швидкість – симетричний високошвидкісний канал із постійною швидкістю доступу до мережі Інтернет</p>
                 </div>
                 <div className={`flex mt-[15px] min-[2430px]:mt-[20px] min-[3644px]:mt-[30px]`}>
                     <div className={`flex shrink-0 w-[31px] min-[2430px]:w-[40px] min-[3644px]:w-[60px]`}>
-                        <Image src={cable} alt='cable' className={`w-[18px] h-[22px] min-[2430px]:w-[24px] min-[2430px]:h-[29px] min-[3644px]:w-[35px] min-[3644px]:h-[43px]`}/>
+                        {/* <Image src={cable} alt='cable' className={`w-[18px] h-[22px] min-[2430px]:w-[24px] min-[2430px]:h-[29px] min-[3644px]:w-[35px] min-[3644px]:h-[43px]`}/> */}
                     </div>
                     <p className={``}>Організація доступу в Інтернет за найкращою технологією (Оптоволокно)</p>
                 </div>
             </div>
-            <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#56AABF] text-white rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
+            <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#dc622d] text-white rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
             <Image src={slide1} className='z-1 whitespace-nowrap max-[559px]:px-[20px]' alt='vector'/>
@@ -125,14 +127,14 @@ const SliderHome = ({ theme, business }: HeaderProps) => {
         <div className='min-[2430px]:ml-[170px] ml-[120px] max-[1706px]:w-[655px] max-[1400px]:w-[430px] z-10 max-[910px]:ml-0 max-[910px]:w-fit max-[910px]:px-[35px]'>
             
             <div className='max-w-[555px]'>
-                <h3>Якісний і високошвидкісний</h3>
-                <h1 className={`text-[60px] font-bold text-[#5f6061] shrink-0 whitespace-nowrap z-10 min-[2430px]:text-[80px] max-[910px]:text-[34px]`}>Інтернет</h1>
-                <h2 className='text-[#dc622b] font-[900] text-[60px]'>і телебачення</h2>
+                <h3 className='text-[#5f6061] text-[24px] '>Якісний і високошвидкісний</h3>
+                <h1 className={`text-[38px] font-bold text-[#5f6061] z-10 max-[910px]:text-[34px] w-[555px] leading-[42px]`}>Інтернет </h1>
+                <h1 className={`font-bold text-[#5f6061] z-10 max-[910px]:text-[34px] w-[555px] leading-[42px] text-[38px]`}>і телебачення</h1>
                 <h4 className='bg-[linear-gradient(to_left,#f4f2f2_0%,rgba(244,242,242,0)_100%)] inline-block'>в Солом'янському районі Києва</h4>
                 <p>Інтернет і телебачення з майбутнього — вже в Солом'янському районі Києва
               Підключайтесь до надшвидкісного інтернету та високоякісного цифрового телебачення з Batyevka.NET. Вдосконалені технології G-PON та XGS-PON забезпечують стабільний, безперебійний зв'язок та чудову якість зображення, навіть у часи енергетичних викликів. Відчуйте впевненість у кожному кліці та кожному каналі — з Batyevka.NET ви завжди в онлайні та на зв'язку з улюбленим контентом</p>
             </div>
-            <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#56AABF] text-[#5f6061] rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Замовити</button>
+            <button onClick={() => onOpen("call")} className={`text-[18px] min-[2430px]:text-[24px] bg-[#DC662D] text-[#ffffff] rounded-full h-[60px] w-[155px] min-[2430px]:h-[76px] min-[2430px]:w-[200px] cursor-pointer font-semibold shadow-[0_4px_20px_0_#56AABF80] max-[910px]:w-full`}>Підключити</button>
         </div>
         <div className='mr-[120px] z-1 max-[910px]:box-border max-[910px]:whitespace-nowrap max-[910px]:min-w-full max-[910px]:flex max-[910px]:justify-center max-[910px]:mr-0'>
             <Image src={slide2} className='z-1 whitespace-nowrap lg:min-w-[555px] max-[559px]:px-[20px]' alt='vector'/>

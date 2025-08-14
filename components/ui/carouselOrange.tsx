@@ -300,7 +300,7 @@ const CarouselNextVariation = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-      <ChevronRight className={`h-4 w-4 + ${canScrollNext ? 'text-[#dc622d]' : ''}`} strokeWidth={3}/>
+      <ChevronRight className={`h-4 w-4 + ${canScrollNext ? 'text-[#`dc622d`]' : ''}`} strokeWidth={3}/>
     </Button>
   );
 });
