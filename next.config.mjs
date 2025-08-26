@@ -5,6 +5,18 @@
  */
 const nextConfig = {
   reactStrictMode: false,
-  };
-   
-  export default nextConfig;
+  
+  // Added configuration for next/image
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+};
+ 
+export default nextConfig;

@@ -18,6 +18,7 @@ import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 import SliderHome from '@/components/legacy/SliderHome';
 import BatyevkaPage from '@/components/scooter/BatyevkaPage'
 import BatyevkaPageTwo from '@/components/scooter/BatyevkaPageTwo';
+import XgsPonPage from '@/components/scooter/XgsPonPage';
 import BatyevkaLandingPage from '@/components/scooter/BatyevkaLandingPage';
 
 function HomeContent() {
@@ -37,7 +38,7 @@ function HomeContent() {
   return (
     <div className={'min-w-[350px] bg-white'}>
       <Header theme="white" business={false} />
-      <BatyevkaLandingPage/>
+      <XgsPonPage/>
       {/* <ParallaxEffect /> */}
       {/* <SliderHome theme="white" business={false} /> */}
       {/* <Heading text="Ключові переваги для наших бізнес-абонентів" text_size={42}></Heading> */}
@@ -45,7 +46,7 @@ function HomeContent() {
       {/* <Tarifs /> */}
       {/* <TarifsCountInfo theme="white" /> */}
       {/* <BatyevkaPage/> */}
-      <ContactForm theme="white" />
+      {/* <ContactForm theme="white" /> */}
       {/* white text on hite screen here <InfoBlock /> */}
       <Footer theme='white' />
     </div>

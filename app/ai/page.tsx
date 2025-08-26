@@ -35,24 +35,16 @@ function HomeContent() {
 
 
   return (
-    <div className={'min-w-[350px] bg-white'}>
+    <>
       <Header theme="white" business={false} />
-      <BatyevkaLandingPage/>
-      {/* <ParallaxEffect /> */}
-      {/* <SliderHome theme="white" business={false} /> */}
-      {/* <Heading text="Ключові переваги для наших бізнес-абонентів" text_size={42}></Heading> */}
-      {/* <Advantages /> */}
-      {/* <Tarifs /> */}
-      {/* <TarifsCountInfo theme="white" /> */}
-      {/* <BatyevkaPage/> */}
-      <ContactForm theme="white" />
-      {/* white text on hite screen here <InfoBlock /> */}
+      {/* <BatyevkaPageTwo/> */}
+      <BatyevkaLandingPage />
       <Footer theme='white' />
-    </div>
+    </>
   );
 }
 
-export default function Home() {
+export default function Ai() {
   return (
     <Suspense>
       <HomeContent />
