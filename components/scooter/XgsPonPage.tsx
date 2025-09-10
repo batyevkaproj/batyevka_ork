@@ -117,9 +117,9 @@ const XgsPonPage: React.FC = () => {
                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0E2D43]">Тарифи XG-PON</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-start">
                             {xgsTariffs.map((tariff) => {
-                                const finalPromoPrice = basePrices[tariff.name].promo + selectedMegogoPlan.price;
-                                const finalFullPrice = basePrices[tariff.name].full + selectedMegogoPlan.price;
-
+const tariffKey = tariff.name as keyof typeof basePrices;
+const finalPromoPrice = basePrices[tariffKey].promo + selectedMegogoPlan.price;
+const finalFullPrice = basePrices[tariffKey].full + selectedMegogoPlan.price;
                                 return (
                                     <div
                                         key={tariff.name}

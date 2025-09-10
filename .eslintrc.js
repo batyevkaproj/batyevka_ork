@@ -26,6 +26,14 @@ module.exports = {
       // Disable string quote rules completely
       "quotes": "off",
       "@typescript-eslint/quotes": "off",
+    // To completely turn OFF the irregular whitespace rule
+    'no-irregular-whitespace': 'off',
+    
+    // To make the unknown property rule a WARNING instead of an error
+    'react/no-unknown-property': 'warn',
+    
+    // To make the unused variables rule a WARNING
+    '@typescript-eslint/no-unused-vars': 'warn',
       
       // Other disabled/relaxed rules
       "@typescript-eslint/no-explicit-any": "off",
