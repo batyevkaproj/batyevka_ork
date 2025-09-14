@@ -9,11 +9,13 @@ type MobileTVSelectorProps = {
 
 const MegogoSliderMobile = ({ selectedBundle, onBundleSelect, isEnabled }: MobileTVSelectorProps) => {
   return (
-    <div className="font-bold text-[18px] leading-[22px] mt-[20px] text-[#BDBDBD] min-[681px]:hidden">
-      {MEGOGO_BUNDLES.map((bundle) => (
+    <div className="font-bold text-[18px] leading-[22px] mt-[20px] min-[681px]:hidden">
+      {MEGOGO_BUNDLES.map((bundle, index) => (
         <div key={bundle.value} className="flex items-center gap-x-[20px] first:mt-0 mt-[16px]">
+          
+          {/* THE ONLY CHANGE IS ON THE NEXT LINE */}
           <Checkbox 
-            checked={selectedBundle === bundle.value}
+            checked={index <= selectedBundle} // This now checks all previous items too
             onCheckedChange={() => {
               if (isEnabled) {
                 onBundleSelect(bundle.value);
@@ -22,9 +24,17 @@ const MegogoSliderMobile = ({ selectedBundle, onBundleSelect, isEnabled }: Mobil
             disabled={!isEnabled}
             className={`size-[40px] border-[1px] border-[#BDBDBD] rounded-[10px]`}
           />
-          <p className={`${selectedBundle === bundle.value && isEnabled ? 'text-[#DC662D]' : ''} ${!isEnabled ? 'text-[#DBDBDB]': ''}`}>
+          
+          <p className={
+            !isEnabled 
+              ? 'text-[#DBDBDB]'   
+              : index <= selectedBundle 
+                ? 'text-[#5F6061]' 
+                : 'text-[#BDBDBD]'   
+          }>
             {bundle.name}
           </p>
+
         </div>
       ))}
     </div>

@@ -19,7 +19,7 @@ import SliderHome from '@/components/legacy/SliderHome';
 import BatyevkaPage from '@/components/scooter/BatyevkaPage'
 import BatyevkaPageTwo from '@/components/scooter/BatyevkaPageTwo';
 import XgsPonPage from '@/components/scooter/XgsPonPage';
-import BatyevkaLandingPage from '@/components/scooter/BatyevkaLandingPage';
+
 
 function HomeContent() {
 

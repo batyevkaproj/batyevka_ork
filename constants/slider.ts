@@ -58,7 +58,7 @@ export const MEGOGO_BUNDLES: MegogoBudles[] = [
     {
         value: 2,
         name: 'Легка',
-        price: 100
+        price: 85
     },
     {
         value: 3,
@@ -68,7 +68,7 @@ export const MEGOGO_BUNDLES: MegogoBudles[] = [
     {
         value: 4,
         name: 'Максимальна',
-        price: 300
+        price: 350
     }
 ];
 

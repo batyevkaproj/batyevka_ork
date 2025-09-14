@@ -94,7 +94,7 @@ const Footer = ( {theme}: ThemeProps ) => {
                     <Link href={'#'} className='hover:text-[#DC662D]'>
                         для бізнесу 
                     </Link>
-                    <Link href={'#'} className='hover:text-[#DC662D]'>
+                    <Link href={'/'} className='hover:text-[#DC662D]'>
                        для Багатоповерхівок
                     </Link>
                     <Link href={'#'} className='hover:text-[#DC662D]'>

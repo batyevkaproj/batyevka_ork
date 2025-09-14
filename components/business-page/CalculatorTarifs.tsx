@@ -3,7 +3,8 @@ import { useToast } from "@/hooks/use-toast";
 import {
     GPON_SPEEDS,
     UTP_SPEEDS,
-    REAL_IP_PRICE
+    REAL_IP_PRICE_physic as REAL_IP_PRICE,
+    ONT_model
 } from "@/constants/internet_speeds";
 import {
     UTP_SETUP_PRICES,
@@ -45,8 +46,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
     const [tvBundle, setTvBundle] = useState<number>(0);
     const [prepaidMonths, setPrepaidMonths] = useState<number>(1);
-    const [setupPrice, setSetupPrice] = useState<number>(1499);
-    const [routerPrice, setRouterPrice] = useState<number>(3000);
+    const [setupPrice, setSetupPrice] = useState<number>(1500);
+    const [routerPrice, setRouterPrice] = useState<number>(1799);
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [discountValue, setDiscountValue] = useState<number>(100);
     const [periodDiscountValue, setPeriodDiscountValue] = useState<number>(1);
@@ -54,8 +55,20 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [lastActiveTvBundle, setLastActiveTvBundle] = useState<number>(0); // Stores the bundle when TV was last on
 
     const { toast } = useToast();
+    
+    useEffect(() => {
+        if (isTarifsSwitch) {
+            setTvBundle(0); 
+        }
+    }, [isTarifsSwitch]);
 
     useEffect(() => {
+
+        if (!isTarifsSwitch && tvBundle < 1) {
+            setTvBundle(1);
+            return;
+        }
+
         console.log(tvBundle)
         // Deal with cost of Internet
         let newInternetPrice = 0;
@@ -70,37 +83,61 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         const periodDiscount = prepaidMonths !== undefined ? MONTHS.find((element) => element.months == prepaidMonths)?.sum : 1;
         setPeriodDiscountValue(periodDiscount??1);
         // Deal with cost of TV bundles
-        const newTvPrice = isTVChecked ? MEGOGO_BUNDLES.find((element) => element.value == tvBundle)?.price : 0;
-        const newPriceValue = newTvPrice ?? 0;
+// Deal with cost of TV bundles
+        let newTvPrice = 0;
+        if (isTVChecked) {
+            // Check for the special condition: XGS-PON is selected (!isTarifsSwitch) 
+            // and the chosen TV bundle is "Безкоштовне ТБ" (value 0) or "Нац ТБ" (value 1).
+            if (!isTarifsSwitch && (tvBundle === 0 || tvBundle === 1)) {
+                newTvPrice = 0; // These bundles are free on XGS-PON
+            } else {
+                // For all other cases, get the price from the constants
+                newTvPrice = MEGOGO_BUNDLES.find((element) => element.value === tvBundle)?.price ?? 0;
+            }
+        }
+        const newPriceValue = newTvPrice;
 
         // Deal with static IP addresses
         const newIpPrice = isIPChecked ? REAL_IP_PRICE : 0; // Monthly payment for Static IP is 50 UAH
 
         // Deal with setup price
-        let newSetupPrice = (isTarifsSwitch ? UTP_SETUP_PRICES : GPON_SETUP_PRICES).find(tier => prepaidMonths == tier.months)?.price ?? 1499;
+        let newSetupPrice = (isTarifsSwitch ? UTP_SETUP_PRICES : GPON_SETUP_PRICES).find(tier => prepaidMonths == tier.months)?.price ?? 1500;
 
         // Special pricing for high-speed G-PON
         if (!isTarifsSwitch) { // If G-PON is selected
             const selectedSpeed = GPON_SPEEDS.find(item => item.value === speedGpon);
-            if(speedGpon == 1) {
+            if (speedUtp == 3) {
                 setDiscountValue(100);
+                console.log(tvBundle)
+                if(tvBundle == 2) {
+
+                    setDiscountValue(150);
+                }
+            } 
+            console.log(speedGpon);
+            if (speedGpon == 1) {
+
+                setDiscountValue(600);
             } else if (speedGpon == 2) {
-                setDiscountValue(125);
+                setDiscountValue(200);
             } else if (speedGpon == 3) {
-                setDiscountValue(100);
-            } else if (speedGpon == 4) {
-                setDiscountValue(100);
-            }
-            if (selectedSpeed && (selectedSpeed.speed === 2.5 || selectedSpeed.speed === 5)) {
-                newSetupPrice = 6500; // Override setup price for 2.5G and 5G speeds
+                setDiscountValue(250);
+            } 
+            if (selectedSpeed && (selectedSpeed.speed === 2.5)) {
+                newSetupPrice = 2999;
+            } else if (selectedSpeed && (selectedSpeed.speed === 5)) {
+                newSetupPrice = 2999;
+            } else if (selectedSpeed && (selectedSpeed.speed === 10)) {
+                newSetupPrice = 2999;
             }
         } else {
             if(speedUtp == 1) {
                 setDiscountValue(100);
             } else if (speedUtp == 2) {
-                setDiscountValue(125);
+                setDiscountValue(100);
             }
         }
+
 
         if (isIPChecked) {
             newSetupPrice = newSetupPrice + 100; // Setup price for static IP is 100 UAH
@@ -235,9 +272,9 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                     <p className={`flex text-center items-center justify-center min-[3644px]:text-[48px] min-[3644px]:leading-[63px] text-[32px] leading-[42px] max-[2377px]:text-[24px] max-[2377px]:leading-[32px] max-[680px]:text-[16px] max-[680px]:leading-[20px] min-[3644px]:mt-[30px] mt-[15px] max-[680px]:mt-[10px]`}><span className={`font-bold`}>Створи свій тариф&nbsp;</span> <span className={`font-bold max-[680px]:hidden`}>/</span> <span className={`max-[680px]:hidden`}>&nbsp;Оберiть технологію підключення</span></p>
                     <p className={`flex text-center items-center justify-center text-[16px] leading-[20px] mt-[5px] min-[681px]:hidden`}>Оберiть технологію підключення</p>
                     <div className={`flex items-center justify-center min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:mt-[84px] mt-[56px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] `}>
-                        <p className={`font-bold min-[3644px]:mr-[30px] mr-[20px] max-[2377px]:mr-[15px]`}>G-PON</p>
+                        <p className={`font-bold min-[3644px]:mr-[30px] mr-[20px] max-[2377px]:mr-[15px]`}>XGS-PON</p>
                         <TarifsSwitch isTarifsSwitch={isTarifsSwitch} setTarifsSwitch={setTarifsSwitch} />
-                        <p className={`font-bold min-[3644px]:ml-[30px] ml-[20px] max-[2377px]:ml-[15px]`}>UTP</p>
+                        <p className={`font-bold min-[3644px]:ml-[30px] ml-[20px] max-[2377px]:ml-[15px]`}>G-PON</p>
                     </div>
                     <div className="min-[3644px]:h-[60px] h-[40px] max-[2377px]:h-[30px]"></div>
                 </div>
@@ -268,9 +305,9 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             <MegogoSliderMobile selectedBundle={tvBundle} onBundleSelect={setTvBundle} isEnabled={isTVChecked} />
                             <div className="flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden">
                                 <RegularSwitch switchState={setIPChecker} state={isIPChecked} />
-                                <p className="font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">Додай зовнішню постійну ІР адресу</p>
+                                <p className="font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px]">Додай зовнішню постійну ІРv4 адресу</p>
                             </div>
-                            <p className="flex text-center items-center justify-center mt-[40px] font-bold text-[18px] leading-[22px] min-[681px]:hidden">Додай зовнішню постійну ІР адресу</p>
+                            <p className="flex text-center items-center justify-center mt-[40px] font-bold text-[18px] leading-[22px] min-[681px]:hidden">Додай зовнішню постійну ІРv4 адресу</p>
                             <div className="flex items-center justify-center mt-[15px] min-[681px]:hidden">
                                 <RegularSwitch switchState={setIPChecker} state={isIPChecked} />
                             </div>
@@ -297,23 +334,39 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                     <h1>* Підключення</h1>
                                     <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">{setupPrice} грн.</h1>
                                 </div>
-                                {
-                                    !isTarifsSwitch && <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
-                                        <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />ONU  XGS-PON</span></h1>
-                                        <h1 className="opacity-[0.5] max-[680px]:hidden">ONU  XGS-PON</h1>
+                                
+                                    <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
+                                        <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />{ !isTarifsSwitch ? 'ONU XGS-PON' : 'ONU  EG8010H'}</span></h1>
+                                        <h1 className="opacity-[0.5] max-[680px]:hidden">{ !isTarifsSwitch ? 'ONU XGS-PON' : 'ONU  EG8010H'}</h1>
                                         <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">безкоштовна оренда</h1>
                                     </div>
-                                }
+                                
 
-                                <div className="flex items-start justify-between max-[680px]:grid max-[680px]:grid-cols-2 max-[680px]:grid-rows-1 max-[680px]:border-b-[2px] max-[680px]:border-[#F4F2F2] max-[680px]:border-solid max-[680px]:pb-[10px]">
-                                    <div className='text-center'>
-                                        <h1>* Wi-Fi роутер </h1>
-                                        <p className='text-sm'>За потреби</p>
+                                    <div className="flex items-start justify-between max-[680px]:grid max-[680px]:grid-cols-2 max-[680px]:grid-rows-1 max-[680px]:border-b-[2px] max-[680px]:border-[#F4F2F2] max-[680px]:border-solid max-[680px]:pb-[10px]">
+                                        <div className='text-center'>
+                                            <h1>* Wi-Fi роутер </h1>
+                                            <p className='text-sm'>За потреби</p>
+                                        </div>
+                                        {/* Назва роутера для десктопу */}
+                                        <h1 className="items-center justify-center text-center max-[680px]:hidden">
+                                            <span className="opacity-[0.5]">
+                                                {/* Якщо НЕ isTarifsSwitch (тобто XGS-PON), показуємо пустий рядок, інакше - назву */}
+                                                {!isTarifsSwitch ? '' : 'MERCUSYS MR80X'}
+                                            </span>
+                                        </h1>
+                                        {/* Ціна роутера для десктопу та мобільної версії */}
+                                        <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">
+                                            {/* Якщо XGS-PON - "Договірна", інакше - ціна */}
+                                            {!isTarifsSwitch ? 'Договірна ціна' : `${routerPrice} грн.`}
+                                        </h1>
+                                        {/* Назва роутера для мобільної версії */}
+                                        <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]">
+                                            <br />
+                                            <span className="opacity-[0.5]">
+                                                {!isTarifsSwitch ? '' : <>MERCUSYS <br />MR80X</>}
+                                            </span>
+                                        </p>
                                     </div>
-                                    <h1 className="items-center justify-center text-center max-[680px]:hidden"><span className="opacity-[0.5]">MERCUSYS MR80X </span></h1>
-                                    <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">{routerPrice} грн.</h1>
-                                    <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]"><br /><span className="opacity-[0.5]">MERCUSYS <br />MR80X </span></p>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -330,14 +383,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             <div className="min-[3644px]:mt-[117px] mt-[78px] max-[2377px]:mt-[60px] max-[680px]:mt-[-30px] min-[3664px]:mr-[117px] mr-[78px] max-[2377px]:mr-[60px] w-full max-[1800px]:w-[750px] max-[1800px]:mr-[20px] max-[1800px]:ml-[20px]">
                                 <div className="grid grid-cols-1 items-center w-full font-bold min-[3644px]:text-[36px] min-[3644px]:leading-[42px] text-[24px] leading-[28px] max-[2377px]:text-[18px] max-[2377px]:leading-[22px] min-[3644px]:gap-[22px] gap-[15px] max-[2377px]:gap-[12px] max-[680px]:hidden">
                                     <div className="flex items-end justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
-                                        <h1>Акційна абонплата на перші 12 місяців</h1>
+                                        <h1>Акційна абонплата на перші 4 місяці</h1>
                                         <h1 className="text-[#DC662D] flex items-end justify-between gap-3">
                                             <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{ totalPrice - discountValue}</span>
                                             <span className="text-nowrap min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
                                         </h1>
                                     </div>
                                     <div className="flex items-end justify-between min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
-                                        <h1>Абонплата з 13го місяця</h1>
+                                        <h1>Абонплата з 5го місяця</h1>
                                         <h1 className="text-[#51B18B] flex items-end justify-between gap-3">
                                             <span className="min-[3644px]:text-[138px] min-[3644px]:leading-[138px] text-[92px] leading-[92px] max-[2377px]:text-[70px] max-[2377px]:leading-[60px]">{ totalPrice - periodDiscountValue }</span>
                                             <span className="text-nowrap min-[3644px]:text-[60px] min-[3644px]:leading-[72px] text-[40px] leading-[48px] max-[2377px]:text-[30px] max-[2377px]:leading-[35px]">грн/міс</span>
@@ -346,14 +399,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 </div>
                                 <div className="w-full font-bold text-[18px] leading-[22px] min-[681px]:hidden">
                                     <div className="border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]">
-                                        <h1 className={`mt-[20px] mb-[10px]`}>Акційна абонплата на перші 12 місяців</h1>
+                                        <h1 className={`mt-[20px] mb-[10px]`}>Акційна абонплата на перші 4 місяці</h1>
                                         <div className="flex justify-between items-end text-[#DC662D]">
                                             <h1 className="text-[70px] leading-[70px]">{totalPrice - discountValue}</h1>
                                             <h1 className="text-nowrap text-[30px] leading-[35px]">грн/міс</h1>
                                         </div>
                                     </div>
                                     <div className={`border-b-[2px] border-[#F4F2F2] border-solid pb-[10px]`}>
-                                        <h1 className={`mt-[20px] mb-[10px]`}>Абонплата з 13го місяця</h1>
+                                        <h1 className={`mt-[20px] mb-[10px]`}>Абонплата з 5го місяця</h1>
                                         <div className={`text-[#51B18B] flex items-end justify-between`}>
                                             <h1 className={`text-[70px] leading-[70px]`}>{totalPrice - periodDiscountValue}</h1>
                                             <h1 className="text-nowrap text-[30px] leading-[35px]">грн/міс</h1>

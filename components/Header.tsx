@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation'; // <-- STEP 1: Import hook
 import type { HeaderProps } from '@/types/Header';
 
 import { useModal } from "@/hooks/use-modal-store";
@@ -12,6 +13,7 @@ import { ChevronDown } from "lucide-react";
 import SubHeader from "./SubHeader";
 import SubHeaderBusiness from "./SubHeaderBusiness";
 
+// ... (your other image imports)
 import arrow_down from '@/public/img/arrow_down.svg';
 import globe_small from '@/public/img/globe_small.svg';
 import wallet_white from '@/public/img/wallet_white.svg';
@@ -27,12 +29,15 @@ import wrench from '@/public/img/wrench.svg';
 import wkey from '@/public/img/wkey.svg';
 import LogoComponent from './LogoComponent';
 
+
 const Header = ({ theme, business }: HeaderProps) => {
 
     const { onOpen } = useModal();
+    const pathname = usePathname(); // <-- STEP 2: Get the current pathname
 
     return (
         <header>
+            {/* ... (your top header section, no changes needed here unless you want active links there too) ... */}
             <div className={`flex justify-between items-center ${theme == 'white' ? 'bg-white text-[#5F6061]' : 'bg-[#56AABF] text-white'} h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] min-[3644px]:text-[27px] max-[720px]:bg-[#0E2D43] px-[50px] min-[2430px]:px-[65px] max-[780px]:hidden min-[2430px]:text-[18px]`}>
                 <nav className={`space-x-4`}>
                     <Link href='#'>Абоненту</Link>
@@ -102,10 +107,28 @@ const Header = ({ theme, business }: HeaderProps) => {
                     </Button>
                 </nav>
             </div>
+            
+            {/* // <-- STEP 3: Apply conditional classes to the links below --> */}
             <div className={`${theme == 'white' ? 'bg-white text-[#5F6061]' : 'bg-[#123853] text-white'} h-20 flex justify-around items-center rounded-full shadow-lg max-[780px]:hidden min-[2430px]:h-[104px] mx-[50px] min-[2430px]:mx-[65px] max-[690px]:hidden pl-[50px] pr-[30px] min-[2430px]:pl-[68px] min-[2430px]:pr-[40px]`}>
-                <Link href='#' className={`max-[1650px]:hidden font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Для багатоповерхівок</Link>
-                <Link href='#' className={`max-[1650px]:hidden font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Приватному сектору</Link>
-                <Link href='/business' className={`font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D]`}>Бiзнесу <ChevronDown className={`inline-flex ml-[10px] size-[16px] mb-[3px] min-[1651px]:hidden`} /></Link>
+                <Link 
+                    href='/' 
+                    className={`max-[1650px]:hidden font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D] ${pathname === '/' ? 'text-[#DC662D]' : ''}`}
+                >
+                    Для багатоповерхівок
+                </Link>
+                <Link 
+                    href='/private-sector' // <-- CHANGED from # to a real path
+                    className={`max-[1650px]:hidden font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D] ${pathname === '/private-sector' ? 'text-[#DC662D]' : ''}`}
+                >
+                    Приватному сектору
+                </Link>
+                <Link 
+                    href='/business' 
+                    className={`font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D] ${pathname.startsWith('/business') ? 'text-[#DC662D]' : ''}`}
+                >
+                    Бiзнесу <ChevronDown className={`inline-flex ml-[10px] size-[16px] mb-[3px] min-[1651px]:hidden`} />
+                </Link>
+
                 <Image src={theme == 'white' ? rectangle_grey : rectangle} alt='rect' />
                 {
                     business ? <SubHeaderBusiness /> : <SubHeader />

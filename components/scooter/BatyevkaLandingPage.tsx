@@ -3,6 +3,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
+
+
+import { useModal } from "@/hooks/use-modal-store";
+
 // --- Icon Components for Readability ---
 const LightningIcon: React.FC = () => (
     <svg className="h-10 w-10 text-[#DC662D] mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,6 +40,8 @@ const ChevronDownIcon: React.FC = () => (
 
 
 const BatyevkaLandingPage: React.FC = () => {
+
+    const { onOpen } = useModal();
     return (
         <div className='mt-5'>
             <Head>
@@ -64,11 +70,11 @@ const BatyevkaLandingPage: React.FC = () => {
 
                     {/* ----- HERO SECTION ----- */}
                     <section className="text-center py-16 md:py-24">
-                        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-[#0E2D43]">
+                        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-[#5F6061]">
                             Інтернет до <span className="text-[#DC662D]">10 Гбіт/с</span> у Солом’янському районі
                         </h1>
                         <p className="text-lg md:text-xl text-[#5F6061] max-w-3xl mx-auto mb-8">
-                            Batyevka.NET забезпечує стабільний та безперебійний інтернет і сучасне цифрове телебачення у Солом’янському районі Києва. Технології G-PON та XG-PON тримають вас онлайн навіть під час енергетичних викликів.
+                            Batyevka.NET забезпечує стабільний та безперебійний інтернет і сучасне цифрове телебачення у Солом’янському районі Києва. Технології G-PON та XGS-PON тримають вас онлайн навіть під час енергетичних викликів.
                         </p>
                         <Link href="#cta" className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
                             Підключитись
@@ -77,26 +83,26 @@ const BatyevkaLandingPage: React.FC = () => {
 
                     {/* ----- ADVANTAGES SECTION ----- */}
                     <section className="py-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#0E2D43]">Чому Batyevka.NET?</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Чому Batyevka.NET?</h2>
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                             <article className="bg-white p-6 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80 flex flex-col items-center text-center">
                                 <LightningIcon />
-                                <h3 className="text-xl font-bold mb-2 text-[#0E2D43]">Супершвидкість</h3>
-                                <p>Оптоволоконні лінії G-PON та XG-PON.</p>
+                                <h3 className="text-xl font-bold mb-2 text-[#5F6061]">Супершвидкість</h3>
+                                <p>Оптоволоконні лінії G-PON та XGS-PON.</p>
                             </article>
                             <article className="bg-white p-6 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80 flex flex-col items-center text-center">
                                 <ShieldCheckIcon />
-                                <h3 className="text-xl font-bold mb-2 text-[#0E2D43]">Стабільність</h3>
+                                <h3 className="text-xl font-bold mb-2 text-[#5F6061]">Стабільність</h3>
                                 <p>Працюємо навіть під час енергетичних викликів.</p>
                             </article>
                             <article className="bg-white p-6 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80 flex flex-col items-center text-center">
                                 <VideoCameraIcon />
-                                <h3 className="text-xl font-bold mb-2 text-[#0E2D43]">MEGOGO «Максимальна»</h3>
+                                <h3 className="text-xl font-bold mb-2 text-[#5F6061]">MEGOGO «Максимальна»</h3>
                                 <p>Топовий спорт, серіали від HBO та 400+ каналів.</p>
                             </article>
                             <article className="bg-white p-6 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80 flex flex-col items-center text-center">
                                 <SupportIcon />
-                                <h3 className="text-xl font-bold mb-2 text-[#0E2D43]">Підтримка</h3>
+                                <h3 className="text-xl font-bold mb-2 text-[#5F6061]">Підтримка</h3>
                                 <p>Усі виклики майстра входять у вартість тарифу.</p>
                             </article>
                         </div>
@@ -104,12 +110,12 @@ const BatyevkaLandingPage: React.FC = () => {
                     
                     {/* ----- TARIFFS G-PON SECTION (UPDATED) ----- */}
                     <section className="py-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#0E2D43]">Популярні тарифи G-PON</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Популярні тарифи G-PON</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
                             <article className="bg-white p-6 rounded-lg shadow-lg flex flex-col border border-gray-200/80">
                                 <div className="flex-grow">
                                     <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">G-PON</span>
-                                    <h3 className="text-2xl font-bold mb-2 text-[#0E2D43]">100 Мбіт/с</h3>
+                                    <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">100 Мбіт/с</h3>
                                     <p className="text-4xl font-extrabold text-[#DC662D]">100<span className="text-xl font-bold"> грн/міс</span></p>
                                     <p className="text-sm text-[#5F6061] mb-4">перші 4 місяці, далі — 200 грн/міс</p>
                                     <p className="text-sm font-bold text-[#51B18B] mb-2">Підключення — безкоштовне</p>
@@ -120,7 +126,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                     <Link href="#" className="w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300">Детальніше</Link>
                                 </div>
                             </article>
-                            <article className="bg-[#0E2D43] text-white p-6 rounded-lg shadow-2xl flex flex-col ring-2 ring-[#DC662D] transform md:scale-105">
+                            <article className="bg-[#5F6061] text-white p-6 rounded-lg shadow-2xl flex flex-col ring-2 ring-[#DC662D] transform md:scale-105">
                                 <div className="flex-grow">
                                     <span className="inline-block bg-white/20 text-white text-xs font-bold px-2 py-1 rounded-full mb-2">G-PON</span>
                                     <h3 className="text-2xl font-bold mb-2">300 Мбіт/с</h3>
@@ -137,7 +143,7 @@ const BatyevkaLandingPage: React.FC = () => {
                             <article className="bg-white p-6 rounded-lg shadow-lg flex flex-col border border-gray-200/80">
                                 <div className="flex-grow">
                                     <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">G-PON</span>
-                                    <h3 className="text-2xl font-bold mb-2 text-[#0E2D43]">1 Гбіт/с</h3>
+                                    <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">1 Гбіт/с</h3>
                                     <p className="text-4xl font-extrabold text-[#DC662D]">150<span className="text-xl font-bold"> грн/міс</span></p>
                                     <p className="text-sm text-[#5F6061] mb-4">перші 4 місяці, далі — 250 грн/міс</p>
                                     <p className="text-sm font-bold text-[#51B18B] mb-2">Підключення — безкоштовне</p>
@@ -151,56 +157,60 @@ const BatyevkaLandingPage: React.FC = () => {
                         </div>
                     </section>
                     
-                    {/* ----- TARIFFS XG-PON SECTION ----- */}
                     <section className="py-12">
                         <div className="bg-gray-100 rounded-lg p-8 text-center">
-                            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0E2D43]">Надшвидкісні тарифи XG-PON</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#5F6061]">Надшвидкісні тарифи XGS-PON</h2>
                             <p className="max-w-2xl mx-auto mb-8 text-[#5F6061]">Для найвимогливіших завдань: професійного геймінгу, стрімінгу у 8K та роботи з великими обсягами даних.</p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
                                 <div className="bg-white p-6 rounded-lg shadow-md border flex flex-col">
-                                    <h3 className="text-2xl font-bold text-[#0E2D43]">2.5 Гбіт/с</h3>
-                                    <p className="text-2xl font-bold text-[#DC662D] mt-2">250<span className="text-lg font-normal"> грн/міс</span></p>
-                                    <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — 500 грн/міс</p>
+                                    <h3 className="text-2xl font-bold text-[#5F6061]">2.5 Гбіт/с</h3>
+                                    <p className="text-2xl font-bold text-[#DC662D] mt-2">299<span className="text-lg font-normal"> грн/міс</span></p>
+                                    <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — 399 грн/міс</p>
                                 </div>
                                 <div className="bg-white p-6 rounded-lg shadow-md border flex flex-col">
-                                    <h3 className="text-2xl font-bold text-[#0E2D43]">5 Гбіт/с</h3>
-                                    <p className="text-2xl font-bold text-[#DC662D] mt-2">400<span className="text-lg font-normal"> грн/міс</span></p>
-                                    <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — 800 грн/міс</p>
+                                    <h3 className="text-2xl font-bold text-[#5F6061]">5 Гбіт/с</h3>
+                                    <p className="text-2xl font-bold text-[#DC662D] mt-2">399<span className="text-lg font-normal"> грн/міс</span></p>
+                                    <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — 499 грн/міс</p>
                                 </div>
                                 <div className="bg-white p-6 rounded-lg shadow-md border flex flex-col">
-                                    <h3 className="text-2xl font-bold text-[#0E2D43]">10 Гбіт/с</h3>
-                                    <p className="text-2xl font-bold text-[#DC662D] mt-2">600<span className="text-lg font-normal"> грн/міс</span></p>
-                                    <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — 1200 грн/міс</p>
+                                    <h3 className="text-2xl font-bold text-[#5F6061]">10 Гбіт/с</h3>
+                                    <p className="text-2xl font-bold text-[#DC662D] mt-2">455<span className="text-lg font-normal"> грн/міс</span></p>
+                                    <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — 555 грн/міс</p>
                                 </div>
                             </div>
-                            <p className="text-sm mb-6"><span className="font-bold">Вартість підключення до тарифів XG-PON:</span> 1999 грн.</p>
-                            <Link href="#" className="bg-[#0E2D43] hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-lg transition-colors">Дізнатись більше</Link>
+                            <p className="text-sm mb-6"><span className="font-bold">Вартість підключення до тарифів XGS-PON:</span> 1999 грн.</p>
+                            <Link href="#" className="bg-[#5F6061] hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-lg transition-colors">Дізнатись більше</Link>
                         </div>
                     </section>
 
                     {/* ----- MEGOGO SECTION (UPDATED) ----- */}
                     <section className="py-12">
-                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#0E2D43]">Розширте можливості з передплатами MEGOGO</h2>
+                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Розширте можливості з передплатами MEGOGO</h2>
                          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
                             <div className="bg-gray-50 p-4 rounded-lg border">
-                                <p className="font-bold text-lg text-[#0E2D43]">Безкоштовне ТБ</p>
+                                <p className="font-bold text-lg text-[#5F6061]">Безкоштовне ТБ</p>
                                 <p className="text-sm">170+ національних та ефірних каналів.</p>
                                 <p className="font-bold text-[#51B18B] mt-2">Вже у тарифі</p>
                             </div>
+                            {/* <div className="bg-gray-50 p-4 rounded-lg border">
+                                <p className="font-bold text-lg text-[#5F6061]">Національне ТБ</p>
+                                <p className="text-sm">255+ національних та ефірних каналів.</p>
+                                <p className="font-bold text-[#5984B2] mt-2">+ 50 грн/міс</p>
+                            </div> */}
                             <div className="bg-gray-50 p-4 rounded-lg border">
-                                <p className="font-bold text-lg text-[#0E2D43]">Легка</p>
+                                <p className="font-bold text-lg text-[#5F6061]">Легка</p>
                                 <p className="text-sm">375+ каналів, колекція фільмів та мультфільмів.</p>
                                 <p className="font-bold text-[#5984B2] mt-2">+ 85 грн/міс</p>
                             </div>
                             <div className="bg-gray-50 p-4 rounded-lg border">
-                                <p className="font-bold text-lg text-[#0E2D43]">Оптимальна</p>
+                                <p className="font-bold text-lg text-[#5F6061]">Оптимальна</p>
                                 <p className="text-sm">445+ каналів, преміум-кіно та спорт (Setanta).</p>
                                 <p className="font-bold text-[#5984B2] mt-2">+ 200 грн/міс</p>
                             </div>
                             <div className="bg-gray-50 p-4 rounded-lg border">
-                                <p className="font-bold text-lg text-[#0E2D43]">Максимальна</p>
+                                <p className="font-bold text-lg text-[#5F6061]">Максимальна</p>
                                 <p className="text-sm">480+ каналів, HBO, Ліга Чемпіонів та максимум кіно.</p>
-                                <p className="font-bold text-[#5984B2] mt-2">+ 300 грн/міс</p>
+                                <p className="font-bold text-[#5984B2] mt-2">+ 350 грн/міс</p>
                             </div>
                          </div>
                          <div className="text-center mt-8">
@@ -211,31 +221,31 @@ const BatyevkaLandingPage: React.FC = () => {
                     {/* ----- LATEST NEWS SECTION ----- */}
                     <section className="py-12 bg-gray-50 rounded-lg">
                         <div className="container mx-auto px-4">
-                            <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#0E2D43]">Останні новини</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Останні новини</h2>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 <article className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80">
-                                    <Image src="https://placehold.co/600x400/e2e8f0/0E2D43?text=Новина" alt="Зображення новини" width={600} height={400} className="w-full h-48 object-cover" />
+                                    <Image src="https://placehold.co/600x400/e2e8f0/5F6061?text=Новина" alt="Зображення новини" width={600} height={400} className="w-full h-48 object-cover" />
                                     <div className="p-6">
                                         <p className="text-sm text-gray-500 mb-2">14 серпня 2025</p>
-                                        <h3 className="text-xl font-bold mb-3 text-[#0E2D43]">Планові технічні роботи у ніч на 15 серпня</h3>
+                                        <h3 className="text-xl font-bold mb-3 text-[#5F6061]">Планові технічні роботи у ніч на 15 серпня</h3>
                                         <p className="text-gray-600 mb-4">Ми постійно працюємо над покращенням якості наших послуг. У ніч з 14 на 15 серпня можливі короткочасні перерви у доступі до мережі.</p>
                                         <Link href="#" className="font-bold text-[#DC662D] hover:underline">Читати далі →</Link>
                                     </div>
                                 </article>
                                 <article className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80">
-                                    <Image src="https://placehold.co/600x400/e2e8f0/0E2D43?text=Акція" alt="Зображення новини" width={600} height={400} className="w-full h-48 object-cover" />
+                                    <Image src="https://placehold.co/600x400/e2e8f0/5F6061?text=Акція" alt="Зображення новини" width={600} height={400} className="w-full h-48 object-cover" />
                                     <div className="p-6">
                                         <p className="text-sm text-gray-500 mb-2">10 серпня 2025</p>
-                                        <h3 className="text-xl font-bold mb-3 text-[#0E2D43]">Акція &quot;Приведи друга&quot; та отримай місяць інтернету</h3>
+                                        <h3 className="text-xl font-bold mb-3 text-[#5F6061]">Акція &quot;Приведи друга&quot; та отримай місяць інтернету</h3>
                                         <p className="text-gray-600 mb-4">Рекомендуйте нас друзям та сусідам і отримуйте місяць безкоштовного користування послугами за кожне нове підключення.</p>
                                         <Link href="#" className="font-bold text-[#DC662D] hover:underline">Читати далі →</Link>
                                     </div>
                                 </article>
                                 <article className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80">
-                                    <Image src="https://placehold.co/600x400/e2e8f0/0E2D43?text=Розширення" alt="Зображення новини" width={600} height={400} className="w-full h-48 object-cover" />
+                                    <Image src="https://placehold.co/600x400/e2e8f0/5F6061?text=Розширення" alt="Зображення новини" width={600} height={400} className="w-full h-48 object-cover" />
                                     <div className="p-6">
                                         <p className="text-sm text-gray-500 mb-2">05 серпня 2025</p>
-                                        <h3 className="text-xl font-bold mb-3 text-[#0E2D43]">Розширення покриття: ми підключили нові будинки</h3>
+                                        <h3 className="text-xl font-bold mb-3 text-[#5F6061]">Розширення покриття: ми підключили нові будинки</h3>
                                         <p className="text-gray-600 mb-4">Раді повідомити, що наша мережа тепер доступна за новими адресами у вашому районі. Перевірте можливість підключення!</p>
                                         <Link href="#" className="font-bold text-[#DC662D] hover:underline">Читати далі →</Link>
                                     </div>
@@ -246,24 +256,24 @@ const BatyevkaLandingPage: React.FC = () => {
 
                     {/* ----- FAQ SECTION ----- */}
                     <section className="py-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#0E2D43]">Часті запитання</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Часті запитання</h2>
                         <div className="max-w-3xl mx-auto space-y-4">
                             <details className="bg-gray-50 border border-gray-200/80 rounded-lg p-4 cursor-pointer group">
-                                <summary className="font-bold text-lg text-[#0E2D43] flex justify-between items-center">
+                                <summary className="font-bold text-lg text-[#5F6061] flex justify-between items-center">
                                     Як швидко відбувається підключення?
                                     <ChevronDownIcon />
                                 </summary>
                                 <p className="mt-2 pt-2 border-t border-gray-200">Зазвичай, підключення займає 1-3 робочі дні з моменту подачі заявки. Наш майстер узгодить з вами зручний час.</p>
                             </details>
                             <details className="bg-gray-50 border border-gray-200/80 rounded-lg p-4 cursor-pointer group">
-                                <summary className="font-bold text-lg text-[#0E2D43] flex justify-between items-center">
+                                <summary className="font-bold text-lg text-[#5F6061] flex justify-between items-center">
                                     Чи можна замовити статичну IP-адресу?
                                     <ChevronDownIcon />
                                 </summary>
                                 <p className="mt-2 pt-2 border-t border-gray-200">Так, ви можете замовити послугу постійної зовнішньої IP-адреси. Вартість підключення — 200 грн (разово), щомісячна плата — 50 грн.</p>
                             </details>
                             <details className="bg-gray-50 border border-gray-200/80 rounded-lg p-4 cursor-pointer group">
-                                <summary className="font-bold text-lg text-[#0E2D43] flex justify-between items-center">
+                                <summary className="font-bold text-lg text-[#5F6061] flex justify-between items-center">
                                     Що робити, якщо зник інтернет?
                                     <ChevronDownIcon />
                                 </summary>
@@ -273,10 +283,10 @@ const BatyevkaLandingPage: React.FC = () => {
                     </section>
 
                     {/* ----- CALL TO ACTION SECTION ----- */}
-                    <section id="cta" className="py-12 my-8 bg-[#0E2D43] rounded-lg text-center">
+                    <section id="cta" className="py-12 my-8 bg-[#5F6061] rounded-lg text-center">
                         <h2 className="text-3xl font-extrabold mb-2 text-white">Готові до стабільного інтернету?</h2>
                         <p className="mb-6 max-w-xl mx-auto text-white/90">Залиште заявку, і наш менеджер зв&apos;яжеться з вами протягом 15 хвилин для уточнення деталей.</p>
-                        <button className="bg-[#DC662D] text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                        <button onClick={() => onOpen("call")} className="bg-[#DC662D] text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-2xl">
                             Залишити заявку
                         </button>
                     </section>
@@ -284,7 +294,7 @@ const BatyevkaLandingPage: React.FC = () => {
                     {/* ----- EXPANDED SEO TEXT ----- */}
                     <section className="py-12">
                         <div className="max-w-4xl mx-auto text-left">
-                            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#0E2D43]">Batyevka.NET — ваш надійний інтернет-провайдер у Києві</h2>
+                            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#5F6061]">Batyevka.NET — ваш надійний інтернет-провайдер у Києві</h2>
                             <div className="leading-relaxed space-y-4 text-gray-700">
                                 <p>Шукаєте стабільний та швидкий інтернет у Солом&apos;янському районі? Batyevka.NET пропонує підключення за сучасною технологією оптоволоконного інтернету (G-PON), що гарантує гігабітні швидкості та безперебійну роботу навіть за умов відключення світла. Ми — локальний провайдер, тому знаємо потреби наших клієнтів і завжди поруч, щоб надати якісну технічну підтримку.</p>
                                 <p>Наші тарифи розроблені як для домашнього використання — перегляду фільмів у 4K, онлайн-ігор без затримок, так і для бізнес-задач, що вимагають симетричного каналу та високої швидкості передачі даних. Підключити гігабітний інтернет у Києві ще ніколи не було так просто. Обирайте Batyevka.NET та відчуйте справжню свободу у всесвітній мережі!</p>

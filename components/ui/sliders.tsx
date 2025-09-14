@@ -25,17 +25,12 @@ const marks_GPON = GPON_SPEEDS.map(item => ({ value: item.value }));
 const marks_UTP = UTP_SPEEDS.map(item => ({ value: item.value }));
 
 export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType) {
-  // Initialize val: if outer is 0 (e.g., "Безкоштовне ТБ"), default slider's internal val to 1.
+  // This local state and useEffect are fine, they sync the component correctly.
   const [val, setVal] = useState<number>(outer === 0 ? 0 : outer);
 
-  // ADD THIS useEffect block:
-  // This synchronizes the slider's internal value (`val`)
-  // with the `outer` prop (which is `tvBundle` from the parent).
   useEffect(() => {
-    // If outer is 0 (TV off or "Безкоштовне ТБ"), set slider's internal val to 1 ("Нац. ТБ").
-    // Otherwise, use the `outer` value.
     setVal(outer === 0 ? 0 : outer);
-  }, [outer]); // This effect runs when the `outer` prop changes.
+  }, [outer]);
 
   const handleChange = (_: Event, newValue: number | number[]) => {
     if (isEnabled) {
@@ -53,32 +48,35 @@ export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType
   };
 
   const lastIndex = MEGOGO_BUNDLES.length - 1;
-  // Use all MEGOGO_BUNDLES for button mapping, slider `min` will handle the visual start.
   const mainButtons = MEGOGO_BUNDLES;
 
   return (
     <div>
       <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
         <div className="flex justify-between w-full">
-          {mainButtons.map((bundle) => (
+          
+          {/* We add 'index' to the map function here */}
+          {mainButtons.map((bundle, index) => (
             <button
               key={bundle.value}
               disabled={!isEnabled}
-              className={`${val === bundle.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
+              // HERE IS THE CHANGE: We check if the item's index is less than or equal to the selected value
+              className={`${index <= val ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
               onClick={() => handleButtonClick(bundle.value)}
             >
               {bundle.name}
             </button>
           ))}
+
         </div>
       </div>
       <StyledSlider
-        defaultValue={0} // Default visual position for the thumb
+        defaultValue={0} 
         step={1}
-        marks={MEGOGO_BUNDLES.map(b => ({ value: b.value }))} // Ensure marks have a `value` property
-        min={0} // Minimum selectable value on the slider is "Нац. ТБ" (value 1)
+        marks={MEGOGO_BUNDLES.map(b => ({ value: b.value }))}
+        min={0}
         max={MEGOGO_BUNDLES[lastIndex].value}
-        value={val} // Slider position is controlled by `val`
+        value={val}
         aria-label="Default"
         onChange={handleChange}
         disabled={!isEnabled}
