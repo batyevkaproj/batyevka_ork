@@ -5,6 +5,13 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import {
+    GPON_SPEEDS,
+    UTP_SPEEDS,
+    REAL_IP_PRICE_physic as REAL_IP_PRICE,
+    ONT_model
+} from "@/constants/internet_speeds";
+
 import { useModal } from "@/hooks/use-modal-store";
 
 // --- Icon Component for Readability ---
@@ -14,13 +21,7 @@ const CheckIcon: React.FC = () => (
     </svg>
 );
 
-// --- Data for Tariffs and MEGOGO Plans (UPDATED to match the image) ---
-const xgsTariffs = [
-    { name: '2.5 Гбіт/с', featured: false },
-    { name: '5 Гбіт/с', featured: true },
-    { name: '10 Гбіт/с', featured: false },
-];
-
+// --- Data for MEGOGO Plans ---
 const megogoPlans = [
     { name: 'Безкоштовне ТБ', price: 0, description: '170+ каналів', label: 'Вже у тарифі', tariffName: 'MEGOGO Безкоштовне ТБ' },
     { name: 'Національне ТБ', price: 0, description: '255+ каналів', label: 'Вже у тарифі', tariffName: 'MEGOGO Національне ТБ' },
@@ -32,17 +33,11 @@ const megogoPlans = [
 const XgsPonPage: React.FC = () => {
 
     const { onOpen } = useModal();
-    // State to manage the selected MEGOGO plan. Default to "Національне ТБ" as in the screenshot.
+    // State to manage the selected MEGOGO plan.
     const [selectedMegogoPlan, setSelectedMegogoPlan] = useState(megogoPlans[1]);
-
-    // Base prices from the screenshot for display consistency.
-    // The prices shown in the screenshot are already calculated with the "Національне ТБ" plan (+49 грн).
-    // We store the base internet-only prices to calculate correctly when other plans are selected.
-    const basePrices = {
-        '2.5 Гбіт/с': { promo: 299, full: 399 }, // 299 - 49 = 250
-        '5 Гбіт/с': { promo: 399, full: 499 }, // 449 - 49 = 400
-        '10 Гбіт/с': { promo: 455, full: 555 }, // 649 - 49 = 600
-    };
+    
+    // Sort tariffs for consistent display order (2.5, 5, 10 Gbps)
+    const xgsTariffs = [...GPON_SPEEDS].sort((a, b) => a.speed - b.speed);
 
     return (
         <div className='mt-4'>
@@ -115,34 +110,45 @@ const XgsPonPage: React.FC = () => {
                         </div>
                     </section>
 
-                    {/* ----- XG-PON TARIFFS SECTION (MATCHES IMAGE) ----- */}
+                    {/* ----- XG-PON TARIFFS SECTION (DYNAMIC) ----- */}
                     <section id="tariffs" className="py-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5F6061]">Тарифи XGS-PON</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-start">
                             {xgsTariffs.map((tariff) => {
-const tariffKey = tariff.name as keyof typeof basePrices;
-const finalPromoPrice = basePrices[tariffKey].promo + selectedMegogoPlan.price;
-const finalFullPrice = basePrices[tariffKey].full + selectedMegogoPlan.price;
+                                // Calculate the promotional discount based on the provided logic
+                                let discountValue = 0;
+                                switch(tariff.value) {
+                                    case 1: discountValue = 600; break; // 10 Gbit
+                                    case 2: discountValue = 400; break; // 5 Gbit
+                                    case 3: discountValue = 250; break; // 2.5 Gbit
+                                    default: discountValue = 0;
+                                }
+
+                                const basePromoPrice = tariff.price - discountValue;
+                                const finalPromoPrice = basePromoPrice + selectedMegogoPlan.price;
+                                const finalFullPrice = tariff.price + selectedMegogoPlan.price;
+                                const isFeatured = tariff.speed === 5; // The 5 Gbit/s tariff is featured
+
                                 return (
                                     <div
-                                        key={tariff.name}
+                                        key={tariff.value}
                                         className={`
                                             flex flex-col p-8 rounded-lg
-                                            ${tariff.featured 
+                                            ${isFeatured 
                                                 ? 'bg-[#5F6061] text-white border-2 border-[#DC662D] transform md:scale-105 shadow-2xl' 
                                                 : 'bg-white border border-gray-200 shadow-lg'
                                             }
                                         `}
                                     >
-                                        <h3 className={`text-2xl font-bold ${tariff.featured ? 'text-white' : 'text-[#5F6061]'}`}>{tariff.name}</h3>
+                                        <h3 className={`text-2xl font-bold ${isFeatured ? 'text-white' : 'text-[#5F6061]'}`}>{tariff.speed} {tariff.measure}/с</h3>
                                         <p className="text-4xl font-extrabold text-[#DC662D] my-2">
                                             {finalPromoPrice}
-                                            <span className={`text-lg font-medium ml-1 ${tariff.featured ? 'text-gray-300' : 'text-gray-500'}`}>грн/міс</span>
+                                            <span className={`text-lg font-medium ml-1 ${isFeatured ? 'text-gray-300' : 'text-gray-500'}`}>грн/міс</span>
                                         </p>
-                                        <p className={`text-sm mb-6 ${tariff.featured ? 'text-gray-400' : 'text-gray-500'}`}>
+                                        <p className={`text-sm mb-6 ${isFeatured ? 'text-gray-400' : 'text-gray-500'}`}>
                                             перші 4 місяці, далі — {finalFullPrice} грн/міс
                                         </p>
-                                        <ul className={`space-y-3 text-left mb-8 flex-grow ${tariff.featured ? 'text-gray-300' : 'text-gray-700'}`}>
+                                        <ul className={`space-y-3 text-left mb-8 flex-grow ${isFeatured ? 'text-gray-300' : 'text-gray-700'}`}>
                                             <li className="flex items-center">
                                                 <CheckIcon />
                                                 <span>{selectedMegogoPlan.tariffName}</span>
@@ -157,7 +163,7 @@ const finalFullPrice = basePrices[tariffKey].full + selectedMegogoPlan.price;
                                 );
                             })}
                         </div>
-                        <p className="text-center text-gray-500 mt-8">Вартість підключення: 1999 грн.</p>
+                        <p className="text-center text-gray-500 mt-8">Вартість підключення: 2999 грн.</p>
                     </section>
 
                     {/* ----- MEGOGO SELECTION SECTION (MATCHES IMAGE) ----- */}
@@ -200,7 +206,7 @@ const finalFullPrice = basePrices[tariffKey].full + selectedMegogoPlan.price;
                             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#5F6061]">XGS-PON інтернет у Києві від Batyevka.NET</h2>
                             <div className="leading-relaxed space-y-4 text-gray-600">
                                 <p>Batyevka.NET з гордістю представляє технологію XGS-PON у Солом&apos;янському районі Києва. Це революційний крок у розвитку домашнього та бізнес-інтернету, що дозволяє досягати швидкості до 10 Гбіт/с. Завдяки симетричному каналу, швидкість завантаження та віддачі даних є однаково високою, що є критично важливим для сучасних онлайн-задач: від професійного геймінгу та стрімінгу у 8K до роботи з великими хмарними сховищами та віддаленими серверами.</p>
-                                <p>Підключення за технологією XGS-PON від Batyevka.NET — це інвестиція у ваше цифрове майбутнє. Наша оптоволоконна мережа забезпечує не лише неймовірну швидкість, але й виняткову стабільність та енергонезалежність. При підключенні ми безкоштовно надаємо сучасний оптичний термінал на весь час користування послугою. Обирайте інтернет, який не має компромісів.</p>
+                                <p>Підключення за технологією XGS-PON від Batyevka.NET — це інвестиція у ваше цифрове майбутнє. Наша оптоволоконна мережа забезпечує не лише неймовірну швидкість, але й виняткову стабільність та енергонезалежність. При підключенні ми безкоштовно надаємо сучасний оптичний термінал ({ONT_model}) на весь час користування послугою. Обирайте інтернет, який не має компромісів.</p>
                             </div>
                         </div>
                     </section>

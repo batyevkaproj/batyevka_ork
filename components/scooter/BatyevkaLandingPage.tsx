@@ -3,7 +3,12 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
-
+import {
+    GPON_SPEEDS,
+    UTP_SPEEDS,
+    REAL_IP_PRICE_physic as REAL_IP_PRICE,
+    ONT_model
+} from "@/constants/internet_speeds";
 
 import { useModal } from "@/hooks/use-modal-store";
 
@@ -42,6 +47,13 @@ const ChevronDownIcon: React.FC = () => (
 const BatyevkaLandingPage: React.FC = () => {
 
     const { onOpen } = useModal();
+    
+    // Sort UTP tariffs for display
+    const utpTariffs = [...UTP_SPEEDS].sort((a, b) => a.speed - b.speed);
+    
+    // Sort XGS-PON tariffs for display
+    const xgsTariffs = [...GPON_SPEEDS].sort((a, b) => a.speed - b.speed);
+    
     return (
         <div className='mt-5'>
             <Head>
@@ -108,77 +120,64 @@ const BatyevkaLandingPage: React.FC = () => {
                         </div>
                     </section>
                     
-                    {/* ----- TARIFFS G-PON SECTION (UPDATED) ----- */}
+                    {/* ----- TARIFFS UTP SECTION (DYNAMIC) ----- */}
                     <section className="py-12">
                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Популярні тарифи G-PON</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-                            <article className="bg-white p-6 rounded-lg shadow-lg flex flex-col border border-gray-200/80">
-                                <div className="flex-grow">
-                                    <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">G-PON</span>
-                                    <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">100 Мбіт/с</h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">100<span className="text-xl font-bold"> грн/міс</span></p>
-                                    <p className="text-sm text-[#5F6061] mb-4">перші 4 місяці, далі — 200 грн/міс</p>
-                                    <p className="text-sm font-bold text-[#51B18B] mb-2">Підключення — безкоштовне</p>
-                                    <p className="text-sm font-bold text-[#5984B2]">+ MEGOGO ТБ (170+ каналів)</p>
-                                </div>
-                                <div className="mt-auto space-y-2 pt-4">
-                                    <Link href="#cta" className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors">Залишити заявку</Link>
-                                    <Link href="#" className="w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300">Детальніше</Link>
-                                </div>
-                            </article>
-                            <article className="bg-[#5F6061] text-white p-6 rounded-lg shadow-2xl flex flex-col ring-2 ring-[#DC662D] transform md:scale-105">
-                                <div className="flex-grow">
-                                    <span className="inline-block bg-white/20 text-white text-xs font-bold px-2 py-1 rounded-full mb-2">G-PON</span>
-                                    <h3 className="text-2xl font-bold mb-2">300 Мбіт/с</h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">130<span className="text-xl font-bold"> грн/міс</span></p>
-                                    <p className="text-sm text-white/90 mb-4">перші 4 місяці, далі — 230 грн/міс</p>
-                                    <p className="text-sm font-bold mb-2">Підключення — безкоштовне</p>
-                                    <p className="text-sm font-bold text-white/90">+ MEGOGO ТБ (170+ каналів)</p>
-                                </div>
-                                <div className="mt-auto space-y-2 pt-4">
-                                    <Link href="#cta" className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors">Залишити заявку</Link>
-                                    <Link href="#" className="w-full block text-center bg-transparent hover:bg-white/20 text-white font-bold py-2 px-4 rounded-lg transition-colors border border-white/50">Детальніше</Link>
-                                </div>
-                            </article>
-                            <article className="bg-white p-6 rounded-lg shadow-lg flex flex-col border border-gray-200/80">
-                                <div className="flex-grow">
-                                    <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">G-PON</span>
-                                    <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">1 Гбіт/с</h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">150<span className="text-xl font-bold"> грн/міс</span></p>
-                                    <p className="text-sm text-[#5F6061] mb-4">перші 4 місяці, далі — 250 грн/міс</p>
-                                    <p className="text-sm font-bold text-[#51B18B] mb-2">Підключення — безкоштовне</p>
-                                    <p className="text-sm font-bold text-[#5984B2]">+ MEGOGO ТБ (170+ каналів)</p>
-                                </div>
-                                <div className="mt-auto space-y-2 pt-4">
-                                    <Link href="#cta" className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors">Залишити заявку</Link>
-                                    <Link href="#" className="w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300">Детальніше</Link>
-                                </div>
-                            </article>
+                             {utpTariffs.map(tariff => {
+                                // Calculate discount for UTP tariffs
+                                let discountValue = 0;
+                                if (tariff.value === 1 || tariff.value === 2) {
+                                    discountValue = 100;
+                                }
+                                const promoPrice = tariff.price - discountValue;
+                                const isFeatured = tariff.value === 2; // 300 Mbit/s tariff is featured
+
+                                return (
+                                <article key={tariff.value} className={isFeatured ? "bg-[#5F6061] text-white p-6 rounded-lg shadow-2xl flex flex-col ring-2 ring-[#DC662D] transform md:scale-105" : "bg-white p-6 rounded-lg shadow-lg flex flex-col border border-gray-200/80"}>
+                                    <div className="flex-grow">
+                                        <span className={isFeatured ? "inline-block bg-white/20 text-white text-xs font-bold px-2 py-1 rounded-full mb-2" : "inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2"}>G-PON</span>
+                                        <h3 className={`text-2xl font-bold mb-2 ${isFeatured ? '' : 'text-[#5F6061]'}`}>{tariff.speed} {tariff.measure}/с</h3>
+                                        <p className="text-4xl font-extrabold text-[#DC662D]">{promoPrice}<span className="text-xl font-bold"> грн/міс</span></p>
+                                        <p className={`text-sm ${isFeatured ? 'text-white/90' : 'text-[#5F6061]'} mb-4`}>перші 4 місяці, далі — {tariff.price} грн/міс</p>
+                                        <p className={`text-sm font-bold mb-2 ${isFeatured ? '' : 'text-[#51B18B]'}`}>Підключення — безкоштовне</p>
+                                        <p className={`text-sm font-bold ${isFeatured ? 'text-white/90' : 'text-[#5984B2]'}`}>+ MEGOGO ТБ (170+ каналів)</p>
+                                    </div>
+                                    <div className="mt-auto space-y-2 pt-4">
+                                        <Link href="#cta" className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors">Залишити заявку</Link>
+                                        <Link href="#" className={isFeatured ? "w-full block text-center bg-transparent hover:bg-white/20 text-white font-bold py-2 px-4 rounded-lg transition-colors border border-white/50" : "w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300"}>Детальніше</Link>
+                                    </div>
+                                </article>
+                             )})}
                         </div>
                     </section>
                     
+                    {/* ----- TARIFFS GPON SECTION (DYNAMIC) ----- */}
                     <section className="py-12">
                         <div className="bg-gray-100 rounded-lg p-8 text-center">
                             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#5F6061]">Надшвидкісні тарифи XGS-PON</h2>
                             <p className="max-w-2xl mx-auto mb-8 text-[#5F6061]">Для найвимогливіших завдань: професійного геймінгу, стрімінгу у 8K та роботи з великими обсягами даних.</p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
-                                <div className="bg-white p-6 rounded-lg shadow-md border flex flex-col">
-                                    <h3 className="text-2xl font-bold text-[#5F6061]">2.5 Гбіт/с</h3>
-                                    <p className="text-2xl font-bold text-[#DC662D] mt-2">299<span className="text-lg font-normal"> грн/міс</span></p>
-                                    <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — 399 грн/міс</p>
-                                </div>
-                                <div className="bg-white p-6 rounded-lg shadow-md border flex flex-col">
-                                    <h3 className="text-2xl font-bold text-[#5F6061]">5 Гбіт/с</h3>
-                                    <p className="text-2xl font-bold text-[#DC662D] mt-2">399<span className="text-lg font-normal"> грн/міс</span></p>
-                                    <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — 499 грн/міс</p>
-                                </div>
-                                <div className="bg-white p-6 rounded-lg shadow-md border flex flex-col">
-                                    <h3 className="text-2xl font-bold text-[#5F6061]">10 Гбіт/с</h3>
-                                    <p className="text-2xl font-bold text-[#DC662D] mt-2">455<span className="text-lg font-normal"> грн/міс</span></p>
-                                    <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — 555 грн/міс</p>
-                                </div>
+                                {xgsTariffs.map(tariff => {
+                                    // Calculate discount for GPON tariffs
+                                    let discountValue = 0;
+                                    switch(tariff.value) {
+                                        case 1: discountValue = 600; break; // 10 Gbit
+                                        case 2: discountValue = 400; break; // 5 Gbit
+                                        case 3: discountValue = 250; break; // 2.5 Gbit
+                                    }
+                                    const promoPrice = tariff.price - discountValue;
+                                    
+                                    return (
+                                        <div key={tariff.value} className="bg-white p-6 rounded-lg shadow-md border flex flex-col">
+                                            <h3 className="text-2xl font-bold text-[#5F6061]">{tariff.speed} {tariff.measure}/с</h3>
+                                            <p className="text-2xl font-bold text-[#DC662D] mt-2">{promoPrice}<span className="text-lg font-normal"> грн/міс</span></p>
+                                            <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — {tariff.price} грн/міс</p>
+                                        </div>
+                                    );
+                                })}
                             </div>
-                            <p className="text-sm mb-6"><span className="font-bold">Вартість підключення до тарифів XGS-PON:</span> 1999 грн.</p>
+                            <p className="text-sm mb-6"><span className="font-bold">Вартість підключення до тарифів XGS-PON:</span> 2999 грн.</p>
                             <Link href="#" className="bg-[#5F6061] hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-lg transition-colors">Дізнатись більше</Link>
                         </div>
                     </section>
@@ -192,11 +191,6 @@ const BatyevkaLandingPage: React.FC = () => {
                                 <p className="text-sm">170+ національних та ефірних каналів.</p>
                                 <p className="font-bold text-[#51B18B] mt-2">Вже у тарифі</p>
                             </div>
-                            {/* <div className="bg-gray-50 p-4 rounded-lg border">
-                                <p className="font-bold text-lg text-[#5F6061]">Національне ТБ</p>
-                                <p className="text-sm">255+ національних та ефірних каналів.</p>
-                                <p className="font-bold text-[#5984B2] mt-2">+ 50 грн/міс</p>
-                            </div> */}
                             <div className="bg-gray-50 p-4 rounded-lg border">
                                 <p className="font-bold text-lg text-[#5F6061]">Легка</p>
                                 <p className="text-sm">375+ каналів, колекція фільмів та мультфільмів.</p>
@@ -270,7 +264,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                     Чи можна замовити статичну IP-адресу?
                                     <ChevronDownIcon />
                                 </summary>
-                                <p className="mt-2 pt-2 border-t border-gray-200">Так, ви можете замовити послугу постійної зовнішньої IP-адреси. Вартість підключення — 200 грн (разово), щомісячна плата — 50 грн.</p>
+                                <p className="mt-2 pt-2 border-t border-gray-200">Так, ви можете замовити послугу постійної зовнішньої IP-адреси. Вартість підключення — 200 грн (разово), щомісячна плата — {REAL_IP_PRICE} грн.</p>
                             </details>
                             <details className="bg-gray-50 border border-gray-200/80 rounded-lg p-4 cursor-pointer group">
                                 <summary className="font-bold text-lg text-[#5F6061] flex justify-between items-center">

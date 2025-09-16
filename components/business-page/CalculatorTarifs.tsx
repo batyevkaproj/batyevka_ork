@@ -119,7 +119,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
                 setDiscountValue(600);
             } else if (speedGpon == 2) {
-                setDiscountValue(200);
+                setDiscountValue(400);
             } else if (speedGpon == 3) {
                 setDiscountValue(250);
             } 
