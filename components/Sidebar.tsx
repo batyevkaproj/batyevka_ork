@@ -7,29 +7,69 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils"; // A utility to merge class names
+import LogoMobileComponent from "./LogoMobileComponent";
+
+// --- Dark Theme Assets ---
 import wallet from '../public/img/wallet.svg';
 import _247 from '../public/img/247.svg';
 import telephon from '../public/img/phone.svg';
-import gear from '../public/img/gear.svg';
-import orange_building from '@/public/img/orange_building.svg';
-import orange_house from '@/public/img/house_orange.svg';
-import bc_orange from '@/public/img/br_case_orange.svg';
-import key from '@/public/img/key_white.svg';
-import globe from '@/public/img/globe_white.png';
-import LogoMobileComponent from "./LogoMobileComponent";
-import { Button } from "./ui/button";
+import orange_building from '../public/img/orange_building.svg';
+import orange_house from '../public/img/house_orange.svg';
+import bc_orange from '../public/img/br_case_orange.svg';
+import key_white from '../public/img/key_white.svg';
+import globe_white from '../public/img/globe_white.png';
 
-const Sidebar = () => {
+// --- Light Theme Assets ---
+// NOTE: You must create dark versions of these icons for the light theme.
+// I'm using placeholders pointing to existing files to prevent build errors.
+import key_dark from '../public/img/key_white.svg'; // Placeholder: Create a dark version of this
+import globe_dark from '../public/img/globe_white.png'; // Placeholder: Create a dark version of this
+import phone_gray from '../public/img/phone_gray.svg'; // Using an existing gray icon
 
+// 1. Define the props interface for the component
+interface SidebarProps {
+    /**
+     * The visual theme of the sidebar.
+     * @default 'dark'
+     */
+    variant?: 'dark' | 'light';
+}
+
+// 2. Update the component to accept the `variant` prop, defaulting to 'dark'
+const Sidebar = ({ variant = 'dark' }: SidebarProps) => {
     const { onOpen } = useModal();
 
+    // 3. Create a boolean for easier conditional checks
+    const isDark = variant === 'dark';
+
+    // 4. Conditionally select the correct icon assets based on the theme
+    const keyIcon = isDark ? key_white : key_dark;
+    const globeIcon = isDark ? globe_white : globe_dark;
+    const phoneIcon = isDark ? telephon : phone_gray;
+
     return (
-        <div className="w-[375px] h-[100vh] bg-[#0E2D43]">
-            <div className="w-full h-[60px] bg-[#0D2A40] flex items-center justify-center">
-                <Image src={telephon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'} />
-                <a className='font-semibold text-white text-[24px] leading-[22px]' href={`tel:0800303230`}>0 800 30 32 30</a>
+        // 5. Apply conditional classes to the main container
+        <div className={cn(
+            "w-[375px] h-[100vh]",
+            isDark ? "bg-[#0E2D43]" : "bg-white border-r border-gray-200"
+        )}>
+            {/* Conditional classes for the top bar */}
+            <div className={cn(
+                "w-full h-[60px] flex items-center justify-center",
+                isDark ? "bg-[#0D2A40]" : "bg-gray-50 border-b border-gray-200"
+            )}>
+                <Image src={phoneIcon} className={`w-[20px] h-[20px] mr-[9.75px]`} alt={'phone'} />
+                {/* Conditional classes for the phone number text */}
+                <a className={cn(
+                    'font-semibold text-[24px] leading-[22px]',
+                    isDark ? 'text-white' : 'text-[#0E2D43]'
+                )} href={`tel:0800303230`}>0 800 30 32 30</a>
             </div>
-            <LogoMobileComponent />
+
+            {/* 6. Pass the variant prop down to child components that also need theming */}
+            <LogoMobileComponent variant={variant} />
+
             <div className="mt-[15px] ml-[20px] flex flex-col">
                 <Link className="flex mb-[20px] items-center" href={"https://next.privat24.ua/payments/form/%7B%22token%22:%22a163f3a4-7bfa-4921-8d8e-4c4737e6c0f4%22%7D"} >
                     <Image src={wallet} className={`w-8 h-8`} alt={'wallet'}></Image>
@@ -39,85 +79,72 @@ const Sidebar = () => {
                     <Image src={_247} className={`w-8 h-8`} alt={'options'}></Image>
                     <span className="ml-[15px] font-semibold text-[#56AABF]">Підтримка</span>
                 </Link>
-                {/* <Link className="flex mb-[20px] items-center" href="#">
-                    <Image src={gear} className={`w-8 h-8`} alt={'wallet'}></Image>
-                    <span className="ml-[15px] font-semibold text-[#5984B3]">Опції</span>
-                </Link> */}
             </div>
+
             <Accordion type="single" collapsible>
                 <AccordionItem value="item-1">
-                    <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
+                    <AccordionTrigger className={cn(
+                        "h-[48px] flex items-center w-full hover:no-underline",
+                        isDark ? "bg-[#0E2D43] shadow-[0_4px_29px_0_#081925]" : "hover:bg-gray-50"
+                    )}>
                         <Image src={orange_building} alt={'orange'} className="ml-[24px]"></Image>
                         <span className="ml-[15px] uppercase font-semibold text-[#DC662D]">для багатоповерхівок</span>
                     </AccordionTrigger>
-                    <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
-                        <Link href={'https://www.batyevka.net/uk/internet'} className="mt-[10px]">
-                            Інтернет
-                        </Link>
-                        <Link href={'#'} className="mt-[10px]">
-                            Інтернет + ТВ
-                        </Link>
-                        <Link href={'https://www.batyevka.net/uk/tv-unlimited'} className="mt-[10px]">
-                            Телебачення
-                        </Link>
-                        <Link href={'https://www.batyevka.net/uk/computer-help'} className="mt-[10px]">
-                            Комп'ютерна допомога
-                        </Link>
-                        <Link href={'#'} className="mt-[10px]">
-                            Всі опції
-                        </Link>
+                    {/* Conditional classes for accordion content */}
+                    <AccordionContent className={cn(
+                        "flex flex-col ml-[20px] text-[13px] font-semibold",
+                        isDark ? "text-white" : "text-gray-700 bg-gray-50"
+                    )}>
+                        <Link href={'https://www.batyevka.net/uk/internet'} className="mt-[10px] hover:underline">Інтернет</Link>
+                        <Link href={'#'} className="mt-[10px] hover:underline">Інтернет + ТВ</Link>
+                        <Link href={'https://www.batyevka.net/uk/tv-unlimited'} className="mt-[10px] hover:underline">Телебачення</Link>
+                        <Link href={'https://www.batyevka.net/uk/computer-help'} className="mt-[10px] hover:underline">Комп'ютерна допомога</Link>
+                        <Link href={'#'} className="mt-[10px] hover:underline">Всі опції</Link>
                     </AccordionContent>
                 </AccordionItem>
+                {/* Apply the same logic for other accordion items */}
                 <AccordionItem value="item-2">
-                    <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
+                    <AccordionTrigger className={cn("h-[48px] flex items-center w-full hover:no-underline", isDark ? "bg-[#0E2D43] shadow-[0_4px_29px_0_#081925]" : "hover:bg-gray-50")}>
                         <Image src={orange_house} alt={'orange'} className="ml-[20px]"></Image>
                         <span className="ml-[10px] uppercase font-semibold text-[#DC662D]">Приватному сектору</span>
                     </AccordionTrigger>
-                    <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
-                        <Link href={'https://www.batyevka.net/uk/internet-tv-home'} className="mt-[10px]">
-                            Інтернет
-                        </Link>
-                        <Link href={'https://www.batyevka.net/uk/internet-tv-home'} className="mt-[10px]">
-                            Інтернет + ТВ
-                        </Link>
-                        <Link href={'https://www.batyevka.net/uk/computer-help'} className="mt-[10px]">
-                            Комп'ютерна допомога
-                        </Link>
+                    <AccordionContent className={cn("flex flex-col ml-[20px] text-[13px] font-semibold", isDark ? "text-white" : "text-gray-700 bg-gray-50")}>
+                        <Link href={'https://www.batyevka.net/uk/internet-tv-home'} className="mt-[10px] hover:underline">Інтернет</Link>
+                        <Link href={'https://www.batyevka.net/uk/internet-tv-home'} className="mt-[10px] hover:underline">Інтернет + ТВ</Link>
+                        <Link href={'https://www.batyevka.net/uk/computer-help'} className="mt-[10px] hover:underline">Комп'ютерна допомога</Link>
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3">
-                    <AccordionTrigger className="h-[48px] bg-[#0E2D43] shadow-[0_4px_29px_0_#081925] flex items-center w-full">
+                    <AccordionTrigger className={cn("h-[48px] flex items-center w-full hover:no-underline", isDark ? "bg-[#0E2D43] shadow-[0_4px_29px_0_#081925]" : "hover:bg-gray-50")}>
                         <Image src={bc_orange} alt={'orange'} className="ml-[24px]"></Image>
                         <span className="ml-[13px] uppercase font-semibold text-[#DC662D]">бiзнесу</span>
                     </AccordionTrigger>
-                    <AccordionContent className="flex flex-col ml-[20px] text-white text-[13px] font-semibold">
-                        <Link href={'#'} className="mt-[10px]">
-                            Акції
-                        </Link>
-                        <Link href={'#'} className="mt-[10px]">
-                            Тарифи
-                        </Link>
-                        <Link href={'#'} className="mt-[10px]">
-                            Мапа покриття
-                        </Link>
-                        <Link href={'#'} className="mt-[10px]">
-                            Абоненту
-                        </Link>
-                        <Link href={'#'} className="mt-[10px]">
-                            Всі опції
-                        </Link>
+                    <AccordionContent className={cn("flex flex-col ml-[20px] text-[13px] font-semibold", isDark ? "text-white" : "text-gray-700 bg-gray-50")}>
+                        <Link href={'#'} className="mt-[10px] hover:underline">Акції</Link>
+                        <Link href={'#'} className="mt-[10px] hover:underline">Тарифи</Link>
+                        <Link href={'#'} className="mt-[10px] hover:underline">Мапа покриття</Link>
+                        <Link href={'#'} className="mt-[10px] hover:underline">Абоненту</Link>
+                        <Link href={'#'} className="mt-[10px] hover:underline">Всі опції</Link>
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
 
             <div className="ml-[20px] mt-[10px]">
                 <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")} >
-                    <Image src={key} alt={'key'}></Image>
-                    <span className="ml-[15px] text-white">Вхід   </span>
+                    {/* Use the theme-appropriate icon */}
+                    <Image src={keyIcon} alt={'key'}></Image>
+                    <span className={cn(
+                        "ml-[15px]",
+                        isDark ? "text-white" : "text-[#0E2D43]"
+                    )}>Вхід</span>
                 </Link>
                 <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")}>
-                    <Image src={globe} alt={'globe'}></Image>
-                    <span className="ml-[15px] text-white">Укр</span>
+                    {/* Use the theme-appropriate icon */}
+                    <Image src={globeIcon} alt={'globe'}></Image>
+                    <span className={cn(
+                        "ml-[15px]",
+                        isDark ? "text-white" : "text-[#0E2D43]"
+                    )}>Укр</span>
                 </Link>
             </div>
         </div>

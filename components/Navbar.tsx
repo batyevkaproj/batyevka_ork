@@ -74,7 +74,7 @@ const Navbar = ({ theme }: any) => {
                         side="left"
                         className="p-0 m-0"
                     >
-                        <Sidebar />
+                        <Sidebar variant="light" />
                     </SheetContent>
                 </Sheet>
             </div>
