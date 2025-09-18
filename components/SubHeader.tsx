@@ -35,13 +35,6 @@ const SubHeader = () => {
                 </Link>
             </div>
 
-            <div 
-                className={`max-[1970px]:hidden rounded-full bg-none px-[50px] h-[50px] flex justify-center items-center transition-colors duration-200 ${pathname === '/television' ? 'border-2 border-[#DC662D] text-[#DC662D]' : 'hover:border-2 hover:border-[#DC662D] hover:text-[#DC662D]'}`}
-            >
-                <Link href='/television' className={`font-semibold text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>
-                    Телебачення
-                </Link>
-            </div>
         </div>
     );
 };

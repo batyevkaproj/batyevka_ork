@@ -145,7 +145,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                     </div>
                                     <div className="mt-auto space-y-2 pt-4">
                                         <Link href="#cta" className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors">Залишити заявку</Link>
-                                        <Link href="#" className={isFeatured ? "w-full block text-center bg-transparent hover:bg-white/20 text-white font-bold py-2 px-4 rounded-lg transition-colors border border-white/50" : "w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300"}>Детальніше</Link>
+                                        <Link href="/prices" className={isFeatured ? "w-full block text-center bg-transparent hover:bg-white/20 text-white font-bold py-2 px-4 rounded-lg transition-colors border border-white/50" : "w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300"}>Детальніше</Link>
                                     </div>
                                 </article>
                              )})}
@@ -178,7 +178,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                 })}
                             </div>
                             <p className="text-sm mb-6"><span className="font-bold">Вартість підключення до тарифів XGS-PON:</span> 2999 грн.</p>
-                            <Link href="#" className="bg-[#5F6061] hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-lg transition-colors">Дізнатись більше</Link>
+                            <Link href="/xgspon" className="bg-[#5F6061] hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-lg transition-colors">Дізнатись більше</Link>
                         </div>
                     </section>
 
@@ -208,7 +208,7 @@ const BatyevkaLandingPage: React.FC = () => {
                             </div>
                          </div>
                          <div className="text-center mt-8">
-                            <Link href="#" className="text-[#DC662D] font-bold hover:underline">Дізнатись більше про передплати →</Link>
+                            <Link href="/prices" className="text-[#DC662D] font-bold hover:underline">Дізнатись більше про передплати →</Link>
                          </div>
                     </section>
 

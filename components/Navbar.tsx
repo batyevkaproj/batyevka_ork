@@ -1,4 +1,6 @@
 "use client";
+
+import { usePathname } from "next/navigation";
 import { useModal } from "@/hooks/use-modal-store";
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -20,9 +22,13 @@ import Sidebar from "./Sidebar";
 
 const Navbar = ({ theme }: any) => {
 
+    const pathname = usePathname();
+
     const { onOpen } = useModal();
 
     const [isMounted, setIsMounted] = useState(false);
+
+    const isBusinessPage = pathname?.startsWith("/business");
 
     useEffect(() => {
         setIsMounted(true);
@@ -74,7 +80,7 @@ const Navbar = ({ theme }: any) => {
                         side="left"
                         className="p-0 m-0"
                     >
-                        <Sidebar variant="light" />
+                        <Sidebar variant={isBusinessPage ? "dark" : "light"} />
                     </SheetContent>
                 </Sheet>
             </div>

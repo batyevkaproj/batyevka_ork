@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 
 // 1. Import both the dark and light theme logos
 import logo_dark from '@/public/img/logo.svg';
-import logo_light from '@/public/img/logo_grey_mob.svg'; // Assuming this is your light theme logo from Navbar
+import logo_light from '@/public/img/logo_grey.svg'; // Assuming this is your light theme logo from Navbar
 
 // 2. Define an interface for the component's props
 interface LogoMobileComponentProps {

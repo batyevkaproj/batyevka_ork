@@ -10,6 +10,10 @@ import {
 import { cn } from "@/lib/utils"; // A utility to merge class names
 import LogoMobileComponent from "./LogoMobileComponent";
 
+import { usePathname } from "next/navigation";
+
+
+
 // --- Dark Theme Assets ---
 import wallet from '../public/img/wallet.svg';
 import _247 from '../public/img/247.svg';
@@ -38,6 +42,10 @@ interface SidebarProps {
 
 // 2. Update the component to accept the `variant` prop, defaulting to 'dark'
 const Sidebar = ({ variant = 'dark' }: SidebarProps) => {
+
+    const pathname = usePathname();
+     const showBlock = !pathname.startsWith("/business");
+     const showBlockPrivate = !pathname.startsWith("/xgspon");
     const { onOpen } = useModal();
 
     // 3. Create a boolean for easier conditional checks
@@ -95,58 +103,40 @@ const Sidebar = ({ variant = 'dark' }: SidebarProps) => {
                         "flex flex-col ml-[20px] text-[13px] font-semibold",
                         isDark ? "text-white" : "text-gray-700 bg-gray-50"
                     )}>
-                        <Link href={'https://www.batyevka.net/uk/internet'} className="mt-[10px] hover:underline">Інтернет</Link>
-                        <Link href={'#'} className="mt-[10px] hover:underline">Інтернет + ТВ</Link>
-                        <Link href={'https://www.batyevka.net/uk/tv-unlimited'} className="mt-[10px] hover:underline">Телебачення</Link>
-                        <Link href={'https://www.batyevka.net/uk/computer-help'} className="mt-[10px] hover:underline">Комп'ютерна допомога</Link>
-                        <Link href={'#'} className="mt-[10px] hover:underline">Всі опції</Link>
+                        <Link href={'/'} className="mt-[10px] hover:underline">Інтернет</Link>
+                        <Link href={'/xgspon'} className="mt-[10px] hover:underline">10G Інтернет</Link>
+                        <Link href={'/prices'} className="mt-[10px] hover:underline">Тарифи</Link>
+                        <Link href={'/promotions'} className="mt-[10px] hover:underline">Акції</Link>
                     </AccordionContent>
                 </AccordionItem>
                 {/* Apply the same logic for other accordion items */}
-                <AccordionItem value="item-2">
-                    <AccordionTrigger className={cn("h-[48px] flex items-center w-full hover:no-underline", isDark ? "bg-[#0E2D43] shadow-[0_4px_29px_0_#081925]" : "hover:bg-gray-50")}>
-                        <Image src={orange_house} alt={'orange'} className="ml-[20px]"></Image>
-                        <span className="ml-[10px] uppercase font-semibold text-[#DC662D]">Приватному сектору</span>
-                    </AccordionTrigger>
-                    <AccordionContent className={cn("flex flex-col ml-[20px] text-[13px] font-semibold", isDark ? "text-white" : "text-gray-700 bg-gray-50")}>
-                        <Link href={'https://www.batyevka.net/uk/internet-tv-home'} className="mt-[10px] hover:underline">Інтернет</Link>
-                        <Link href={'https://www.batyevka.net/uk/internet-tv-home'} className="mt-[10px] hover:underline">Інтернет + ТВ</Link>
-                        <Link href={'https://www.batyevka.net/uk/computer-help'} className="mt-[10px] hover:underline">Комп'ютерна допомога</Link>
-                    </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-3">
-                    <AccordionTrigger className={cn("h-[48px] flex items-center w-full hover:no-underline", isDark ? "bg-[#0E2D43] shadow-[0_4px_29px_0_#081925]" : "hover:bg-gray-50")}>
-                        <Image src={bc_orange} alt={'orange'} className="ml-[24px]"></Image>
-                        <span className="ml-[13px] uppercase font-semibold text-[#DC662D]">бiзнесу</span>
-                    </AccordionTrigger>
-                    <AccordionContent className={cn("flex flex-col ml-[20px] text-[13px] font-semibold", isDark ? "text-white" : "text-gray-700 bg-gray-50")}>
-                        <Link href={'#'} className="mt-[10px] hover:underline">Акції</Link>
-                        <Link href={'#'} className="mt-[10px] hover:underline">Тарифи</Link>
-                        <Link href={'#'} className="mt-[10px] hover:underline">Мапа покриття</Link>
-                        <Link href={'#'} className="mt-[10px] hover:underline">Абоненту</Link>
-                        <Link href={'#'} className="mt-[10px] hover:underline">Всі опції</Link>
-                    </AccordionContent>
-                </AccordionItem>
+                
+                <Link href={'/xgspon'}>
+                    <AccordionItem value="item-2">
+                        <AccordionTrigger className={cn("h-[48px] flex items-center w-full hover:no-underline", isDark ? "bg-[#0E2D43] shadow-[0_4px_29px_0_#081925]" : "hover:bg-gray-50")}>
+                            <Image src={orange_house} alt={'orange'} className="ml-[20px]"></Image>
+                            <span className="ml-[10px] uppercase font-semibold text-[#DC662D]">Приватному сектору</span>
+                        </AccordionTrigger>
+                        <AccordionContent className={cn("flex flex-col ml-[20px] text-[13px] font-semibold", isDark ? "text-white" : "text-gray-700 bg-gray-50")}>
+                            <Link href={'/xgspon'} className="mt-[10px] hover:underline">Інтернет</Link>
+                        </AccordionContent>
+                    </AccordionItem>
+                </Link>
+
+                {showBlock && (
+                    <Link href={'business'} className="mt-[10px] hover:underline">
+                        <AccordionItem value="item-3">
+                            <AccordionTrigger className={cn("h-[48px] flex items-center w-full hover:no-underline", isDark ? "bg-[#0E2D43] shadow-[0_4px_29px_0_#081925]" : "hover:bg-gray-50")}>
+                                <Image src={bc_orange} alt={'orange'} className="ml-[24px]"></Image>
+                                <span className="ml-[13px] uppercase font-semibold text-[#DC662D]">бiзнесу</span>
+                            </AccordionTrigger>
+                        </AccordionItem>
+                    </Link>
+                )}
             </Accordion>
 
-            <div className="ml-[20px] mt-[10px]">
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")} >
-                    {/* Use the theme-appropriate icon */}
-                    <Image src={keyIcon} alt={'key'}></Image>
-                    <span className={cn(
-                        "ml-[15px]",
-                        isDark ? "text-white" : "text-[#0E2D43]"
-                    )}>Вхід</span>
-                </Link>
-                <Link className="flex mb-[20px] items-center" href={"#"} onClick={() => onOpen("payment")}>
-                    {/* Use the theme-appropriate icon */}
-                    <Image src={globeIcon} alt={'globe'}></Image>
-                    <span className={cn(
-                        "ml-[15px]",
-                        isDark ? "text-white" : "text-[#0E2D43]"
-                    )}>Укр</span>
-                </Link>
-            </div>
+
+        
         </div>
     );
 };
