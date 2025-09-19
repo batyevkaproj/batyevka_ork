@@ -280,7 +280,7 @@ const BatyevkaLandingPage: React.FC = () => {
                     <section id="cta" className="py-12 my-8 bg-[#5F6061] rounded-lg text-center">
                         <h2 className="text-3xl font-extrabold mb-2 text-white">Готові до стабільного інтернету?</h2>
                         <p className="mb-6 max-w-xl mx-auto text-white/90">Залиште заявку, і наш менеджер зв&apos;яжеться з вами протягом 15 хвилин для уточнення деталей.</p>
-                        <button onClick={() => onOpen("call")} className="bg-[#DC662D] text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                        <button onClick={() => onOpen("phone-input")} className="bg-[#DC662D] text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-2xl">
                             Залишити заявку
                         </button>
                     </section>

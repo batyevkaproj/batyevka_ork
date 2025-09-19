@@ -158,7 +158,7 @@ const XgsPonPage: React.FC = () => {
                                                 <span>Виклик майстра — 0 грн</span>
                                             </li>
                                         </ul>
-                                        <Link onClick={() => onOpen("call")} href="#cta" className="w-full mt-auto block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-3 px-4 rounded-lg transition-colors">Залишити заявку</Link>
+                                        <Link onClick={() => onOpen("phone-input")} href="#cta" className="w-full mt-auto block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-3 px-4 rounded-lg transition-colors">Залишити заявку</Link>
                                     </div>
                                 );
                             })}
@@ -191,7 +191,6 @@ const XgsPonPage: React.FC = () => {
                          </div>
                     </section>
                     
-                    {/* ----- CALL TO ACTION SECTION ----- */}
                     <section id="cta" className="py-16 my-8 bg-white rounded-lg text-center shadow-xl border">
                         <h2 className="text-3xl font-extrabold mb-2 text-[#5F6061]">Готові до швидкості 10 Гбіт/с?</h2>
                         <p className="mb-6 max-w-xl mx-auto text-gray-600">Залиште заявку, і наш менеджер зв&apos;яжеться з вами протягом 15 хвилин, щоб обговорити деталі підключення за технологією XGS-PON.</p>

@@ -63,7 +63,7 @@ const Navbar = ({ theme }: any) => {
                         </Image>
                     </Button>
                 </Link>
-                <Button onClick={() => onOpen("call")} variant="connectMobMob">
+                <Button onClick={() => onOpen("phone-input")} variant="connectMobMob">
                     <Image src={wkey} alt='wkey'>
                     </Image>
                 </Button>
@@ -85,7 +85,7 @@ const Navbar = ({ theme }: any) => {
                 </Sheet>
             </div>
             <div className={`flex justify-center items-center w-full + ${theme == 'white' ? 'hidden' : ''}`}>
-                <Button onClick={() => onOpen("call")} variant="MobConnect">
+                <Button onClick={() => onOpen("phone-input")} variant="MobConnect">
                     Стати абонентом
                 </Button>
             </div>

@@ -87,6 +87,7 @@ export const usePhoneVerification = (onSuccess: () => void) => {
             const result = await response.json();
 
             if (!response.ok) {
+                console.log(result.error);
                 throw new Error(result.error);
             }
 
