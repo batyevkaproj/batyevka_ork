@@ -58,6 +58,7 @@ export async function POST(req: Request) {
     }
 
     const verificationCode = await VerificationService.generateCode(cleanedPhone);
+    console.log('Generated verification code for phone', cleanedPhone, ':', verificationCode);
 
     try {
       if (process.env.NODE_ENV !== 'development') {

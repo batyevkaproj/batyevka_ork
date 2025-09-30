@@ -38,7 +38,7 @@ export class VerificationService {
   }> {
     const key = this.PREFIX + phone;
     const verification = await redis.hgetall(key);
-
+    console.log(verification);
     // Проверяем существование кода
     if (!verification.code) {
       return {
