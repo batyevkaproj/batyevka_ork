@@ -1,8 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react'; // <-- ЗМІНА 1: Додайте useEffect
 import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
 
 export const usePhoneVerification = (onSuccess: () => void) => {
+    // <-- ЗМІНА 2: Додайте ці 2 рядки для відстеження стану монтажу
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
     const [step, setStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [rawPhoneNumber, setRawPhoneNumber] = useState('380');
@@ -105,6 +111,7 @@ export const usePhoneVerification = (onSuccess: () => void) => {
     };
 
     const onSubmitCode = async () => {
+        if (isLoading) return; // Защита от двойного клика
         setIsLoading(true);
         try {
             const code = smsCode.join('');
@@ -121,6 +128,8 @@ export const usePhoneVerification = (onSuccess: () => void) => {
 
             const result = await verifyResponse.json();
 
+            console.log(result);
+
             if (!verifyResponse.ok) {
                 if (result.error === 'MAX_ATTEMPTS_EXCEEDED') {
                     toast({
@@ -133,8 +142,10 @@ export const usePhoneVerification = (onSuccess: () => void) => {
                 }
                 throw new Error(result.error);
             }
-
-            onSuccess();
+            
+            if (result.success) {
+                onSuccess();
+            }
 
         } catch (error) {
             toast({
@@ -156,6 +167,7 @@ export const usePhoneVerification = (onSuccess: () => void) => {
     };
 
     return {
+        isMounted, // <-- ЗМІНА 3: Поверніть нову змінну
         step,
         isLoading,
         rawPhoneNumber,

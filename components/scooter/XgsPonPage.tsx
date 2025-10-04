@@ -7,8 +7,6 @@ import Image from 'next/image';
 
 import {
     GPON_SPEEDS,
-    UTP_SPEEDS,
-    REAL_IP_PRICE_physic as REAL_IP_PRICE,
     ONT_model
 } from "@/constants/internet_speeds";
 
@@ -45,16 +43,11 @@ const XgsPonPage: React.FC = () => {
                 <title>Технологія 10G-PON — Batyevka.NET</title>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
-                
-                <style>
-                    {`
-                        html { scroll-behavior: smooth; }
-                    `}
-                </style>
+                {/* 
+                  Best Practice: Global styles and fonts, like the Inter font, should be moved 
+                  to a custom `_app.tsx` or `_document.tsx` file in your `pages` directory 
+                  to prevent them from being re-downloaded on every page change.
+                */}
             </Head>
 
             <div className="bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>

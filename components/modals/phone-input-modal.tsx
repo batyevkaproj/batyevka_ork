@@ -5,12 +5,12 @@ import { Street, House } from "@prisma/client";
 import axios from 'axios';
 
 import { VerificationFormBase, VerificationFormTheme, THEMES } from '@/components/verification/VerificationFormBase';
-
 import { PhoneInput } from '@/components/business-page/PhoneInput';
 import { usePhoneVerification } from '@/hooks/use-phone-verification';
 import { AddressSelect } from "@/components/address-select/AddressSelect";
 import { Input } from "@/components/ui/input";
 
+// Define the structure for address data
 type AddressData = {
     street: Street | null;
     house: House | null;
@@ -19,71 +19,95 @@ type AddressData = {
     apartment?: string;
 }
 
-export const PhoneInputModal = ({ 
-    theme = THEMES.DARK
-  }: { 
-    theme: VerificationFormTheme 
-  }) => {
+// Define the component props
+interface PhoneInputModalProps {
+    theme?: VerificationFormTheme;
+}
+
+export const PhoneInputModal = ({ theme = THEMES.DARK }: PhoneInputModalProps) => {
     const { isOpen, onClose, type, data } = useModal();
     const { toast } = useToast();
     const [selectedAddress, setSelectedAddress] = useState<AddressData>({
         street: null,
-        house: null
+        house: null,
+        entrance: '',
+        floor: '',
+        apartment: ''
     });
     
     const isModalOpen = isOpen && type === "phone-input";
 
-    // Handler for successful phone verification
+    // This function runs after the user successfully verifies their phone number.
     const handleSuccess = async () => {
+        // =================================================================
+        // === ДІАГНОСТИЧНІ ЛОГИ: ДОДАНО ДЛЯ ПЕРЕВІРКИ СТАНУ ==============
+        // =================================================================
+        console.log("--- handleSuccess triggered! ---");
+        console.log("Content of data?.orderData:", data?.orderData);
+        console.log("Content of selectedAddress:", selectedAddress);
+        // =================================================================
+
         try {
-            if (!data?.orderData) return;
+            // Step 1: Validate required data before sending
+            if (!data?.orderData) {
+                console.error("Order data is missing in the modal state.");
+                toast({
+                    variant: "destructive",
+                    title: "Помилка",
+                    description: "Відсутні дані для відправки заявки.",
+                });
+                return; // Stop execution if order data is missing
+            }
 
             if (!selectedAddress.street || !selectedAddress.house) {
                 toast({
                     variant: "destructive",
                     title: "Помилка",
-                    description: "Будь ласка, оберіть адресу підключення",
+                    description: "Будь ласка, оберіть адресу підключення.",
                 });
-                return;
+                return; // Stop execution if address is not selected
             }
 
-            // Prepare order data
-            if (data?.orderData) {
-                const orderData = {
-                    ...data.orderData,
-                    customerName: form.getValues('name'),
-                    customerPhone: rawPhoneNumber,
-                    address: {
-                        streetId: selectedAddress.street.id,
-                        streetName: selectedAddress.street.name,
-                        houseId: selectedAddress.house.id,
-                        houseNumber: selectedAddress.house.number,
-                        entrance: selectedAddress.entrance,
-                        floor: selectedAddress.floor,
-                        apartment: selectedAddress.apartment,
-                        fullAddress: `${selectedAddress.street.name}, ${selectedAddress.house.number}${
-                            selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
-                        }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''
-                        }${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''}`
-                    }
-                };
-
-                const response = await axios.post('/api/orders/submit', orderData);
-
-                if (!response.data.success) {
-                    throw new Error('Failed to submit order');
+            // Step 2: Prepare the final data payload for the API
+            const orderData = {
+                ...data.orderData,
+                customerName: form.getValues('name'),
+                customerPhone: rawPhoneNumber,
+                address: {
+                    streetId: selectedAddress.street.id,
+                    streetName: selectedAddress.street.name,
+                    houseId: selectedAddress.house.id,
+                    houseNumber: selectedAddress.house.number,
+                    entrance: selectedAddress.entrance,
+                    floor: selectedAddress.floor,
+                    apartment: selectedAddress.apartment,
+                    fullAddress: `${selectedAddress.street.name}, ${selectedAddress.house.number}${
+                        selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
+                    }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''
+                    }${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''}`
                 }
+            };
 
-                if (response.data.redirectUrl) {
-                    window.location.href = response.data.redirectUrl;
-                }
+            // Step 3: Send the data to the server
+            const response = await axios.post('/api/orders/submit', orderData);
 
-                toast({
-                    title: "Дякуємо за заявку!",
-                    description: "Наш менеджер зв'яжеться з вами найближчим часом для уточнення деталей та оформлення підключення.",
-                });
+            if (!response.data.success) {
+                // Handle cases where the API returns a non-success status
+                throw new Error(response.data.message || 'Failed to submit order');
             }
+
+            // Step 4: Handle the successful response
+            toast({
+                title: "Дякуємо за заявку!",
+                description: "Наш менеджер зв'яжеться з вами найближчим часом.",
+            });
+            
+            if (response.data.redirectUrl) {
+                window.location.href = response.data.redirectUrl;
+            }
+
             handleClose();
+
         } catch (error) {
             console.error('Error submitting order:', error);
             toast({
@@ -94,7 +118,9 @@ export const PhoneInputModal = ({
         }
     };
 
+    // Use the custom hook to manage phone verification logic
     const {
+        isMounted,
         step,
         isLoading,
         rawPhoneNumber,
@@ -111,13 +137,14 @@ export const PhoneInputModal = ({
         reset
     } = usePhoneVerification(handleSuccess);
 
+    // Function to close the modal and reset all states
     const handleClose = () => {
         reset();
-        setSelectedAddress({ street: null, house: null });
+        setSelectedAddress({ street: null, house: null, entrance: '', floor: '', apartment: '' });
         onClose();
     };
 
-    // Content for first step - data input
+    // --- Define the content for the initial form (Step 1) ---
     const initialFormContent = (
         <div className="space-y-6">
             <Input
@@ -146,6 +173,7 @@ export const PhoneInputModal = ({
         </div>
     );
 
+    // --- Define the content for the SMS verification form (Step 2) ---
     const verificationFormContent = (
         <div className="space-y-6">
             <p className="text-center text-lg">
@@ -156,7 +184,7 @@ export const PhoneInputModal = ({
                 {smsCode.map((digit, index) => (
                     <input
                         key={index}
-                        ref={el => { inputRefs.current[index] = el; }}
+                        ref={el => { if (el) inputRefs.current[index] = el; }}
                         type="tel"
                         maxLength={1}
                         value={digit}
@@ -171,6 +199,12 @@ export const PhoneInputModal = ({
         </div>
     );  
 
+    // Prevent rendering on the server to avoid hydration errors
+    if (!isMounted) {
+        return null;
+    }
+
+    // Render the base form component with the appropriate content and handlers
     return (
         <VerificationFormBase
             isOpen={isModalOpen}

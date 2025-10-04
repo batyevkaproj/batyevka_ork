@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { VerificationService } from '@/services/verification';
 
+export const dynamic = 'force-dynamic'; // <-- ADD THIS LINE
+
 
 export async function POST(req: Request) {
 
@@ -41,11 +43,16 @@ export async function POST(req: Request) {
       success: true,
       message: 'Code verified successfully'
     });
-  } catch (error) {
-    console.error('Error verifying code:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+// INSIDE YOUR CATCH BLOCK (FOR DEBUGGING ONLY)
+} catch (e) {
+  console.error(e);
+  // Temporarily return the actual error to the client to see what's happening
+  if (e instanceof Error) {
+    return NextResponse.json({ error: `Server Error: ${e.message}` }, { status: 500 });
   }
+  return NextResponse.json(
+    { error: 'An unknown error occurred' },
+    { status: 500 }
+  );
+}
 }

@@ -21,7 +21,7 @@ const allPosts: Post[] = Array.from({ length: 50 }, (_, i) => {
     `,
     publicationDate: date, // <-- Add the generated date here
     category: i % 4 === 0 ? 'react' : i % 4 === 1 ? 'nextjs' : i % 4 === 2 ? 'css' : 'general',
-  }
+  };
 });
 
 export async function getPostById(id: number): Promise<Post | undefined> {
@@ -55,7 +55,7 @@ export async function getPaginatedPosts(
 
   const categories = allCategories.filter((value, index, self) => {
     return self.indexOf(value) === index;
-  })
+  });
 
   return {
     posts: paginatedPosts,

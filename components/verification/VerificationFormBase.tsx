@@ -97,7 +97,17 @@ export const VerificationFormBase = ({
                     </DialogTitle>
                 </DialogHeader>
 
-                <form onSubmit={form.handleSubmit(step === 1 ? onSubmitInitialForm : onSubmitVerificationCode)}>
+                <form onSubmit={
+    form.handleSubmit(
+        // Первый аргумент: что делать, если валидация прошла успешно
+        step === 1 ? onSubmitInitialForm : onSubmitVerificationCode,
+
+        // Второй аргумент: что делать, если валидация НЕ прошла
+        (errors) => {
+            console.log("ОШИБКА ВАЛИДАЦИИ:", errors);
+        }
+    )
+}>
                     <div className={`space-y-6 ${styles.text}`}>
                         {step === 1 && beforeVerificationContent}
                         {step === 2 && verificationContent}

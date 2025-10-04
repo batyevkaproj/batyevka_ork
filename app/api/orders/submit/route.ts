@@ -3,6 +3,7 @@ import axios from 'axios';
 import { z } from "zod";
 import { smsService } from '@/services/SMSService';
 
+// Схема Zod для валідації адреси
 const addressSchema = z.object({
   streetId: z.number(),
   streetName: z.string(),
@@ -14,6 +15,7 @@ const addressSchema = z.object({
   fullAddress: z.string()
 });
 
+// Схема Zod для валідації всього замовлення
 const orderSchema = z.object({
   customerName: z.string().min(2, "Ім'я має містити мінімум 2 символи"),
   customerPhone: z.string().regex(/^380\d{9}$/, "Неправильний формат телефону"),
@@ -38,6 +40,8 @@ const orderSchema = z.object({
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+
+    // Валідація даних, що прийшли з фронтенду
     const validationResult = orderSchema.safeParse(body);
 
     if (!validationResult.success) {
@@ -51,14 +55,16 @@ export async function POST(req: Request) {
     const orderData = validationResult.data;
     let servDeskId;
 
+    // Перевірка, чи це не тестове середовище
     const isTestEnvironment = process.env.NODE_ENV === 'development' ||
       process.env.NODE_ENV === 'test' ||
       process.env.NEXT_PUBLIC_API_ENV === 'local';
 
     if (isTestEnvironment) {
       console.log('[TEST_ENV] Using mock ServDesk ID');
-      servDeskId = "12345"; // Hardcoded test ID
+      servDeskId = "12345"; // Тестовий ID для локальної розробки
     } else {
+      // --- Логіка для продакшн-середовища ---
       const servDeskData = {
         'type': 'data',
         'cli_name': orderData.customerName,
@@ -74,6 +80,7 @@ export async function POST(req: Request) {
           'Заявка на зворотній дзвінок'
       };
 
+      // 1. Створення заявки в ServDesk
       const servDeskResponse = await axios.post(
         'https://servdesk.batyevka.net/addons/add_req.php',
         new URLSearchParams(servDeskData),
@@ -82,12 +89,22 @@ export async function POST(req: Request) {
         }
       );
 
+      // =================================================================
+      // === ДІАГНОСТИЧНИЙ ЛОГ ДЛЯ ВІДПОВІДІ ВІД SERVDESK =================
+      // =================================================================
+      console.log("--- ServDesk Response ---");
+      console.log("Status Code:", servDeskResponse.status);
+      console.log("Response Headers:", servDeskResponse.headers);
+      console.log("Response Data:", servDeskResponse.data); // Найважливіший рядок!
+      console.log("-------------------------");
+      // =================================================================
+
       if (!servDeskResponse.data) {
         throw new Error('Failed to create order in ServDesk');
       }
-
       servDeskId = servDeskResponse.data;
 
+      // 2. Формування та відправка повідомлення в Telegram
       const tariffDetails = orderData.internetType ? [
         `Тип підключення: ${orderData.internetType}`,
         `Швидкість: ${orderData.internetSpeed} ${orderData.internetMeasure}`,
@@ -125,7 +142,7 @@ export async function POST(req: Request) {
         }
       );
 
-      // Send SMS notification in all environments
+      // 3. Відправка SMS-повідомлення клієнту
       const notificationResult = await smsService.sendNotification(
         'orderCreated', orderData.customerPhone, servDeskId
       );
@@ -135,13 +152,23 @@ export async function POST(req: Request) {
       }
     }
 
+    // Успішна відповідь, якщо все пройшло добре
     return NextResponse.json({
       success: true,
       redirectUrl: `/success?id=${servDeskId}&type=connection`
     });
 
-  } catch (error) {
-    console.error('[ORDER_SUBMIT_ERROR]:', error);
+  } catch (error: any) {
+    // Покращений блок обробки помилок
+    console.error('[ORDER_SUBMIT_ERROR]: Загальна помилка:', error.message);
+
+    if (axios.isAxiosError(error)) {
+      console.error('Axios error details:');
+      console.error(' - URL:', error.config?.url);
+      console.error(' - Status:', error.response?.status);
+      console.error(' - Response Data:', error.response?.data);
+    }
+    
     return NextResponse.json({
       success: false,
       error: "Внутрішня помилка сервера"
