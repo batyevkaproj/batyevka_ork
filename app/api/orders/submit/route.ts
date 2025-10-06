@@ -3,6 +3,8 @@ import axios from 'axios';
 import { z } from "zod";
 import { smsService } from '@/services/SMSService';
 
+const PHP_SCRIPT_URL = process.env.PHP_CONTACT_FORM_ENDPOINT || "https://servdesk.batyevka.net/sblog/contact_br.php";
+
 // Схема Zod для валідації адреси
 const addressSchema = z.object({
   streetId: z.number(),
@@ -82,7 +84,7 @@ export async function POST(req: Request) {
 
       // 1. Створення заявки в ServDesk
       const servDeskResponse = await axios.post(
-        'https://servdesk.batyevka.net/addons/add_req.php',
+        PHP_SCRIPT_URL,
         new URLSearchParams(servDeskData),
         {
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' }

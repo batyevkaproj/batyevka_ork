@@ -3,7 +3,7 @@ import axios from 'axios'; // Import axios
 // add refferer page argument 1.
 
 // Define your PHP_SCRIPT_URL, perhaps from an environment variable
-const PHP_SCRIPT_URL = process.env.PHP_CONTACT_FORM_ENDPOINT || 'https://servdesk.batyevka.net/sblog/autumn/contact_endpoint.php';
+const PHP_SCRIPT_URL = process.env.PHP_CONTACT_FORM_ENDPOINT || "https://servdesk.batyevka.net/sblog/contact_br.php";
 const FETCH_TIMEOUT = 10000; // 10 seconds timeout, adjust as needed
 
 // Telegram Bot Credentials from environment variables
