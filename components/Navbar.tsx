@@ -1,12 +1,17 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useModal } from "@/hooks/use-modal-store";
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
+
+// --- Імпортуємо хуки для модального вікна і повідомлень ---
+import { useModal } from "@/hooks/use-modal-store";
+import { useToast } from "@/hooks/use-toast"; // <-- ДОДАНО
+
+// ... (ваші імпорти зображень залишаються без змін)
 import wallet_white from '../public/img/wallet_white.svg';
 import phone from '../public/img/phone.svg';
 import phone_grey from '../public/img/phone_gray.svg';
@@ -19,20 +24,54 @@ import menu_button_orange from '../public/img/menu_button_orange.svg';
 import logo_grey from '../public/img/logo_grey_mob.svg';
 import Sidebar from "./Sidebar";
 
-
 const Navbar = ({ theme }: any) => {
 
     const pathname = usePathname();
-
     const { onOpen } = useModal();
-
+    const { toast } = useToast(); // <-- ДОДАНО
     const [isMounted, setIsMounted] = useState(false);
-
     const isBusinessPage = pathname?.startsWith("/business");
 
     useEffect(() => {
         setIsMounted(true);
     }, []);
+
+    // =================================================================
+    // === НОВИЙ ОБРОБНИК ДЛЯ КНОПОК, ЩО ВІДКРИВАЮТЬ ФОРМУ ЗАЯВКИ ======
+    // =================================================================
+    const handleOpenModal = () => {
+        try {
+            // 1. Готуємо дані, вказуючи джерело заявки
+            const prepareOrderData = () => {
+                // Створюємо об'єкт, що відповідає типу OrderData,
+                // щоб уникнути помилок TypeScript.
+                const orderData = {
+                    internetType: `Заявка з моб. навігації (сторінка: ${pathname})`,
+                    internetSpeed: 0,
+                    internetMeasure: '',
+                    internetPrice: 0,
+                    totalMonthlyPrice: 0,
+                    hasTV: false,
+                    hasStaticIP: false,
+                    prepaidMonths: 0,
+                    setupPrice: 0,
+                    routerPrice: 0,
+                };
+                return orderData;
+            };
+
+            // 2. Відкриваємо модальне вікно з підготовленими даними
+            const orderData = prepareOrderData();
+            onOpen("phone-input", { orderData });
+
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Помилка",
+                description: "Не вдалося відкрити форму заявки."
+            });
+        }
+    };
 
     if (!isMounted) {
         return null;
@@ -63,18 +102,19 @@ const Navbar = ({ theme }: any) => {
                         </Image>
                     </Button>
                 </Link>
-                <Button onClick={() => onOpen("phone-input")} variant="connectMobMob">
+
+                {/* === ВИПРАВЛЕННЯ №1: Оновлюємо onClick для першої кнопки === */}
+                <Button onClick={handleOpenModal} variant="connectMobMob">
                     <Image src={wkey} alt='wkey'>
                     </Image>
                 </Button>
+
                 <Sheet>
                     <SheetTrigger>
-
                         <Button variant="menuMob">
                             <Image src={theme == 'white' ? menu_button_orange : menu_button} alt='Menu' className={`h-[60px] w-[63px]`}>
                             </Image>
                         </Button>
-
                     </SheetTrigger>
                     <SheetContent
                         side="left"
@@ -85,7 +125,9 @@ const Navbar = ({ theme }: any) => {
                 </Sheet>
             </div>
             <div className={`flex justify-center items-center w-full + ${theme == 'white' ? 'hidden' : ''}`}>
-                <Button onClick={() => onOpen("phone-input")} variant="MobConnect">
+                
+                {/* === ВИПРАВЛЕННЯ №2: Оновлюємо onClick для другої кнопки === */}
+                <Button onClick={handleOpenModal} variant="MobConnect">
                     Стати абонентом
                 </Button>
             </div>

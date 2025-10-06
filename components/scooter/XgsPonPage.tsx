@@ -1,25 +1,28 @@
-"use client"; // This is a Client Component because it uses hooks (useState).
+"use client";
 
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import landing from '../../public/img/img_useful_information04.svg'; 
+
+// --- Імпортуємо хуки та константи ---
 import {
     GPON_SPEEDS,
     ONT_model
 } from "@/constants/internet_speeds";
-
 import { useModal } from "@/hooks/use-modal-store";
+import { useToast } from "@/hooks/use-toast";
 
-// --- Icon Component for Readability ---
+// --- Компоненти іконок (без змін) ---
 const CheckIcon: React.FC = () => (
     <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"></path>
     </svg>
 );
 
-// --- Data for MEGOGO Plans ---
+// --- Дані для MEGOGO (без змін) ---
 const megogoPlans = [
     { name: 'Безкоштовне ТБ', price: 0, description: '170+ каналів', label: 'Вже у тарифі', tariffName: 'MEGOGO Безкоштовне ТБ' },
     { name: 'Національне ТБ', price: 0, description: '255+ каналів', label: 'Вже у тарифі', tariffName: 'MEGOGO Національне ТБ' },
@@ -31,11 +34,47 @@ const megogoPlans = [
 const XgsPonPage: React.FC = () => {
 
     const { onOpen } = useModal();
-    // State to manage the selected MEGOGO plan.
+    const { toast } = useToast();
     const [selectedMegogoPlan, setSelectedMegogoPlan] = useState(megogoPlans[1]);
     
-    // Sort tariffs for consistent display order (2.5, 5, 10 Gbps)
     const xgsTariffs = [...GPON_SPEEDS].sort((a, b) => a.speed - b.speed);
+
+    // =================================================================
+    // === НОВИЙ ОБРОБНИК ДЛЯ ВІДКРИТТЯ МОДАЛЬНОГО ВІКНА ==============
+    // =================================================================
+    const handleOpenModal = (tariff: any, finalPromoPrice: number, finalFullPrice: number) => {
+        try {
+            if (!tariff) throw new Error("Дані тарифу не знайдено");
+
+            const orderData = {
+                internetType: "XGS-PON",
+                internetSpeed: tariff.speed,
+                internetMeasure: tariff.measure,
+                internetPrice: finalPromoPrice,
+                regularPrice: finalFullPrice,
+                totalMonthlyPrice: finalPromoPrice,
+                hasTV: true,
+                tvPackage: {
+                    id: megogoPlans.findIndex(p => p.name === selectedMegogoPlan.name),
+                    name: selectedMegogoPlan.name,
+                    price: selectedMegogoPlan.price,
+                },
+                hasStaticIP: false,
+                prepaidMonths: 0,
+                setupPrice: 2999, // Вартість підключення для XGS-PON, як вказано на сторінці
+                routerPrice: 0,
+            };
+
+            onOpen("phone-input", { orderData });
+
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Помилка",
+                description: error instanceof Error ? error.message : "Помилка формування заявки"
+            });
+        }
+    };
 
     return (
         <div className='mt-4'>
@@ -43,11 +82,6 @@ const XgsPonPage: React.FC = () => {
                 <title>Технологія 10G-PON — Batyevka.NET</title>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                {/* 
-                  Best Practice: Global styles and fonts, like the Inter font, should be moved 
-                  to a custom `_app.tsx` or `_document.tsx` file in your `pages` directory 
-                  to prevent them from being re-downloaded on every page change.
-                */}
             </Head>
 
             <div className="bg-white" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -77,7 +111,7 @@ const XgsPonPage: React.FC = () => {
                                 </div>
                             </div>
                             <div>
-                                <Image src="https://placehold.co/600x400/e2e8f0/5F6061?text=Швидкість+та+Надійність" alt="Схема технології XGS-PON" className="rounded-lg shadow-xl" width={600} height={400} />
+                                <Image src={landing} alt="Схема технології XGS-PON" className="rounded-lg shadow-xl" width={600} height={400} />
                             </div>
                         </div>
                     </section>
@@ -108,19 +142,18 @@ const XgsPonPage: React.FC = () => {
                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5F6061]">Тарифи XGS-PON</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-start">
                             {xgsTariffs.map((tariff) => {
-                                // Calculate the promotional discount based on the provided logic
                                 let discountValue = 0;
                                 switch(tariff.value) {
-                                    case 1: discountValue = 600; break; // 10 Gbit
-                                    case 2: discountValue = 400; break; // 5 Gbit
-                                    case 3: discountValue = 250; break; // 2.5 Gbit
+                                    case 1: discountValue = 600; break;
+                                    case 2: discountValue = 400; break;
+                                    case 3: discountValue = 250; break;
                                     default: discountValue = 0;
                                 }
 
                                 const basePromoPrice = tariff.price - discountValue;
                                 const finalPromoPrice = basePromoPrice + selectedMegogoPlan.price;
                                 const finalFullPrice = tariff.price + selectedMegogoPlan.price;
-                                const isFeatured = tariff.speed === 5; // The 5 Gbit/s tariff is featured
+                                const isFeatured = tariff.speed === 5;
 
                                 return (
                                     <div
@@ -151,7 +184,14 @@ const XgsPonPage: React.FC = () => {
                                                 <span>Виклик майстра — 0 грн</span>
                                             </li>
                                         </ul>
-                                        <Link onClick={() => onOpen("phone-input")} href="#cta" className="w-full mt-auto block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-3 px-4 rounded-lg transition-colors">Залишити заявку</Link>
+                                        
+                                        {/* === ВИПРАВЛЕНО: Замінено Link на button з новим обробником === */}
+                                        <button 
+                                            onClick={() => handleOpenModal(tariff, finalPromoPrice, finalFullPrice)} 
+                                            className="w-full mt-auto block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-3 px-4 rounded-lg transition-colors"
+                                        >
+                                            Залишити заявку
+                                        </button>
                                     </div>
                                 );
                             })}
@@ -159,7 +199,7 @@ const XgsPonPage: React.FC = () => {
                         <p className="text-center text-gray-500 mt-8">Вартість підключення: 2999 грн.</p>
                     </section>
 
-                    {/* ----- MEGOGO SELECTION SECTION (MATCHES IMAGE) ----- */}
+                    {/* ----- MEGOGO SELECTION SECTION ----- */}
                     <section className="py-16">
                          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#5F6061]">Оберіть ваш MEGOGO</h2>
                          <p className="text-center max-w-2xl mx-auto mb-12 text-gray-600">Безкоштовне телебачення вже включено у ваш тариф. Розширте можливості, обравши одну з преміальних передплат.</p>
@@ -171,8 +211,8 @@ const XgsPonPage: React.FC = () => {
                                     className={`
                                         bg-white p-4 rounded-lg border-2 cursor-pointer transition-all
                                         ${selectedMegogoPlan.name === plan.name 
-                                            ? 'border-[#DC662D]' // Active state
-                                            : 'border-gray-200'  // Inactive state
+                                            ? 'border-[#DC662D]' 
+                                            : 'border-gray-200'
                                         }
                                     `}
                                 >
@@ -184,10 +224,24 @@ const XgsPonPage: React.FC = () => {
                          </div>
                     </section>
                     
+                    {/* ----- CALL TO ACTION SECTION ----- */}
                     <section id="cta" className="py-16 my-8 bg-white rounded-lg text-center shadow-xl border">
                         <h2 className="text-3xl font-extrabold mb-2 text-[#5F6061]">Готові до швидкості 10 Гбіт/с?</h2>
                         <p className="mb-6 max-w-xl mx-auto text-gray-600">Залиште заявку, і наш менеджер зв&apos;яжеться з вами протягом 15 хвилин, щоб обговорити деталі підключення за технологією XGS-PON.</p>
-                        <button className="bg-[#DC662D] text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-[#DC662D]/30">
+                        
+                        {/* === ВИПРАВЛЕНО: onClick викликає обробник з даними "featured" тарифу === */}
+                        <button 
+                            onClick={() => {
+                                const featuredTariff = xgsTariffs.find(t => t.speed === 5);
+                                if (featuredTariff) {
+                                    const discount = 400; // Знижка для 5 Гбіт/с
+                                    const promoPrice = (featuredTariff.price - discount) + selectedMegogoPlan.price;
+                                    const fullPrice = featuredTariff.price + selectedMegogoPlan.price;
+                                    handleOpenModal(featuredTariff, promoPrice, fullPrice);
+                                }
+                            }}
+                            className="bg-[#DC662D] text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-[#DC662D]/30"
+                        >
                             Підключитись до 10G
                         </button>
                     </section>

@@ -5,40 +5,43 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
+// --- Імпортуємо хуки та константи ---
 import {
     GPON_SPEEDS,
     UTP_SPEEDS,
     REAL_IP_PRICE_physic as REAL_IP_PRICE,
-    ONT_model
 } from "@/constants/internet_speeds";
-
 import { useModal } from "@/hooks/use-modal-store";
+import { useToast } from "@/hooks/use-toast";
 
-// --- Icon Components for Readability ---
+
+import news1 from "../../public/img/img_useful_information04.svg"
+import news2 from "../../public/img/img_useful_information03.svg"
+import news3 from "../../public/img/img_useful_information02.svg"
+import news4 from "../../public/img/img_useful_information01.svg"
+
+
+// --- Компоненти іконок (без змін) ---
 const LightningIcon: React.FC = () => (
     <svg className="h-10 w-10 text-[#DC662D] mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
     </svg>
 );
-
 const ShieldCheckIcon: React.FC = () => (
     <svg className="h-10 w-10 text-[#DC662D] mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.917L12 22l9-1.083A12.02 12.02 0 0021 7.984a11.955 11.955 0 01-4.382-3.001z" />
     </svg>
 );
-
 const VideoCameraIcon: React.FC = () => (
     <svg className="h-10 w-10 text-[#DC662D] mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
     </svg>
 );
-
 const SupportIcon: React.FC = () => (
     <svg className="h-10 w-10 text-[#DC662D] mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
     </svg>
 );
-
 const ChevronDownIcon: React.FC = () => (
      <svg className="w-5 h-5 transition-transform duration-300 group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -49,13 +52,69 @@ const ChevronDownIcon: React.FC = () => (
 const BatyevkaLandingPage: React.FC = () => {
 
     const { onOpen } = useModal();
+    const { toast } = useToast();
     
-    // Sort UTP tariffs for display
+    // Сортування тарифів
     const utpTariffs = [...UTP_SPEEDS].sort((a, b) => a.speed - b.speed);
-    
-    // Sort XGS-PON tariffs for display
     const xgsTariffs = [...GPON_SPEEDS].sort((a, b) => a.speed - b.speed);
     
+    // =================================================================
+    // === НОВІ ОБРОБНИКИ ДЛЯ ВІДКРИТТЯ МОДАЛЬНОГО ВІКНА ==============
+    // =================================================================
+
+    // Обробник для загальних кнопок (без прив'язки до тарифу)
+    const handleOpenModalGeneral = () => {
+        try {
+            const orderData = {
+                internetType: `Заявка з головної сторінки`,
+                internetSpeed: 0,
+                internetMeasure: '',
+                internetPrice: 0,
+                totalMonthlyPrice: 0,
+                hasTV: false,
+                hasStaticIP: false,
+                prepaidMonths: 0,
+                setupPrice: 0,
+                routerPrice: 0,
+            };
+            onOpen("phone-input", { orderData });
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Помилка",
+                description: "Не вдалося відкрити форму заявки."
+            });
+        }
+    };
+
+    // Обробник для кнопок на картках тарифів
+    const handleOpenModalForTariff = (tariff: any, promoPrice: number, type: string) => {
+        try {
+            if (!tariff) throw new Error("Дані тарифу не знайдено");
+
+            const orderData = {
+                internetType: type,
+                internetSpeed: tariff.speed,
+                internetMeasure: tariff.measure,
+                internetPrice: promoPrice,
+                regularPrice: tariff.price,
+                totalMonthlyPrice: promoPrice,
+                hasTV: true, // Всі тарифи G-PON включають MEGOGO
+                hasStaticIP: false,
+                prepaidMonths: 0,
+                setupPrice: 0, // Підключення безкоштовне для G-PON
+                routerPrice: 0,
+            };
+            onOpen("phone-input", { orderData });
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Помилка",
+                description: error instanceof Error ? error.message : "Помилка формування заявки"
+            });
+        }
+    };
+
     return (
         <div className='mt-5'>
             <Head>
@@ -63,12 +122,10 @@ const BatyevkaLandingPage: React.FC = () => {
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 
-                {/* Google Fonts Import */}
+                {/* Google Fonts та стилі залишаються тут, але краще їх винести у _app.tsx */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
-                
-                {/* Global Styles are injected here */}
                 <style>
                     {`
                         html { scroll-behavior: smooth; }
@@ -78,7 +135,6 @@ const BatyevkaLandingPage: React.FC = () => {
                 </style>
             </Head>
 
-            {/* This div acts as the body, applying global styles */}
             <div className="bg-white text-[#5F6061] min-h-screen" style={{ fontFamily: "'Inter', sans-serif" }}>
                 <main className="container mx-auto px-4 py-8 md:py-16">
 
@@ -127,13 +183,12 @@ const BatyevkaLandingPage: React.FC = () => {
                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Популярні тарифи G-PON</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
                              {utpTariffs.map(tariff => {
-                                // Calculate discount for UTP tariffs
                                 let discountValue = 0;
                                 if (tariff.value === 1 || tariff.value === 2) {
                                     discountValue = 100;
                                 }
                                 const promoPrice = tariff.price - discountValue;
-                                const isFeatured = tariff.value === 2; // 300 Mbit/s tariff is featured
+                                const isFeatured = tariff.value === 2;
 
                                 return (
                                 <article key={tariff.value} className={isFeatured ? "bg-[#5F6061] text-white p-6 rounded-lg shadow-2xl flex flex-col ring-2 ring-[#DC662D] transform md:scale-105" : "bg-white p-6 rounded-lg shadow-lg flex flex-col border border-gray-200/80"}>
@@ -146,7 +201,15 @@ const BatyevkaLandingPage: React.FC = () => {
                                         <p className={`text-sm font-bold ${isFeatured ? 'text-white/90' : 'text-[#5984B2]'}`}>+ MEGOGO ТБ (170+ каналів)</p>
                                     </div>
                                     <div className="mt-auto space-y-2 pt-4">
-                                        <Link href="#cta" className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors">Залишити заявку</Link>
+                                        
+                                        {/* === ВИПРАВЛЕНО: Замінено Link на button з новим обробником === */}
+                                        <button 
+                                            onClick={() => handleOpenModalForTariff(tariff, promoPrice, "G-PON")} 
+                                            className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
+                                        >
+                                            Залишити заявку
+                                        </button>
+
                                         <Link href="/prices" className={isFeatured ? "w-full block text-center bg-transparent hover:bg-white/20 text-white font-bold py-2 px-4 rounded-lg transition-colors border border-white/50" : "w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300"}>Детальніше</Link>
                                     </div>
                                 </article>
@@ -154,19 +217,18 @@ const BatyevkaLandingPage: React.FC = () => {
                         </div>
                     </section>
                     
-                    {/* ----- TARIFFS GPON SECTION (DYNAMIC) ----- */}
+                    {/* ----- TARIFFS GPON SECTION ----- */}
                     <section className="py-12">
                         <div className="bg-gray-100 rounded-lg p-8 text-center">
                             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#5F6061]">Надшвидкісні тарифи XGS-PON</h2>
                             <p className="max-w-2xl mx-auto mb-8 text-[#5F6061]">Для найвимогливіших завдань: професійного геймінгу, стрімінгу у 8K та роботи з великими обсягами даних.</p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
                                 {xgsTariffs.map(tariff => {
-                                    // Calculate discount for GPON tariffs
                                     let discountValue = 0;
                                     switch(tariff.value) {
-                                        case 1: discountValue = 600; break; // 10 Gbit
-                                        case 2: discountValue = 400; break; // 5 Gbit
-                                        case 3: discountValue = 250; break; // 2.5 Gbit
+                                        case 1: discountValue = 600; break;
+                                        case 2: discountValue = 400; break;
+                                        case 3: discountValue = 250; break;
                                     }
                                     const promoPrice = tariff.price - discountValue;
                                     
@@ -184,7 +246,7 @@ const BatyevkaLandingPage: React.FC = () => {
                         </div>
                     </section>
 
-                    {/* ----- MEGOGO SECTION (UPDATED) ----- */}
+                    {/* ----- MEGOGO SECTION ----- */}
                     <section className="py-12">
                          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Розширте можливості з передплатами MEGOGO</h2>
                          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
@@ -215,40 +277,84 @@ const BatyevkaLandingPage: React.FC = () => {
                     </section>
 
                     {/* ----- LATEST NEWS SECTION ----- */}
-                    <section className="py-12 bg-gray-50 rounded-lg">
-                        <div className="container mx-auto px-4">
-                            <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Останні новини</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                <article className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80">
-                                    <Image src="https://placehold.co/600x400/e2e8f0/5F6061?text=Новина" alt="Зображення новини" width={600} height={400} className="w-full h-48 object-cover" />
-                                    <div className="p-6">
-                                        <p className="text-sm text-gray-500 mb-2">14 серпня 2025</p>
-                                        <h3 className="text-xl font-bold mb-3 text-[#5F6061]">Планові технічні роботи у ніч на 15 серпня</h3>
-                                        <p className="text-gray-600 mb-4">Ми постійно працюємо над покращенням якості наших послуг. У ніч з 14 на 15 серпня можливі короткочасні перерви у доступі до мережі.</p>
-                                        <Link href="#" className="font-bold text-[#DC662D] hover:underline">Читати далі →</Link>
-                                    </div>
-                                </article>
-                                <article className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80">
-                                    <Image src="https://placehold.co/600x400/e2e8f0/5F6061?text=Акція" alt="Зображення новини" width={600} height={400} className="w-full h-48 object-cover" />
-                                    <div className="p-6">
-                                        <p className="text-sm text-gray-500 mb-2">10 серпня 2025</p>
-                                        <h3 className="text-xl font-bold mb-3 text-[#5F6061]">Акція &quot;Приведи друга&quot; та отримай місяць інтернету</h3>
-                                        <p className="text-gray-600 mb-4">Рекомендуйте нас друзям та сусідам і отримуйте місяць безкоштовного користування послугами за кожне нове підключення.</p>
-                                        <Link href="#" className="font-bold text-[#DC662D] hover:underline">Читати далі →</Link>
-                                    </div>
-                                </article>
-                                <article className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80">
-                                    <Image src="https://placehold.co/600x400/e2e8f0/5F6061?text=Розширення" alt="Зображення новини" width={600} height={400} className="w-full h-48 object-cover" />
-                                    <div className="p-6">
-                                        <p className="text-sm text-gray-500 mb-2">05 серпня 2025</p>
-                                        <h3 className="text-xl font-bold mb-3 text-[#5F6061]">Розширення покриття: ми підключили нові будинки</h3>
-                                        <p className="text-gray-600 mb-4">Раді повідомити, що наша мережа тепер доступна за новими адресами у вашому районі. Перевірте можливість підключення!</p>
-                                        <Link href="#" className="font-bold text-[#DC662D] hover:underline">Читати далі →</Link>
-                                    </div>
-                                </article>
-                            </div>
+        <section className="py-12 bg-gray-50 rounded-lg">
+            <div className="container mx-auto px-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">
+                    Останні новини
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    {/* --- Article 1 --- */}
+                    <article className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80">
+                        <Image
+                            src={news1}
+                            alt="Планові технічні роботи"
+                            width={600}
+                            height={400}
+                            className="w-full h-auto" // Corrected: Image will scale proportionally
+                        />
+                        <div className="p-6">
+                            <p className="text-sm text-gray-500 mb-2">14 серпня 2025</p>
+                            <h3 className="text-xl font-bold mb-3 text-[#5F6061]">
+                                Планові технічні роботи у ніч на 15 серпня
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                Ми постійно працюємо над покращенням якості наших послуг. У ніч з 14 на 15 серпня можливі короткочасні перерви у доступі до мережі.
+                            </p>
+                            <Link href="/news/technical-works" className="font-bold text-[#DC662D] hover:underline">
+                                Читати далі →
+                            </Link>
                         </div>
-                    </section>
+                    </article>
+
+                    {/* --- Article 2 --- */}
+                    <article className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80">
+                        <Image
+                            src={news2}
+                            alt="Акція Приведи друга"
+                            width={600}
+                            height={400}
+                            className="w-full h-auto" // Corrected: Image will scale proportionally
+                        />
+                        <div className="p-6">
+                            <p className="text-sm text-gray-500 mb-2">10 серпня 2025</p>
+                            <h3 className="text-xl font-bold mb-3 text-[#5F6061]">
+                                Акція &quot;Приведи друга&quot; та отримай місяць інтернету
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                Рекомендуйте нас друзям та сусідам і отримуйте місяць безкоштовного користування послугами за кожне нове підключення.
+                            </p>
+                            <Link href="/news/refer-a-friend" className="font-bold text-[#DC662D] hover:underline">
+                                Читати далі →
+                            </Link>
+                        </div>
+                    </article>
+
+                    {/* --- Article 3 --- */}
+                    <article className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80">
+                        <Image
+                            src={news3}
+                            alt="Розширення покриття мережі"
+                            width={600}
+                            height={400}
+                            className="w-full h-auto" // Corrected: Image will scale proportionally
+                        />
+                        <div className="p-6">
+                            <p className="text-sm text-gray-500 mb-2">05 серпня 2025</p>
+                            <h3 className="text-xl font-bold mb-3 text-[#5F6061]">
+                                Розширення покриття: ми підключили нові будинки
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                Раді повідомити, що наша мережа тепер доступна за новими адресами у вашому районі. Перевірте можливість підключення!
+                            </p>
+                            <Link href="/news/coverage-expansion" className="font-bold text-[#DC662D] hover:underline">
+                                Читати далі →
+                            </Link>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
                     {/* ----- FAQ SECTION ----- */}
                     <section className="py-12">
@@ -282,7 +388,12 @@ const BatyevkaLandingPage: React.FC = () => {
                     <section id="cta" className="py-12 my-8 bg-[#5F6061] rounded-lg text-center">
                         <h2 className="text-3xl font-extrabold mb-2 text-white">Готові до стабільного інтернету?</h2>
                         <p className="mb-6 max-w-xl mx-auto text-white/90">Залиште заявку, і наш менеджер зв&apos;яжеться з вами протягом 15 хвилин для уточнення деталей.</p>
-                        <button onClick={() => onOpen("phone-input")} className="bg-[#DC662D] text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                        
+                        {/* === ВИПРАВЛЕНО: onClick тепер викликає загальний обробник === */}
+                        <button 
+                            onClick={handleOpenModalGeneral} 
+                            className="bg-[#DC662D] text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-2xl"
+                        >
                             Залишити заявку
                         </button>
                     </section>

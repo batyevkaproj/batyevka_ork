@@ -50,17 +50,11 @@ const Header = ({ theme, business }: HeaderProps) => {
                     internetMeasure: '',
                     internetPrice: 0,
                     totalMonthlyPrice: 0,
-                    
-                    // =========================================================
-                    // === ВИПРАВЛЕННЯ: Додаємо відсутні поля з типа OrderData ===
-                    // =========================================================
                     hasTV: false,
                     hasStaticIP: false,
-                    prepaidMonths: 0, // або 1, якщо у вас є стандартний період
+                    prepaidMonths: 0,
                     setupPrice: 0,
                     routerPrice: 0,
-                    // Поле tvPackage є опціональним, тому його можна не додавати,
-                    // якщо воно визначене як `tvPackage?: ...` у вашому типі
                 };
                 return orderData;
             };
@@ -80,7 +74,7 @@ const Header = ({ theme, business }: HeaderProps) => {
 
     return (
         <header>
-            {/* ... (ваш верхній хедер без змін) ... */}
+            {/* --- ВЕРХНІЙ БЛОК ХЕДЕРА (ПОВНІСТЮ ЗБЕРЕЖЕНО) --- */}
             <div
                 className={`flex justify-center items-center 
                 ${theme === 'white' ? 'bg-white text-[#5F6061]' : 'bg-[#56AABF] text-white'}
@@ -89,9 +83,23 @@ const Header = ({ theme, business }: HeaderProps) => {
                 px-[50px] min-[2430px]:px-[65px] max-[780px]:hidden 
                 min-[2430px]:text-[18px]`}
             >
-                {/* ... */}
+                <nav className="items-center flex justify-center max-[720px]:min-w-full">
+                    <Link href="#" className="pr-[30px]">
+                    <label
+                        className={`font-normal max-[902px]:hidden max-[720px]:block 
+                        max-[720px]:w-[122px] max-[720px]:text-[11px] 
+                        max-[720px]:ml-[20px] max-[720]:color-[#BDBDBD]`}
+                    >
+                        Телефонуй! У нас швидке з’єднання
+                        <label className="max-[1140px]:hidden max-[720px]:block">
+                        і реальні оператори!
+                        </label>
+                    </label>
+                    </Link>
+                </nav>
             </div>
 
+            {/* --- ОСНОВНИЙ БЛОК ХЕДЕРА (З ВИПРАВЛЕННЯМ КНОПКИ) --- */}
             <div className={`flex justify-between items-center my-[30px] max-[720px]:h-[50px] max-[720px]:my-0 min-[2430px]:h-[92px] px-[50px] min-[2430px]:px-[65px] max-[780px]:hidden`}>
                 <nav className={`flex items-center max-[2430px]:space-x-4 max-[720px]:ml-[20px] max-[833px]:space-x-0`}>
                     <LogoComponent theme={theme} />
@@ -137,16 +145,40 @@ const Header = ({ theme, business }: HeaderProps) => {
                         </Button>
                     </Link>
                     
+                    {/* === ВИПРАВЛЕНО: onClick тепер викликає handleOpenModal === */}
                     <Button onClick={handleOpenModal} variant="connect">Стати абонентом</Button>
                     
-                    <Button onClick={handleOpenModal} variant="connectMob">
+                    <Button onClick={() => onOpen("call")} variant="connectMob">
                         <Image src={wkey} alt='wkey'/>
                     </Button>
                 </nav>
             </div>
             
+            {/* --- НИЖНІЙ БЛОК НАВІГАЦІЇ (ПОВНІСТЮ ЗБЕРЕЖЕНО) --- */}
             <div className={`${theme == 'white' ? 'bg-white text-[#5F6061]' : 'bg-[#123853] text-white'} h-20 flex justify-around items-center rounded-full shadow-lg max-[780px]:hidden min-[2430px]:h-[104px] mx-[50px] min-[2430px]:mx-[65px] max-[690px]:hidden pl-[50px] pr-[30px] min-[2430px]:pl-[68px] min-[2430px]:pr-[40px]`}>
-                {/* ... (ваші Link компоненти) ... */}
+                <Link 
+                    href='/' 
+                    className={`max-[1650px]:hidden font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D] ${pathname === '/' ? 'text-[#DC662D]' : ''}`}
+                >
+                    Для багатоповерхівок
+                </Link>
+                <Link 
+                    href='/private-sector'
+                    className={`max-[1650px]:hidden font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D] ${pathname === '/private-sector' ? 'text-[#DC662D]' : ''}`}
+                >
+                    Приватному сектору
+                </Link>
+                <Link 
+                    href='/business' 
+                    className={`font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D] ${pathname.startsWith('/business') ? 'text-[#DC662D]' : ''}`}
+                >
+                    Бiзнесу <ChevronDown className={`inline-flex ml-[10px] size-[16px] mb-[3px] min-[1651px]:hidden`} />
+                </Link>
+
+                <Image src={theme == 'white' ? rectangle_grey : rectangle} alt='rect' />
+                {
+                    business ? <SubHeaderBusiness /> : <SubHeader />
+                }
             </div>
             <Navbar theme={theme} />
         </header>
