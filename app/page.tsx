@@ -22,15 +22,15 @@ import BatyevkaLandingPage from '@/components/scooter/BatyevkaLandingPage';
 
 function HomeContent() {
 
-  const { onOpen } = useModal();
-  const searchParams = useSearchParams();
+  // const { onOpen } = useModal();
+  // const searchParams = useSearchParams();
 
-  useEffect(() => {
-    const showCallbackModal = searchParams.get('show_callback_modal');
-    if (showCallbackModal === 'true') {
-      onOpen("call");
-    }
-  }, [searchParams, onOpen]);
+  // useEffect(() => {
+  //   const showCallbackModal = searchParams.get('show_callback_modal');
+  //   if (showCallbackModal === 'true') {
+  //     onOpen("call");
+  //   }
+  // }, [searchParams, onOpen]);
 
 
 

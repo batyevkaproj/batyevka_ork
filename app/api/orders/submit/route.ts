@@ -20,7 +20,7 @@ const orderSchema = z.object({
   customerName: z.string().min(2, "Ім'я має містити мінімум 2 символи"),
   customerPhone: z.string().regex(/^380\d{9}$/, "Неправильний формат телефону"),
   address: addressSchema,
-  internetType: z.enum(["GPON", "UTP", "G-PON", "XGS-PON"]).optional(),
+  internetType: z.string().optional(), // <-- ЗМІНЕНО z.enum на z.string
   internetSpeed: z.number().optional(),
   internetMeasure: z.string().optional(),
   hasTV: z.boolean().optional(),
