@@ -18,7 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import news1 from "../../public/img/img_useful_information04.svg"
 import news2 from "../../public/img/img_useful_information03.svg"
 import news3 from "../../public/img/img_useful_information02.svg"
-import news4 from "../../public/img/img_useful_information01.svg"
+import news4 from "../../public/img/action01.svg"
 
 
 // --- Компоненти іконок (без змін) ---
@@ -301,16 +301,16 @@ const BatyevkaLandingPage: React.FC = () => {
                             <p className="text-gray-600 mb-4">
                                 Ми постійно працюємо над покращенням якості наших послуг. У ніч з 14 на 15 серпня можливі короткочасні перерви у доступі до мережі.
                             </p>
-                            <Link href="/news/technical-works" className="font-bold text-[#DC662D] hover:underline">
+                            {/* <Link href="/news/technical-works" className="font-bold text-[#DC662D] hover:underline">
                                 Читати далі →
-                            </Link>
+                            </Link> */}
                         </div>
                     </article>
 
                     {/* --- Article 2 --- */}
                     <article className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 border border-gray-200/80">
                         <Image
-                            src={news2}
+                            src={news4}
                             alt="Акція Приведи друга"
                             width={600}
                             height={400}
@@ -324,7 +324,7 @@ const BatyevkaLandingPage: React.FC = () => {
                             <p className="text-gray-600 mb-4">
                                 Рекомендуйте нас друзям та сусідам і отримуйте місяць безкоштовного користування послугами за кожне нове підключення.
                             </p>
-                            <Link href="/news/refer-a-friend" className="font-bold text-[#DC662D] hover:underline">
+                            <Link href="/promotions/tvthree" className="font-bold text-[#DC662D] hover:underline">
                                 Читати далі →
                             </Link>
                         </div>
@@ -347,9 +347,9 @@ const BatyevkaLandingPage: React.FC = () => {
                             <p className="text-gray-600 mb-4">
                                 Раді повідомити, що наша мережа тепер доступна за новими адресами у вашому районі. Перевірте можливість підключення!
                             </p>
-                            <Link href="/news/coverage-expansion" className="font-bold text-[#DC662D] hover:underline">
+                            {/* <Link href="/news/coverage-expansion" className="font-bold text-[#DC662D] hover:underline">
                                 Читати далі →
-                            </Link>
+                            </Link> */}
                         </div>
                     </article>
                 </div>

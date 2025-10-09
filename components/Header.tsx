@@ -75,26 +75,21 @@ const Header = ({ theme, business }: HeaderProps) => {
     return (
         <header>
             {/* --- ВЕРХНІЙ БЛОК ХЕДЕРА (ПОВНІСТЮ ЗБЕРЕЖЕНО) --- */}
-            <div
-                className={`flex justify-center items-center 
-                ${theme === 'white' ? 'bg-white text-[#5F6061]' : 'bg-[#56AABF] text-white'}
-                h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] 
-                min-[3644px]:text-[27px] max-[720px]:bg-[#0E2D43] 
-                px-[50px] min-[2430px]:px-[65px] max-[780px]:hidden 
-                min-[2430px]:text-[18px]`}
-            >
-                <nav className="items-center flex justify-center max-[720px]:min-w-full">
-                    <Link href="#" className="pr-[30px]">
-                    <label
-                        className={`font-normal max-[902px]:hidden max-[720px]:block 
-                        max-[720px]:w-[122px] max-[720px]:text-[11px] 
-                        max-[720px]:ml-[20px] max-[720]:color-[#BDBDBD]`}
-                    >
-                        Телефонуй! У нас швидке з’єднання
-                        <label className="max-[1140px]:hidden max-[720px]:block">
-                        і реальні оператори!
-                        </label>
-                    </label>
+            <div className={`flex justify-between items-center ${theme == 'white' ? 'bg-white text-[#5F6061]' : 'bg-[#56AABF] text-white'} h-[60px] min-[2430px]:h-[78px] min-[3644px]:h-[117px] min-[3644px]:text-[27px] max-[720px]:bg-[#0E2D43] px-[50px] min-[2430px]:px-[65px] max-[780px]:hidden min-[2430px]:text-[18px]`}>
+                <nav className={`space-x-4`}>
+                    <Link href='/network-hardware'>Обладнання</Link>
+                    <Link href='#'>Мапа покриття</Link>
+                </nav>
+                <nav className={`items-center flex justify-between max-[720px]:min-w-full`}>
+                    <Link href='#' className={`pr-[30px]`}>
+                        <label className={`font-normal max-[902px]:hidden max-[720px]:block max-[720px]:w-[122px] max-[720px]:text-[11px] max-[720px]:ml-[20px] max-[720]:color-[#BDBDBD]`}>Телефонуй! У нас швидке з’єднання<label className={`max-[1140px]:hidden max-[720px]:block`}>і реальні оператори!</label></label>
+                    </Link>
+                </nav>
+
+                <nav className={`flex items-center space-x-4 font-normal`}>
+                    <Link href='#' className={`inline-flex items-center ml-4`}>
+                        <Image src={globe_small} width={4} height={4} className={`w-4 h-4`} alt={'ArrowDown'} />
+                        <span className={`ml-2`}>Укр</span>
                     </Link>
                 </nav>
             </div>

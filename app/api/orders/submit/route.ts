@@ -12,8 +12,8 @@ const addressSchema = z.object({
   houseId: z.number(),
   houseNumber: z.string(),
   entrance: z.string().optional(),
-  floor: z.string().optional(),
-  apartment: z.string().optional(),
+  floor: z.string().optional(), 
+  apartment: z.string().optional(), 
   fullAddress: z.string()
 });
 
@@ -138,7 +138,7 @@ export async function POST(req: Request) {
       await axios.post(
         `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
         {
-          chat_id: process.env.TELEGRAM_CHAT_ID,
+          chat_id: process.env.TELEGRAM_CHAT_ID,  
           text: telegramMessage,
           parse_mode: 'HTML'
         }
