@@ -226,7 +226,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                 {xgsTariffs.map(tariff => {
                                     let discountValue = 0;
                                     switch(tariff.value) {
-                                        case 1: discountValue = 250; break;
+                                        case 1: discountValue = 300; break;
                                         case 2: discountValue = 400; break;
                                         case 3: discountValue = 250; break;
                                     }
