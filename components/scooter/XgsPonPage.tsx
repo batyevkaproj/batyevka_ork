@@ -144,7 +144,7 @@ const XgsPonPage: React.FC = () => {
                             {xgsTariffs.map((tariff) => {
                                 let discountValue = 0;
                                 switch(tariff.value) {
-                                    case 1: discountValue = 600; break;
+                                    case 1: discountValue = 800; break;
                                     case 2: discountValue = 400; break;
                                     case 3: discountValue = 250; break;
                                     default: discountValue = 0;
