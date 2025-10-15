@@ -7,10 +7,6 @@ import mob1000 from '../../public/img/promotions/mobile1000Mbit.svg'
 import drug_mob from '../../public/img/promotions/mobile_drug.svg'
 import mob300 from '../../public/img/promotions/mobile300mbit.svg'
 
-import Bandit from './promotions/Bandit'
-import Tvthou from './promotions/Tvthou'
-import Tvthree from './promotions/Tvthree'
-import Drug from './promotions/Drug'
 
 import Image from 'next/image';
 import Link from 'next/link';

@@ -116,7 +116,7 @@ const BatyevkaLandingPage: React.FC = () => {
     };
 
     return (
-        <div className='mt-5'>
+        <div className='mt-5 scroll-smooth'>
             <Head>
                 <title>Batyevka.NET — Гігабітний інтернет у Солом’янському районі</title>
                 <meta charSet="UTF-8" />
@@ -146,9 +146,9 @@ const BatyevkaLandingPage: React.FC = () => {
                         <p className="text-lg md:text-xl text-[#5F6061] max-w-3xl mx-auto mb-8">
                             Batyevka.NET забезпечує стабільний та безперебійний інтернет і сучасне цифрове телебачення у Солом’янському районі Києва. Технології G-PON та XGS-PON тримають вас онлайн навіть під час енергетичних викликів.
                         </p>
-                        <Link href="#cta" className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        <a href="#cta" className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
                             Підключитись
-                        </Link>
+                        </a>
                     </section>
 
                     {/* ----- ADVANTAGES SECTION ----- */}
@@ -203,12 +203,12 @@ const BatyevkaLandingPage: React.FC = () => {
                                     <div className="mt-auto space-y-2 pt-4">
                                         
                                         {/* === ВИПРАВЛЕНО: Замінено Link на button з новим обробником === */}
-                                        <button 
-                                            onClick={() => handleOpenModalForTariff(tariff, promoPrice, "G-PON")} 
+                                        <a 
+                                            href='#cta'
                                             className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                                         >
                                             Залишити заявку
-                                        </button>
+                                        </a>
 
                                         <Link href="/prices" className={isFeatured ? "w-full block text-center bg-transparent hover:bg-white/20 text-white font-bold py-2 px-4 rounded-lg transition-colors border border-white/50" : "w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300"}>Детальніше</Link>
                                     </div>

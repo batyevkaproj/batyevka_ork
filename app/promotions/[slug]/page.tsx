@@ -10,6 +10,7 @@ import Tvthree from '@/components/old/promotions/Tvthree';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/business-page/ContactForm';
+import WaterText from '@/components/business-page/WaterText';
 // Import other promotion components as needed...
 
 // It's good practice to define the types for params
@@ -66,9 +67,9 @@ export default function PromotionPage({ params }: PromotionPageProps) {
   return (
     <>
       <Header theme={'white'} business={false}/>
-      <PromotionComponent />
+      <PromotionComponent/>
       <ContactForm theme = {'white'}/>
-      <Footer theme={'white'}/> 
+      <Footer theme={'white'}/>
     </>
   );
 }

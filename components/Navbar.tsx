@@ -102,6 +102,7 @@ const Navbar = ({ theme }: any) => {
                         </Image>
                     </Button>
                 </Link>
+                
 
                 {/* === ВИПРАВЛЕННЯ №1: Оновлюємо onClick для першої кнопки === */}
                 <Button onClick={handleOpenModal} variant="connectMobMob">

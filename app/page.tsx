@@ -45,7 +45,7 @@ function HomeContent() {
       {/* <Tarifs /> */}
       {/* <TarifsCountInfo theme="white" /> */}
       {/* <BatyevkaPage/> */}
-      <ContactForm theme="white" />
+      {/* <ContactForm theme="white" /> */}
       {/* white text on hite screen here <InfoBlock /> */}
       <Footer theme='white' />
     </div>

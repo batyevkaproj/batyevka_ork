@@ -77,7 +77,7 @@ const XgsPonPage: React.FC = () => {
     };
 
     return (
-        <div className='mt-4'>
+        <div className='mt-4 scroll-smooth'>
             <Head>
                 <title>Технологія 10G-PON — Batyevka.NET</title>
                 <meta charSet="UTF-8" />
@@ -95,9 +95,9 @@ const XgsPonPage: React.FC = () => {
                         <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
                             Відкрийте для себе новий стандарт швидкості з технологією XGS-PON. Симетричний канал до 10 Гбіт/с, мінімальні затримки та безмежні можливості для найвимогливіших користувачів.
                         </p>
-                        <Link href="#tariffs" className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        <a href="#tariffs" className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
                             Обрати тариф
-                        </Link>
+                        </a>
                     </section>
 
                     {/* ----- WHAT IS XG-PON SECTION ----- */}
@@ -186,12 +186,13 @@ const XgsPonPage: React.FC = () => {
                                         </ul>
                                         
                                         {/* === ВИПРАВЛЕНО: Замінено Link на button з новим обробником === */}
-                                        <button 
-                                            onClick={() => handleOpenModal(tariff, finalPromoPrice, finalFullPrice)} 
+                                        <a 
+                                            // onClick={() => handleOpenModal(tariff, finalPromoPrice, finalFullPrice)}
+                                            href='#cta'
                                             className="w-full mt-auto block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-3 px-4 rounded-lg transition-colors"
                                         >
                                             Залишити заявку
-                                        </button>
+                                        </a>
                                     </div>
                                 );
                             })}

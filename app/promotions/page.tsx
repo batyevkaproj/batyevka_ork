@@ -16,8 +16,9 @@ export default function Home() {
     <div className={'min-w-[350px] bg-white'}>
       <Header theme={'white'} business={false}/>
       <Promotions/>
+      <WaterText theme={'white'}/>
       <ContactForm theme = {'white'}/>
-      <Footer theme={'white'}/>
+      <Footer theme={'white'}/> 
     </div>
   );
 }

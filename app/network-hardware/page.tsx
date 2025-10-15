@@ -9,6 +9,8 @@ import Image from 'next/image';
 import { useModal } from '@/hooks/use-modal-store';
 import { useToast } from '@/hooks/use-toast';
 import { ShoppingCart } from 'lucide-react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 // --- Дані про товари ---
 // ВАЖЛИВО: Замініть шляхи до зображень на ваші власні.
@@ -19,7 +21,7 @@ const productsData = [
     description: 'AC750 дводіапазонний Wi-Fi роутер.',
     price: 1100,
     category: 'Роутери',
-    image: '/img/hardware/archer-c24.png', // Замініть на реальний шлях
+    image: '/img/magazin/archer-c24.jpg', // Замініть на реальний шлях
   },
   {
     id: 2,
@@ -27,7 +29,7 @@ const productsData = [
     description: 'AC1200 MU-MIMO Wi-Fi роутер.',
     price: 1550,
     category: 'Роутери',
-    image: '/img/hardware/archer-c64.png', // Замініть на реальний шлях
+    image: '/img/magazin/archer-c64.webp', // Замініть на реальний шлях
   },
   {
     id: 3,
@@ -35,7 +37,7 @@ const productsData = [
     description: 'Дводіапазонний Wi-Fi 6 роутер AX1500.',
     price: 2200,
     category: 'Роутери',
-    image: '/img/hardware/archer-ax10.png', // Замініть на реальний шлях
+    image: '/img/magazin/archer_ax10.jpg ', // Замініть на реальний шлях
   },
   {
     id: 4,
@@ -43,7 +45,7 @@ const productsData = [
     description: 'Дводіапазонний Wi-Fi 6 роутер AX1800.',
     price: 2500,
     category: 'Роутери',
-    image: '/img/hardware/archer-ax23.png', // Замініть на реальний шлях
+    image: '/img/magazin/archer-ax23.webp', // Замініть на реальний шлях
   },
   {
     id: 5,
@@ -51,7 +53,7 @@ const productsData = [
     description: 'Домашня Mesh Wi-Fi система AC1200.',
     price: 2800,
     category: 'Роутери',
-    image: '/img/hardware/deco-e4.png', // Замініть на реальний шлях
+    image: '/img/magazin/Deco_E4.jpg', // Замініть на реальний шлях
   },
   {
     id: 6,
@@ -59,15 +61,7 @@ const productsData = [
     description: 'AC1900 гігабітний Wi-Fi роутер.',
     price: 1400,
     category: 'Роутери',
-    image: '/img/hardware/mercusys-mr50g.png', // Замініть на реальний шлях
-  },
-  {
-    id: 7,
-    name: 'Foxgate ONU G1001Z',
-    description: 'Абонентський термінал для G-PON мереж.',
-    price: 850,
-    category: 'Медіаконвертери',
-    image: '/img/hardware/foxgate-onu.png', // Замініть на реальний шлях
+    image: '/img/magazin/mr50g.webp', // Замініть на реальний шлях
   },
   {
     id: 8,
@@ -75,7 +69,7 @@ const productsData = [
     description: '5-портовий гігабітний комутатор.',
     price: 600,
     category: 'Комутатори',
-    image: '/img/hardware/switch-ls1005g.png', // Замініть на реальний шлях
+    image: '/img/magazin/ls1005g.webp', // Замініть на реальний шлях
   },
   {
     id: 9,
@@ -83,7 +77,7 @@ const productsData = [
     description: 'Кабель для підключення пристроїв до мережі.',
     price: 100,
     category: 'Кабель',
-    image: '/img/hardware/patch-cord.png', // Замініть на реальний шлях
+    image: '/img/magazin/cat.5e-utp-cord-0.5m-gry.webp', // Замініть на реальний шлях
   },
   {
     id: 10,
@@ -91,7 +85,7 @@ const productsData = [
     description: 'Кабель для підключення пристроїв до мережі.',
     price: 120,
     category: 'Кабель',
-    image: '/img/hardware/patch-cord.png', // Замініть на реальний шлях
+    image: '/img/magazin/cat.5e-utp-cord-0.5m-gry.webp', // Замініть на реальний шлях
   },
    {
     id: 11,
@@ -99,7 +93,7 @@ const productsData = [
     description: 'Кабель для підключення пристроїв до мережі.',
     price: 200,
     category: 'Кабель',
-    image: '/img/hardware/patch-cord.png', // Замініть на реальний шлях
+    image: '/img/magazin/cat.5e-utp-cord-0.5m-gry.webp', // Замініть на реальний шлях
   },
 ];
 
@@ -143,6 +137,7 @@ const NetworkHardwarePage: React.FC = () => {
 
     return (
         <>
+        <Header theme={'white'} business={false}/>
             <Head>
                 <title>Мережеве обладнання — Batyevka.NET</title>
                 <meta name="description" content="Роутери, медіаконвертери, комутатори та інше мережеве обладнання від провайдера Batyevka.NET." />
@@ -150,11 +145,11 @@ const NetworkHardwarePage: React.FC = () => {
             <main className="container mx-auto px-4 py-8 md:py-12">
                 {/* --- Хлібні крихти та заголовок --- */}
                 <div className="mb-8">
-                    <nav className="text-sm mb-2">
+                    {/* <nav className="text-sm mb-2">
                         <Link href="/" className="text-gray-500 hover:text-[#DC662D]">Головна</Link>
                         <span className="mx-2 text-gray-400">/</span>
                         <span className="text-gray-800 font-semibold">Мережеве обладнання</span>
-                    </nav>
+                    </nav> */}
                     <h1 className="text-4xl md:text-5xl font-extrabold text-[#1E293B]">
                         Мережеве обладнання
                     </h1>
@@ -238,6 +233,8 @@ const NetworkHardwarePage: React.FC = () => {
                     </div>
                 </div>
             </main>
+
+            <Footer theme={'white'}/>
         </>
     );
 };

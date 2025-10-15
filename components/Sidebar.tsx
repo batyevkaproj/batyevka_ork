@@ -16,6 +16,7 @@ import { usePathname } from "next/navigation";
 
 // --- Dark Theme Assets ---
 import wallet from '../public/img/wallet.svg';
+import gear from '../public/img/gear.svg'
 import _247 from '../public/img/247.svg';
 import telephon from '../public/img/phone.svg';
 import orange_building from '../public/img/orange_building.svg';
@@ -83,10 +84,16 @@ const Sidebar = ({ variant = 'dark' }: SidebarProps) => {
                     <Image src={wallet} className={`w-8 h-8`} alt={'wallet'}></Image>
                     <span className="ml-[15px] font-semibold text-[#51B18B]">Оплата</span>
                 </Link>
-                <Link className="flex justify-start mb-[20px]" href={"https://www.batyevka.net/uk/computer-help"} >
+                <Link className="flex justify-start mb-[20px]" href={"/computer-help"} >
                     <Image src={_247} className={`w-8 h-8`} alt={'options'}></Image>
                     <span className="ml-[15px] font-semibold text-[#56AABF]">Підтримка</span>
                 </Link>
+                <Link className="flex justify-start mb-[20px]" href={"/network-hardware"} >
+                    <Image src={gear} className={`w-8 h-8`} alt={'options'}></Image>
+                    <span className="ml-[15px] font-semibold text-[#56AABF]">Обладнання</span>
+                </Link>
+
+                
             </div>
 
             <Accordion type="single" collapsible>
@@ -107,6 +114,7 @@ const Sidebar = ({ variant = 'dark' }: SidebarProps) => {
                         <Link href={'/xgspon'} className="mt-[10px] hover:underline">10G Інтернет</Link>
                         <Link href={'/prices'} className="mt-[10px] hover:underline">Тарифи</Link>
                         <Link href={'/promotions'} className="mt-[10px] hover:underline">Акції</Link>
+                        <Link href={'#'} className="mt-[10px] hover:underline">Телебачення</Link>
                     </AccordionContent>
                 </AccordionItem>
                 {/* Apply the same logic for other accordion items */}
@@ -118,7 +126,7 @@ const Sidebar = ({ variant = 'dark' }: SidebarProps) => {
                             <span className="ml-[10px] uppercase font-semibold text-[#DC662D]">Приватному сектору</span>
                         </AccordionTrigger>
                         <AccordionContent className={cn("flex flex-col ml-[20px] text-[13px] font-semibold", isDark ? "text-white" : "text-gray-700 bg-gray-50")}>
-                            <Link href={'/xgspon'} className="mt-[10px] hover:underline">Інтернет</Link>
+                            <Link href={'/private-sector'} className="mt-[10px] hover:underline">Інтернет</Link>
                         </AccordionContent>
                     </AccordionItem>
                 </Link>
