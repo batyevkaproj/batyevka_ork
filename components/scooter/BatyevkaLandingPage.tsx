@@ -184,7 +184,7 @@ const BatyevkaLandingPage: React.FC = () => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
                              {utpTariffs.map(tariff => {
                                 let discountValue = 0;
-                                if (tariff.value === 1 || tariff.value === 2) {
+                                if (tariff.value === 1 || tariff.value === 2 || tariff.value === 3) {
                                     discountValue = 100;
                                 }
                                 const promoPrice = tariff.price - discountValue;
@@ -226,7 +226,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                 {xgsTariffs.map(tariff => {
                                     let discountValue = 0;
                                     switch(tariff.value) {
-                                        case 1: discountValue = 600; break;
+                                        case 1: discountValue = 250; break;
                                         case 2: discountValue = 400; break;
                                         case 3: discountValue = 250; break;
                                     }
