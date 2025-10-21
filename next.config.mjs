@@ -1,12 +1,11 @@
 // @ts-check
- 
+
 /**
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
   reactStrictMode: false,
-  
-  // Added configuration for next/image
+
   images: {
     remotePatterns: [
       {
@@ -17,6 +16,16 @@ const nextConfig = {
       },
     ],
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/uk/:path*',   // match /uk and anything under it
+        destination: '/',       // redirect to root
+        permanent: true,        // use 308 redirect (SEO friendly)
+      },
+    ];
+  },
 };
- 
+
 export default nextConfig;
