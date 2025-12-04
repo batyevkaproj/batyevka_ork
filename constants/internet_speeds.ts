@@ -17,7 +17,7 @@ export const UTP_SPEEDS: SpeedItemProps[] = [
     { value: 3, speed: 1, measure: 'Гбіт', price: 250 },
 ];
 
-export const REAL_IP_PRICE = 50;
+export const REAL_IP_PRICE = 100;
 export const REAL_IP_PRICE_physic = 50;
 
 
