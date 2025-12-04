@@ -63,7 +63,7 @@ export const MEGOGO_BUNDLES: MegogoBudles[] = [
     {
         value: 3,
         name: 'Оптимальна',
-        price: 150
+        price: 200
     },
     {
         value: 4,
