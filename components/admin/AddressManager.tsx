@@ -5,7 +5,17 @@ import { AddStreetDialog } from "./AddStreetDialog";
 import { AddHouseDialog } from "./AddHouseDialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
-import { Street, House } from "@prisma/client";
+type Street = {
+  id: number;
+  name: string;
+};
+
+type House = {
+  id: number;
+  number: string;
+  streetId: number;
+  isActive: boolean;
+};
 
 import { EditStreetDialog } from "./EditStreetDialog";
 import { EditHouseDialog } from "./EditHouseDialog";
@@ -66,7 +76,11 @@ export default function AddressManager() {
     fetchData();
   }, []);
 
-  const handleEditStreet = async (id: number, name: string) => {
+const handleEditStreet = async (
+  id: number,
+  data: { name: string }
+) => {
+  const { name } = data;
     try {
       const res = await fetch(`/api/streets/${id}`, {
         method: 'PATCH',

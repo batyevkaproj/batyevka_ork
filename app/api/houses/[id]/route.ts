@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
@@ -9,13 +9,15 @@ const houseSchema = z.object({
 });
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
+
   try {
     const house = await prisma.house.findUnique({
       where: {
-        id: parseInt(params.id),
+        id: Number(id),
       },
       include: {
         street: true,
@@ -40,13 +42,14 @@ export async function GET(
 }
 
 export async function PATCH(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
+
   try {
     const body = await request.json();
-    
-    // Валидация входящих данных
+
     const validation = houseSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
@@ -55,14 +58,13 @@ export async function PATCH(
       );
     }
 
-    // Проверка существования другого дома с таким же номером на этой улице
     const existingHouse = await prisma.house.findFirst({
       where: {
         streetId: body.streetId,
         number: body.number,
         NOT: {
-          id: parseInt(params.id)
-        }
+          id: Number(id),
+        },
       },
     });
 
@@ -75,7 +77,7 @@ export async function PATCH(
 
     const updatedHouse = await prisma.house.update({
       where: {
-        id: parseInt(params.id),
+        id: Number(id),
       },
       data: {
         number: body.number,
@@ -98,13 +100,15 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
+
   try {
     await prisma.house.delete({
       where: {
-        id: parseInt(params.id),
+        id: Number(id),
       },
     });
 

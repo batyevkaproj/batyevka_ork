@@ -1,6 +1,11 @@
-import { House } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { Trash2, CheckCircle, XCircle } from "lucide-react";
+
+type House = {
+  id: number;
+  number: string;
+  isActive: boolean;
+};
 
 interface HouseListProps {
   houses: House[];
@@ -11,7 +16,7 @@ export default function HouseList({ houses, onDelete }: HouseListProps) {
   return (
     <div className="bg-white rounded-lg shadow">
       <ul className="divide-y divide-gray-200">
-        {houses.map(house => (
+        {houses.map((house) => (
           <li
             key={house.id}
             className="flex items-center justify-between p-4 hover:bg-gray-50"
@@ -24,6 +29,7 @@ export default function HouseList({ houses, onDelete }: HouseListProps) {
               )}
               <span className="text-gray-900">{house.number}</span>
             </div>
+
             <Button
               variant="ghost"
               size="sm"
@@ -33,6 +39,7 @@ export default function HouseList({ houses, onDelete }: HouseListProps) {
             </Button>
           </li>
         ))}
+
         {houses.length === 0 && (
           <li className="p-4 text-center text-gray-500">
             Нет добавленных домов

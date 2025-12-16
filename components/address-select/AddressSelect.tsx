@@ -1,11 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Street, House } from "@prisma/client";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
+type Street = {
+  id: number;
+  name: string;
+};
+
+type House = {
+  id: number;
+  number: string;
+  streetId: number;
+};
 
 type AddressSelectTheme = 'light' | 'dark';
 

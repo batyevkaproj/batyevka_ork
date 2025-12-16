@@ -1,3 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+FILE="components/scooter/BatyevkaPageTwo.tsx"
+
+echo "▶ Fixing broken TSX file: $FILE"
+
+cat > "$FILE" <<'EOF'
 import React from "react";
 import Link from "next/link";
 
@@ -10,3 +18,7 @@ export default function BatyevkaPageTwo() {
     </div>
   );
 }
+EOF
+
+echo "✅ File rewritten with valid TSX"
+echo "▶ Run: npm run lint"

@@ -13,8 +13,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Батиївка для бізнесу",
-  description: "Відкрийте для себе можливості швідкісного інтернету від Батиївки для бізнесу"
+  title: "Батиївка",
+  description: "Відкрийте для себе можливості швідкісного інтернету від Батиївки"
 };
 
 export default function RootLayout({ children }: Readonly<{

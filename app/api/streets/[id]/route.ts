@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
@@ -7,13 +8,15 @@ const streetSchema = z.object({
 });
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
+
   try {
     const street = await prisma.street.findUnique({
       where: {
-        id: parseInt(params.id),
+        id: Number(id),
       },
       include: {
         houses: true,
@@ -38,13 +41,14 @@ export async function GET(
 }
 
 export async function PATCH(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
+
   try {
     const body = await request.json();
-    
-    // Валидация входящих данных
+
     const validation = streetSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
@@ -53,13 +57,12 @@ export async function PATCH(
       );
     }
 
-    // Проверка на существование улицы с таким же названием
-    const existingStreet = await prisma.street.findUnique({
-      where: { 
+    const existingStreet = await prisma.street.findFirst({
+      where: {
         name: body.name,
         NOT: {
-          id: parseInt(params.id)
-        }
+          id: Number(id),
+        },
       },
     });
 
@@ -72,7 +75,7 @@ export async function PATCH(
 
     const updatedStreet = await prisma.street.update({
       where: {
-        id: parseInt(params.id),
+        id: Number(id),
       },
       data: {
         name: body.name,
@@ -90,14 +93,15 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
+
   try {
-    // Проверяем, есть ли дома на этой улице
     const housesCount = await prisma.house.count({
       where: {
-        streetId: parseInt(params.id),
+        streetId: Number(id),
       },
     });
 
@@ -110,7 +114,7 @@ export async function DELETE(
 
     await prisma.street.delete({
       where: {
-        id: parseInt(params.id),
+        id: Number(id),
       },
     });
 

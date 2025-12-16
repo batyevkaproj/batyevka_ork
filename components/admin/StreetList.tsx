@@ -1,6 +1,10 @@
-import { Street } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+
+type Street = {
+  id: number;
+  name: string;
+};
 
 interface StreetListProps {
   streets: Street[];
@@ -9,24 +13,25 @@ interface StreetListProps {
   selectedStreet: Street | null;
 }
 
-export default function StreetList({ 
-  streets, 
-  onDelete, 
+export default function StreetList({
+  streets,
+  onDelete,
   onSelect,
-  selectedStreet 
+  selectedStreet,
 }: StreetListProps) {
   return (
     <div className="bg-white rounded-lg shadow">
       <ul className="divide-y divide-gray-200">
-        {streets.map(street => (
+        {streets.map((street) => (
           <li
             key={street.id}
             className={`flex items-center justify-between p-4 hover:bg-gray-50 cursor-pointer ${
-              selectedStreet?.id === street.id ? 'bg-blue-50' : ''
+              selectedStreet?.id === street.id ? "bg-blue-50" : ""
             }`}
             onClick={() => onSelect(street)}
           >
             <span className="text-gray-900">{street.name}</span>
+
             <Button
               variant="ghost"
               size="sm"
@@ -39,6 +44,7 @@ export default function StreetList({
             </Button>
           </li>
         ))}
+
         {streets.length === 0 && (
           <li className="p-4 text-center text-gray-500">
             Нет добавленных улиц
