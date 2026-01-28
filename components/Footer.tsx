@@ -49,15 +49,25 @@ const Footer = ( {theme}: ThemeProps ) => {
                     </div>
                     <div className={'col-span-1 row-span-2 max-[1600px]:col-start-2 max-[1600px]:row-start-2'}>
                         <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[8px]`}>Інформація абонентам</h3>
-                        <ul>
-                            <li className='hover:text-[#DC662D]'>Публічний договір</li>
-                            <li className='hover:text-[#DC662D]'>Мапа покриття</li>
-                            <li className='hover:text-[#DC662D]'>
-                                <Link href="https://my.batyevka.net/cgi-bin/index.cgi" >Особитстий кабінет</Link>
-                                </li>
-                            <li className='hover:text-[#DC662D]'>Додаткові опції</li>
-                            <li className='hover:text-[#DC662D]'>Ще щось цікаве</li>
-                        </ul>
+<ul>
+  <li className='hover:text-[#DC662D]'>
+	<Link href="https://old.batyevka.net/uk/blog-dogovor">Публічний договір</Link>
+  </li>
+  <li className='hover:text-[#DC662D]'>Мапа покриття</li>
+  <li className='hover:text-[#DC662D]'>
+    <Link href="https://my.batyevka.net/cgi-bin/index.cgi">Особистий кабінет</Link>
+  </li>
+
+  <li>
+    <a
+      href="/Протокол_вимірювання_якості_БАТИЇВКА.pdf"
+      download
+      className="hover:text-[#DC662D]"
+    >
+      Протокол вимірювання якості (PDF)
+    </a>
+  </li>
+</ul>
                     </div>
                     <div>
                         <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[8px]`}>Технічна підтримка</h3>
@@ -106,23 +116,30 @@ const Footer = ( {theme}: ThemeProps ) => {
                 <AccordionTrigger className="flex items-center w-full">
                     <h3 className={`w-full font-medium text-left`}>Інформація абонентам</h3>
                 </AccordionTrigger>
-                <AccordionContent className="flex flex-col">
-                    <Link href={'#'} className='hover:text-[#DC662D]'>
-                    Публічний договір
-                    </Link>
-                    <Link href={'#'} className='hover:text-[#DC662D]'>
-                        Мапа покриття
-                    </Link>
-                    <Link href={'#'} className='hover:text-[#DC662D]'>
-                        Особистий кабінет
-                    </Link>
-                    <Link href={'#'} className='hover:text-[#DC662D]'>
-                        Додаткові опції
-                    </Link>
-                    <Link href={'#'} className='hover:text-[#DC662D]'>
-                        Ще щось цікаве
-                    </Link>
-                </AccordionContent>
+<AccordionContent className="flex flex-col">
+  <Link
+    href="https://old.batyevka.net/uk/blog-dogovor"
+    className="hover:text-[#DC662D]"
+  >
+    Публічний договір
+  </Link>
+
+  <Link href={'#'} className='hover:text-[#DC662D]'>
+    Мапа покриття
+  </Link>
+
+  <Link href="https://my.batyevka.net/cgi-bin/index.cgi" className='hover:text-[#DC662D]'>
+    Особистий кабінет
+  </Link>
+
+  <a
+    href="/Протокол_вимірювання_якості_БАТИЇВКА.pdf"
+    download
+    className="hover:text-[#DC662D]"
+  >
+    Протокол вимірювання якості (PDF)
+  </a>
+</AccordionContent>
             </AccordionItem>
             
             <AccordionItem value="item-4">
