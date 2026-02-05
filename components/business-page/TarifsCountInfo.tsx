@@ -49,7 +49,7 @@ const TarifsCountInfo = ( {theme}: ThemeProps ) => {
                         </div>
                         <div className="flex mb-[40px] max-[2377px]:mb-[20px] min-[3644px]:mb-[60px]">
                             <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
-                            <p>Перехід на тариф Інтернет з меншою вартістю – 100 грн. разово тариф змінюється з 1 числа наступного місяця. Перехід на тариф Інтернет із більшою вартістю – 45 грн. разово тариф змінюється з наступного робочого дня з перерахунком абонентної плати. Увімкнення/вимкнення передплати Телебачення від МЕГОГО – безкоштовно.</p>
+                            <p>Перехід на тариф Інтернет з меншою вартістю – 0 грн. разово тариф змінюється з 1 числа наступного місяця. Перехід на тариф Інтернет із більшою вартістю – 0 грн. разово тариф змінюється з наступного робочого дня з перерахунком абонентної плати. Увімкнення/вимкнення передплати Телебачення від МЕГОГО – безкоштовно.</p>
                         </div>
                     </div>
                 </div>
@@ -80,8 +80,8 @@ const TarifsCountInfo = ( {theme}: ThemeProps ) => {
                     </div>
                     <div className="flex mb-[10px]" onClick={toggleMechanicVisibility_4}>
                         <Image src={green_galochka} alt='green_checkArrow' className="shrink-0 self-start mr-[8px] mt-[2px]" />
-                        <p>Перехід на тариф Інтернет з меншою вартістю – 100 грн. разово тариф змінюється<span className={isMechanicVisible_4 ? 'hidden' : ''}>...</span>
-                        <span className={isMechanicVisible_4 ? '' : 'hidden'}> із  1 числа наступного місяця. Перехід на тариф Інтернет із більшою вартістю – 45 грн. разово, тариф змінюється із наступного робочого дня із перерахунком абонентної плати. Підключення/відключення підписки ТБ від  МЕГОГО – безкоштовно.</span>
+                        <p>Перехід на тариф Інтернет з меншою вартістю – 0 грн. разово тариф змінюється<span className={isMechanicVisible_4 ? 'hidden' : ''}>...</span>
+                        <span className={isMechanicVisible_4 ? '' : 'hidden'}> із  1 числа наступного місяця. Перехід на тариф Інтернет із більшою вартістю – 0 грн. разово, тариф змінюється із наступного робочого дня із перерахунком абонентної плати. Підключення/відключення підписки ТБ від  МЕГОГО – безкоштовно.</span>
                         <ChevronDown className={`inline-flex absolute right-0 end h-4 w-4 transition-transform + ${isMechanicVisible_4 ? 'rotate-0 text-[#DC662D]': 'rotate-[-90deg]'}`}/>
                         </p>
                     </div>

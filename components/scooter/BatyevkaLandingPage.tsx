@@ -241,7 +241,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                     );
                                 })}
                             </div>
-                            <p className="text-sm mb-6"><span className="font-bold">Вартість підключення до тарифів XGS-PON:</span> 2999 грн.</p>
+                            <p className="text-sm mb-6"><span className="font-bold">Вартість підключення до тарифів XGS-PON:</span> 5999 грн.</p>
                             <Link href="/xgspon" className="bg-[#5F6061] hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-lg transition-colors">Дізнатись більше</Link>
                         </div>
                     </section>

@@ -61,7 +61,7 @@ const XgsPonPage: React.FC = () => {
                 },
                 hasStaticIP: false,
                 prepaidMonths: 0,
-                setupPrice: 2999, // Вартість підключення для XGS-PON, як вказано на сторінці
+                setupPrice: 5999, // Вартість підключення для XGS-PON, як вказано на сторінці
                 routerPrice: 0,
             };
 
@@ -197,7 +197,7 @@ const XgsPonPage: React.FC = () => {
                                 );
                             })}
                         </div>
-                        <p className="text-center text-gray-500 mt-8">Вартість підключення: 2999 грн.</p>
+                        <p className="text-center text-gray-500 mt-8">Вартість підключення: 5999 грн.</p>
                     </section>
 
                     {/* ----- MEGOGO SELECTION SECTION ----- */}
