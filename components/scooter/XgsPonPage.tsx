@@ -172,7 +172,7 @@ const XgsPonPage: React.FC = () => {
                                             <span className={`text-lg font-medium ml-1 ${isFeatured ? 'text-gray-300' : 'text-gray-500'}`}>грн/міс</span>
                                         </p>
                                         <p className={`text-sm mb-6 ${isFeatured ? 'text-gray-400' : 'text-gray-500'}`}>
-                                            перші 4 місяці, далі — {finalFullPrice} грн/міс
+                                            перший місяць, далі — {finalFullPrice} грн/міс
                                         </p>
                                         <ul className={`space-y-3 text-left mb-8 flex-grow ${isFeatured ? 'text-gray-300' : 'text-gray-700'}`}>
                                             <li className="flex items-center">

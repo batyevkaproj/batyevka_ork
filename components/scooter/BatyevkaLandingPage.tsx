@@ -196,8 +196,8 @@ const BatyevkaLandingPage: React.FC = () => {
                                         <span className={isFeatured ? "inline-block bg-white/20 text-white text-xs font-bold px-2 py-1 rounded-full mb-2" : "inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2"}>G-PON</span>
                                         <h3 className={`text-2xl font-bold mb-2 ${isFeatured ? '' : 'text-[#5F6061]'}`}>{tariff.speed} {tariff.measure}/с</h3>
                                         <p className="text-4xl font-extrabold text-[#DC662D]">{promoPrice}<span className="text-xl font-bold"> грн/міс</span></p>
-                                        <p className={`text-sm ${isFeatured ? 'text-white/90' : 'text-[#5F6061]'} mb-4`}>перші 4 місяці, далі — {tariff.price} грн/міс</p>
-                                        <p className={`text-sm font-bold mb-2 ${isFeatured ? '' : 'text-[#51B18B]'}`}>Підключення — безкоштовне</p>
+                                        <p className={`text-sm ${isFeatured ? 'text-white/90' : 'text-[#5F6061]'} mb-4`}>перший місяць, далі — {tariff.price} грн/міс</p>
+                                        <p className={`text-sm font-bold mb-2 ${isFeatured ? '' : 'text-[#51B18B]'}`}>Підключення — 299 грн</p>
                                         <p className={`text-sm font-bold ${isFeatured ? 'text-white/90' : 'text-[#5984B2]'}`}>+ MEGOGO ТБ (170+ каналів)</p>
                                     </div>
                                     <div className="mt-auto space-y-2 pt-4">
@@ -236,7 +236,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                         <div key={tariff.value} className="bg-white p-6 rounded-lg shadow-md border flex flex-col">
                                             <h3 className="text-2xl font-bold text-[#5F6061]">{tariff.speed} {tariff.measure}/с</h3>
                                             <p className="text-2xl font-bold text-[#DC662D] mt-2">{promoPrice}<span className="text-lg font-normal"> грн/міс</span></p>
-                                            <p className="text-xs text-[#5F6061]">перші 4 місяці, далі — {tariff.price} грн/міс</p>
+                                            <p className="text-xs text-[#5F6061]">перший місяць, далі — {tariff.price} грн/міс</p>
                                         </div>
                                     );
                                 })}
