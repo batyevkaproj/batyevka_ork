@@ -66,8 +66,8 @@ const [speedGpon, setSpeedGpon] = useState<number>(XGS_DEFAULT_SPEED);
     // =========================
     // LOCK "Обери Інтернет швидкість" AT 1 Гбіт WHEN G-PON IS SELECTED
     // =========================
-    const isGponSelected = isTarifsSwitch; // <-- IMPORTANT for your current UI screenshot
-
+//    const isGponSelected = isTarifsSwitch; // <-- IMPORTANT for your current UI screenshot
+const isGponSelected = false;
     // pick the 1Gb option from UTP_SPEEDS. If you don't have explicit "1 Гбіт",
     // fallback to "max value" (usually the last mark).
     const oneGigUtpValue = useMemo(() => {
