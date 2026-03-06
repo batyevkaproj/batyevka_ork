@@ -1,50 +1,34 @@
-type MegogoBudles = {
+export type MegogoBudles = {
     value: number,
     name:string,
     price: number
 }
 
-type PrepaidMonths = {
+export type PrepaidMonths = {
     value: number,
     months: number,
     sum: number
 }
 
-export const MIN_MOBILE = 3;
-export const MID_G_MOBILE = 4;
-export const MID_MOBILE = 5;
-export const MAX_MOBILE = 10;
-
+// Тепер використовуємо рівномірні кроки 1, 2, 3 для всіх повзунків інтернету, 
+// щоб відстань між точками була однаковою на екрані.
 export const MIN = 1;
-export const MID_G = 3;
-export const MID = 5;
-export const MAX = 10;
+export const MID = 2;
+export const MAX = 3;
 
-export const marks = [
-    {
-        value: MIN,
-    },
-    {
-        value: MID,
-    },
-    {
-        value: MAX,
-    },
+export const marks =[
+    { value: MIN },
+    { value: MID },
+    { value: MAX },
 ];
 
-export const MARKS_MOBILE = [
-    {
-        value: MIN_MOBILE,
-    },
-    {
-        value: MID_MOBILE,
-    },
-    {
-        value: MAX_MOBILE,
-    },
+export const MARKS_MOBILE =[
+    { value: MIN },
+    { value: MID },
+    { value: MAX },
 ];
 
-export const MEGOGO_BUNDLES: MegogoBudles[] = [
+export const MEGOGO_BUNDLES: MegogoBudles[] =[
     {
         value: 0,
         name: 'Безкоштовне ТБ',
@@ -72,7 +56,7 @@ export const MEGOGO_BUNDLES: MegogoBudles[] = [
     }
 ];
 
-export const MONTHS: PrepaidMonths[] = [
+export const MONTHS: PrepaidMonths[] =[
     {
         value: 1,
         months: 1,

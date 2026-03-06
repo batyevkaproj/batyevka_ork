@@ -1,27 +1,23 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
 // --- Імпортуємо хуки та константи ---
 import {
-    GPON_SPEEDS,
-    UTP_SPEEDS,
     REAL_IP_PRICE_physic as REAL_IP_PRICE,
 } from "@/constants/internet_speeds";
 import { useModal } from "@/hooks/use-modal-store";
 import { useToast } from "@/hooks/use-toast";
-
 
 import news1 from "../../public/img/img_useful_information04.svg"
 import news2 from "../../public/img/img_useful_information03.svg"
 import news3 from "../../public/img/img_useful_information02.svg"
 import news4 from "../../public/img/action01.svg"
 
-
-// --- Компоненти іконок (без змін) ---
+// --- Компоненти іконок ---
 const LightningIcon: React.FC = () => (
     <svg className="h-10 w-10 text-[#DC662D] mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -48,21 +44,27 @@ const ChevronDownIcon: React.FC = () => (
     </svg>
 );
 
+const megogoPlans =[
+    { id: 'free', name: 'Безкоштовне ТБ', desc: '170+ національних та ефірних каналів.', price: 'Вже у тарифі', priceColor: 'text-[#51B18B]' },
+    { id: 'national', name: 'Національне ТБ', desc: '255+ каналів, колекція фільмів та мультфільмів.', price: '+ 50 грн/міс', priceColor: 'text-[#5984B2]' },
+    { id: 'light', name: 'Легка', desc: '375+ каналів, колекція фільмів та мультфільмів.', price: '+ 85 грн/міс', priceColor: 'text-[#5984B2]' },
+    { id: 'optimal', name: 'Оптимальна', desc: '445+ каналів, преміум-кіно та спорт (Setanta).', price: '+ 200 грн/міс', priceColor: 'text-[#5984B2]' },
+    { id: 'maximal', name: 'Максимальна', desc: '480+ каналів, HBO, Ліга Чемпіонів та максимум кіно.', price: '+ 350 грн/міс', priceColor: 'text-[#5984B2]' },
+];
 
 const BatyevkaLandingPage: React.FC = () => {
 
     const { onOpen } = useModal();
     const { toast } = useToast();
     
-    // Сортування тарифів
-    const utpTariffs = [...UTP_SPEEDS].sort((a, b) => a.speed - b.speed);
-    const xgsTariffs = [...GPON_SPEEDS].sort((a, b) => a.speed - b.speed);
-    
+    // Стани для відстеження обраного тарифу та підписки
+    const[selectedTariff, setSelectedTariff] = useState<number | null>(3); // 3-й тариф виділений за замовчуванням
+    const [selectedMegogo, setSelectedMegogo] = useState<string | null>('light');
+
     // =================================================================
-    // === НОВІ ОБРОБНИКИ ДЛЯ ВІДКРИТТЯ МОДАЛЬНОГО ВІКНА ==============
+    // === ОБРОБНИКИ ДЛЯ ВІДКРИТТЯ МОДАЛЬНОГО ВІКНА ====================
     // =================================================================
 
-    // Обробник для загальних кнопок (без прив'язки до тарифу)
     const handleOpenModalGeneral = () => {
         try {
             const orderData = {
@@ -87,22 +89,19 @@ const BatyevkaLandingPage: React.FC = () => {
         }
     };
 
-    // Обробник для кнопок на картках тарифів
-    const handleOpenModalForTariff = (tariff: any, promoPrice: number, type: string) => {
+    const handleOpenModalForTariff = (speed: number, measure: string, price: number, connectionPrice: number, type: string) => {
         try {
-            if (!tariff) throw new Error("Дані тарифу не знайдено");
-
             const orderData = {
                 internetType: type,
-                internetSpeed: tariff.speed,
-                internetMeasure: tariff.measure,
-                internetPrice: promoPrice,
-                regularPrice: tariff.price,
-                totalMonthlyPrice: promoPrice,
-                hasTV: true, // Всі тарифи G-PON включають MEGOGO
+                internetSpeed: speed,
+                internetMeasure: measure,
+                internetPrice: price,
+                regularPrice: price,
+                totalMonthlyPrice: price,
+                hasTV: true,
                 hasStaticIP: false,
                 prepaidMonths: 0,
-                setupPrice: 0, // Підключення безкоштовне для G-PON
+                setupPrice: connectionPrice,
                 routerPrice: 0,
             };
             onOpen("phone-input", { orderData });
@@ -110,9 +109,37 @@ const BatyevkaLandingPage: React.FC = () => {
             toast({
                 variant: "destructive",
                 title: "Помилка",
-                description: error instanceof Error ? error.message : "Помилка формування заявки"
+                description: "Помилка формування заявки"
             });
         }
+    };
+
+    // Обробник кліку на всю картку тарифу
+    const handleTariffClick = (tariffId: number, megogoId: string) => {
+        setSelectedTariff(tariffId);
+        setSelectedMegogo(megogoId);
+    };
+
+    // Обробник кліку на текст "+ MEGOGO" всередині тарифу
+    const handleMegogoLinkClick = (e: React.MouseEvent, megogoId: string, tariffId: number) => {
+        e.stopPropagation(); // Запобігаємо кліку на саму картку
+        setSelectedMegogo(megogoId);
+        setSelectedTariff(tariffId);
+        const element = document.getElementById('megogo-section');
+        if (element) {
+            const y = element.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({ top: y - 100, behavior: 'smooth' });
+        }
+    };
+
+    // Обробник кліку на картку передплати MEGOGO
+    const handleMegogoPlanClick = (megogoId: string) => {
+        setSelectedMegogo(megogoId);
+        // Зв'язуємо клік на MEGOGO з відповідним тарифом
+        if (megogoId === 'free') setSelectedTariff(1);
+        else if (megogoId === 'national') setSelectedTariff(2);
+        else if (megogoId === 'light') setSelectedTariff(3);
+        else setSelectedTariff(null); // Якщо вибрана підписка, якої немає в тарифах
     };
 
     return (
@@ -122,7 +149,6 @@ const BatyevkaLandingPage: React.FC = () => {
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 
-                {/* Google Fonts та стилі залишаються тут, але краще їх винести у _app.tsx */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
@@ -146,9 +172,9 @@ const BatyevkaLandingPage: React.FC = () => {
                         <p className="text-lg md:text-xl text-[#5F6061] max-w-3xl mx-auto mb-8">
                             Batyevka.NET забезпечує стабільний та безперебійний інтернет і сучасне цифрове телебачення у Солом’янському районі Києва. Технології G-PON та XGS-PON тримають вас онлайн навіть під час енергетичних викликів.
                         </p>
-                        <a href="#cta" className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        <button onClick={handleOpenModalGeneral} className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
                             Підключитись
-                        </a>
+                        </button>
                     </section>
 
                     {/* ----- ADVANTAGES SECTION ----- */}
@@ -178,98 +204,172 @@ const BatyevkaLandingPage: React.FC = () => {
                         </div>
                     </section>
                     
-                    {/* ----- TARIFFS UTP SECTION (DYNAMIC) ----- */}
+                    {/* ----- TARIFFS PON SECTION ----- */}
                     <section className="py-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Популярні тарифи G-PON</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Популярні тарифи PON</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-                             {utpTariffs.map(tariff => {
-                                let discountValue = 0;
-                                if (tariff.value === 1 || tariff.value === 2 || tariff.value === 3) {
-                                    discountValue = 100;
-                                }
-                                const promoPrice = tariff.price - discountValue;
-                                const isFeatured = tariff.value === 2;
+                            
+                            {/* --- ТАРИФ 1 --- */}
+                            <article 
+                                onClick={() => handleTariffClick(1, 'free')}
+                                className={`p-6 rounded-lg flex flex-col transition-all duration-300 cursor-pointer relative ${
+                                    selectedTariff === 1 
+                                    ? 'ring-2 ring-[#DC662D] shadow-2xl transform md:scale-105 z-10 bg-white border-transparent' 
+                                    : 'border border-gray-200/80 shadow-lg hover:-translate-y-1 bg-white'
+                                }`}
+                            >
+                                <div className="flex-grow">
+                                    <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">G-PON</span>
+                                    <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">1 Гбіт/с</h3>
+                                    <p className="text-4xl font-extrabold text-[#DC662D]">250<span className="text-xl font-bold"> грн/міс</span></p>
+                                    <p className="text-sm text-[#5F6061] mb-4">регулярна ціна</p>
+                                    <p className="text-sm font-bold mb-2 text-[#51B18B]">Підключення — 299 грн</p>
+                                    <p 
+                                        className="text-sm font-bold text-[#5984B2] hover:text-[#DC662D] transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
+                                        onClick={(e) => handleMegogoLinkClick(e, 'free', 1)}
+                                    >
+                                        + MEGOGO ТБ (170+ каналів)
+                                    </p>
+                                </div>
+                                <div className="mt-auto space-y-2 pt-4 relative z-20">
+                                    <button 
+                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(1, "Гбіт", 250, 299, "G-PON"); }}
+                                        className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
+                                    >
+                                        Залишити заявку
+                                    </button>
+                                    <Link 
+                                        href="/prices" 
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300"
+                                    >
+                                        Детальніше
+                                    </Link>
+                                </div>
+                            </article>
 
-                                return (
-                                <article key={tariff.value} className={isFeatured ? "bg-[#5F6061] text-white p-6 rounded-lg shadow-2xl flex flex-col ring-2 ring-[#DC662D] transform md:scale-105" : "bg-white p-6 rounded-lg shadow-lg flex flex-col border border-gray-200/80"}>
-                                    <div className="flex-grow">
-                                        <span className={isFeatured ? "inline-block bg-white/20 text-white text-xs font-bold px-2 py-1 rounded-full mb-2" : "inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2"}>G-PON</span>
-                                        <h3 className={`text-2xl font-bold mb-2 ${isFeatured ? '' : 'text-[#5F6061]'}`}>{tariff.speed} {tariff.measure}/с</h3>
-                                        <p className="text-4xl font-extrabold text-[#DC662D]">{promoPrice}<span className="text-xl font-bold"> грн/міс</span></p>
-                                        <p className={`text-sm ${isFeatured ? 'text-white/90' : 'text-[#5F6061]'} mb-4`}>перший місяць, далі — {tariff.price} грн/міс</p>
-                                        <p className={`text-sm font-bold mb-2 ${isFeatured ? '' : 'text-[#51B18B]'}`}>Підключення — 299 грн</p>
-                                        <p className={`text-sm font-bold ${isFeatured ? 'text-white/90' : 'text-[#5984B2]'}`}>+ MEGOGO ТБ (170+ каналів)</p>
-                                    </div>
-                                    <div className="mt-auto space-y-2 pt-4">
-                                        
-                                        {/* === ВИПРАВЛЕНО: Замінено Link на button з новим обробником === */}
-                                        <a 
-                                            href='#cta'
-                                            className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
-                                        >
-                                            Залишити заявку
-                                        </a>
+                            {/* --- ТАРИФ 2 --- */}
+                            <article 
+                                onClick={() => handleTariffClick(2, 'national')}
+                                className={`p-6 rounded-lg flex flex-col transition-all duration-300 cursor-pointer relative ${
+                                    selectedTariff === 2 
+                                    ? 'ring-2 ring-[#DC662D] shadow-2xl transform md:scale-105 z-10 bg-white border-transparent' 
+                                    : 'border border-gray-200/80 shadow-lg hover:-translate-y-1 bg-white'
+                                }`}
+                            >
+                                <div className="flex-grow">
+                                    <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">XGS-PON</span>
+                                    <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">3 Гбіт/с</h3>
+                                    <p className="text-4xl font-extrabold text-[#DC662D]">550<span className="text-xl font-bold"> грн/міс</span></p>
+                                    <p className="text-sm text-[#5F6061] mb-4">регулярна ціна</p>
+                                    <p className="text-sm font-bold mb-2 text-[#51B18B]">Підключення — 2999 грн</p>
+                                    <p 
+                                        className="text-sm font-bold text-[#5984B2] hover:text-[#DC662D] transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
+                                        onClick={(e) => handleMegogoLinkClick(e, 'national', 2)}
+                                    >
+                                        + MEGOGO Нац ТБ (300+ каналів)
+                                    </p>
+                                </div>
+                                <div className="mt-auto space-y-2 pt-4 relative z-20">
+                                    <button 
+                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(2, "Гбіт", 550, 2999, "G-PON"); }}
+                                        className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
+                                    >
+                                        Залишити заявку
+                                    </button>
+                                    <Link 
+                                        href="/prices" 
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300"
+                                    >
+                                        Детальніше
+                                    </Link>
+                                </div>
+                            </article>
 
-                                        <Link href="/prices" className={isFeatured ? "w-full block text-center bg-transparent hover:bg-white/20 text-white font-bold py-2 px-4 rounded-lg transition-colors border border-white/50" : "w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300"}>Детальніше</Link>
-                                    </div>
-                                </article>
-                             )})}
+                            {/* --- ТАРИФ 3 (Темна акцентна картка) --- */}
+                            <article 
+                                onClick={() => handleTariffClick(3, 'light')}
+                                className={`p-6 rounded-lg flex flex-col transition-all duration-300 cursor-pointer relative ${
+                                    selectedTariff === 3 
+                                    ? 'ring-2 ring-[#DC662D] shadow-2xl transform md:scale-105 z-10 bg-[#5F6061] text-white border-transparent' 
+                                    : 'border border-gray-500 shadow-lg hover:-translate-y-1 bg-[#5F6061] text-white'
+                                }`}
+                            >
+                                <div className="flex-grow">
+                                    <span className="inline-block bg-white/20 text-white text-xs font-bold px-2 py-1 rounded-full mb-2">XGS-PON</span>
+                                    <h3 className="text-2xl font-bold mb-2">5 Гбіт/с</h3>
+                                    <p className="text-4xl font-extrabold text-[#DC662D]">850<span className="text-xl font-bold"> грн/міс</span></p>
+                                    <p className="text-sm text-white/90 mb-4">регулярна ціна</p>
+                                    <p className="text-sm font-bold mb-2">Підключення — 5999 грн</p>
+                                    <p 
+                                        className="text-sm font-bold text-white/90 hover:text-white transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
+                                        onClick={(e) => handleMegogoLinkClick(e, 'light', 3)}
+                                    >
+                                        + MEGOGO ТБ Легка (370+ каналів)
+                                    </p>
+                                </div>
+                                <div className="mt-auto space-y-2 pt-4 relative z-20">
+                                    <button 
+                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(5, "Гбіт", 850, 5999, "G-PON"); }}
+                                        className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
+                                    >
+                                        Залишити заявку
+                                    </button>
+                                    <Link 
+                                        href="/prices" 
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="w-full block text-center bg-transparent hover:bg-white/20 text-white font-bold py-2 px-4 rounded-lg transition-colors border border-white/50"
+                                    >
+                                        Детальніше
+                                    </Link>
+                                </div>
+                            </article>
+
                         </div>
                     </section>
                     
-                    {/* ----- TARIFFS GPON SECTION ----- */}
+                    {/* ----- TARIFFS XGS-PON SECTION ----- */}
                     <section className="py-12">
                         <div className="bg-gray-100 rounded-lg p-8 text-center">
                             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#5F6061]">Надшвидкісні тарифи XGS-PON</h2>
                             <p className="max-w-2xl mx-auto mb-8 text-[#5F6061]">Для найвимогливіших завдань: професійного геймінгу, стрімінгу у 8K та роботи з великими обсягами даних.</p>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
-                                {xgsTariffs.map(tariff => {
-                                    let discountValue = 0;
-                                    switch(tariff.value) {
-                                        case 1: discountValue = 800; break;
-                                        case 2: discountValue = 400; break;
-                                        case 3: discountValue = 250; break;
-                                    }
-                                    const promoPrice = tariff.price - discountValue;
-                                    
-                                    return (
-                                        <div key={tariff.value} className="bg-white p-6 rounded-lg shadow-md border flex flex-col">
-                                            <h3 className="text-2xl font-bold text-[#5F6061]">{tariff.speed} {tariff.measure}/с</h3>
-                                            <p className="text-2xl font-bold text-[#DC662D] mt-2">{promoPrice}<span className="text-lg font-normal"> грн/міс</span></p>
-                                            <p className="text-xs text-[#5F6061]">перший місяць, далі — {tariff.price} грн/міс</p>
-                                        </div>
-                                    );
-                                })}
+                            
+                            <div className="flex justify-center max-w-4xl mx-auto mb-8">
+                                <div className="bg-white p-6 rounded-lg shadow-md border flex flex-col w-full max-w-sm">
+                                    <h3 className="text-2xl font-bold text-[#5F6061]">10 Гбіт/с</h3>
+                                    <p className="text-2xl font-bold text-[#DC662D] mt-2">2000<span className="text-lg font-normal"> грн/міс</span></p>
+                                    <p className="text-xs text-[#5F6061] mt-1">регулярна ціна</p>
+                                </div>
                             </div>
+
                             <p className="text-sm mb-6"><span className="font-bold">Вартість підключення до тарифів XGS-PON:</span> 5999 грн.</p>
                             <Link href="/xgspon" className="bg-[#5F6061] hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-lg transition-colors">Дізнатись більше</Link>
                         </div>
                     </section>
-
+                    
                     {/* ----- MEGOGO SECTION ----- */}
-                    <section className="py-12">
+                    <section id="megogo-section" className="py-12">
                          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Розширте можливості з передплатами MEGOGO</h2>
-                         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-                            <div className="bg-gray-50 p-4 rounded-lg border">
-                                <p className="font-bold text-lg text-[#5F6061]">Безкоштовне ТБ</p>
-                                <p className="text-sm">170+ національних та ефірних каналів.</p>
-                                <p className="font-bold text-[#51B18B] mt-2">Вже у тарифі</p>
-                            </div>
-                            <div className="bg-gray-50 p-4 rounded-lg border">
-                                <p className="font-bold text-lg text-[#5F6061]">Легка</p>
-                                <p className="text-sm">375+ каналів, колекція фільмів та мультфільмів.</p>
-                                <p className="font-bold text-[#5984B2] mt-2">+ 85 грн/міс</p>
-                            </div>
-                            <div className="bg-gray-50 p-4 rounded-lg border">
-                                <p className="font-bold text-lg text-[#5F6061]">Оптимальна</p>
-                                <p className="text-sm">445+ каналів, преміум-кіно та спорт (Setanta).</p>
-                                <p className="font-bold text-[#5984B2] mt-2">+ 200 грн/міс</p>
-                            </div>
-                            <div className="bg-gray-50 p-4 rounded-lg border">
-                                <p className="font-bold text-lg text-[#5F6061]">Максимальна</p>
-                                <p className="text-sm">480+ каналів, HBO, Ліга Чемпіонів та максимум кіно.</p>
-                                <p className="font-bold text-[#5984B2] mt-2">+ 350 грн/міс</p>
-                            </div>
+                         
+                         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
+                            
+                            {megogoPlans.map(plan => (
+                                <div 
+                                    key={plan.id}
+                                    className={`p-4 rounded-lg border transition-all duration-300 cursor-pointer ${
+                                        selectedMegogo === plan.id 
+                                            ? 'border-[#DC662D] ring-2 ring-[#DC662D] shadow-lg transform scale-105 bg-white' 
+                                            : 'border-gray-200 bg-gray-50 hover:border-[#DC662D]/50 hover:bg-white'
+                                    }`}
+                                    onClick={() => handleMegogoPlanClick(plan.id)}
+                                >
+                                    <p className="font-bold text-lg text-[#5F6061]">{plan.name}</p>
+                                    <p className="text-sm mt-1">{plan.desc}</p>
+                                    <p className={`font-bold ${plan.priceColor} mt-2`}>{plan.price}</p>
+                                </div>
+                            ))}
+                            
                          </div>
                          <div className="text-center mt-8">
                             <Link href="/prices" className="text-[#DC662D] font-bold hover:underline">Дізнатись більше про передплати →</Link>
@@ -291,7 +391,7 @@ const BatyevkaLandingPage: React.FC = () => {
                             alt="Планові технічні роботи"
                             width={600}
                             height={400}
-                            className="w-full h-auto" // Corrected: Image will scale proportionally
+                            className="w-full h-auto"
                         />
                         <div className="p-6">
                             <p className="text-sm text-gray-500 mb-2">14 серпня 2025</p>
@@ -301,9 +401,6 @@ const BatyevkaLandingPage: React.FC = () => {
                             <p className="text-gray-600 mb-4">
                                 Ми постійно працюємо над покращенням якості наших послуг. У ніч з 14 на 15 серпня можливі короткочасні перерви у доступі до мережі.
                             </p>
-                            {/* <Link href="/news/technical-works" className="font-bold text-[#DC662D] hover:underline">
-                                Читати далі →
-                            </Link> */}
                         </div>
                     </article>
 
@@ -314,7 +411,7 @@ const BatyevkaLandingPage: React.FC = () => {
                             alt="Акція Приведи друга"
                             width={600}
                             height={400}
-                            className="w-full h-auto" // Corrected: Image will scale proportionally
+                            className="w-full h-auto"
                         />
                         <div className="p-6">
                             <p className="text-sm text-gray-500 mb-2">10 серпня 2025</p>
@@ -337,7 +434,7 @@ const BatyevkaLandingPage: React.FC = () => {
                             alt="Розширення покриття мережі"
                             width={600}
                             height={400}
-                            className="w-full h-auto" // Corrected: Image will scale proportionally
+                            className="w-full h-auto"
                         />
                         <div className="p-6">
                             <p className="text-sm text-gray-500 mb-2">05 серпня 2025</p>
@@ -347,9 +444,6 @@ const BatyevkaLandingPage: React.FC = () => {
                             <p className="text-gray-600 mb-4">
                                 Раді повідомити, що наша мережа тепер доступна за новими адресами у вашому районі. Перевірте можливість підключення!
                             </p>
-                            {/* <Link href="/news/coverage-expansion" className="font-bold text-[#DC662D] hover:underline">
-                                Читати далі →
-                            </Link> */}
                         </div>
                     </article>
                 </div>
@@ -389,7 +483,6 @@ const BatyevkaLandingPage: React.FC = () => {
                         <h2 className="text-3xl font-extrabold mb-2 text-white">Готові до стабільного інтернету?</h2>
                         <p className="mb-6 max-w-xl mx-auto text-white/90">Залиште заявку, і наш менеджер зв&apos;яжеться з вами протягом 15 хвилин для уточнення деталей.</p>
                         
-                        {/* === ВИПРАВЛЕНО: onClick тепер викликає загальний обробник === */}
                         <button 
                             onClick={handleOpenModalGeneral} 
                             className="bg-[#DC662D] text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-2xl"

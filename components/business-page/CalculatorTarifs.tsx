@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useMemo } from 'react';
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -37,25 +39,31 @@ import { Button } from '@/components/ui/button';
 import MobileMonthsSelect from './MobileMonthsSelect';
 
 const CalculatorTarifs = ({ theme }: ThemeProps) => {
-    // In YOUR UI (based on the screenshot): when the switch is on the RIGHT (G-PON),
-    // you render TarifsSlider (UTP_SPEEDS). That corresponds to isTarifsSwitch === true.
-    const [isTarifsSwitch, setTarifsSwitch] = useState<boolean>(true);
-const XGS_DEFAULT_SPEED = useMemo(
-  () => GPON_SPEEDS.find(s => s.speed === 2.5)?.value ?? GPON_SPEEDS[0].value,
-  []
-);
+    // isTarifsSwitch === true відповідає G-PON (використовує UTP_SPEEDS 1, 3, 5)
+    // isTarifsSwitch === false відповідає XGS-PON (використовує GPON_SPEEDS 3, 5, 10)
+    const[isTarifsSwitch, setTarifsSwitch] = useState<boolean>(true);
 
-    const [speedUtp, setSpeedUtp] = useState<number>(3);
-const [speedGpon, setSpeedGpon] = useState<number>(XGS_DEFAULT_SPEED);
+    // За замовчуванням для XGS-PON ставимо 5 Гбіт/с (або першу доступну)
+    const XGS_DEFAULT_SPEED = useMemo(
+        () => GPON_SPEEDS.find(s => s.speed === 5)?.value ?? GPON_SPEEDS[0]?.value ?? 2,[]
+    );
+
+    // За замовчуванням для G-PON ставимо 1 Гбіт/с
+    const UTP_DEFAULT_SPEED = useMemo(
+        () => UTP_SPEEDS.find(s => s.speed === 1)?.value ?? UTP_SPEEDS[0]?.value ?? 1,[]
+    );
+
+    const [speedUtp, setSpeedUtp] = useState<number>(UTP_DEFAULT_SPEED);
+    const [speedGpon, setSpeedGpon] = useState<number>(XGS_DEFAULT_SPEED);
     const [isTVChecked, setTVChecker] = useState<boolean>(true);
     const [isIPChecked, setIPChecker] = useState<boolean>(false);
-    const [isSelectMenuChecked, setSelectMenu] = useState<number>(1);
-    const [tvBundle, setTvBundle] = useState<number>(0);
+    const[isSelectMenuChecked, setSelectMenu] = useState<number>(1);
+    const[tvBundle, setTvBundle] = useState<number>(0);
     const [prepaidMonths, setPrepaidMonths] = useState<number>(1);
     const [setupPrice, setSetupPrice] = useState<number>(1500);
     const [routerPrice, setRouterPrice] = useState<number>(1799);
     const [totalPrice, setTotalPrice] = useState<number>(0);
-    const [discountValue, setDiscountValue] = useState<number>(100);
+    const[discountValue, setDiscountValue] = useState<number>(100);
     const [periodDiscountValue, setPeriodDiscountValue] = useState<number>(1);
 
     const [lastActiveTvBundle, setLastActiveTvBundle] = useState<number>(0); // Stores the bundle when TV was last on
@@ -63,78 +71,16 @@ const [speedGpon, setSpeedGpon] = useState<number>(XGS_DEFAULT_SPEED);
     const { toast } = useToast();
     const { onOpen } = useModal();
 
-    // =========================
-    // LOCK "Обери Інтернет швидкість" AT 1 Гбіт WHEN G-PON IS SELECTED
-    // =========================
-//    const isGponSelected = isTarifsSwitch; // <-- IMPORTANT for your current UI screenshot
-const isGponSelected = false;
-    // pick the 1Gb option from UTP_SPEEDS. If you don't have explicit "1 Гбіт",
-    // fallback to "max value" (usually the last mark).
-    const oneGigUtpValue = useMemo(() => {
-        const byGb = UTP_SPEEDS.find(
-            (x: any) => x?.speed === 1 && typeof x?.measure === 'string' && /гб/i.test(x.measure)
-        );
-        if (byGb) return byGb.value;
-
-        const by1000 = UTP_SPEEDS.find(
-            (x: any) => x?.speed === 1000 && typeof x?.measure === 'string' && /мб/i.test(x.measure)
-        );
-        if (by1000) return by1000.value;
-
-        // fallback: assume highest value corresponds to 1Gb
-        const vals = UTP_SPEEDS.map((x: any) => Number(x?.value)).filter((n: any) => Number.isFinite(n));
-        return vals.length ? Math.max(...vals) : (UTP_SPEEDS[0]?.value ?? 3);
-    }, []);
-
-    const setSpeedUtpGuarded = (v: number) => {
-        // If NOT on G-PON -> allow user to choose any speed
-        if (!isGponSelected) {
-            setSpeedUtp(v);
-            return;
-        }
-
-        // If on G-PON -> always force 1Gb
-        if (v === oneGigUtpValue) {
-            setSpeedUtp(v);
-            return;
-        }
-
-        setSpeedUtp(oneGigUtpValue);
-
-        toast({
-            variant: "destructive",
-            title: "Доступно лише 1 Гбіт",
-            description: "На G-PON доступна тільки швидкість 1 Гбіт."
-        });
-    };
-
-    // When user switches to G-PON => force 1Gb immediately
     useEffect(() => {
-        if (isGponSelected) {
-            setSpeedUtp(oneGigUtpValue);
-        }
-    }, [isGponSelected, oneGigUtpValue]);
-
-    // Safety: if something else tries to change speed while on G-PON, snap back
-    useEffect(() => {
-        if (isGponSelected && speedUtp !== oneGigUtpValue) {
-            setSpeedUtp(oneGigUtpValue);
-        }
-    }, [isGponSelected, speedUtp, oneGigUtpValue]);
-
-    // Also block mouse/touch interaction on the slider when locked (works even if the slider is uncontrolled)
-    const sliderLockClass = isGponSelected ? 'pointer-events-none select-none opacity-60' : '';
-
-    useEffect(() => {
-            setTvBundle(0);
+        setTvBundle(0);
     }, [isTarifsSwitch]);
 
-useEffect(() => {
-  // XGS-PON is when isTarifsSwitch === false
-  if (!isTarifsSwitch) {
-    setSpeedGpon(XGS_DEFAULT_SPEED);
-  }
-}, [isTarifsSwitch, XGS_DEFAULT_SPEED]);
+    useEffect(() => {
+        // Коли перемикаємо на XGS-PON, скидаємо швидкість на дефолтну (5 Гбіт/с)
+        if (!isTarifsSwitch) {
+            setSpeedGpon(XGS_DEFAULT_SPEED);
+        }
+    }, [isTarifsSwitch, XGS_DEFAULT_SPEED]);
 
     useEffect(() => {
 
@@ -170,14 +116,10 @@ useEffect(() => {
         let newSetupPrice = (isTarifsSwitch ? UTP_SETUP_PRICES : GPON_SETUP_PRICES)
             .find(tier => prepaidMonths == tier.months)?.price ?? 1500;
 
-        // High-speed GPON setup pricing (kept from your original logic)
+        // High-speed XGS-PON setup pricing
         if (!isTarifsSwitch) {
             const selectedSpeed = GPON_SPEEDS.find(item => item.value === speedGpon);
-            if (selectedSpeed && (selectedSpeed.speed === 2.5)) {
-                newSetupPrice = 5999;
-            } else if (selectedSpeed && (selectedSpeed.speed === 5)) {
-                newSetupPrice = 5999;
-            } else if (selectedSpeed && (selectedSpeed.speed === 10)) {
+            if (selectedSpeed && (selectedSpeed.speed === 3 || selectedSpeed.speed === 5 || selectedSpeed.speed === 10)) {
                 newSetupPrice = 5999;
             }
         }
@@ -191,14 +133,16 @@ useEffect(() => {
         const newRouterPrice = ROUTER_PRICE.find(tier => prepaidMonths == tier.months)?.price ?? 3000;
         setRouterPrice(newRouterPrice);
 
-        // Discount FIX (prevents -550). If base is 250 and promo must be 150 => discount = 100.
+        // Discount FIX (prevents -550). 
         let newDiscountValue = 100;
 
         if (!isTarifsSwitch) {
-            if (speedGpon === 1) newDiscountValue = 100;
-            else if (speedGpon === 2) newDiscountValue = 400;
-            else if (speedGpon === 3) newDiscountValue = 250;
-
+            const selectedSpeed = GPON_SPEEDS.find(item => item.value === speedGpon);
+            if (selectedSpeed) {
+                if (selectedSpeed.speed === 10) newDiscountValue = 800;
+                else if (selectedSpeed.speed === 5) newDiscountValue = 400;
+                else if (selectedSpeed.speed === 3) newDiscountValue = 250;
+            }
             if (tvBundle === 2) newDiscountValue = 150;
         } else {
             newDiscountValue = 100;
@@ -208,7 +152,7 @@ useEffect(() => {
 
         // Total monthly
         setTotalPrice(newInternetPrice + newTvPrice + newIpPrice);
-    }, [
+    },[
         isTarifsSwitch,
         speedUtp,
         speedGpon,
@@ -220,8 +164,7 @@ useEffect(() => {
 
     const handleTVswitch = () => {
         const newIsTVChecked = !isTVChecked;
-        // your original code effectively keeps TV always ON
-        setTVChecker(true);
+        setTVChecker(newIsTVChecked); // Виправлено баг із жорстким включенням ТБ
 
         if (newIsTVChecked) {
             setTvBundle(lastActiveTvBundle === 0 ? 0 : lastActiveTvBundle);
@@ -245,7 +188,7 @@ useEffect(() => {
         } : undefined;
 
         const orderData: OrderDataProps = {
-            internetType: isTarifsSwitch ? "UTP" : "GPON",
+            internetType: isTarifsSwitch ? "G-PON" : "XGS-PON",
 
             internetSpeed: selectedSpeed?.speed || 0,
             internetMeasure: selectedSpeed?.measure || 'мбіт',
@@ -261,8 +204,8 @@ useEffect(() => {
             routerPrice,
             totalMonthlyPrice: totalPrice,
 
-            additionalInfo: [
-                `${isTarifsSwitch ? 'UTP' : 'GPON'} ${selectedSpeed?.speed}${selectedSpeed?.measure}`,
+            additionalInfo:[
+                `${isTarifsSwitch ? 'G-PON' : 'XGS-PON'} ${selectedSpeed?.speed} ${selectedSpeed?.measure}`,
                 isTVChecked ? `ТВ пакет: ${TVinfo[tvBundle].name}` : 'Без ТВ',
                 isIPChecked ? 'Зі статичною IP-адресою' : 'Без статичної IP-адреси',
                 `Передплата на ${prepaidMonths} місяців`,
@@ -309,19 +252,20 @@ useEffect(() => {
 
                 <div className={`${theme == 'white' ? 'bg-white' : 'bg-[#0E2D43]'} grid grid-cols-2 max-[1800px]:grid-cols-1 min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] min-[3644px]:gap-[170px] gap-[100px] max-[2377px]:gap-[60px] min-[3644px]:pb-[117px] pb-[78px] max-[2377px]:pb-[60px] max-[680px]:pb-0`}>
                     <div className={`col-span-1 min-[3644px]:ml-[117px] ml-[78px] max-[2377px]:ml-[60px] max-[1800px]:mr-[60px] max-[1000px]:mx-[35px] max-[680px]:mx-[20px] flex justify-center`}>
-                        <div className={`max-[1800px]:max-w-[750px]`}>
+                        <div className={`max-[1800px]:max-w-[750px] w-full`}>
                             <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери Інтернет швидкість</p>
 
-                            <div className={`min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden ${sliderLockClass}`}>
+                            {/* --- Змінені повзунки (без штучного блокування) --- */}
+                            <div className={`min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden`}>
                                 {isTarifsSwitch
-                                    ? <TarifsSlider setSpeed={setSpeedUtpGuarded} speed={speedUtp} />
+                                    ? <TarifsSlider setSpeed={setSpeedUtp} speed={speedUtp} />
                                     : <TarifsSliderGPON setSpeed={setSpeedGpon} speed={speedGpon} />
                                 }
                             </div>
 
-                            <div className={`min-[681px]:hidden ${sliderLockClass}`}>
+                            <div className={`min-[681px]:hidden`}>
                                 {isTarifsSwitch
-                                    ? <TarifsSliderMobile setSpeed={setSpeedUtpGuarded} speed={speedUtp} />
+                                    ? <TarifsSliderMobile setSpeed={setSpeedUtp} speed={speedUtp} />
                                     : <TarifsSliderMobileGPON setSpeed={setSpeedGpon} speed={speedGpon} />
                                 }
                             </div>
@@ -332,7 +276,7 @@ useEffect(() => {
                             </div>
                             <p className="flex text-center items-center justify-center font-bold mt-[40px] text-[18px] leading-[22px] min-[681px]:hidden">Додай MEGOGО Телебачення</p>
                             <div className="flex items-center justify-center mt-[15px] min-[681px]:hidden">
-                                {/* <RegularSwitch switchState={setTVChecker} state={isTVChecked} /> */}
+                                <RegularSwitch switchState={handleTVswitch} state={isTVChecked} />
                             </div>
 
                             <>
