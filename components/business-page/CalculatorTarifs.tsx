@@ -306,7 +306,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 />
                             </div>
 
-                            <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
+                            <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hiddefБез плати за
+підключенняn">
                                 <MonthsSlider outerSetter={setSelectMenu} setMonths={setPrepaidMonths} outer={isSelectMenuChecked} />
                             </div>
 

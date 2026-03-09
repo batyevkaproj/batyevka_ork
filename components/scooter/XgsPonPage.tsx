@@ -21,6 +21,14 @@ const megogoPlans =[
     { id: 'maximal', name: 'Максимальна', desc: '480+ каналів, HBO, Ліга Чемпіонів та максимум кіно.', price: '+ 350 грн/міс', priceColor: 'text-[#5984B2]' },
 ];
 
+const scrollToCTA = () => {
+    const element = document.getElementById('cta');
+    if (element) {
+        const y = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: y - 100, behavior: 'smooth' });
+    }
+};
+
 const XgsPonPage: React.FC = () => {
 
     const { onOpen } = useModal();
@@ -106,7 +114,7 @@ const XgsPonPage: React.FC = () => {
                         <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
                             Відкрийте для себе новий стандарт швидкості з технологією XGS-PON. Симетричний канал до 10 Гбіт/с, мінімальні затримки та безмежні можливості для найвимогливіших користувачів.
                         </p>
-                        <a href="#tariffs" className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 inline-block">
+                        <a onClick={scrollToCTA} className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 inline-block">
                             Обрати тариф
                         </a>
                     </section>
@@ -177,7 +185,7 @@ const XgsPonPage: React.FC = () => {
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">
                                     <button 
-                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(3, "Гбіт", 550, 2999, "XGS-PON"); }}
+                                        onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
                                         className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                                     >
                                         Залишити заявку
@@ -216,7 +224,7 @@ const XgsPonPage: React.FC = () => {
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">
                                     <button 
-                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(5, "Гбіт", 850, 5999, "XGS-PON"); }}
+                                        onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
                                         className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                                     >
                                         Залишити заявку
@@ -255,7 +263,7 @@ const XgsPonPage: React.FC = () => {
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">
                                     <button 
-                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(10, "Гбіт", 2000, 5999, "XGS-PON"); }}
+                                        onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
                                         className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                                     >
                                         Залишити заявку
