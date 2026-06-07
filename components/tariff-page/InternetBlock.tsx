@@ -60,12 +60,12 @@ const InternetBlock = ({speedItem}: InternetBlockProps) => {
                         Оптичний термінал <br /> безкоштовно *
                     </p>
                 </div>
-                <div className={`min-[3644px]:mt-[22px] mt-[15px] max-[2377px]:mt-[10px] flex items-start`}>
+                {/* <div className={`min-[3644px]:mt-[22px] mt-[15px] max-[2377px]:mt-[10px] flex items-start`}>
                     <Image src={galochka_orange} alt="galochka" className="mr-2 min-[3644px]:size-[32px] min-[2378px]:mt-1 min-[2378px]:size-[20px]" />
                     <p className="">
                         Без плати за <br />підключення *
                     </p>
-                </div>
+                </div> */}
             </div>
         </div>
     );

@@ -18,20 +18,19 @@ import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 import SliderHome from '@/components/legacy/SliderHome';
 import BatyevkaPage from '@/components/scooter/BatyevkaPage'
 import BatyevkaPageTwo from '@/components/scooter/BatyevkaPageTwo';
-import BatyevkaLandingPage from '@/components/scooter/BatyevkaLandingPage';
+import XgsPonPage from '@/components/scooter/XgsPonPage';
 import ScooterHome from '@/components/scooter/ScooterHome';
-
 function HomeContent() {
 
-  // const { onOpen } = useModal();
-  // const searchParams = useSearchParams();
+  const { onOpen } = useModal();
+  const searchParams = useSearchParams();
 
-  // useEffect(() => {
-  //   const showCallbackModal = searchParams.get('show_callback_modal');
-  //   if (showCallbackModal === 'true') {
-  //     onOpen("call");
-  //   }
-  // }, [searchParams, onOpen]);
+  useEffect(() => {
+    const showCallbackModal = searchParams.get('show_callback_modal');
+    if (showCallbackModal === 'true') {
+      onOpen("call");
+    }
+  }, [searchParams, onOpen]);
 
 
 
@@ -39,7 +38,6 @@ function HomeContent() {
     <div className={'min-w-[350px] bg-white'}>
       <Header theme="white" business={false} />
       <ScooterHome/>
-      {/*<BatyevkaLandingPage/>*/}
       {/* <ParallaxEffect /> */}
       {/* <SliderHome theme="white" business={false} /> */}
       {/* <Heading text="Ключові переваги для наших бізнес-абонентів" text_size={42}></Heading> */}

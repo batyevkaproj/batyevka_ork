@@ -4,8 +4,10 @@ import { notFound } from 'next/navigation';
 // Import your promotion components
 // Adjust paths if your tsconfig paths are set up differently
 import Bandit from '@/components/old/promotions/Bandit'; // Assuming @/ points to your src or root
+import Banditt from '@/components/old/promotions/Banditt'; // <-- ADD THIS LINE
 import Drug from '@/components/old/promotions/Drug';
 import Tvthou from '@/components/old/promotions/Tvthou';
+import Ttvthou from '@/components/old/promotions/Ttvthou';
 import Tvthree from '@/components/old/promotions/Tvthree';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -23,8 +25,10 @@ interface PromotionPageProps {
 // A map to associate slugs with their components
 const promotionComponentsMap: { [key: string]: React.ComponentType<any> } = {
   bandit: Bandit,
+  banditt: Banditt,
   drug: Drug,
   tvthou: Tvthou,
+  ttvthou: Ttvthou,
   tvthree: Tvthree,
   // Add more mappings:
   // 'your-promotion-slug': YourPromotionComponent,

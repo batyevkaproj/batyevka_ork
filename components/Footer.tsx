@@ -30,14 +30,14 @@ const Footer = ( {theme}: ThemeProps ) => {
                                 <li>Інтерактивне Телебачення</li>
                                 <li>ось вже:</li>
                                 <div className={`min-[3644px]:h-[72px] h-[48px] max-[2377px]:h-[37px] min-[3644px]:max-w-[423px] max-w-[282px] max-[2377px]:max-w-[216px] min-w-[216px] rounded-xl mt-[10px] + ${theme=='white'?'bg-white shadow-[0_4px_29px_0_#E6E3E3]':'bg-[#123853] shadow-[0_4px_29px_0_#0B273C]'}`}>
-                                    <p className={'font-bold min-[3644px]:ml-[26px] ml-[17px] pt-[6px] max-[2377px]:pt-[3px]'}>24 роки 5 місяців</p>
+                                    <p className={'font-bold min-[3644px]:ml-[26px] ml-[17px] pt-[6px] max-[2377px]:pt-[3px]'}>20 років</p>
                                 </div>
                             </ul>
                         </div>
                         
                     </div>
                     <div className={'col-span-1 row-start-3'}>
-                            <a className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold leading-[34px]`}>© Batyevka 2014-2024</a>
+                            <a className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold leading-[34px]`}>© Batyevka 2007-2026</a>
                     </div>
                     <div>
                         <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[8px]`}>ТАРИФИ</h3>
@@ -55,7 +55,7 @@ const Footer = ( {theme}: ThemeProps ) => {
   </li>
   <li className='hover:text-[#DC662D]'>Мапа покриття</li>
   <li className='hover:text-[#DC662D]'>
-    <Link href="https://my.batyevka.net/cgi-bin/index.cgi">Особистий кабінет</Link>
+    <Link href="https://abills.batyevka.net:9443">Особистий кабінет</Link>
   </li>
 
   <li>
@@ -89,7 +89,7 @@ const Footer = ( {theme}: ThemeProps ) => {
                     <div className={'max-[2377px]:col-start-5 max-[2377px]:row-start-2 max-[2377px]:row-span-1 max-[1600px]:col-start-4 max-[1600px]:row-start-2 max-[1600px]:row-span-1 max-[1247px]:col-start-3 max-[1247px]:row-start-3 max-[1247px]:row-span-1'}>
                         <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[24px] max-[2377px]:mb-[19px]`}>Соціальні мережі</h3>
                         <div className={`flex`}>
-                            <a href={``}><Image className='min-[3644px]:w-[59px] min-[3644px]:h-[59px] w-[40px] h-[40px] max-[2377px]:w-[30px] max-[2377px]:h-[30px] mr-[8px] transition ease-in-out duration-100 hover:scale-110' src={_1} alt={``}/></a>
+                            
                             <a href={`https://t.me/batyevka_chat`}><Image className='min-[3644px]:w-[59px] min-[3644px]:h-[59px] w-[40px] h-[40px] max-[2377px]:w-[30px] max-[2377px]:h-[30px] transition ease-in-out duration-100 hover:scale-110' src={_3} alt={``}/></a>
                         </div>
                     </div>
@@ -129,7 +129,7 @@ const Footer = ( {theme}: ThemeProps ) => {
     Мапа покриття
   </Link>
 
-  <Link href="https://my.batyevka.net/cgi-bin/index.cgi" className='hover:text-[#DC662D]'>
+  <Link href="https://abills.batyevka.net:9443" className='hover:text-[#DC662D]'>
     Особистий кабінет
   </Link>
 
@@ -164,7 +164,6 @@ const Footer = ( {theme}: ThemeProps ) => {
                 </AccordionTrigger>
                 <AccordionContent className="flex flex-col">
                     <div className={`flex`}>
-                        <a href={``}><Image className='w-[30px] h-[30px] mr-[8px]' src={_1} alt={``}/></a>
                         <a href={`https://t.me/batyevka_chat`}><Image className='w-[30px] h-[30px]' src={_3} alt={``}/></a>
                     </div>
                 </AccordionContent>
@@ -186,9 +185,9 @@ const Footer = ( {theme}: ThemeProps ) => {
                         <li>Інтерактивне Телебачення</li>
                         <li className={'pb-[6px]'}>ось вже:</li>
                         <div className={`h-[37px] w-[216px] rounded-[10px] + ${theme=='white'?'bg-white shadow-[0_4px_29px_0_#E6E3E3]':'bg-[#123853] shadow-[0_4px_29px_0_#0B273C]'}`}>
-                            <p className={'font-semibold ml-[17px] pt-[3px]'}>24 роки 5 місяців</p>
+                            <p className={'font-semibold ml-[17px] pt-[3px]'}>20 років</p>
                         </div>
-                        <li className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold pt-[8px]`}>© Batyevka 2014-2024</li>
+                        <li className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold pt-[8px]`}>© Batyevka 2007-2026</li>
                     </ul>
                 </div>
             </div>

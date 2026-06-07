@@ -30,14 +30,14 @@ const Footer = ( {theme}: ThemeProps ) => {
                                 <li>Інтерактивне Телебачення</li>
                                 <li>ось вже:</li>
                                 <div className={`min-[3644px]:h-[72px] h-[48px] max-[2377px]:h-[37px] min-[3644px]:max-w-[423px] max-w-[282px] max-[2377px]:max-w-[216px] min-w-[216px] rounded-xl mt-[10px] + ${theme=='white'?'bg-white shadow-[0_4px_29px_0_#E6E3E3]':'bg-[#123853] shadow-[0_4px_29px_0_#0B273C]'}`}>
-                                    <p className={'font-bold min-[3644px]:ml-[26px] ml-[17px] pt-[6px] max-[2377px]:pt-[3px]'}>24 роки 5 місяців</p>
+                                    <p className={'font-bold min-[3644px]:ml-[26px] ml-[17px] pt-[6px] max-[2377px]:pt-[3px]'}>20 років</p>
                                 </div>
                             </ul>
                         </div>
                         
                     </div>
                     <div className={'col-span-1 row-start-3'}>
-                            <a className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold leading-[34px]`}>© Batyevka 2014-2024</a>
+                            <a className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold leading-[34px]`}>© Batyevka 2007-2026</a>
                     </div>
                     <div>
                         <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[8px]`}>ТАРИФИ</h3>
@@ -186,9 +186,9 @@ const Footer = ( {theme}: ThemeProps ) => {
                         <li>Інтерактивне Телебачення</li>
                         <li className={'pb-[6px]'}>ось вже:</li>
                         <div className={`h-[37px] w-[216px] rounded-[10px] + ${theme=='white'?'bg-white shadow-[0_4px_29px_0_#E6E3E3]':'bg-[#123853] shadow-[0_4px_29px_0_#0B273C]'}`}>
-                            <p className={'font-semibold ml-[17px] pt-[3px]'}>24 роки 5 місяців</p>
+                            <p className={'font-semibold ml-[17px] pt-[3px]'}>20 років</p>
                         </div>
-                        <li className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold pt-[8px]`}>© Batyevka 2014-2024</li>
+                        <li className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold pt-[8px]`}>© Batyevka 2007-2026</li>
                     </ul>
                 </div>
             </div>

@@ -24,10 +24,10 @@ const Promotions = () => {
 
                     {/* Promotion 1: 170 TV + Internet */}
                     <Link href="promotions/bandit" className="block md:hidden"> {/* Shown on mobile, Hidden on md+ */}
-                        <Image src={bandit_mob} alt='Акція Телебачення + Інтернет 170 каналів (мобільна версія)' />
+                        <Image src={bandit_mob} alt='Акція Телебачення + Інтернет 200 каналів (мобільна версія)' />
                     </Link>
                     <Link href="promotions/bandit" className="hidden md:block"> {/* Hidden on mobile, Shown on md+ */}
-                        <Image src={bandit} alt='Акція Телебачення + Інтернет 170 каналів (десктопна версія)' />
+                        <Image src={bandit} alt='Акція Телебачення + Інтернет 200 каналів (десктопна версія)' />
                     </Link>
 
                     {/* Promotion 2: 1000 Mbit Internet */}
@@ -48,10 +48,10 @@ const Promotions = () => {
 
 
                     {/* Promotion 4: 300 Mbit Internet */}
-                    <Link href="promotions/tvthree" className="block md:hidden"> {/* Shown on mobile, Hidden on md+ */}
+                    <Link href="promotions/bandit" className="block md:hidden"> {/* Shown on mobile, Hidden on md+ */}
                         <Image src={mob300} alt='Акція Інтернет 300 Мбіт (мобільна версія)' />
                     </Link>
-                    <Link href="promotions/tvthree" className="hidden md:block"> {/* Hidden on mobile, Shown on md+ */}
+                    <Link href="promotions/bandit" className="hidden md:block"> {/* Hidden on mobile, Shown on md+ */}
                         <Image src={pc300} alt='Акція Інтернет 300 Мбіт (десктопна версія)' />
                     </Link>
 

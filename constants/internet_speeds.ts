@@ -5,16 +5,17 @@ export type SpeedItemProps = {
     price: number
 }
 
+
+export const UTP_SPEEDS: SpeedItemProps[] = [
+    { value: 1, speed: 300, measure: 'Мбіт', price: 325 },
+    { value: 2, speed: 1, measure: 'Гбіт', price: 350 },
+    { value: 3, speed: 3, measure: 'Гбіт', price: 500 },
+];
+
 export const GPON_SPEEDS: SpeedItemProps[] =[
     { value: 1, speed: 10, measure: 'Гбіт', price: 2800 },
     { value: 2, speed: 5, measure: 'Гбіт', price: 1250 },
     { value: 3, speed: 3, measure: 'Гбіт', price: 800 }
-];
-
-export const UTP_SPEEDS: SpeedItemProps[] =[
-    { value: 1, speed: 1, measure: 'Гбіт', price: 250 },
-    { value: 2, speed: 3, measure: 'Гбіт', price: 550 },
-    { value: 3, speed: 5, measure: 'Гбіт', price: 850 },
 ];
 
 export const REAL_IP_PRICE = 100;

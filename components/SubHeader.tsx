@@ -36,20 +36,13 @@ const SubHeader = () => {
                 </Link>
             </div>
 
-            <div 
-                className={`max-[1280px]:hidden rounded-full bg-none px-[50px] h-[50px] flex justify-center items-center transition-colors duration-200 ${pathname === '#' ? 'border-2 border-[#DC662D] text-[#DC662D]' : 'hover:border-2 hover:border-[#DC662D] hover:text-[#DC662D]'}`}
-            >
-<Link
-  href="https://megogo.net"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="font-semibold text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center"
+<div
+    className={`max-[1280px]:hidden rounded-full bg-none px-[50px] h-[50px] flex justify-center items-center transition-colors duration-200 ${pathname === '/tv' ? 'border-2 border-[#DC662D] text-[#DC662D]' : 'hover:border-2 hover:border-[#DC662D] hover:text-[#DC662D]'}`}
 >
-  Телебачення
-</Link>
-
-            </div>
-
+    <Link href='/tv' className={`font-semibold text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center`}>
+        Телебачення
+    </Link>
+</div>
             <div className={`max-[1280px]:hidden rounded-full bg-none px-[50px] h-[50px] flex justify-center items-center transition-colors duration-200 ${pathname === '#' ? 'border-2 border-[#DC662D] text-[#DC662D]' : 'hover:border-2 hover:border-[#DC662D] hover:text-[#DC662D]'}`}>
                 <Link href='#' className={`inline-flex font-semibold  text-[16px] min-[2430px]:text-[21px] min-[2430px]:leading-[28px] text-center `}>Всі опції <ChevronDown className={`inline-flex ml-[12px] mt-[3px] size-[18px] min-[2430px]:size-[22px]`}/></Link>
             </div>

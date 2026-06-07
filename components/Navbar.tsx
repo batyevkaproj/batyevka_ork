@@ -96,7 +96,7 @@ const Navbar = ({ theme }: any) => {
                     </Button>
                 </Link>
 
-                <Link href="https://my.batyevka.net/cgi-bin/index.cgi">
+                <Link href="https://abills.batyevka.net:9443">
                     <Button variant={theme == 'white' ? 'cabinetGreyMobMob' : 'cabinetMobMob'}>
                         <Image src={theme == 'white' ? connect_grey : connect} alt='connect' className={`fill-white`}>
                         </Image>

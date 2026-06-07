@@ -3,18 +3,18 @@
 import Image from 'next/image';
 import { useModal } from '@/hooks/use-modal-store';
 import { useToast } from '@/hooks/use-toast';
-import action04 from '../../../public/img/promotions/rocket-post.svg';
 
 const BanditPromo = () => {
   const { onOpen } = useModal();
   const { toast } = useToast();
 
-  const handleOpenModalGeneral = () => {
+  const handleOpenModalGeneral = (e: React.MouseEvent) => {
+    e.preventDefault();
     try {
       const orderData = {
-        internetType: `Заявка з акції «БАНДИТ»`,
+        internetType: `Заявка з акції «БАНДИТ» (GPON)`,
         internetSpeed: 300,
-        internetMeasure: 'Мегабіт',
+        internetMeasure: 'Мбіт/с',
         internetPrice: 100,
         totalMonthlyPrice: 100,
         hasTV: true,
@@ -33,87 +33,276 @@ const BanditPromo = () => {
     }
   };
 
+  // Перелік каналів для красивої сітки
+  const channelsString = "24 канал, 5 канал HD, Еспресо TV HD, Телеканал Рада, Перший, FREEДОМ, Надія, ICTV HD, M1 HD, M2 HD, Інтер HD, 1+1 Марафон HD, УНІАН Серіал, Eco TV, Extreme Sports, Classical Harmony, #НАШЕ ретро, Milady TELEVISION, Euronews ENG, ЕТНО КАНАЛ, Дніпро ТV HD, Суспільне Культура, MEGOGO MUSIC, Київ, France 24 Français, France 24 English, France 24 Arabic, BTQ, Караван TV, Наталі, Radio NV, Kiss FM, Мелодія FM, Наше Радіо, Radio ROKS, Radio Relax, Хіт FM, Radio Jazz, Радіо МАКСИМУМ, Радіо Nostalgie, Люкс ФМ, Радіо П'ятниця, Lounge Fm, Авторадіо Україна, NRJ радіо, Апостроф TV, Львівська Хвиля, Magic Radio, DJFM, Power FM, Шлягер FM, Кухня, Подорожі, Розваги, DIY, Телесеріал, Спорт огляд, Риболовля, Чоловіче хобі, Б'юті-блог, Будівництво та ремонт, Орел і Решка, Тварини, Музичний, World of Tanks, Minecraft, ДІМ HD, Лайфстайл, Пізнавальний, Авто/Мото, Радіо Закарпаття - FM, Українське радіо, Радіо Промінь, Радіо Культура, Рукоділля, Сад і город, FM Галичина, ПЕРЕЦЬ FM, Радіо Байрактар, Українське, Сім'я Каті та Макса, [M] Подкасти, Історія без міфів, TVP World, Кулінарія, Дитячий 2, [M] Little kittens, Мандри, Пригоди, Кухня UA, Пізнавальний Kids, Документальний, [M] Трейлери, Сімейний, Авто/Мото UA, Залипальне, КИЇВ - FM, Serginio Fishing, [M] Подкасти The Ukrainians, ТЮСО, Classic Radio, Спортивний, Життя у лісі, NHK World, [M] Розмови про кіно, АРМІЯ ТБ, Рецепти Алли Ковальчук, Гід техніки, [M] Standup, Футбольний, Суспільне Спорт, Мультиленд, Креативна практика, Товари з AliExpress, [M] Goods from AliExpress, France 24 Español, Армія FM, Розслідування Мердока, Детективні хроніки, Smart Kids, Ньюспалм, Трофей Premium, Forbes, Блог Економічний, МИ - УКРАЇНА HD, МИ - УКРАЇНА + HD, [M] Колекція Радіо Культура, Євген Клопотенко, [M] Поезія, [M] Віра, Світ навиворіт+, Загублений світ+, Опер за викликом+, Сімейні мелодрами+, ЖВЛ+, [M] Доктор Комаровський, [М] Укрліт, [M] Дитячий садок, [M] Стосується кожного, [M] Речдок, [М] Кінопортал, [M] Солодкі фантазії, H1, Твій ТВ, Gagsnetwork, Капучино TV, Ми – Україна Радіо, [M] Книгарня, [M] Active TV, One Planet, [M] eXplore, КОНКУРЕНТ. УКРАЇНА, ДІМ+, Панянка-селянка+, Хіти Мегого Родина, Хіти Мегого Драма, Хіти Мегого Адреналін, Вікторина, Про Київ, Знаєм 24, [M] Zoosvit, [M] Кінокласика, Накипіло, Тернопільська Хвиля, [M] KIDDISVIT, PROVENCE, [M] Цивільна підготовка, [M] БарДак, [M] Говорить вся країна, [M] Гумористичний, [M] Драматичний, [M] Містика, [M] Реальні історії, [M] Light cinema 1, [M] Light cinema 2, [M] Танька і Володька, [M] Одного разу під Полтавою, [М] Movie Library, [M] Теленовели 2, [M] Мovie mode 1, [M] Мovie mode 2, [M] Kids town, Радіоточка, Champion Radio, [M] Doramas 1, [M] Doramas 2, [M] Детективне кіно, [M] Кримінальне кіно, [M] Мелодрами, РАІ, fashion, Radio Прищепкін TOP40 UA, SUN FM, Сонце+, РАДІОПІХОТА, [M] LOLka, BIKINI, Люкс ФМ Українські Хіти, Люкс ФМ Chill and Relax, Люкс ФМ Золоті Хіти, Люкс ФМ Сучасні Хіти, K-Pop";
+  const channelsList = channelsString.split(', ').filter(Boolean);
+
+  const jsonLdData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Головна",
+            "item": "https://www.batyevka.net/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Акції",
+            "item": "https://www.batyevka.net/promotions"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Акція «Бандит»"
+          }
+        ]
+      },
+      {
+        "@type": "Product",
+        "name": "Акція «Бандит» - Інтернет 300 Мбіт/с + MEGOGO",
+        "description": "Підключення нових абонентів до GPON (оптика в квартиру), 300 Мбіт/с та пакет MEGOGO (170+ каналів).",
+        "brand": { "@type": "Brand", "name": "Batyevka.NET" },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "UAH",
+          "price": "100.00",
+          "priceValidUntil": "2026-12-31",
+          "availability": "https://schema.org/InStock",
+          "seller": { "@type": "Organization", "name": "Batyevka.NET" },
+          "priceSpecification": [
+            { "@type": "UnitPriceSpecification", "priceType": "https://schema.org/SalePrice", "priceCurrency": "UAH", "price": "100.00", "name": "Акційна ціна (перші 365 днів)" }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Скільки коштує тариф після акції Бандит?", "acceptedAnswer": { "@type": "Answer", "text": "Акційна ціна 100 грн/міс діє 365 днів (1 рік), після чого тариф автоматично оновлюється до 1 Гбіт/с за регулярною ціною 250 грн/міс." } },
+          { "@type": "Question", "name": "Хто може підключитися за акцією Бандит?", "acceptedAnswer": { "@type": "Answer", "text": "Акція діє для нових підключень (перевіряється адреса квартири). Також можуть підключитися колишні абоненти, якщо з моменту останнього користування минуло 36 місяців." } },
+          { "@type": "Question", "name": "Що входить у тариф?", "acceptedAnswer": { "@type": "Answer", "text": "У тариф входить Інтернет на швидкості до 300 Мбіт/с та підписка на телебачення MEGOGO (понад 170 каналів)." } }
+        ]
+      }
+    ]
+  };
 
   return (
-    <div className="min-h-screen bg-white text-gray-700 overflow-x-hidden">
-      {/* --- Top Section: "Акція «БАНДИТ»" --- */}
-      <section className="container mx-auto xl:w-[1222px] px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
-          <div className="lg:pr-8">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#DC662D] leading-tight">
-              Акція «БАНДИТ»<br />
-              знижка на абонплату<br />
-              впродовж 4 місяців!
-            </h1>
-            <div className="mt-8 space-y-4 text-gray-600">
-              <p className="font-bold text-lg">Всього за 100 грн/міс</p>
-              <p>
-                Ви отримуєте <span className="font-bold">Інтернет</span> та <span className="font-bold">Телебачення</span> від медіасервісу <span className="font-bold">MeGoGo:</span>
-              </p>
-              <ul className="list-inside space-y-2">
-                <li>- безлімітний ІНТЕРНЕТ на швидкості до 300 Мегабіт</li>
-                <li>- 170 ТЕЛЕКАНАЛІВ від медіасервісу MeGoGo, серед яких УКРАЇНСЬКІ : Інтер HD, 5 канал HD, ICTV HD, МИ - УКРАЇНА, 24 канал, УНІАН, Перший, Київ, Forbes, One Planet та інші</li>
-                <li>- 6 000 кращого кіно для всієї родини</li>
-              </ul>
+    <>
+      {/* Стилі для кастомного скролбару та приховування дефолтних маркерів */}
+      <style dangerouslySetInnerHTML={{__html: `
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #F4F2F2; border-radius: 8px; margin: 4px 0; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #BDBDBD; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #51818B; }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+      `}} />
+
+      <div
+        className="bg-white text-[#5F6061] overflow-x-hidden mt-8 sm:mt-12 lg:mt-16 leading-relaxed max-w-[1200px] mx-auto py-10 px-5"
+        style={{ fontFamily: "'Montserrat', sans-serif" }}
+      >
+
+        {/* --- ГОЛОВНИЙ ЕКРАН (HERO - Концепт 2 З ЗЕЛЕНОЮ СМУЖКОЮ) --- */}
+        <section className="relative bg-[#F4F2F2] rounded-[32px] border-t-[6px] border-[#51818B] shadow-sm p-8 md:p-14 flex flex-col md:flex-row items-center justify-between mb-16 overflow-hidden">
+          <div className="md:w-1/2 z-10 text-center md:text-left mb-10 md:mb-0">
+            <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
+              <span className="bg-white text-[#56AABF] text-[10px] sm:text-xs font-bold py-1.5 px-3 rounded uppercase shadow-sm">GPON</span>
+              <span className="bg-white text-[#51818B] text-[10px] sm:text-xs font-bold py-1.5 px-3 rounded uppercase shadow-sm">300 Мбіт/с</span>
+              <span className="bg-[#DC662D] text-white text-[10px] sm:text-xs font-bold py-1.5 px-3 rounded uppercase shadow-sm">Акція</span>
             </div>
-        <button 
-            onClick={handleOpenModalGeneral}
-            className="mt-8 h-14 w-full max-w-xs inline-flex items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer bg-[#DC662D] text-white font-semibold rounded-lg shadow-lg hover:bg-orange-600 text-lg">
-            Відправити заявку
-        </button>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 uppercase text-[#0E2D43] leading-tight">
+              Акція <br className="hidden md:block" /><span className="text-[#DC662D]">«Бандит»</span>
+            </h1>
+
+            <p className="text-base sm:text-lg font-medium text-[#5F6061] mb-8 max-w-[450px] mx-auto md:mx-0">
+              Швидкість <strong className="text-[#0E2D43]">300 Мбіт/с</strong> та телебачення MEGOGO на спеціальних умовах. Переходь на преміальну оптичну мережу Batyevka.NET!
+            </p>
+
+            <button
+              onClick={handleOpenModalGeneral}
+              className="inline-block bg-[#DC662D] text-white text-lg font-semibold py-4 px-10 rounded-full shadow-[0_4px_20px_rgba(220,102,45,0.4)] transition-all duration-300 hover:bg-[#c95b27] hover:-translate-y-1"
+            >
+              Підключитись
+            </button>
           </div>
-          <div className="mt-8 lg:mt-0 flex justify-center">
-            <Image
-              src={action04} // <-- REPLACE THIS WITH YOUR NEW IMAGE
-              alt="Акція Бандит промо"
-              width={550}
-              height={420}
-              className="max-w-full h-auto"
-              priority
+
+          <div className="md:w-1/2 z-10 relative flex justify-center md:justify-end">
+            <img
+              src="/img/bandit.svg"
+              alt="Акція Бандит від Batyevka.NET"
+              loading="lazy"
+              className="w-full max-w-[350px] lg:max-w-[480px] h-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
             />
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* --- Bottom Section: Details --- */}
-      <section className="py-12 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="container mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-12 lg:mb-16">
-            Акція для нових і колишніх абонентів!
-          </h2>
-          <div className="grid md:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
-            {/* Left Column */}
-            <div className="text-right pt-4 relative">
-              {/* Decorative line */}
-              <div className="hidden md:block w-16 h-0.5 bg-[#DC662D] absolute top-9 right-[-4rem]"></div>
-              <h3 className="text-3xl font-bold mb-6 text-[#DC662D]">
-                Умови акції<br />
-                «БАНДИТ»
-              </h3>
-              <p className="leading-relaxed text-gray-600">
-                Учасники Акції – особи, що вперше підключаються до телекомунікаційної мережі Batyevka.NET та колишні абоненти Batyevka.NET, які не користувались послугами 36 і більше місяців, і обирають тариф "UTP-100 + Безкоштовне TV", або "G-PON 300 + Безкоштовне TV".
-              </p>
+        {/* --- AI SUMMARY (TL;DR) --- */}
+        <article className="bg-[#f7f9fa] border-l-4 border-[#51818B] py-5 px-6 rounded-r-lg mx-auto mb-16 max-w-[900px] text-[1.05rem] font-medium text-[#0E2D43]">
+          <strong className="text-[#51818B]">Короткий зміст акції:</strong> Підключення до енергонезалежної оптичної мережі GPON (без UTP) на швидкості <strong className="text-[#DC662D]">300 Мбіт/с</strong> разом із пакетом MEGOGO (170+ каналів). Абонплата становить <strong className="text-[#DC662D]">100 грн/місяць</strong> на перші 365 днів (1 рік), після чого відбувається автоматичне оновлення тарифу до <strong className="text-[#0E2D43]">1 Гбіт/с за 250 грн/місяць</strong>. Діє для нових абонентів (перевірка адреси квартири).
+        </article>
+
+        {/* --- КАРТКА ТАРИФУ --- */}
+        <div className="flex justify-center mb-16">
+          <section className="bg-white border border-[#EAEAEA] rounded-[16px] p-8 md:p-12 w-full max-w-[500px] shadow-[0_10px_30px_rgba(0,0,0,0.04)] text-left relative transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(14,45,67,0.08)]">
+            <div className="absolute top-0 left-0 right-0 h-[6px] bg-[#51818B] rounded-t-[16px]"></div>
+
+            <span className="inline-block bg-[#ebf2f2] text-[#51818B] text-sm font-bold py-1.5 px-3 rounded mb-5 uppercase">
+              XGS-PON / G-PON
+            </span>
+            <div className="text-3xl font-extrabold text-[#0E2D43] mb-3">
+              300 Мбіт/с
             </div>
 
-            {/* Right Column (Card) */}
-            <div className="bg-white shadow-xl rounded-lg p-8 sm:p-10">
-              <h3 className="text-2xl font-bold mb-4 text-gray-800">
-                Суть акції
-              </h3>
-              <p className="leading-relaxed mb-6 text-gray-600">
-                Учасники акції автоматично отримують знижку на абонентну плату на 4 місяці, на тарифі «G-PON 300 + Безкоштовне TV» або «UTP-100 + Безкоштовне TV» абонентна плата складатиме 100 грн./міс. По завершенні Акції Абонплата автоматично зміниться відповідно до діючої вартості тарифу вказаної на сайті. Також абонент буде мати можливість змінити тарифний план на будь який інший з актуальних.
-              </p>
-              <h4 className="font-bold mb-2 text-gray-800">
-                Примітки
-              </h4>
-              <p className="leading-relaxed text-gray-600 text-sm">
-                У період дії Акції, Абонент повинен безперервно користуватися послугами та своєчасно їх оплачувати. За порушення цієї умови, дія Акції анулюється. Акція не поширюється на абонентів (квартири), які припинили користуватися послугами Batyevka.NET менше, ніж 36 місяців.
-              </p>
+            <div className="text-[3.5rem] font-extrabold text-[#DC662D] leading-none mb-2">
+              100 <small className="text-xl">грн/міс</small>
+            </div>
+            
+            {/* Оновлений блок: замість закресленої ціни — плашка з умовами через рік */}
+            <div className="text-[0.95rem] font-semibold text-[#51818B] mb-6 bg-[#ebf2f2] inline-block px-3 py-1.5 rounded-lg">
+              Через рік: 1 Гбіт/с за 250 грн/міс
+            </div>
+
+            <div className="text-base font-bold text-[#51818B] mb-8 flex items-center gap-2">
+              <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-2 14.5v-9l6 4.5-6 4.5z"/>
+              </svg>
+              + MEGOGO (170+ каналів)
+            </div>
+
+            <button
+              onClick={handleOpenModalGeneral}
+              className="block w-full text-center bg-[#DC662D] text-white text-lg font-semibold py-4 px-5 rounded-full shadow-[0_4px_15px_rgba(220,102,45,0.4)] transition-all duration-200 hover:bg-[#c95b27] hover:-translate-y-1 outline-none"
+            >
+              Залишити заявку
+            </button>
+            <p className="text-xs text-[#888888] mt-4 text-center">
+              Акційна ціна діє 365 днів (1 рік) з моменту підключення
+            </p>
+          </section>
+        </div>
+
+        {/* --- СЕКЦІЯ MEGOGO З КРАСИВИМ АКОРДЕОНОМ --- */}
+        <section className="mb-20 max-w-[900px] mx-auto bg-[#F4F2F2] rounded-[24px] p-6 md:p-8 border border-[#EAEAEA]">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-6 text-[#0E2D43]">У тариф вже включено MEGOGO</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 text-center">
+             <div className="bg-white p-4 rounded-xl shadow-sm">
+                <div className="text-3xl font-black text-[#51818B] mb-1">170+</div>
+                <div className="text-sm font-semibold text-[#0E2D43]">Телеканали з новинами й шоу</div>
+             </div>
+             <div className="bg-white p-4 rounded-xl shadow-sm">
+                <div className="text-3xl font-black text-[#56AABF] mb-1">6000+</div>
+                <div className="text-sm font-semibold text-[#0E2D43]">Безкоштовних фільмів та мультиків</div>
+             </div>
+             <div className="bg-white p-4 rounded-xl shadow-sm">
+                <div className="text-3xl font-black text-[#DC662D] mb-1">Архів</div>
+                <div className="text-sm font-semibold text-[#0E2D43]">Перемотка та ТБ-архів на каналах</div>
+             </div>
+          </div>
+
+          <details className="group bg-white rounded-xl border border-[#EAEAEA] shadow-sm overflow-hidden transition-all duration-300">
+            <summary className="flex items-center justify-between p-5 cursor-pointer font-bold text-[#0E2D43] hover:bg-[#fcfcfc] outline-none select-none">
+              <span className="text-base md:text-lg">Переглянути список каналів (170+ каналів)</span>
+              <span className="transition-transform duration-300 group-open:rotate-180 text-[#51818B] bg-[#ebf2f2] p-1.5 rounded-full">
+                <svg fill="none" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" width="20"><path d="M6 9l6 6 6-6"></path></svg>
+              </span>
+            </summary>
+
+            <div className="p-5 border-t border-[#EAEAEA] bg-white">
+              <div className="custom-scrollbar max-h-[320px] overflow-y-auto pr-3">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-3 gap-x-4 text-sm text-[#5F6061]">
+                  {channelsList.map((channel, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-[#51818B] mr-2 text-lg leading-none">•</span>
+                      <span className="leading-tight">{channel}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </details>
+        </section>
+
+        {/* --- СЕКЦІЯ 1: ДЛЯ КОГО ДІЄ --- */}
+        <section className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-12 text-[#0E2D43]">Умови підключення</h2>
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 max-w-[900px] mx-auto">
+            <div className="bg-white p-8 rounded-xl border border-[#F0F0F0] shadow-[0_4px_15px_rgba(0,0,0,0.03)] text-center transition-transform hover:-translate-y-1">
+              <svg className="w-12 h-12 mx-auto mb-5 text-[#51818B]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m3-4h1m-1 4h1m-5 8h8"></path>
+              </svg>
+              <h3 className="text-xl font-bold mb-3 text-[#0E2D43]">Для нових адрес</h3>
+              <p className="text-[0.95rem] text-[#5F6061]">Ця пропозиція діє, якщо у вашій квартирі чи будинку ще немає нашого інтернету. Ми перевіряємо історію підключень <strong>саме за адресою</strong>, а не за прізвищем власника.</p>
+            </div>
+            <div className="bg-white p-8 rounded-xl border border-[#F0F0F0] shadow-[0_4px_15px_rgba(0,0,0,0.03)] text-center transition-transform hover:-translate-y-1">
+              <svg className="w-12 h-12 mx-auto mb-5 text-[#51818B]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <h3 className="text-xl font-bold mb-3 text-[#0E2D43]">Повернення до нас</h3>
+              <p className="text-[0.95rem] text-[#5F6061]">Якщо за вашою адресою вже було наше підключення, ви можете взяти участь в акції, якщо з моменту останнього користування пройшло <strong>не менше 36 місяців</strong>.</p>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* --- СЕКЦІЯ 2: ПЕРЕВАГИ МЕРЕЖІ --- */}
+        <section className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-12 text-[#0E2D43]">Технології Batyevka.NET</h2>
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-3">
+            <div className="bg-white p-8 rounded-xl border border-[#F0F0F0] shadow-[0_4px_15px_rgba(0,0,0,0.03)] text-center transition-transform hover:-translate-y-1">
+              <svg className="w-12 h-12 mx-auto mb-5 text-[#56AABF]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+              <h3 className="text-xl font-bold mb-3 text-[#0E2D43]">Надійна оптика</h3>
+              <p className="text-[0.95rem] text-[#5F6061]">Технологія GPON. Жодних старих кабелів — підключення по витій парі (UTP) з коридору більше не виконується.</p>
+            </div>
+            <div className="bg-white p-8 rounded-xl border border-[#F0F0F0] shadow-[0_4px_15px_rgba(0,0,0,0.03)] text-center transition-transform hover:-translate-y-1">
+              <svg className="w-12 h-12 mx-auto mb-5 text-[#56AABF]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+              </svg>
+              <h3 className="text-xl font-bold mb-3 text-[#0E2D43]">Зручне налаштування</h3>
+              <p className="text-[0.95rem] text-[#5F6061]">Авторизація по протоколу DHCP без прив'язки до MAC-адреси. Змінюйте свій роутер без дзвінків до підтримки.</p>
+            </div>
+            <div className="bg-white p-8 rounded-xl border border-[#F0F0F0] shadow-[0_4px_15px_rgba(0,0,0,0.03)] text-center transition-transform hover:-translate-y-1">
+              <svg className="w-12 h-12 mx-auto mb-5 text-[#56AABF]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+              <h3 className="text-xl font-bold mb-3 text-[#0E2D43]">Якісне обладнання</h3>
+              <p className="text-[0.95rem] text-[#5F6061]">Персональний оптичний кабель та термінал (ONU) надаються абоненту у користування на весь час послуг.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* --- SEO СТАТТЯ --- */}
+        <article className="mt-20 pt-12 border-t border-[#EAEAEA]">
+          <h2 className="text-2xl font-bold mb-6 text-[#0E2D43]">Акція «Бандит» від Batyevka.NET: 300 Мбіт/с та MEGOGO</h2>
+          <p className="mb-4">Шукаєте надійний швидкісний інтернет у Солом'янському районі Києва, який не зникає під час відключень електроенергії? Batyevka.NET пропонує унікальну можливість підключити преміальну оптичну мережу за акцією «Бандит». Ви отримаєте інтернет на швидкості 300 Мбіт/с та доступ до платформи MEGOGO (пакет на 170+ телеканалів).</p>
+
+          <p className="mb-4 font-bold text-[#333]">Переваги оптичного підключення GPON:</p>
+          <ul className="pl-6 list-disc space-y-3 mb-8">
+            <li><strong>Енергонезалежність:</strong> З 2017 року наші абоненти не відчувають перебоїв з інтернетом через відключення світла на нашому боці. Вам достатньо лише заживити свій роутер від звичайного павербанка (оптичний термінал ONU не обов'язково вимикати для економії заряду, достатньо вимикати тільки роутер).</li>
+            <li><strong>Тільки оптика:</strong> Ми не використовуємо застарілу мідну виту пару (UTP) з під'їзду. Тільки персональний оптичний кабель безпосередньо у квартиру.</li>
+            <li><strong>Прозорі тарифи:</strong> Акційна ціна становить 100 грн/міс і зафіксована на цілий рік (365 днів). Після цього ваш тариф автоматично оновиться до флагманського 1 Гбіт/с за регулярною ціною 250 грн/міс.</li>
+          </ul>
+        </article>
+
+        {/* --- ЮРИДИЧНІ УМОВИ (ОФЕРТА) --- */}
+        <footer className="mt-10 p-6 bg-[#F4F2F2] rounded-xl text-[0.85rem] text-[#5F6061] border-l-4 border-[#BDBDBD] leading-relaxed">
+          <strong className="text-[#333]">Офіційні правила акції «Бандит»:</strong> Пропозиція діє за наявності технічної можливості підключення до мережі GPON. Акція доступна для нових абонентів (перевірка здійснюється за адресою підключення/квартирою, а не за прізвищем), а також для колишніх абонентів, якщо з моменту останнього користування послугами за цією адресою минуло не менше 36 місяців. У тариф включено доступ до Інтернету (до 300 Мбіт/с) та сервіс MEGOGO (170+ каналів). Акційна вартість 100 грн/міс діє 365 календарних днів з моменту активації. З 366-го дня абонент автоматично переводиться на регулярний тариф зі швидкістю 1000 Мбіт/с вартістю 250 грн/міс. Надане обладнання (термінал ONU) є власністю провайдера і підлягає поверненню у разі розірвання договору.
+        </footer>
+      </div>
+
+      {/* SCHEMA.ORG JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
+      />
+    </>
   );
 };
 

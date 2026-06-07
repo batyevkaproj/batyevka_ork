@@ -33,10 +33,6 @@ const GigabitPromo = () => {
     }
   };
 
-  // Перелік каналів (Код автоматично розіб'є їх на красиву сітку)
-  const channelsString = "24 канал, 5 канал HD, Еспресо TV HD, Телеканал Рада, Перший, FREEДОМ, Надія, ICTV HD, M1 HD, M2 HD, Інтер HD, 1+1 Марафон HD, УНІАН Серіал, Eco TV, Extreme Sports, Classical Harmony, #НАШЕ ретро, Milady TELEVISION, Euronews ENG, ЕТНО КАНАЛ, Дніпро ТV HD, Суспільне Культура, MEGOGO MUSIC, Київ, France 24 Français, France 24 English, France 24 Arabic, BTQ, Караван TV, Наталі, Radio NV, Kiss FM, Мелодія FM, Наше Радіо, Radio ROKS, Radio Relax, Хіт FM, Radio Jazz, Радіо МАКСИМУМ, Радіо Nostalgie, Люкс ФМ, Радіо П'ятниця, Lounge Fm, Авторадіо Україна, NRJ радіо, Апостроф TV, Львівська Хвиля, Magic Radio, DJFM, Power FM, Шлягер FM, Кухня, Подорожі, Розваги, DIY, Телесеріал, Спорт огляд, Риболовля, Чоловіче хобі, Б'юті-блог, Будівництво та ремонт, Орел і Решка, Тварини, Музичний, World of Tanks, Minecraft, ДІМ HD, Лайфстайл, Пізнавальний, Авто/Мото, Радіо Закарпаття - FM, Українське радіо, Радіо Промінь, Радіо Культура, Рукоділля, Сад і город, FM Галичина, ПЕРЕЦЬ FM, Радіо Байрактар, Українське, Сім'я Каті та Макса, [M] Подкасти, Історія без міфів, TVP World, Кулінарія, Дитячий 2, [M] Little kittens, Мандри, Пригоди, Кухня UA, Пізнавальний Kids, Документальний, [M] Трейлери, Сімейний, Авто/Мото UA, Залипальне, КИЇВ - FM, Serginio Fishing, [M] Подкасти The Ukrainians, ТЮСО, Classic Radio, Спортивний, Життя у лісі, NHK World, [M] Розмови про кіно, АРМІЯ ТБ, Рецепти Алли Ковальчук, Гід техніки, [M] Standup, Футбольний, Суспільне Спорт, Мультиленд, Креативна практика, Товари з AliExpress, [M] Goods from AliExpress, France 24 Español, Армія FM, Розслідування Мердока, Детективні хроніки, Smart Kids, Ньюспалм, Трофей Premium, Forbes, Блог Економічний, МИ - УКРАЇНА HD, МИ - УКРАЇНА + HD, [M] Колекція Радіо Культура, Євген Клопотенко, [M] Поезія, [M] Віра, Світ навиворіт+, Загублений світ+, Опер за викликом+, Сімейні мелодрами+, ЖВЛ+, [M] Доктор Комаровський, [М] Укрліт, [M] Дитячий садок, [M] Стосується кожного, [M] Речдок, [М] Кінопортал, [M] Солодкі фантазії, H1, Твій ТВ, Gagsnetwork, Капучино TV, Ми – Україна Радіо, [M] Книгарня, [M] Active TV, One Planet, [M] eXplore, КОНКУРЕНТ. УКРАЇНА, ДІМ+, Панянка-селянка+, Хіти Мегого Родина, Хіти Мегого Драма, Хіти Мегого Адреналін, Вікторина, Про Київ, Знаєм 24, [M] Zoosvit, [M] Кінокласика, Накипіло, Тернопільська Хвиля, [M] KIDDISVIT, PROVENCE, [M] Цивільна підготовка, [M] БарДак, [M] Говорить вся країна, [M] Гумористичний, [M] Драматичний, [M] Містика, [M] Реальні історії, [M] Light cinema 1, [M] Light cinema 2, [M] Танька і Володька, [M] Одного разу під Полтавою, [М] Movie Library, [M] Теленовели 2, [M] Мovie mode 1, [M] Мovie mode 2, [M] Kids town, Радіоточка, Champion Radio, [M] Doramas 1, [M] Doramas 2, [M] Детективне кіно, [M] Кримінальне кіно, [M] Мелодрами, РАІ, fashion, Radio Прищепкін TOP40 UA, SUN FM, Сонце+, РАДІОПІХОТА, [M] LOLka, BIKINI, Люкс ФМ Українські Хіти, Люкс ФМ Chill and Relax, Люкс ФМ Золоті Хіти, Люкс ФМ Сучасні Хіти, K-Pop";
-  const channelsList = channelsString.split(', ').filter(Boolean);
-
   const jsonLdData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -44,26 +40,65 @@ const GigabitPromo = () => {
         "@type": "Product",
         "name": "Акція «Гігабіт на рік» - Інтернет 1 Гбіт/с + MEGOGO",
         "description": "Підключення нових абонентів до GPON (оптика в квартиру), швидкість 1000 Мбіт/с та пакет MEGOGO (202 канали, 6000 фільмів).",
-        "brand": { "@type": "Brand", "name": "Batyevka.NET" },
+        "brand": {
+          "@type": "Brand",
+          "name": "Batyevka.NET"
+        },
         "offers": {
           "@type": "Offer",
           "priceCurrency": "UAH",
           "price": "150.00",
           "priceValidUntil": "2026-12-31",
           "availability": "https://schema.org/InStock",
-          "seller": { "@type": "Organization", "name": "Batyevka.NET" },
+          "seller": {
+            "@type": "Organization",
+            "name": "Batyevka.NET"
+          },
           "priceSpecification": [
-            { "@type": "UnitPriceSpecification", "priceType": "https://schema.org/SalePrice", "priceCurrency": "UAH", "price": "150.00", "name": "Акційна ціна (перші 365 днів)" },
-            { "@type": "UnitPriceSpecification", "priceType": "https://schema.org/ListPrice", "priceCurrency": "UAH", "price": "250.00", "name": "Регулярна ціна (з 366-го дня)" }
+            {
+              "@type": "UnitPriceSpecification",
+              "priceType": "https://schema.org/SalePrice",
+              "priceCurrency": "UAH",
+              "price": "150.00",
+              "name": "Акційна ціна (перші 365 днів)"
+            },
+            {
+              "@type": "UnitPriceSpecification",
+              "priceType": "https://schema.org/ListPrice",
+              "priceCurrency": "UAH",
+              "price": "250.00",
+              "name": "Регулярна ціна (з 366-го дня)"
+            }
           ]
         }
       },
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "Скільки триває акція на Гігабіт?", "acceptedAnswer": { "@type": "Answer", "text": "Акційна ціна 150 грн/міс діє цілий рік (365 днів) з моменту підключення." } },
-          { "@type": "Question", "name": "Хто може підключитися за акцією?", "acceptedAnswer": { "@type": "Answer", "text": "Акція діє для нових підключень (перевіряється адреса квартири). Також можуть підключитися колишні абоненти, якщо з моменту останнього користування минуло 36 місяців." } },
-          { "@type": "Question", "name": "Які канали входять у підписку MEGOGO?", "acceptedAnswer": { "@type": "Answer", "text": "У тариф входить безкоштовний пакет MEGOGO: 202 телеканали, понад 6000 фільмів, а також функції перемотки та ТВ-архіву." } }
+          {
+            "@type": "Question",
+            "name": "Скільки триває акція на Гігабіт?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Акційна ціна 150 грн/міс діє цілий рік (365 днів) з моменту підключення."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Хто може підключитися за акцією?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Акція діє для нових підключень (перевіряється адреса квартири). Також можуть підключитися колишні абоненти, якщо з моменту останнього користування минуло 36 місяців."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Які канали входять у підписку MEGOGO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "У тариф входить безкоштовний пакет MEGOGO: 202 телеканали, понад 6000 фільмів, а також функції перемотки та ТВ-архіву."
+            }
+          }
         ]
       }
     ]
@@ -71,54 +106,46 @@ const GigabitPromo = () => {
 
   return (
     <>
-      {/* Стилі для кастомного скролбару та приховування дефолтних маркерів */}
-      <style dangerouslySetInnerHTML={{__html: `
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #F4F2F2; border-radius: 8px; margin: 4px 0; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #BDBDBD; border-radius: 8px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #8B6CB0; }
-        details > summary { list-style: none; }
-        details > summary::-webkit-details-marker { display: none; }
-      `}} />
-
-      <div
+      <div 
         className="bg-white text-[#5F6061] overflow-x-hidden mt-8 sm:mt-12 lg:mt-16 leading-relaxed max-w-[1200px] mx-auto py-10 px-5"
         style={{ fontFamily: "'Montserrat', sans-serif" }}
       >
-
-        {/* --- ГОЛОВНИЙ ЕКРАН (HERO - Концепт 2 З ФІОЛЕТОВОЮ СМУЖКОЮ) --- */}
-        {/* Додано border-t-[6px] border-[#8B6CB0] для фіксації дизайну */}
-        <section className="relative bg-[#F4F2F2] rounded-[32px] border-t-[6px] border-[#8B6CB0] shadow-sm p-8 md:p-14 flex flex-col md:flex-row items-center justify-between mb-16 overflow-hidden">
-          <div className="md:w-1/2 z-10 text-center md:text-left mb-10 md:mb-0">
+        
+        {/* --- ГОЛОВНИЙ ЕКРАН (HERO - Концепт 3: Background Cover) --- */}
+        <section 
+          className="relative rounded-[32px] mb-16 overflow-hidden flex items-center min-h-[450px] shadow-sm border border-[#EAEAEA]"
+          style={{
+            /* ВАЖЛИВО ДЛЯ ВЕБМАЙСТРА: Вкажіть правильний шлях до вашої картинки-банера */
+            backgroundImage: "url('/img/rocket-promo.jpg')", 
+            backgroundSize: 'cover',
+            backgroundPosition: 'right center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          {/* Ефект матового скла, щоб текст добре читався поверх банера */}
+          <div className="absolute inset-0 bg-white/70 md:bg-white/60 backdrop-blur-[6px] md:w-3/5 z-0"></div>
+          
+          <div className="relative z-10 p-8 md:p-14 w-full md:w-[65%] text-center md:text-left">
             <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
-              <span className="bg-white text-[#56AABF] text-[10px] sm:text-xs font-bold py-1.5 px-3 rounded uppercase shadow-sm">GPON</span>
-              <span className="bg-white text-[#8B6CB0] text-[10px] sm:text-xs font-bold py-1.5 px-3 rounded uppercase shadow-sm">1000 Мбіт/с</span>
-              <span className="bg-[#DC662D] text-white text-[10px] sm:text-xs font-bold py-1.5 px-3 rounded uppercase shadow-sm">Акція</span>
+              <span className="bg-white text-[#56AABF] text-xs font-bold py-1.5 px-3 rounded uppercase shadow-sm">GPON</span>
+              <span className="bg-white text-[#8B6CB0] text-xs font-bold py-1.5 px-3 rounded uppercase shadow-sm">1000 Мбіт/с</span>
+              <span className="bg-[#DC662D] text-white text-xs font-bold py-1.5 px-3 rounded uppercase shadow-sm">Акція</span>
             </div>
-
+            
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 uppercase text-[#0E2D43] leading-tight">
               Гігабітний <br className="hidden md:block" /><span className="text-[#8B6CB0]">PON Інтернет</span>
             </h1>
-
-            <p className="text-base sm:text-lg font-medium text-[#5F6061] mb-8 max-w-[450px] mx-auto md:mx-0">
-              Космічна швидкість <strong className="text-[#0E2D43]">1000 Мбіт/с</strong> та безкоштовне телебачення MEGOGO. Лише 150 грн/міс на цілий рік!
+            
+            <p className="text-lg font-medium text-[#0E2D43] mb-8 max-w-[450px] mx-auto md:mx-0 drop-shadow-sm">
+              Космічна швидкість <strong>1000 Мбіт/с</strong> та безкоштовне телебачення MEGOGO. Лише 150 грн/міс на цілий рік!
             </p>
-
+            
             <button
               onClick={handleOpenModalGeneral}
               className="inline-block bg-[#DC662D] text-white text-lg font-semibold py-4 px-10 rounded-full shadow-[0_4px_20px_rgba(220,102,45,0.4)] transition-all duration-300 hover:bg-[#c95b27] hover:-translate-y-1"
             >
               Підключитись
             </button>
-          </div>
-
-          <div className="md:w-1/2 z-10 relative flex justify-center md:justify-end">
-            <img
-	      src="/img/promotions/rocket-post.svg"
-              alt="Гігабітний PON від Batyevka.NET"
-              loading="lazy"
-              className="w-full max-w-[350px] lg:max-w-[480px] h-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
-            />
           </div>
         </section>
 
@@ -131,7 +158,7 @@ const GigabitPromo = () => {
         <div className="flex justify-center mb-16">
           <section className="bg-white border border-[#EAEAEA] rounded-[16px] p-8 md:p-12 w-full max-w-[500px] shadow-[0_10px_30px_rgba(0,0,0,0.04)] text-left relative transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(14,45,67,0.08)]">
             <div className="absolute top-0 left-0 right-0 h-[6px] bg-[#8B6CB0] rounded-t-[16px]"></div>
-
+            
             <span className="inline-block bg-[#f0eaff] text-[#8B6CB0] text-sm font-bold py-1.5 px-3 rounded mb-5 uppercase">
               XGS-PON / G-PON
             </span>
@@ -155,7 +182,7 @@ const GigabitPromo = () => {
 
             <button
               onClick={handleOpenModalGeneral}
-              className="block w-full text-center bg-[#DC662D] text-white text-lg font-semibold py-4 px-5 rounded-full shadow-[0_4px_15px_rgba(220,102,45,0.4)] transition-all duration-200 hover:bg-[#c95b27] hover:-translate-y-1 outline-none"
+              className="block w-full text-center bg-[#DC662D] text-white text-lg font-semibold py-4 px-5 rounded-full shadow-[0_4px_15px_rgba(220,102,45,0.4)] transition-all duration-200 hover:bg-[#c95b27] hover:-translate-y-1"
             >
               Залишити заявку
             </button>
@@ -165,11 +192,11 @@ const GigabitPromo = () => {
           </section>
         </div>
 
-        {/* --- СЕКЦІЯ MEGOGO З КРАСИВИМ АКОРДЕОНОМ --- */}
-        <section className="mb-20 max-w-[900px] mx-auto bg-[#F4F2F2] rounded-[24px] p-6 md:p-8 border border-[#EAEAEA]">
+        {/* --- СЕКЦІЯ MEGOGO --- */}
+        <section className="mb-20 max-w-[900px] mx-auto bg-[#F4F2F2] rounded-[24px] p-8 border border-[#EAEAEA]">
           <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-6 text-[#0E2D43]">У тариф вже включено MEGOGO</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 text-center">
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center">
              <div className="bg-white p-4 rounded-xl shadow-sm">
                 <div className="text-3xl font-black text-[#56AABF] mb-1">202</div>
                 <div className="text-sm font-semibold text-[#0E2D43]">Телеканали з новинами й шоу</div>
@@ -184,30 +211,20 @@ const GigabitPromo = () => {
              </div>
           </div>
 
-          <details className="group bg-white rounded-xl border border-[#EAEAEA] shadow-sm overflow-hidden transition-all duration-300">
-            <summary className="flex items-center justify-between p-5 cursor-pointer font-bold text-[#0E2D43] hover:bg-[#fcfcfc] outline-none select-none">
-              <span className="text-base md:text-lg">Переглянути повний список каналів (202 канали)</span>
-              <span className="transition-transform duration-300 group-open:rotate-180 text-[#8B6CB0] bg-[#f0eaff] p-1.5 rounded-full">
-                <svg fill="none" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" width="20"><path d="M6 9l6 6 6-6"></path></svg>
+          <details className="group bg-white rounded-xl border border-[#EAEAEA] shadow-sm [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex items-center justify-between p-4 cursor-pointer font-bold text-[#0E2D43]">
+              <span>Переглянути повний список каналів (202 канали)</span>
+              <span className="transition group-open:rotate-180">
+                <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
               </span>
             </summary>
-
-            <div className="p-5 border-t border-[#EAEAEA] bg-white">
-              <div className="custom-scrollbar max-h-[320px] overflow-y-auto pr-3">
-                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-3 gap-x-4 text-sm text-[#5F6061]">
-                  {channelsList.map((channel, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-[#8B6CB0] mr-2 text-lg leading-none">•</span>
-                      <span className="leading-tight">{channel}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="p-4 border-t border-[#EAEAEA] text-xs text-[#5F6061] leading-relaxed max-h-[300px] overflow-y-auto">
+              24 канал, 5 канал HD, Еспресо TV HD, Телеканал Рада, Перший, FREEДОМ, Надія, ICTV HD, M1 HD, M2 HD, Інтер HD, 1+1 Марафон HD, УНІАН Серіал, Eco TV, Extreme Sports, Classical Harmony, #НАШЕ ретро, Milady TELEVISION, Euronews ENG, ЕТНО КАНАЛ, Дніпро ТV HD, Суспільне Культура, MEGOGO MUSIC, Київ, France 24 Français, France 24 English, France 24 Arabic, BTQ, Караван TV, Наталі, Radio NV, Kiss FM, Мелодія FM, Наше Радіо, Radio ROKS, Radio Relax, Хіт FM, Radio Jazz, Радіо МАКСИМУМ, Радіо Nostalgie, Люкс ФМ, Радіо П'ятниця, Lounge Fm, Авторадіо Україна, NRJ радіо, Апостроф TV, Львівська Хвиля, Magic Radio, DJFM, Power FM, Шлягер FM, Кухня, Подорожі, Розваги, DIY, Телесеріал, Спорт огляд, Риболовля, Чоловіче хобі, Б'юті-блог, Будівництво та ремонт, Орел і Решка, Тварини, Музичний, World of Tanks, Minecraft, ДІМ HD, Лайфстайл, Пізнавальний, Авто/Мото, Радіо Закарпаття - FM, Українське радіо, Радіо Промінь, Радіо Культура, Рукоділля, Сад і город, FM Галичина, ПЕРЕЦЬ FM, Радіо Байрактар, Українське, Сім'я Каті та Макса, [M] Подкасти, Історія без міфів, TVP World, Кулінарія, Дитячий 2, [M] Little kittens, Мандри, Пригоди, Кухня UA, Пізнавальний Kids, Документальний, [M] Трейлери, Сімейний, Авто/Мото UA, Залипальне, КИЇВ - FM, Serginio Fishing, [M] Подкасти The Ukrainians, ТЮСО, Classic Radio, Спортивний, Життя у лісі, NHK World, [M] Розмови про кіно, АРМІЯ ТБ, Рецепти Алли Ковальчук, Гід техніки, [M] Standup, Футбольний, Суспільне Спорт, Мультиленд, Креативна практика, Товари з AliExpress, [M] Goods from AliExpress, France 24 Español, Армія FM, Розслідування Мердока, Детективні хроніки, Smart Kids, Ньюспалм, Трофей Premium, Forbes, Блог Економічний, МИ - УКРАЇНА HD, МИ - УКРАЇНА + HD, [M] Колекція Радіо Культура, Євген Клопотенко, [M] Поезія, [M] Віра, Світ навиворіт+, Загублений світ+, Опер за викликом+, Сімейні мелодрами+, ЖВЛ+, [M] Доктор Комаровський, [М] Укрліт, [M] Дитячий садок, [M] Стосується кожного, [M] Речдок, [М] Кінопортал, [M] Солодкі фантазії, H1, Твій ТВ, Gagsnetwork, Капучино TV, Ми – Україна Радіо, [M] Книгарня, [M] Active TV, One Planet, [M] eXplore, КОНКУРЕНТ. УКРАЇНА, ДІМ+, Панянка-селянка+, Хіти Мегого Родина, Хіти Мегого Драма, Хіти Мегого Адреналін, Вікторина, Про Київ, Знаєм 24, [M] Zoosvit, [M] Кінокласика, Накипіло, Тернопільська Хвиля, [M] KIDDISVIT, PROVENCE, [M] Цивільна підготовка, [M] БарДак, [M] Говорить вся країна, [M] Гумористичний, [M] Драматичний, [M] Містика, [M] Реальні історії, [M] Light cinema 1, [M] Light cinema 2, [M] Танька і Володька, [M] Одного разу під Полтавою, [М] Movie Library, [M] Теленовели 2, [M] Мovie mode 1, [M] Мovie mode 2, [M] Kids town, Радіоточка, Champion Radio, [M] Doramas 1, [M] Doramas 2, [M] Детективне кіно, [M] Кримінальне кіно, [M] Мелодрами, РАІ, fashion, Radio Прищепкін TOP40 UA, SUN FM, Сонце+, РАДІОПІХОТА, [M] LOLka, BIKINI, Люкс ФМ Українські Хіти, Люкс ФМ Chill and Relax, Люкс ФМ Золоті Хіти, Люкс ФМ Сучасні Хіти, K-Pop.
             </div>
           </details>
         </section>
 
-        {/* --- СЕКЦІЯ 1: ДЛЯ КОГО ДІЄ (ОНОВЛЕНІ ТЕКСТИ) --- */}
+        {/* --- СЕКЦІЯ 1: ДЛЯ КОГО ДІЄ --- */}
         <section className="mb-20">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-12 text-[#0E2D43]">Умови підключення</h2>
           <div className="grid gap-8 grid-cols-1 md:grid-cols-2 max-w-[900px] mx-auto">
@@ -215,8 +232,8 @@ const GigabitPromo = () => {
               <svg className="w-12 h-12 mx-auto mb-5 text-[#8B6CB0]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m3-4h1m-1 4h1m-5 8h8"></path>
               </svg>
-              <h3 className="text-xl font-bold mb-3 text-[#0E2D43]">Для нових адрес</h3>
-              <p className="text-[0.95rem] text-[#5F6061]">Ця пропозиція діє, якщо у вашій квартирі чи будинку ще немає нашого інтернету. Ми перевіряємо історію підключень <strong>саме за адресою</strong>, а не за прізвищем власника.</p>
+              <h3 className="text-xl font-bold mb-3 text-[#0E2D43]">Перевірка за квартирою</h3>
+              <p className="text-[0.95rem] text-[#5F6061]">Акція діє для нових абонентів. Приймаючи заявку, ми перевіряємо технічну історію <strong>саме квартири (адреси)</strong>, а не прізвище.</p>
             </div>
             <div className="bg-white p-8 rounded-xl border border-[#F0F0F0] shadow-[0_4px_15px_rgba(0,0,0,0.03)] text-center transition-transform hover:-translate-y-1">
               <svg className="w-12 h-12 mx-auto mb-5 text-[#8B6CB0]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -269,7 +286,7 @@ const GigabitPromo = () => {
           </ul>
         </article>
 
-        {/* --- ЮРИДИЧНІ УМОВИ (ОФЕРТА) --- */}
+        {/* --- ЮРИДИЧНІ УМОВИ --- */}
         <footer className="mt-10 p-6 bg-[#F4F2F2] rounded-xl text-[0.85rem] text-[#5F6061] border-l-4 border-[#BDBDBD] leading-relaxed">
           <strong className="text-[#333]">Офіційні правила акції:</strong> Пропозиція діє за наявності технічної можливості підключення до мережі GPON. Акція доступна для нових абонентів (перевірка здійснюється за адресою підключення/квартирою, а не за прізвищем), а також для колишніх абонентів, якщо з моменту останнього користування послугами за цією адресою минуло не менше 36 місяців. У тариф включено доступ до Інтернету (до 1000 Мбіт/с) та сервіс MEGOGO (202 канали, ТВ-архів, фільми). Акційна вартість 150 грн/міс діє 365 календарних днів з моменту активації. Починаючи з 366-го дня абонент автоматично переводиться на регулярний тариф вартістю 250 грн/міс. Надане обладнання (термінал ONU) є власністю провайдера і підлягає поверненню у разі розірвання договору.
         </footer>

@@ -13,21 +13,13 @@ import { useModal } from "@/hooks/use-modal-store";
 import { useToast } from "@/hooks/use-toast";
 
 // --- Дані для MEGOGO ---
-const megogoPlans =[
-    { id: 'free', name: 'Безкоштовне ТБ', desc: '170+ національних та ефірних каналів.', price: 'Вже у тарифі', priceColor: 'text-[#51B18B]' },
-    { id: 'national', name: 'Національне ТБ', desc: '255+ каналів, колекція фільмів та мультфільмів.', price: '+ 50 грн/міс', priceColor: 'text-[#5984B2]' },
-    { id: 'light', name: 'Легка', desc: '375+ каналів, колекція фільмів та мультфільмів.', price: '+ 85 грн/міс', priceColor: 'text-[#5984B2]' },
-    { id: 'optimal', name: 'Оптимальна', desc: '445+ каналів, преміум-кіно та спорт (Setanta).', price: '+ 200 грн/міс', priceColor: 'text-[#5984B2]' },
-    { id: 'maximal', name: 'Максимальна', desc: '480+ каналів, HBO, Ліга Чемпіонів та максимум кіно.', price: '+ 350 грн/міс', priceColor: 'text-[#5984B2]' },
+const megogoPlansData = [
+    { id: 'free', name: 'Безкоштовне ТБ', desc: '200+ національних та ефірних каналів.', basePrice: 0 },
+    { id: 'national', name: 'Національне ТБ', desc: '255+ каналів, колекція фільмів та мультфільмів.', basePrice: 50 },
+    { id: 'light', name: 'Легка', desc: '375+ каналів, колекція фільмів та мультфільмів.', basePrice: 85 },
+    { id: 'optimal', name: 'Оптимальна', desc: '445+ каналів, преміум-кіно та спорт (Setanta).', basePrice: 200 },
+    { id: 'maximal', name: 'Максимальна', desc: '480+ каналів, HBO, Ліга Чемпіонів та максимум кіно.', basePrice: 350 },
 ];
-
-const scrollToCTA = () => {
-    const element = document.getElementById('cta');
-    if (element) {
-        const y = element.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({ top: y - 100, behavior: 'smooth' });
-    }
-};
 
 const XgsPonPage: React.FC = () => {
 
@@ -35,8 +27,24 @@ const XgsPonPage: React.FC = () => {
     const { toast } = useToast();
     
     // 5-й тариф виділений за замовчуванням (центральний)
-    const[selectedTariff, setSelectedTariff] = useState<number | null>(5); 
-    const[selectedMegogo, setSelectedMegogo] = useState<string | null>('light');
+    const [selectedTariff, setSelectedTariff] = useState<number | null>(5); 
+    const [selectedMegogo, setSelectedMegogo] = useState<string | null>('light');
+
+    // Визначаємо рівень (індекс) пакету, який вже включений в обраний тариф
+    const getIncludedMegogoLevel = (tariffId: number | null) => {
+        if (tariffId === 3) return 1;  // 3 Гбіт/с -> 'national' (індекс 1)
+        if (tariffId === 5) return 2;  // 5 Гбіт/с -> 'light' (індекс 2)
+        if (tariffId === 10) return 3; // 10 Гбіт/с -> 'optimal' (індекс 3)
+        return 0; // Якщо тариф не обрано або інший тариф, включено тільки безкоштовне
+    };
+
+    const scrollToCTA = () => {
+        const element = document.getElementById('cta');
+        if (element) {
+            const y = element.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({ top: y - 100, behavior: 'smooth' });
+        }
+    };
 
     // =================================================================
     // === ОБРОБНИКИ ДЛЯ ВІДКРИТТЯ МОДАЛЬНОГО ВІКНА ====================
@@ -88,11 +96,11 @@ const XgsPonPage: React.FC = () => {
     // Обробник кліку на картку передплати MEGOGO
     const handleMegogoPlanClick = (megogoId: string) => {
         setSelectedMegogo(megogoId);
-        // Зв'язуємо клік на MEGOGO з відповідним тарифом на сторінці XGS-PON
+        
+        // Зв'язуємо клік на MEGOGO з відповідним тарифом
         if (megogoId === 'national') setSelectedTariff(3);
         else if (megogoId === 'light') setSelectedTariff(5);
-        else if (megogoId === 'free') setSelectedTariff(10);
-        else setSelectedTariff(null);
+        else if (megogoId === 'optimal') setSelectedTariff(10);
     };
 
     return (
@@ -114,9 +122,9 @@ const XgsPonPage: React.FC = () => {
                         <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
                             Відкрийте для себе новий стандарт швидкості з технологією XGS-PON. Симетричний канал до 10 Гбіт/с, мінімальні затримки та безмежні можливості для найвимогливіших користувачів.
                         </p>
-                        <a onClick={scrollToCTA} className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 inline-block">
+                        <button onClick={scrollToCTA} className="bg-[#DC662D] hover:bg-opacity-90 text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 inline-block">
                             Обрати тариф
-                        </a>
+                        </button>
                     </section>
 
                     {/* ----- WHAT IS XG-PON SECTION ----- */}
@@ -161,7 +169,7 @@ const XgsPonPage: React.FC = () => {
                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-[#5F6061]">Тарифи XGS-PON</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
                             
-                            {/* --- ТАРИФ 1 (3 Гбіт/с) --- */}
+                            {/* --- ТАРИФ 3 Гбіт/с --- */}
                             <article 
                                 onClick={() => handleTariffClick(3, 'national')}
                                 className={`p-6 rounded-lg flex flex-col transition-all duration-300 cursor-pointer relative ${
@@ -173,34 +181,26 @@ const XgsPonPage: React.FC = () => {
                                 <div className="flex-grow">
                                     <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">XGS-PON</span>
                                     <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">3 Гбіт/с</h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">550<span className="text-xl font-bold"> грн/міс</span></p>
-                                    <p className="text-sm text-[#5F6061] mb-4">регулярна ціна</p>
+                                    <p className="text-4xl font-extrabold text-[#DC662D]">500<span className="text-xl font-bold"> грн/міс</span></p>
                                     <p className="text-sm font-bold mb-2 text-[#51B18B]">Підключення — 2999 грн</p>
                                     <p 
                                         className="text-sm font-bold text-[#5984B2] hover:text-[#DC662D] transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
                                         onClick={(e) => handleMegogoLinkClick(e, 'national', 3)}
                                     >
-                                        + MEGOGO Нац ТБ (300+ каналів)
+                                        + MEGOGO Нац ТБ
                                     </p>
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">
                                     <button 
-                                        onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
+                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(3, 'Гбіт', 500, 2999, 'XGS-PON'); }}
                                         className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                                     >
                                         Залишити заявку
                                     </button>
-                                    <Link 
-                                        href="/prices" 
-                                        onClick={(e) => e.stopPropagation()}
-                                        className="w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300"
-                                    >
-                                        Детальніше
-                                    </Link>
                                 </div>
                             </article>
 
-                            {/* --- ТАРИФ 2 (5 Гбіт/с) - ТЕМНА КАРТКА --- */}
+                            {/* --- ТАРИФ 5 Гбіт/с --- */}
                             <article 
                                 onClick={() => handleTariffClick(5, 'light')}
                                 className={`p-6 rounded-lg flex flex-col transition-all duration-300 cursor-pointer relative ${
@@ -212,36 +212,28 @@ const XgsPonPage: React.FC = () => {
                                 <div className="flex-grow">
                                     <span className="inline-block bg-white/20 text-white text-xs font-bold px-2 py-1 rounded-full mb-2">XGS-PON</span>
                                     <h3 className="text-2xl font-bold mb-2">5 Гбіт/с</h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">850<span className="text-xl font-bold"> грн/міс</span></p>
-                                    <p className="text-sm text-white/90 mb-4">регулярна ціна</p>
+                                    <p className="text-4xl font-extrabold text-[#DC662D]">800<span className="text-xl font-bold"> грн/міс</span></p>
                                     <p className="text-sm font-bold mb-2">Підключення — 5999 грн</p>
                                     <p 
                                         className="text-sm font-bold text-white/90 hover:text-white transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
                                         onClick={(e) => handleMegogoLinkClick(e, 'light', 5)}
                                     >
-                                        + MEGOGO ТБ Легка (370+ каналів)
+                                        + MEGOGO Легка
                                     </p>
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">
                                     <button 
-                                        onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
+                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(5, 'Гбіт', 800, 5999, 'XGS-PON'); }}
                                         className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                                     >
                                         Залишити заявку
                                     </button>
-                                    <Link 
-                                        href="/prices" 
-                                        onClick={(e) => e.stopPropagation()}
-                                        className="w-full block text-center bg-transparent hover:bg-white/20 text-white font-bold py-2 px-4 rounded-lg transition-colors border border-white/50"
-                                    >
-                                        Детальніше
-                                    </Link>
                                 </div>
                             </article>
 
-                            {/* --- ТАРИФ 3 (10 Гбіт/с) --- */}
+                            {/* --- ТАРИФ 10 Гбіт/с --- */}
                             <article 
-                                onClick={() => handleTariffClick(10, 'free')}
+                                onClick={() => handleTariffClick(10, 'optimal')}
                                 className={`p-6 rounded-lg flex flex-col transition-all duration-300 cursor-pointer relative ${
                                     selectedTariff === 10 
                                     ? 'ring-2 ring-[#DC662D] shadow-2xl transform md:scale-105 z-10 bg-white border-transparent' 
@@ -252,29 +244,21 @@ const XgsPonPage: React.FC = () => {
                                     <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">XGS-PON</span>
                                     <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">10 Гбіт/с</h3>
                                     <p className="text-4xl font-extrabold text-[#DC662D]">2000<span className="text-xl font-bold"> грн/міс</span></p>
-                                    <p className="text-sm text-[#5F6061] mb-4">регулярна ціна</p>
                                     <p className="text-sm font-bold mb-2 text-[#51B18B]">Підключення — 5999 грн</p>
                                     <p 
                                         className="text-sm font-bold text-[#5984B2] hover:text-[#DC662D] transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
-                                        onClick={(e) => handleMegogoLinkClick(e, 'free', 10)}
+                                        onClick={(e) => handleMegogoLinkClick(e, 'optimal', 10)}
                                     >
-                                        + MEGOGO ТБ (170+ каналів)
+                                        + MEGOGO Оптимальна
                                     </p>
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">
                                     <button 
-                                        onClick={(e) => { e.stopPropagation(); scrollToCTA(); }}
+                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(10, 'Гбіт', 2000, 5999, 'XGS-PON'); }}
                                         className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                                     >
                                         Залишити заявку
                                     </button>
-                                    <Link 
-                                        href="/prices" 
-                                        onClick={(e) => e.stopPropagation()}
-                                        className="w-full block text-center bg-transparent hover:bg-gray-100 text-[#5F6061] font-bold py-2 px-4 rounded-lg transition-colors border border-gray-300"
-                                    >
-                                        Детальніше
-                                    </Link>
                                 </div>
                             </article>
 
@@ -283,28 +267,31 @@ const XgsPonPage: React.FC = () => {
                     
                     {/* ----- MEGOGO SECTION ----- */}
                     <section id="megogo-section" className="py-16">
-                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#5F6061]">Оберіть ваш MEGOGO</h2>
-                         <p className="text-center max-w-2xl mx-auto mb-12 text-gray-600">Безкоштовне телебачення вже включено у ваш тариф. Розширте можливості, обравши одну з преміальних передплат.</p>
+                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5F6061]">Передплати MEGOGO</h2>
                          
                          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
-                            {megogoPlans.map(plan => (
-                                <div 
-                                    key={plan.id}
-                                    className={`p-4 rounded-lg border transition-all duration-300 cursor-pointer ${
-                                        selectedMegogo === plan.id 
-                                            ? 'border-[#DC662D] ring-2 ring-[#DC662D] shadow-lg transform scale-105 bg-white' 
-                                            : 'border-gray-200 bg-gray-50 hover:border-[#DC662D]/50 hover:bg-white'
-                                    }`}
-                                    onClick={() => handleMegogoPlanClick(plan.id)}
-                                >
-                                    <p className="font-bold text-lg text-[#5F6061]">{plan.name}</p>
-                                    <p className="text-sm mt-1">{plan.desc}</p>
-                                    <p className={`font-bold ${plan.priceColor} mt-2`}>{plan.price}</p>
-                                </div>
-                            ))}
-                         </div>
-                         <div className="text-center mt-8">
-                            <Link href="/prices" className="text-[#DC662D] font-bold hover:underline">Дізнатись більше про передплати →</Link>
+                            {megogoPlansData.map((plan, index) => {
+                                const includedLevel = getIncludedMegogoLevel(selectedTariff);
+                                const isIncluded = index <= includedLevel;
+                                const displayPrice = isIncluded ? 'Вже у тарифі' : `+ ${plan.basePrice} грн/міс`;
+                                const priceColor = isIncluded ? 'text-[#51B18B]' : 'text-[#5984B2]';
+
+                                return (
+                                    <div 
+                                        key={plan.id}
+                                        className={`p-4 rounded-lg border transition-all duration-300 cursor-pointer ${
+                                            selectedMegogo === plan.id 
+                                                ? 'border-[#DC662D] ring-2 ring-[#DC662D] shadow-lg transform scale-105 bg-white' 
+                                                : 'border-gray-200 bg-gray-50 hover:border-[#DC662D]/50 hover:bg-white'
+                                        }`}
+                                        onClick={() => handleMegogoPlanClick(plan.id)}
+                                    >
+                                        <p className="font-bold text-lg text-[#5F6061]">{plan.name}</p>
+                                        <p className="text-sm mt-1">{plan.desc}</p>
+                                        <p className={`font-bold ${priceColor} mt-2`}>{displayPrice}</p>
+                                    </div>
+                                );
+                            })}
                          </div>
                     </section>
                     

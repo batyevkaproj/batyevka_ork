@@ -127,14 +127,14 @@ const Header = ({ theme, business }: HeaderProps) => {
                             <Image src={wallet_white} className={`relative w-7 h-7 fill-white `} alt={'wallet'}></Image>
                         </Button>
                     </Link>
-                    <Link href="https://my.batyevka.net/cgi-bin/index.cgi">
+                    <Link href="https://abills.batyevka.net:9443">
                         <Button variant={theme == 'white' ? 'cabinetGrey' : 'cabinet'}>
                             <Image src={theme == 'white' ? connectGrey : connect} alt='connect' className={`pr-2 min-[2430px]:w-[34px] min-[2430px]:h-[34px]`}>
                             </Image>
                             Кабінет абонента
                         </Button>
                     </Link>
-                    <Link href="https://my.batyevka.net/cgi-bin/index.cgi">
+                    <Link href="https://abills.batyevka.net:9443">
                         <Button variant={theme == 'white' ? 'cabinetGreyMob' : 'cabinetMob'}>
                             <Image src={theme == 'white' ? connectGrey : connect} alt='connect' className={``} />
                         </Button>

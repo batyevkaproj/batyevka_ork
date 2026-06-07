@@ -113,7 +113,7 @@ export default function BatyevkaPage() {
             </div>
             <div className="flex gap-x-4 gap-y-2 text-sm mt-4 flex-wrap opacity-75">
               <div>Стабільність 24/7</div>
-              <div>170+ ТВ‑каналів</div>
+              <div>200+ ТВ‑каналів</div>
               <div>Локальна підтримка</div>
             </div>
           </section>
@@ -144,7 +144,7 @@ export default function BatyevkaPage() {
               <p className="mb-4">Ми не просто підключаємо інтернет — даємо готові рішення «під ключ». Професійна установка, налаштування Wi‑Fi, IPTV і супровід. Обладнання — лише перевірені моделі.</p>
               <ul className="list-disc list-inside space-y-2 mb-6">
                 <li><strong>Wi‑Fi‑роутери</strong> з гігабітними портами</li>
-                <li><strong>IPTV‑приставки</strong> і 170+ каналів</li>
+                <li><strong>IPTV‑приставки</strong> і 200+ каналів</li>
                 <li><strong>Зовнішня IP</strong>, <strong>страхування кабелю</strong>, <strong>push‑повідомлення</strong></li>
               </ul>
               <Button onClick={() => scrollToId('faq')} variant="ghost">Питання та відповіді</Button>
@@ -160,7 +160,7 @@ export default function BatyevkaPage() {
               {[
                 { title: "Оптика G‑PON", tag: "популярно", speed: "до 1 Гбіт/с", desc: "Стабільний інтернет + ТВ. Ідеально для сім’ї.", cta: "Підключити" },
                 { title: "XGS‑PON", speed: "до 10 Гбіт/с", desc: "Максимум швидкості для бізнесу, геймінгу та 8K‑контенту.", cta: "Підключити" },
-                { title: "IPTV", speed: "170+ каналів", desc: "HD/4K‑канали, архів передач, зручна приставка.", cta: "Замовити" },
+                { title: "IPTV", speed: "200+ каналів", desc: "HD/4K‑канали, архів передач, зручна приставка.", cta: "Замовити" },
               ].map(plan => (
                 <div key={plan.title} className="border-2 border-[#BDBDBD] rounded-[18px] p-5 flex flex-col bg-white">
                   <h4 className="font-bold text-lg">{plan.title} {plan.tag && <span className="inline-block py-1.5 px-3 rounded-full bg-[#DC662D] text-white font-extrabold text-xs ml-2 align-middle">{plan.tag}</span>}</h4>
