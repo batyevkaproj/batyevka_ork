@@ -1,12 +1,24 @@
 "use client";
 
 import Image from 'next/image';
+import { useState } from 'react';
 import { useModal } from '@/hooks/use-modal-store';
 import { useToast } from '@/hooks/use-toast';
 
 const GigabitPromo = () => {
   const { onOpen } = useModal();
   const { toast } = useToast();
+  const [openDropdown, setOpenDropdown] = useState(false);
+
+  const promoChannelsData = [
+    { cat: "Фільми та Серіали", list: "FilmBox Arthouse HD, FilmBox, Viasat Kino Action HD, Viasat Kino World, Viasat Kino Comedy HD, Viasat Kino HD, Романтика, [M] Комедія, Драма, Жахи, Історії, Kinohit, Бойовик, Prime, Епоха, Трилер, Megahit, Любов, FX HD, BOLT HD, Star Cinema HD, [M] Фантастика, [M] Преміум кіно, Viasat Epic Drama, FILMUADRAMA, [M] Фільми 4K, Тoп, Українське кіно, Timeless Dizi Channel, [M] Фільми 8K, KINO 1 HD, [M] Трейлери, NOW series, [M] Пес, DORAMA, KINOWOOD, Cine+, Cine+ Kids, Cine+ legend, PROKINO, AMC, Розслідування Мердока, Детективні хроніки, Теленовели, [M] Віра, Опер за викликом+, Сімейні мелодрами+, KINO 2 HD, [M] Дільничий з ДВРЗ, [M] Розтин покаже, [M] Речдок, [М] Кінопортал, [M] CSI: Місце злочину, Твоє кіно Relax, Твоє Кіно Action, Твоє кіно ХІТ, Хіти Мегого Родина, Хіти Мегого Драма, Хіти Мегого Адреналін, [M] Кінокласика, [M] Декстер, [M] Комісар Рекс" },
+    { cat: "Спорт", list: "FightBox HD, Перший автомобільний, Трофей HD, Extreme Sports, Fast'nFunBox HD, Eurosport 1 HD, Eurosport 2 HD, Gametoon HD, Setanta Sports HD, Setanta Sports+ HD, Спорт огляд, Equalympic, Eurosport 4K, Рибалка, UPL.TV, Суспільне Спорт, DIVISPORT, Трофей Premium" },
+    { cat: "Пізнавальні", list: "Viasat Explore, Viasat History, Viasat Nature, МЕГА HD, Travel Channel, National Geographic HD, National Geographic Wild HD, Eco TV, English club TV HD, Discovery channel, ID: Investigation Discovery HD, Animal Planet HD, History 2 HD, History HD, 36.6 HD, Фауна, Наука, Терра, Дача HD, Viasat True Crime, Food Network HD, [M] Discovery+ 1, [M] D+ Голі й налякані, [M] D+ Золота лихоманка, ЧЕМОДАН ТВ HD, Сіль ТБ HD, МАСОН ТБ, ФРОНТ, ЗАКОН ТБ, МЕДИЧНИЙ, Світ навиворіт+, Загублений світ+, [M] Доктор Комаровський" },
+    { cat: "Дитячі", list: "LALE HD, Піксель HD, ПЛЮСПЛЮС HD, Мультпрем'єра, Мультсеріал, Дитячий: UMa & UMi, NIKI Junior HD, NIKI Kids HD, Kids, LEGO, Baby TV, [M] Казки на ніч AUDIO, [M] Cocomelon, [M] Paramоunt+ Kids, [M] Губка Боб, [M] Щенячий патруль, Пізнавальний Kids, [M] LEGO Ninjago, Мультиленд, [M] Легенда про Корру, [M] Аватар: Останній захисник, Smart Kids, [M] Леді Баг і Супер-Кіт, [M] Черепашки-ніндзя, [M] Блиск і монстрмашини, [M] Гучний дім, [M] Дитячий садок, Cartoon Network" },
+    { cat: "Новини, Розваги та Інше", list: "24 канал, 5 канал HD, Еспресо TV HD, Перший, СТБ HD, FREEДОМ, Новий канал HD, ICTV HD, ОЦЕ HD, НТН HD, К1 HD, К2 HD, Інтер HD, ТЕТ HD, 1+1 Марафон HD, 2+2 HD, Бігуді, TLC, Kvartal TV, DW English HD, Euronews ENG, OBOZREVATEL TV HD, Суспільне Культура, Київ, France 24, HGTV, [M] Гумор, Белсат TV, Орел і Решка, ДІМ HD, DW Espanol HD, Bloomberg, CNN, ЖВЛ+, [M] Стосується кожного, Gagsnetwork" },
+    { cat: "Музичні телеканали", list: "M1 HD, M2 HD, 360 TuneBox HD, #НАШЕ music, #НАШЕ ретро, ЕТНО КАНАЛ, MEGOGO MUSIC, 4ever music HD, EU MUSIC HD, InRating, UA Music, Black, Viva Latino, Music Box, MusicBox Classic, МУЗВАР" },
+    { cat: "Радіостанції", list: "Radio NV, Kiss FM, Мелодія FM, Наше Радіо, Radio ROKS, Radio Relax, Хіт FM, Radio Jazz, Радіо МАКСИМУМ, Радіо Nostalgie, Люкс ФМ, Радіо П'ятниця, Lounge Fm, Авторадіо Україна, NRJ радіо, Львівська Хвиля, Magic Radio, DJFM, Power FM, Шлягер FM, Радіо Закарпаття - FM, Українське радіо, Радіо Промінь, Радіо Культура, FM Галичина, ПЕРЕЦЬ FM, Радіо Байрактар, КИЇВ - FM, Classic Radio, Армія FM, Ми – Україна Радіо, Накипіло, Тернопільська Хвиля, Радіоточка, Champion Radio, РАІ, Radio Прищепкін TOP40 UA, SUN FM, РАДІОПІХОТА, Люкс ФМ Українські Хіти, Люкс ФМ Chill and Relax, Люкс ФМ Золоті Хіти, Люкс ФМ Сучасні Хіти, K-Pop 24, Радіо БУГ" }
+  ];
 
   const handleOpenModalGeneral = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -162,6 +174,43 @@ const GigabitPromo = () => {
             <p className="text-xs text-[#888888] mt-4 text-center">
               Акційна ціна зафіксована на 365 днів (1 рік)
             </p>
+
+            {/* --- ВИПАДАЙКА З КАНАЛАМИ ПАКЕТУ --- */}
+            <details
+              className="w-full group bg-[#FFFFFF] border border-[#5984B2]/30 rounded-xl overflow-hidden mt-6 mb-8 shadow-sm"
+              open={openDropdown}
+            >
+              <summary
+                onClick={(e) => { e.preventDefault(); setOpenDropdown(!openDropdown); }}
+                className="font-bold p-4 bg-[#F4F2F2] hover:bg-[#BDBDBD]/20 cursor-pointer flex justify-between items-center text-[#5984B2] select-none transition-colors outline-none list-none [&::-webkit-details-marker]:hidden"
+              >
+                <div className="flex items-center gap-3">
+                  <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                  <span className="text-sm">Переглянути список телеканалів</span>
+                </div>
+                <svg className="w-5 h-5 transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+
+              {openDropdown && (
+                <div className="p-6 max-h-[350px] overflow-y-auto border-t border-[#5984B2]/20 bg-[#FFFFFF] custom-scrollbar">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {promoChannelsData.map((group, idx) => (
+                      <div key={idx}>
+                        <h5 className="font-bold text-[#DC662D] text-[11px] mb-3 uppercase tracking-widest border-b border-[#F4F2F2] pb-1">{group.cat}</h5>
+                        <ul className="text-xs text-[#5F6061] space-y-2">
+                          {group.list.split(',').map((ch, i) => (
+                            <li key={i} className="leading-snug flex items-start gap-2">
+                              <span className="text-[#BDBDBD] font-bold mt-[1px]">•</span>
+                              <span>{ch.trim()}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </details>
           </section>
         </div>
 
@@ -265,13 +314,13 @@ const GigabitPromo = () => {
           <ul className="pl-6 list-disc space-y-3 mb-8">
             <li><strong>Енергонезалежність:</strong> З 2017 року абоненти нашої GPON-мережі не відчувають перебоїв з інтернетом через відключення світла на нашому боці. Вам достатньо лише заживити свій роутер від звичайного павербанка (оптичний термінал ONU не обов'язково вимикати для економії заряду, достатньо вимикати тільки роутер).</li>
             <li><strong>Тільки оптика:</strong> Ми не використовуємо застарілу мідну виту пару (UTP) з під'їзду. Тільки персональний оптичний кабель безпосередньо у квартиру.</li>
-            <li><strong>Прозорі тарифи:</strong> Цілих 365 днів вартість зафіксована на рівні 150 грн/міс. Після завершення акції вартість становитиме 250 грн/міс за чесний гігабіт.</li>
+            <li><strong>Прозорі тарифи:</strong> Цілих 365 днів вартість зафіксована на рівні 150 грн/міс. Після завершення акції регулярний тариф буде змінено на <strong>GIGABIT</strong> за ціною <strong>350 грн/міс</strong>.</li>
           </ul>
         </article>
 
         {/* --- ЮРИДИЧНІ УМОВИ (ОФЕРТА) --- */}
         <footer className="mt-10 p-6 bg-[#F4F2F2] rounded-xl text-[0.85rem] text-[#5F6061] border-l-4 border-[#BDBDBD] leading-relaxed">
-          <strong className="text-[#333]">Офіційні правила акції:</strong> Пропозиція діє за наявності технічної можливості підключення до мережі GPON. Акція доступна для нових абонентів (перевірка здійснюється за адресою підключення/квартирою, а не за прізвищем), а також для колишніх абонентів, якщо з моменту останнього користування послугами за цією адресою минуло не менше 36 місяців. У тариф включено доступ до Інтернету (до 1000 Мбіт/с) та сервіс MEGOGO (202 канали, ТВ-архів, фільми). Акційна вартість 150 грн/міс діє 365 календарних днів з моменту активації. Починаючи з 366-го дня абонент автоматично переводиться на регулярний тариф вартістю 250 грн/міс. Надане обладнання (термінал ONU) є власністю провайдера і підлягає поверненню у разі розірвання договору.
+          <strong className="text-[#333]">Офіційні правила акції:</strong> Пропозиція діє за наявності технічної можливості підключення до мережі GPON. Акція доступна для нових абонентів (перевірка здійснюється за адресою підключення/квартирою, а не за прізвищем), а також для колишніх абонентів, якщо з моменту останнього користування послугами за цією адресою минуло не менше 36 місяців. У тариф включено доступ до Інтернету (до 1000 Мбіт/с) та сервіс MEGOGO (202 канали, ТВ-архів, фільми). Акційна вартість 150 грн/міс діє 365 календарних днів з моменту активації. Після завершення акції регулярний тариф буде змінено на <strong>GIGABIT</strong> за ціною <strong>350 грн/міс</strong>. Надане обладнання (термінал ONU) є власністю провайдера і підлягає поверненню у разі розірвання договору.
         </footer>
       </div>
 

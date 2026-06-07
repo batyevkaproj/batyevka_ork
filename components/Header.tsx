@@ -45,7 +45,7 @@ const Header = ({ theme, business }: HeaderProps) => {
             const prepareOrderData = () => {
                 // Створюємо об'єкт, що відповідає типу OrderData
                 const orderData = {
-                    internetType: `Заявка з хедера (сторінка: ${pathname})`,
+                    internetType: `Заявка з Хедера`,
                     internetSpeed: 0,
                     internetMeasure: '',
                     internetPrice: 0,

@@ -2,198 +2,231 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { ThemeProps } from '@/types/Theme';
 
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion_footer";
-
-
-import _1 from '../public/img/1.svg';
-import _3 from '../public/img/3.svg';
 import orange_mini_phone from '../public/img/orange_mini_phone.svg';
 import orange_mini_place_marker from '../public/img/orange_mini_place_marker.svg';
 import orange_mini_tg_logo from '../public/img/orange_mini_tg_logo.svg';
 import orange_mini_mail from '../public/img/orange_mini_mail.svg';
 
-const Footer = ( {theme}: ThemeProps ) => {
-    return ( 
-        <footer className={`${theme=='white'?'bg-white text-[#5F6061]':'bg-[#0E2D43] text-white shadow-[0_4px_29px_0_rgba(8,35,27)]'}  max-[558px]:shadow-none`}>
-            <div className={'max-[932px]:hidden'}>
-                <div className={`min-[3644px]:pt-[118px] min-[3644px]:pb-[118px] pt-[78px] pb-[78px] max-[2377px]:pt-[60px] max-[2377px]:pb-[60px] grid grid-cols-6 max-[2377px]:grid-cols-5 max-[1600px]:grid-cols-4 max-[1247px]:grid-cols-3 grid-rows-2 max-[1247px]:grid-rows-3 min-[3644px]:text-[27px] text-[18px] max-[2377px]:text-[14px] min-[3644px]:gap-[72.2px] gap-[43.2px] font-normal leading-[38px] min-[3644px]:leading-[57px] max-[2377px]:leading-[30px] mr-[170px] ml-[170px] max-[2377px]:mr-[120px] max-[2377px]:ml-[120px] max-[1600px]:mr-[85px] max-[1600px]:ml-[85px] max-[1247px]:mr-[67px] max-[1247px]:ml-[67px] min-[3644px]:mr-[240px] min-[3644px]:ml-[240px]`}>
-                    <div className={'col-span-1 row-span-2'}>
-                        <div>
-                            <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[8px]`}>Ми надаємо послуги:</h3>
-                            <ul>
-                                <li>Швидкісного доступу в Інтернет</li>
-                                <li>Інтерактивне Телебачення</li>
-                                <li>ось вже:</li>
-                                <div className={`min-[3644px]:h-[72px] h-[48px] max-[2377px]:h-[37px] min-[3644px]:max-w-[423px] max-w-[282px] max-[2377px]:max-w-[216px] min-w-[216px] rounded-xl mt-[10px] + ${theme=='white'?'bg-white shadow-[0_4px_29px_0_#E6E3E3]':'bg-[#123853] shadow-[0_4px_29px_0_#0B273C]'}`}>
-                                    <p className={'font-bold min-[3644px]:ml-[26px] ml-[17px] pt-[6px] max-[2377px]:pt-[3px]'}>20 років</p>
-                                </div>
-                            </ul>
-                        </div>
-                        
-                    </div>
-                    <div className={'col-span-1 row-start-3'}>
-                            <a className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold leading-[34px]`}>© Batyevka 2007-2026</a>
-                    </div>
-                    <div>
-                        <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[8px]`}>ТАРИФИ</h3>
-                        <ul>
-                            <li className='hover:text-[#DC662D]'>Для Бізнесу</li>
-                            <li className='hover:text-[#DC662D]'>Для Багатоповерхівок</li>
-                            <li className='hover:text-[#DC662D]'>Для Приватних Будинків</li>
-                        </ul>
-                    </div>
-                    <div className={'col-span-1 row-span-2 max-[1600px]:col-start-2 max-[1600px]:row-start-2'}>
-                        <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[8px]`}>Інформація абонентам</h3>
-<ul>
-  <li className='hover:text-[#DC662D]'>
-	<Link href="https://old.batyevka.net/uk/blog-dogovor">Публічний договір</Link>
-  </li>
-  <li className='hover:text-[#DC662D]'>Мапа покриття</li>
-  <li className='hover:text-[#DC662D]'>
-    <Link href="https://abills.batyevka.net:9443">Особистий кабінет</Link>
-  </li>
+const Footer = ({ theme }: ThemeProps) => {
+  const isDark = theme === 'dark' || theme !== 'white';
 
-  <li>
-    <a
-      href="/Протокол_вимірювання_якості_БАТИЇВКА.pdf"
-      download
-      className="hover:text-[#DC662D]"
-    >
-      Протокол вимірювання якості (PDF)
-    </a>
-  </li>
-</ul>
-                    </div>
-                    <div>
-                        <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[8px]`}>Технічна підтримка</h3>
-                        <ul>
-                            <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[21px] h-[21px] max-[2377px]:w-[16px] max-[2377px]:h-[16px]' src={orange_mini_phone} alt={``}/>044 49 555 49</li>
-                            <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[21px] h-[16px] max-[2377px]:w-[16px] max-[2377px]:h-[12px]' src={orange_mini_mail} alt={``}/>support@batyevka.net</li>
-<li className="hover:text-[#DC662D]"><a href="https://t.me/BatyevkaChatbot?start=z5iwjJZeJOOJJEbp1P" target="_blank" rel="noopener noreferrer" className="flex items-center"><Image className="inline mr-[10px] w-[21px] h-[19px] max-[2377px]:w-[17px] max-[2377px]:h-[15px]" src={orange_mini_tg_logo} alt="" />бот в телеграмм</a></li>
-<li className="hover:text-[#DC662D]"><a href="https://t.me/batyevka_chat" target="_blank" rel="noopener noreferrer" className="flex items-center"><Image className="inline mr-[10px] w-[21px] h-[19px] max-[2377px]:w-[17px] max-[2377px]:h-[15px]" src={orange_mini_tg_logo} alt="" />канал в телеграмм</a></li>
-                        </ul>
-                    </div>
-                    <div className={'col-span-1 max-[1247px]:col-start-3 max-[1247px]:row-start-2 max-[1247px]:row-span-1'}>
-                        <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[8px]`}>Контакти</h3>
-                        <ul>
-                            <li><Image className='inline mr-[10px] w-[16px] h-[21px] max-[2377px]:w-[12px] max-[2377px]:h-[16px]' src={orange_mini_place_marker} alt={``}/>03110, м. Київ, а/с 26</li>
-                            <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[21px] h-[21px] max-[2377px]:w-[16px] max-[2377px]:h-[16px]' src={orange_mini_phone} alt={``}/>0 800 30 32 30</li>
-                            <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[21px] h-[16px] max-[2377px]:w-[16px] max-[2377px]:h-[12px]' src={orange_mini_mail} alt={``}/>dogovor@batyevka.net</li>
-                        </ul>    
-                    </div>
-                    <div className={'max-[2377px]:col-start-5 max-[2377px]:row-start-2 max-[2377px]:row-span-1 max-[1600px]:col-start-4 max-[1600px]:row-start-2 max-[1600px]:row-span-1 max-[1247px]:col-start-3 max-[1247px]:row-start-3 max-[1247px]:row-span-1'}>
-                        <h3 className={`${theme=='white' ? 'border-[#D4D4D4]' : 'border-[#56AABF]'} border-b border-solid font-semibold pb-[11px] mb-[24px] max-[2377px]:mb-[19px]`}>Соціальні мережі</h3>
-                        <div className={`flex`}>
-                            
-                            <a href={`https://t.me/batyevka_chat`}><Image className='min-[3644px]:w-[59px] min-[3644px]:h-[59px] w-[40px] h-[40px] max-[2377px]:w-[30px] max-[2377px]:h-[30px] transition ease-in-out duration-100 hover:scale-110' src={_3} alt={``}/></a>
-                        </div>
-                    </div>
-                </div>
+  // Для страниц с белой темой (promotions, main, etc.) — светлый футер
+  const isLight = theme === 'white';
+
+  const bg = isLight ? 'bg-[#F4F2F2] border-t border-[#E6E3E3]' : 'bg-[#0E2D43]';
+  const headingColor = isLight ? 'text-[#0E2D43]' : 'text-white';
+  const linkColor = isLight ? 'text-[#5F6061] hover:text-[#DC662D]' : 'text-white/70 hover:text-[#DC662D]';
+  const subTextColor = isLight ? 'text-[#BDBDBD]' : 'text-white/40';
+  const dividerColor = isLight ? 'border-[#E6E3E3]' : 'border-white/10';
+
+  return (
+    <footer className={`${bg} font-normal`} style={{ fontFamily: "'Inter', 'Montserrat', sans-serif" }}>
+
+      {/* ── ОСНОВНА СІТКА ── */}
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10 pt-14 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+          {/* Колонка 1: Про компанію */}
+          <div>
+            <h3 className={`${headingColor} font-extrabold uppercase tracking-wider text-sm mb-6`}>
+              Batyevka.NET
+            </h3>
+            <ul className="space-y-3">
+              <li className={`${linkColor} text-sm transition-colors`}>
+                Надійний провайдер Солом&apos;янського<br />та Святошинського районів Києва
+              </li>
+              <li className={`${linkColor} text-sm transition-colors`}>
+                🛡 У мережі з <strong>2004</strong> року
+              </li>
+            </ul>
+
+            {/* Адреса */}
+            <div className={`mt-6 flex items-start gap-2 text-sm ${linkColor} transition-colors`}>
+              <Image src={orange_mini_place_marker} alt="" className="w-3 h-4 mt-[2px] shrink-0" />
+              <span>03110, м. Київ, а/с 26</span>
             </div>
-            <div className={'min-[933px]:hidden'}>
-            <Accordion type="single" collapsible className={'mr-[35px] ml-[35px] max-[558px]:mr-[20px] max-[558px]:ml-[20px] text-[14px] pt-[74px] max-[558px]:pt-[0px]'}>
-            <AccordionItem value="item-2">
-                <AccordionTrigger className="flex items-center w-full">
-                    <h3 className={`w-full font-medium text-left`}>ТАРИФИ</h3>
-                </AccordionTrigger>
-                <AccordionContent className="flex flex-col">
-                    <Link href={'#'} className='hover:text-[#DC662D]'>
-                        для бізнесу 
-                    </Link>
-                    <Link href={'/'} className='hover:text-[#DC662D]'>
-                       для Багатоповерхівок
-                    </Link>
-                    <Link href={'#'} className='hover:text-[#DC662D]'>
-                        для Приватних будинків
-                    </Link>
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-                <AccordionTrigger className="flex items-center w-full">
-                    <h3 className={`w-full font-medium text-left`}>Інформація абонентам</h3>
-                </AccordionTrigger>
-<AccordionContent className="flex flex-col">
-  <Link
-    href="https://old.batyevka.net/uk/blog-dogovor"
-    className="hover:text-[#DC662D]"
-  >
-    Публічний договір
-  </Link>
+          </div>
 
-  <Link href={'#'} className='hover:text-[#DC662D]'>
-    Мапа покриття
-  </Link>
+          {/* Колонка 2: Тарифи та Інформація */}
+          <div>
+            <h3 className={`${headingColor} font-extrabold uppercase tracking-wider text-sm mb-6`}>
+              Інформація абонентам
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href="https://old.batyevka.net/uk/blog-dogovor"
+                  className={`${linkColor} text-sm transition-colors block`}
+                >
+                  Публічний договір
+                </Link>
+              </li>
+              <li>
+                <Link href="/coverage-map" className={`${linkColor} text-sm transition-colors block`}>
+                  Мапа покриття
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://abills.batyevka.net:9443"
+                  className={`${linkColor} text-sm transition-colors block`}
+                >
+                  Особистий кабінет
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="/Протокол_вимірювання_якості_БАТИЇВКА.pdf"
+                  download
+                  className={`${linkColor} text-sm transition-colors block`}
+                >
+                  Протокол вимірювання якості (PDF)
+                </a>
+              </li>
+            </ul>
 
-  <Link href="https://abills.batyevka.net:9443" className='hover:text-[#DC662D]'>
-    Особистий кабінет
-  </Link>
+            <h3 className={`${headingColor} font-extrabold uppercase tracking-wider text-sm mt-8 mb-4`}>
+              Тарифи
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/business" className={`${linkColor} text-sm transition-colors block`}>
+                  Для бізнесу
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className={`${linkColor} text-sm transition-colors block`}>
+                  Для багатоповерхівок
+                </Link>
+              </li>
+              <li>
+                <Link href="/private-sector" className={`${linkColor} text-sm transition-colors block`}>
+                  Для приватних будинків
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-  <a
-    href="/Протокол_вимірювання_якості_БАТИЇВКА.pdf"
-    download
-    className="hover:text-[#DC662D]"
-  >
-    Протокол вимірювання якості (PDF)
-  </a>
-</AccordionContent>
-            </AccordionItem>
-            
-            <AccordionItem value="item-4">
-                <AccordionTrigger className="flex items-center w-full">
-                    <h3 className={`w-full font-medium text-left`}>Технічна підтримка</h3>
-                </AccordionTrigger>
-                <AccordionContent className="flex flex-col">
-                    <Link href={'#'} className='hover:text-[#DC662D]'>
-                        <Image className='inline mr-[10px] w-[16px] h-[16px]' src={orange_mini_phone} alt={``}/>044 49 555 49
-                    </Link>
-                    <Link href={'#'} className='hover:text-[#DC662D]'>
-                        <Image className='inline mr-[10px] w-[16px] h-[12px]' src={orange_mini_mail} alt={``}/>support@batyevka.net
-                    </Link>
-<Link href="https://t.me/BatyevkaChatbot?start=z5iwjJZeJOOJJEbp1P" target="_blank" className="hover:text-[#DC662D]"><Image className="inline mr-[10px] w-[17px] h-[15px]" src={orange_mini_tg_logo} alt="" />бот в телеграмм</Link>
-<Link href="https://t.me/batyevka_chat" target="_blank" className="hover:text-[#DC662D]"><Image className="inline mr-[10px] w-[17px] h-[15px]" src={orange_mini_tg_logo} alt="" />канал в телеграмм</Link>
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-6">
-                <AccordionTrigger className="flex items-center w-full">
-                    <h3 className={`w-full font-medium text-left`}>Соціальні мережі</h3>
-                </AccordionTrigger>
-                <AccordionContent className="flex flex-col">
-                    <div className={`flex`}>
-                        <a href={`https://t.me/batyevka_chat`}><Image className='w-[30px] h-[30px]' src={_3} alt={``}/></a>
-                    </div>
-                </AccordionContent>
-            </AccordionItem> 
-            </Accordion>
-            <div className={'mr-[35px] ml-[35px] max-[558px]:mr-[20px] max-[558px]:ml-[20px]'}>
-                <div className={'text-[14px] pt-[10px]'}>
-                    <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Контакти</h3>
-                    <ul className={'leading-[32px]'}>
-                        <li><Image className='inline mr-[10px] w-[12px] h-[16px]' src={orange_mini_place_marker} alt={``}/>03110, м. Київ, а/с 26</li>
-                        <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[16px] h-[16px]' src={orange_mini_phone} alt={``}/>0 800 30 32 30</li>
-                        <li className='hover:text-[#DC662D]'><Image className='inline mr-[10px] w-[16px] h-[12px]' src={orange_mini_mail} alt={``}/>dogovor@batyevka.net</li>
-                    </ul>    
-                </div>
-                <div className={'text-[14px] pt-[10px] pb-[60px] max-[558px]:pb-[0px]'}>
-                    <h3 className={`border-b border-[#56AABF] border-solid font-semibold pb-[11px] mb-[8px]`}>Ми надаємо послуги:</h3>
-                    <ul className={'leading-[32px]'}>
-                        <li>Швидкісного доступу в Інтернет</li>
-                        <li>Інтерактивне Телебачення</li>
-                        <li className={'pb-[6px]'}>ось вже:</li>
-                        <div className={`h-[37px] w-[216px] rounded-[10px] + ${theme=='white'?'bg-white shadow-[0_4px_29px_0_#E6E3E3]':'bg-[#123853] shadow-[0_4px_29px_0_#0B273C]'}`}>
-                            <p className={'font-semibold ml-[17px] pt-[3px]'}>20 років</p>
-                        </div>
-                        <li className={`${theme=='white'?'text-[#BDBDBD]':'text-[#56AABF]'} font-semibold pt-[8px]`}>© Batyevka 2007-2026</li>
-                    </ul>
-                </div>
-            </div>
-            </div>
-        </footer>
-     );
+          {/* Колонка 3: Технічна підтримка */}
+          <div>
+            <h3 className={`${headingColor} font-extrabold uppercase tracking-wider text-sm mb-6`}>
+              Технічна підтримка
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <a href="tel:0444955549" className={`${linkColor} text-sm transition-colors flex items-center gap-2`}>
+                  <Image src={orange_mini_phone} alt="" className="w-4 h-4 shrink-0" />
+                  044 49 555 49
+                </a>
+              </li>
+              <li>
+                <a href="mailto:support@batyevka.net" className={`${linkColor} text-sm transition-colors flex items-center gap-2`}>
+                  <Image src={orange_mini_mail} alt="" className="w-4 h-3 shrink-0" />
+                  support@batyevka.net
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://t.me/BatyevkaChatbot?start=z5iwjJZeJOOJJEbp1P"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${linkColor} text-sm transition-colors flex items-center gap-2`}
+                >
+                  <Image src={orange_mini_tg_logo} alt="" className="w-4 h-4 shrink-0" />
+                  Telegram-бот (Підтримка)
+                </a>
+              </li>
+            </ul>
+
+            <h3 className={`${headingColor} font-extrabold uppercase tracking-wider text-sm mt-8 mb-4`}>
+              Контакти
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <a href="tel:08003032300" className={`${linkColor} text-sm transition-colors flex items-center gap-2`}>
+                  <Image src={orange_mini_phone} alt="" className="w-4 h-4 shrink-0" />
+                  0 800 30 32 30
+                </a>
+              </li>
+              <li>
+                <a href="mailto:dogovor@batyevka.net" className={`${linkColor} text-sm transition-colors flex items-center gap-2`}>
+                  <Image src={orange_mini_mail} alt="" className="w-4 h-3 shrink-0" />
+                  dogovor@batyevka.net
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Колонка 4: Telegram */}
+          <div>
+            <h3 className={`${headingColor} font-extrabold uppercase tracking-wider text-sm mb-6`}>
+              Соціальні мережі
+            </h3>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="https://t.me/batyevka_chat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${linkColor} text-sm transition-colors flex items-center gap-3 group`}
+                >
+                  <span className={`flex items-center justify-center w-10 h-10 rounded-xl shrink-0 transition-colors ${isLight ? 'bg-[#E6E3E3] group-hover:bg-[#DC662D]/10' : 'bg-white/10 group-hover:bg-white/20'}`}>
+                    <Image src={orange_mini_tg_logo} alt="" className="w-5 h-5" />
+                  </span>
+                  <span>
+                    <span className="block font-semibold">Telegram-канал</span>
+                    <span className={`text-xs ${subTextColor}`}>Новини та акції</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://t.me/BatyevkaChatbot?start=z5iwjJZeJOOJJEbp1P"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${linkColor} text-sm transition-colors flex items-center gap-3 group`}
+                >
+                  <span className={`flex items-center justify-center w-10 h-10 rounded-xl shrink-0 transition-colors ${isLight ? 'bg-[#E6E3E3] group-hover:bg-[#DC662D]/10' : 'bg-white/10 group-hover:bg-white/20'}`}>
+                    <Image src={orange_mini_tg_logo} alt="" className="w-5 h-5" />
+                  </span>
+                  <span>
+                    <span className="block font-semibold">Telegram-бот</span>
+                    <span className={`text-xs ${subTextColor}`}>Підтримка 24/7</span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── НИЖНІЙ РЯД: Копирайт ── */}
+      <div className={`border-t ${dividerColor}`}>
+        <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          {/* Десктоп: pl-20 захищає від Binotel-віджету */}
+          <span className={`text-sm ${subTextColor} pl-20`}>
+            © Batyevka 2007-2026
+          </span>
+          <span className={`text-xs ${subTextColor} text-center sm:text-right`}>
+            Усі права захищені. Передплата послуг регулюється{' '}
+            <a
+              href="https://old.batyevka.net/uk/blog-dogovor"
+              className={`underline ${linkColor}`}
+            >
+              Публічним договором
+            </a>
+            .
+          </span>
+        </div>
+        {/* Мобільний блок: pb-20 захищає від Binotel-віджету */}
+        <div className={`sm:hidden pb-20 text-center text-xs ${subTextColor} px-6`}>
+          &nbsp;
+        </div>
+      </div>
+
+    </footer>
+  );
 };
- 
+
 export default Footer;

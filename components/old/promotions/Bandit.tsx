@@ -1,18 +1,29 @@
 "use client";
 
 import Image from 'next/image';
+import { useState } from 'react';
 import { useModal } from '@/hooks/use-modal-store';
 import { useToast } from '@/hooks/use-toast';
 
 const BanditPromo = () => {
   const { onOpen } = useModal();
   const { toast } = useToast();
+  const [openDropdown, setOpenDropdown] = useState(false);
+
+  const freeChannelsData = [
+    { cat: "Новини та ТБ", list: "24 канал, 5 канал HD, Еспресо TV HD, Телеканал Рада, Перший, FREEДОМ, Надія, ICTV HD, Інтер HD, 1+1 Марафон HD, Euronews ENG, Дніпро ТV HD, Київ, France 24 Français, France 24 English, France 24 Arabic, Апостроф TV, TVP World, NHK World, France 24 Español, МИ - УКРАЇНА HD" },
+    { cat: "Фільми та Серіали", list: "УНІАН Серіал, Телесеріал, [M] Трейлери, Розслідування Мердока, Детективні хроніки, [M] Віра, Опер за викликом+, Сімейні мелодрами+, [M] Речдок, [М] Кінопортал, [M] БарДак, [M] Драматичний, [M] Light cinema 1, [M] Light cinema 2, [M] Танька і Володька, [M] Одного разу під Полтавою, [М] Movie Library, [M] Теленовели 2, [M] Мovie mode 1, [M] Мovie mode 2, [M] Doramas 1, [M] Doramas 2, [M] Детективне кіно, [M] Кримінальне кіно, [M] Мелодрами, [M] Кінокласика" },
+    { cat: "Розважальні та Пізнавальні", list: "Eco TV, Classical Harmony, Суспільне Культура, DIY, Орел і Решка, ДІМ HD, Мандри, Пригоди, Документальний, Сімейний, МИ - УКРАЇНА + HD, Світ навиворіт+, Загублений світ+, ЖВЛ+, [M] Доктор Комаровський, [M] Стосується кожного, Gagsnetwork, Панянка-селянка+, Вікторина, [M] Говорить вся країна, [M] Гумористичний, [M] Містика, [M] Реальні історії, Сонце+" },
+    { cat: "Спорт і Дитячі", list: "Extreme Sports, Спорт огляд, Суспільне Спорт, Трофей Premium, Пізнавальний Kids, Мультиленд, Smart Kids, [M] Дитячий садок, [M] KIDDISVIT, [M] Kids town, [M] LOLka" },
+    { cat: "Музичні телеканали", list: "M1 HD, M2 HD, #НАШЕ ретро, ЕТНО КАНАЛ, MEGOGO MUSIC" },
+    { cat: "Радіостанції", list: "Radio NV, Kiss FM, Мелодія FM, Наше Радіо, Radio ROKS, Radio Relax, Хіт FM, Radio Jazz, Радіо МАКСИМУМ, Радіо Nostalgie, Люкс ФМ, Радіо П'ятниця, Lounge Fm, Авторадіо Україна, NRJ радіо, Львівська Хвиля, Magic Radio, DJFM, Power FM, Шлягер FM, Радіо Закарпаття - FM, Українське радіо, Радіо Промінь, Радіо Культура, FM Галичина, ПЕРЕЦЬ FM, Радіо Байрактар, КИЇВ - FM, Classic Radio, Армія FM, Ми – Україна Радіо, Накипіло, Тернопільська Хвиля, Радіоточка, Champion Radio, РАІ, Radio Прищепкін TOP40 UA, SUN FM, РАДІОПІХОТА, Люкс ФМ Українські Хіти, Люкс ФМ Chill and Relax, Люкс ФМ Золоті Хіти, Люкс ФМ Сучасні Хіти, K-Pop 24" }
+  ];
 
   const handleOpenModalGeneral = (e: React.MouseEvent) => {
     e.preventDefault();
     try {
       const orderData = {
-        internetType: `Заявка з акції «БАНДИТ» (GPON)`,
+        internetType: `Акція Bandit`,
         internetSpeed: 300,
         internetMeasure: 'Мбіт/с',
         internetPrice: 100,
@@ -65,7 +76,7 @@ const BanditPromo = () => {
       {
         "@type": "Product",
         "name": "Акція «Бандит» - Інтернет 300 Мбіт/с + MEGOGO",
-        "description": "Підключення нових абонентів до GPON (оптика в квартиру), 300 Мбіт/с та пакет MEGOGO (170+ каналів).",
+        "description": "Підключення нових абонентів до GPON (оптика в квартиру), 300 Мбіт/с та пакет MEGOGO (200+ каналів).",
         "brand": { "@type": "Brand", "name": "Batyevka.NET" },
         "offers": {
           "@type": "Offer",
@@ -84,7 +95,7 @@ const BanditPromo = () => {
         "mainEntity": [
           { "@type": "Question", "name": "Скільки коштує тариф після акції Бандит?", "acceptedAnswer": { "@type": "Answer", "text": "Акційна ціна 100 грн/міс діє 365 днів (1 рік), після чого тариф автоматично оновлюється до 1 Гбіт/с за регулярною ціною 250 грн/міс." } },
           { "@type": "Question", "name": "Хто може підключитися за акцією Бандит?", "acceptedAnswer": { "@type": "Answer", "text": "Акція діє для нових підключень (перевіряється адреса квартири). Також можуть підключитися колишні абоненти, якщо з моменту останнього користування минуло 36 місяців." } },
-          { "@type": "Question", "name": "Що входить у тариф?", "acceptedAnswer": { "@type": "Answer", "text": "У тариф входить Інтернет на швидкості до 300 Мбіт/с та підписка на телебачення MEGOGO (понад 170 каналів)." } }
+          { "@type": "Question", "name": "Що входить у тариф?", "acceptedAnswer": { "@type": "Answer", "text": "У тариф входить Інтернет на швидкості до 300 Мбіт/с та підписка на телебачення MEGOGO (понад 200 каналів)." } }
         ]
       }
     ]
@@ -144,7 +155,7 @@ const BanditPromo = () => {
 
         {/* --- AI SUMMARY (TL;DR) --- */}
         <article className="bg-[#f7f9fa] border-l-4 border-[#51818B] py-5 px-6 rounded-r-lg mx-auto mb-16 max-w-[900px] text-[1.05rem] font-medium text-[#0E2D43]">
-          <strong className="text-[#51818B]">Короткий зміст акції:</strong> Підключення до енергонезалежної оптичної мережі GPON (без UTP) на швидкості <strong className="text-[#DC662D]">300 Мбіт/с</strong> разом із пакетом MEGOGO (170+ каналів). Абонплата становить <strong className="text-[#DC662D]">100 грн/місяць</strong> на перші 365 днів (1 рік), після чого відбувається автоматичне оновлення тарифу до <strong className="text-[#0E2D43]">1 Гбіт/с за 250 грн/місяць</strong>. Діє для нових абонентів (перевірка адреси квартири).
+          <strong className="text-[#51818B]">Короткий зміст акції:</strong> Підключення до енергонезалежної оптичної мережі GPON (без UTP) на швидкості <strong className="text-[#DC662D]">300 Мбіт/с</strong> разом із пакетом MEGOGO (200+ каналів). Абонплата становить <strong className="text-[#DC662D]">100 грн/місяць</strong> на перші 365 днів (1 рік), після чого регулярний тариф буде змінено на <strong className="text-[#0E2D43]">300 Мегабіт</strong> за ціною <strong className="text-[#DC662D]">325 грн/міс</strong>. Діє для нових абонентів (перевірка адреси квартири).
         </article>
 
         {/* --- КАРТКА ТАРИФУ --- */}
@@ -163,16 +174,16 @@ const BanditPromo = () => {
               100 <small className="text-xl">грн/міс</small>
             </div>
             
-            {/* Оновлений блок: замість закресленої ціни — плашка з умовами через рік */}
+            {/* Плашка з умовами після акції */}
             <div className="text-[0.95rem] font-semibold text-[#51818B] mb-6 bg-[#ebf2f2] inline-block px-3 py-1.5 rounded-lg">
-              Через рік: 1 Гбіт/с за 250 грн/міс
+              Після акції: 300 Мегабіт за 325 грн/міс
             </div>
 
             <div className="text-base font-bold text-[#51818B] mb-8 flex items-center gap-2">
               <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-2 14.5v-9l6 4.5-6 4.5z"/>
               </svg>
-              + MEGOGO (170+ каналів)
+              + MEGOGO (200+ каналів)
             </div>
 
             <button
@@ -184,6 +195,41 @@ const BanditPromo = () => {
             <p className="text-xs text-[#888888] mt-4 text-center">
               Акційна ціна діє 365 днів (1 рік) з моменту підключення
             </p>
+
+            {/* --- ВИПАДАЙКА З БЕЗКОШТОВНИМИ КАНАЛАМИ --- */}
+            <details
+              className="w-full group bg-[#FFFFFF] border border-[#E6E3E3] rounded-xl overflow-hidden mt-6 shadow-sm"
+              open={openDropdown}
+            >
+              <summary
+                onClick={(e) => { e.preventDefault(); setOpenDropdown(!openDropdown); }}
+                className="font-bold p-4 bg-[#F4F2F2] hover:bg-[#E6E3E3] cursor-pointer flex justify-between items-center text-[#5984B2] select-none transition-colors outline-none list-none [&::-webkit-details-marker]:hidden"
+              >
+                <div className="flex items-center gap-3">
+                  <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                  <span className="text-sm">Переглянути список телеканалів (Безкоштовне ТБ)</span>
+                </div>
+                <svg className="w-5 h-5 transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              {openDropdown && (
+                <div className="p-6 max-h-[350px] overflow-y-auto border-t border-[#E6E3E3] bg-[#FFFFFF] custom-scrollbar">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {freeChannelsData.map((group, idx) => (
+                      <div key={idx}>
+                        <h5 className="font-bold text-[#DC662D] text-[11px] mb-3 uppercase tracking-widest border-b border-[#F4F2F2] pb-1">{group.cat}</h5>
+                        <ul className="text-xs text-[#5F6061] space-y-2">
+                          {group.list.split(',').map((ch, i) => (
+                            <li key={i} className="leading-snug flex items-start gap-2">
+                              <span className="text-[#BDBDBD] font-bold mt-[1px]">•</span> <span>{ch.trim()}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </details>
           </section>
         </div>
 
@@ -193,7 +239,7 @@ const BanditPromo = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 text-center">
              <div className="bg-white p-4 rounded-xl shadow-sm">
-                <div className="text-3xl font-black text-[#51818B] mb-1">170+</div>
+                <div className="text-3xl font-black text-[#51818B] mb-1">200+</div>
                 <div className="text-sm font-semibold text-[#0E2D43]">Телеканали з новинами й шоу</div>
              </div>
              <div className="bg-white p-4 rounded-xl shadow-sm">
@@ -208,7 +254,7 @@ const BanditPromo = () => {
 
           <details className="group bg-white rounded-xl border border-[#EAEAEA] shadow-sm overflow-hidden transition-all duration-300">
             <summary className="flex items-center justify-between p-5 cursor-pointer font-bold text-[#0E2D43] hover:bg-[#fcfcfc] outline-none select-none">
-              <span className="text-base md:text-lg">Переглянути список каналів (170+ каналів)</span>
+              <span className="text-base md:text-lg">Переглянути список каналів (200+ каналів)</span>
               <span className="transition-transform duration-300 group-open:rotate-180 text-[#51818B] bg-[#ebf2f2] p-1.5 rounded-full">
                 <svg fill="none" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" width="20"><path d="M6 9l6 6 6-6"></path></svg>
               </span>
@@ -281,19 +327,19 @@ const BanditPromo = () => {
         {/* --- SEO СТАТТЯ --- */}
         <article className="mt-20 pt-12 border-t border-[#EAEAEA]">
           <h2 className="text-2xl font-bold mb-6 text-[#0E2D43]">Акція «Бандит» від Batyevka.NET: 300 Мбіт/с та MEGOGO</h2>
-          <p className="mb-4">Шукаєте надійний швидкісний інтернет у Солом'янському районі Києва, який не зникає під час відключень електроенергії? Batyevka.NET пропонує унікальну можливість підключити преміальну оптичну мережу за акцією «Бандит». Ви отримаєте інтернет на швидкості 300 Мбіт/с та доступ до платформи MEGOGO (пакет на 170+ телеканалів).</p>
+          <p className="mb-4">Шукаєте надійний швидкісний інтернет у Солом'янському районі Києва, який не зникає під час відключень електроенергії? Batyevka.NET пропонує унікальну можливість підключити преміальну оптичну мережу за акцією «Бандит». Ви отримаєте інтернет на швидкості 300 Мбіт/с та доступ до платформи MEGOGO (пакет на 200+ телеканалів).</p>
 
           <p className="mb-4 font-bold text-[#333]">Переваги оптичного підключення GPON:</p>
           <ul className="pl-6 list-disc space-y-3 mb-8">
             <li><strong>Енергонезалежність:</strong> З 2017 року наші абоненти не відчувають перебоїв з інтернетом через відключення світла на нашому боці. Вам достатньо лише заживити свій роутер від звичайного павербанка (оптичний термінал ONU не обов'язково вимикати для економії заряду, достатньо вимикати тільки роутер).</li>
             <li><strong>Тільки оптика:</strong> Ми не використовуємо застарілу мідну виту пару (UTP) з під'їзду. Тільки персональний оптичний кабель безпосередньо у квартиру.</li>
-            <li><strong>Прозорі тарифи:</strong> Акційна ціна становить 100 грн/міс і зафіксована на цілий рік (365 днів). Після цього ваш тариф автоматично оновиться до флагманського 1 Гбіт/с за регулярною ціною 250 грн/міс.</li>
+            <li><strong>Прозорі тарифи:</strong> Акційна ціна становить 100 грн/міс і зафіксована на цілий рік (365 днів). Після завершення акції регулярний тариф буде змінено на <strong>300 Мегабіт</strong> за ціною <strong>325 грн/міс</strong>.</li>
           </ul>
         </article>
 
         {/* --- ЮРИДИЧНІ УМОВИ (ОФЕРТА) --- */}
         <footer className="mt-10 p-6 bg-[#F4F2F2] rounded-xl text-[0.85rem] text-[#5F6061] border-l-4 border-[#BDBDBD] leading-relaxed">
-          <strong className="text-[#333]">Офіційні правила акції «Бандит»:</strong> Пропозиція діє за наявності технічної можливості підключення до мережі GPON. Акція доступна для нових абонентів (перевірка здійснюється за адресою підключення/квартирою, а не за прізвищем), а також для колишніх абонентів, якщо з моменту останнього користування послугами за цією адресою минуло не менше 36 місяців. У тариф включено доступ до Інтернету (до 300 Мбіт/с) та сервіс MEGOGO (170+ каналів). Акційна вартість 100 грн/міс діє 365 календарних днів з моменту активації. З 366-го дня абонент автоматично переводиться на регулярний тариф зі швидкістю 1000 Мбіт/с вартістю 250 грн/міс. Надане обладнання (термінал ONU) є власністю провайдера і підлягає поверненню у разі розірвання договору.
+          <strong className="text-[#333]">Офіційні правила акції «Бандит»:</strong> Пропозиція діє за наявності технічної можливості підключення до мережі GPON. Акція доступна для нових абонентів (перевірка здійснюється за адресою підключення/квартирою, а не за прізвищем), а також для колишніх абонентів, якщо з моменту останнього користування послугами за цією адресою минуло не менше 36 місяців. У тариф включено доступ до Інтернету (до 300 Мбіт/с) та сервіс MEGOGO (200+ каналів). Акційна вартість 100 грн/міс діє 365 календарних днів з моменту активації. Після завершення акції регулярний тариф буде змінено на <strong>300 Мегабіт</strong> за ціною <strong>325 грн/міс</strong>. Надане обладнання (термінал ONU) є власністю провайдера і підлягає поверненню у разі розірвання договору.
         </footer>
       </div>
 
