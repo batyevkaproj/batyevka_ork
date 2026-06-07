@@ -34,14 +34,18 @@ export const PhoneInputModal = ({ theme = THEMES.DARK }: PhoneInputModalProps) =
         floor: '',
         apartment: ''
     });
-
+    
     const isModalOpen = isOpen && type === "phone-input";
 
     // This function runs after the user successfully verifies their phone number.
     const handleSuccess = async () => {
+        // =================================================================
+        // === ДІАГНОСТИЧНІ ЛОГИ: ДОДАНО ДЛЯ ПЕРЕВІРКИ СТАНУ ==============
+        // =================================================================
         console.log("--- handleSuccess triggered! ---");
         console.log("Content of data?.orderData:", data?.orderData);
         console.log("Content of selectedAddress:", selectedAddress);
+        // =================================================================
 
         try {
             // Step 1: Validate required data before sending
@@ -52,49 +56,43 @@ export const PhoneInputModal = ({ theme = THEMES.DARK }: PhoneInputModalProps) =
                     title: "Помилка",
                     description: "Відсутні дані для відправки заявки.",
                 });
-                return;
+                return; // Stop execution if order data is missing
             }
 
-            // Skip address validation for TV orders
-            if (!data?.orderData?.isTvOrder && (!selectedAddress.street || !selectedAddress.house)) {
+            if (!selectedAddress.street || !selectedAddress.house) {
                 toast({
                     variant: "destructive",
                     title: "Помилка",
                     description: "Будь ласка, оберіть адресу підключення.",
                 });
-                return;
+                return; // Stop execution if address is not selected
             }
 
             // Step 2: Prepare the final data payload for the API
             const orderData = {
                 ...data.orderData,
-                customerName: form.getValues('name') || 'ТБ замовлення',
+                customerName: form.getValues('name'),
                 customerPhone: rawPhoneNumber,
-                // Include UID for TV orders, address for internet orders
-                ...(data?.orderData?.isTvOrder
-                    ? { uid: form.getValues('uid') }
-                    : {
-                        address: {
-                            streetId: selectedAddress.street!.id,
-                            streetName: selectedAddress.street!.name,
-                            houseId: selectedAddress.house!.id,
-                            houseNumber: selectedAddress.house!.number,
-                            entrance: selectedAddress.entrance,
-                            floor: selectedAddress.floor,
-                            apartment: selectedAddress.apartment,
-                            fullAddress: `${selectedAddress.street!.name}, ${selectedAddress.house!.number}${
-                                selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
-                            }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''
-                            }${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''}`
-                        }
-                    }
-                )
+                address: {
+                    streetId: selectedAddress.street.id,
+                    streetName: selectedAddress.street.name,
+                    houseId: selectedAddress.house.id,
+                    houseNumber: selectedAddress.house.number,
+                    entrance: selectedAddress.entrance,
+                    floor: selectedAddress.floor,
+                    apartment: selectedAddress.apartment,
+                    fullAddress: `${selectedAddress.street.name}, ${selectedAddress.house.number}${
+                        selectedAddress.entrance ? `, під'їзд ${selectedAddress.entrance}` : ''
+                    }${selectedAddress.floor ? `, поверх ${selectedAddress.floor}` : ''
+                    }${selectedAddress.apartment ? `, кв. ${selectedAddress.apartment}` : ''}`
+                }
             };
 
             // Step 3: Send the data to the server
             const response = await axios.post('/api/orders/submit', orderData);
 
             if (!response.data.success) {
+                // Handle cases where the API returns a non-success status
                 throw new Error(response.data.message || 'Failed to submit order');
             }
 
@@ -103,7 +101,7 @@ export const PhoneInputModal = ({ theme = THEMES.DARK }: PhoneInputModalProps) =
                 title: "Дякуємо за заявку!",
                 description: "Наш менеджер зв'яжеться з вами найближчим часом.",
             });
-
+            
             if (response.data.redirectUrl) {
                 window.location.href = response.data.redirectUrl;
             }
@@ -147,76 +145,21 @@ export const PhoneInputModal = ({ theme = THEMES.DARK }: PhoneInputModalProps) =
     };
 
     // --- Define the content for the initial form (Step 1) ---
-    const initialFormContent = data?.orderData?.isTvOrder ? (
-        // TV ORDER FORM: UID + Phone + link to cabinet
-        <div className="space-y-5">
-            <div className="text-center mb-6">
-                <p className="text-sm text-[#5F6061] leading-relaxed">
-                    Телебачення MEGOGO є додатковою послугою для діючих абонентів. Ви можете активувати її в{' '}
-                    <a
-                        href="https://abills.batyevka.net:9443/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#51B18B] font-bold hover:underline"
-                    >
-                        Особистому кабінеті
-                    </a>{' '}
-                    або залишити номер договору (UID). Заявку опрацює менеджер і надішле код активації на ваш E-mail.
-                </p>
-            </div>
-
-            <div>
-                <label className="block text-sm font-bold text-[#5F6061] mb-1.5 ml-1">
-                    Номер договору (UID) *
-                </label>
-                <input
-                    {...form.register("uid", { required: false })}
-                    type="text"
-                    className="w-full px-5 py-4 bg-[#F4F2F2] rounded-2xl border border-[#E6E3E3] focus:border-[#5984B2] focus:bg-white outline-none transition-all text-[#5F6061] font-medium placeholder-[#BDBDBD]"
-                    placeholder="Наприклад: 12345"
-                />
-            </div>
-
-            <PhoneInput
-                control={form.control}
-                theme="light"
-                phoneRef={phoneRef}
-                handlePhoneInput={handlePhoneInput}
-                handlePhoneKeyDown={handlePhoneKeyDown}
-            />
-
-            <div className="pt-2 flex flex-col gap-3">
-                <div className="relative flex items-center py-2">
-                    <div className="flex-grow border-t border-gray-200"></div>
-                    <span className="flex-shrink-0 mx-4 text-gray-400 text-sm font-medium">АБО</span>
-                    <div className="flex-grow border-t border-gray-200"></div>
-                </div>
-                <a
-                    href="https://abills.batyevka.net:9443/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full bg-white hover:bg-gray-50 text-[#5F6061] font-bold text-lg py-4 rounded-2xl transition-all border-2 border-gray-200"
-                >
-                    Перейти в Кабінет
-                </a>
-            </div>
-        </div>
-    ) : (
-        // INTERNET ORDER FORM: Name + Phone + Address
+    const initialFormContent = (
         <div className="space-y-6">
             <Input
                 type="text"
                 placeholder="Ваше ім'я"
                 className={`w-full h-[60px] rounded-full text-[20px] pl-[22px] border ${theme === 'light' ? 'border-[#DC662D]' : 'border-[#2A5574]'}`}
                 {...form.register("name", {
-required: false,
-minLength: { value: 2, message: "Ім'я має містити мінімум 2 символи" }
+                    required: "Ім'я обов'язкове",
+                    minLength: { value: 2, message: "Ім'я має містити мінімум 2 символи" }
                 })}
             />
-
+            
             <PhoneInput
                 control={form.control}
-                theme="light"
+                theme='light'
                 phoneRef={phoneRef}
                 handlePhoneInput={handlePhoneInput}
                 handlePhoneKeyDown={handlePhoneKeyDown}
@@ -254,7 +197,7 @@ minLength: { value: 2, message: "Ім'я має містити мінімум 2 
                 ))}
             </div>
         </div>
-    );
+    );  
 
     // Prevent rendering on the server to avoid hydration errors
     if (!isMounted) {

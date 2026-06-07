@@ -12,8 +12,8 @@ const addressSchema = z.object({
   houseId: z.number(),
   houseNumber: z.string(),
   entrance: z.string().optional(),
-  floor: z.string().optional(),
-  apartment: z.string().optional(),
+  floor: z.string().optional(), 
+  apartment: z.string().optional(), 
   fullAddress: z.string()
 });
 
@@ -21,10 +21,8 @@ const addressSchema = z.object({
 const orderSchema = z.object({
   customerName: z.string().min(2, "Ім'я має містити мінімум 2 символи"),
   customerPhone: z.string().regex(/^380\d{9}$/, "Неправильний формат телефону"),
-  address: addressSchema.optional(),
-  uid: z.string().optional(),
-  isTvOrder: z.boolean().optional(),
-  internetType: z.string().optional(),
+  address: addressSchema,
+  internetType: z.string().optional(), // <-- ЗМІНЕНО z.enum на z.string
   internetSpeed: z.number().optional(),
   internetMeasure: z.string().optional(),
   hasTV: z.boolean().optional(),
@@ -73,17 +71,15 @@ export async function POST(req: Request) {
         'type': 'data',
         'cli_name': orderData.customerName,
         'cli_phone': orderData.customerPhone,
-        'cli_street': orderData.address?.streetName || '',
-        'cli_house': orderData.address?.houseNumber || '',
-        'cli_enter': orderData.address?.entrance || '',
-        'cli_flat': orderData.address?.apartment || '',
-        'cli_ele': orderData.address?.floor || '',
-        'cli_addr': orderData.address?.fullAddress || '',
-	'cli_descr': orderData.isTvOrder
-		? `${orderData.internetType || 'Заявка на ТБ MEGOGO'}. UID: ${orderData.uid || 'не вказано'}`
-          : orderData.internetType
-            ? `${orderData.internetType} ${orderData.internetSpeed} ${orderData.internetMeasure}${orderData.hasStaticIP ? ' + Static IP' : ''}`
-            : 'Заявка на зворотній дзвінок'
+        'cli_street': orderData.address.streetName,
+        'cli_house': orderData.address.houseNumber,
+        'cli_enter': orderData.address.entrance || '',
+        'cli_flat': orderData.address.apartment || '',
+        'cli_ele': orderData.address.floor || '',
+        'cli_addr': orderData.address.fullAddress,
+        'cli_descr': orderData.internetType ?
+          `${orderData.internetType} ${orderData.internetSpeed} ${orderData.internetMeasure}${orderData.hasStaticIP ? ' + Static IP' : ''}` :
+          'Заявка на зворотній дзвінок'
       };
 
       // 1. Створення заявки в ServDesk
@@ -101,7 +97,7 @@ export async function POST(req: Request) {
       console.log("--- ServDesk Response ---");
       console.log("Status Code:", servDeskResponse.status);
       console.log("Response Headers:", servDeskResponse.headers);
-      console.log("Response Data:", servDeskResponse.data);
+      console.log("Response Data:", servDeskResponse.data); // Найважливіший рядок!
       console.log("-------------------------");
       // =================================================================
 
@@ -111,35 +107,30 @@ export async function POST(req: Request) {
       servDeskId = servDeskResponse.data;
 
       // 2. Формування та відправка повідомлення в Telegram
-      const tariffDetails = orderData.isTvOrder
-? `${orderData.internetType || 'Заявка на ТБ MEGOGO'}\nUID абонента: ${orderData.uid || 'не вказано'}`
-        : orderData.internetType ? [
-            `Тип підключення: ${orderData.internetType}`,
-            `Швидкість: ${orderData.internetSpeed} ${orderData.internetMeasure}`,
-            orderData.tvPackage ? `ТВ пакет: ${orderData.tvPackage.name}` : 'Без ТВ',
-            `Статичний IP: ${orderData.hasStaticIP ? 'Так' : 'Ні'}`,
-            orderData.regularPrice ? `Регулярна ціна: ${orderData.regularPrice} грн/міс` : null,
-            `Вартість: ${orderData.totalMonthlyPrice} грн/міс`,
-            orderData.setupPrice ? `Вартість підключення: ${orderData.setupPrice} грн.` : null
-          ].filter(Boolean).join('\n')
-        : '';
+      const tariffDetails = orderData.internetType ? [
+        `Тип підключення: ${orderData.internetType}`,
+        `Швидкість: ${orderData.internetSpeed} ${orderData.internetMeasure}`,
+        orderData.tvPackage ? `ТВ пакет: ${orderData.tvPackage.name}` : 'Без ТВ',
+        `Статичний IP: ${orderData.hasStaticIP ? 'Так' : 'Ні'}`,
+        orderData.regularPrice ? `Регулярна ціна: ${orderData.regularPrice} грн/міс` : null,
+        `Вартість: ${orderData.totalMonthlyPrice} грн/міс`,
+        orderData.setupPrice ? `Вартість підключення: ${orderData.setupPrice} грн.` : null
+      ].filter(Boolean).join('\n') : '';
 
       const telegramMessage = [
-        orderData.isTvOrder ? '📺 Нова заявка на ТБ MEGOGO!' : '🌐 Нова заявка на підключення!',
+        'Нова заявка на підключення!',
         '',
         `Клієнт: ${orderData.customerName}`,
         `Телефон: ${orderData.customerPhone}`,
         '',
         tariffDetails,
         '',
-        orderData.address ? [
-          'Адреса:',
-          `• Вулиця: ${orderData.address.streetName}`,
-          `• Будинок: ${orderData.address.houseNumber}`,
-          orderData.address.entrance ? `• Під'їзд: ${orderData.address.entrance}` : null,
-          orderData.address.floor ? `• Поверх: ${orderData.address.floor}` : null,
-          orderData.address.apartment ? `• Квартира: ${orderData.address.apartment}` : null,
-        ].filter(Boolean).join('\n') : null,
+        'Адреса:',
+        `• Вулиця: ${orderData.address.streetName}`,
+        `• Будинок: ${orderData.address.houseNumber}`,
+        orderData.address.entrance ? `• Під'їзд: ${orderData.address.entrance}` : null,
+        orderData.address.floor ? `• Поверх: ${orderData.address.floor}` : null,
+        orderData.address.apartment ? `• Квартира: ${orderData.address.apartment}` : null,
         '',
         `ServDesk ID: ${servDeskId}`
       ].filter(Boolean).join('\n');
@@ -147,7 +138,7 @@ export async function POST(req: Request) {
       await axios.post(
         `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
         {
-          chat_id: process.env.TELEGRAM_CHAT_ID,
+          chat_id: process.env.TELEGRAM_CHAT_ID,  
           text: telegramMessage,
           parse_mode: 'HTML'
         }
@@ -179,7 +170,7 @@ export async function POST(req: Request) {
       console.error(' - Status:', error.response?.status);
       console.error(' - Response Data:', error.response?.data);
     }
-
+    
     return NextResponse.json({
       success: false,
       error: "Внутрішня помилка сервера"

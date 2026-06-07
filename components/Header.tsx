@@ -82,7 +82,7 @@ const Header = ({ theme, business }: HeaderProps) => {
                 </nav>
                 <nav className={`items-center flex justify-between max-[720px]:min-w-full`}>
                     <Link href='#' className={`pr-[30px]`}>
-                        <label className={`font-normal max-[902px]:hidden max-[720px]:block max-[720px]:w-[122px] max-[720px]:text-[11px] max-[720px]:ml-[20px] max-[720]:color-[#BDBDBD]`}>Телефонуй! У нас швидке з’єднання<label className={`max-[1140px]:hidden max-[720px]:block`}>і реальні оператори!</label></label>
+                        <label className={`font-normal max-[902px]:hidden max-[720px]:block max-[720px]:w-[122px] max-[720px]:text-[11px] max-[720px]:ml-[20px] max-[720]:color-[#BDBDBD]`}>Телефонуй! У нас швидке з'єднання<label className={`max-[1140px]:hidden max-[720px]:block`}>і реальні оператори!</label></label>
                     </Link>
                 </nav>
 
@@ -139,32 +139,32 @@ const Header = ({ theme, business }: HeaderProps) => {
                             <Image src={theme == 'white' ? connectGrey : connect} alt='connect' className={``} />
                         </Button>
                     </Link>
-                    
+
                     {/* === ВИПРАВЛЕНО: onClick тепер викликає handleOpenModal === */}
                     <Button onClick={handleOpenModal} variant="connect">Стати абонентом</Button>
-                    
+
                     <Button onClick={() => onOpen("call")} variant="connectMob">
                         <Image src={wkey} alt='wkey'/>
                     </Button>
                 </nav>
             </div>
-            
+
             {/* --- НИЖНІЙ БЛОК НАВІГАЦІЇ (ПОВНІСТЮ ЗБЕРЕЖЕНО) --- */}
             <div className={`${theme == 'white' ? 'bg-white text-[#5F6061]' : 'bg-[#123853] text-white'} h-20 flex justify-around items-center rounded-full shadow-lg max-[780px]:hidden min-[2430px]:h-[104px] mx-[50px] min-[2430px]:mx-[65px] max-[690px]:hidden pl-[50px] pr-[30px] min-[2430px]:pl-[68px] min-[2430px]:pr-[40px]`}>
-                <Link 
-                    href='/' 
+                <Link
+                    href='/'
                     className={`max-[1650px]:hidden font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D] ${pathname === '/' ? 'text-[#DC662D]' : ''}`}
                 >
                     Для багатоповерхівок
                 </Link>
-                <Link 
+                <Link
                     href='/private-sector'
                     className={`max-[1650px]:hidden font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D] ${pathname === '/private-sector' ? 'text-[#DC662D]' : ''}`}
                 >
                     Приватному сектору
                 </Link>
-                <Link 
-                    href='/business' 
+                <Link
+                    href='/business'
                     className={`font-semibold text-[13px] leading-[22px] uppercase min-[2430px]:text-[17px] min-[2430px]:leading-[26px] text-center hover:text-[#DC662D] ${pathname.startsWith('/business') ? 'text-[#DC662D]' : ''}`}
                 >
                     Бiзнесу <ChevronDown className={`inline-flex ml-[10px] size-[16px] mb-[3px] min-[1651px]:hidden`} />

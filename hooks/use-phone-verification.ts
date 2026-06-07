@@ -21,7 +21,8 @@ export const usePhoneVerification = (onSuccess: () => void) => {
     const form = useForm({
         defaultValues: {
             name: "",
-            phone: "+380"
+            phone: "+380",
+            uid: ""
         }
     });
 

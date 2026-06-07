@@ -19,7 +19,6 @@ export type OrderData = {
   routerPrice: number;
   totalMonthlyPrice: number;
   additionalInfo?: string
-  isTvOrder?: boolean
 }
 
 export type ModalType = "call" | "contact" | "order" | "payment" | "phone-input" | "sms-verify"| "request-connection";
