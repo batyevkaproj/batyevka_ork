@@ -72,7 +72,7 @@ export default function PromotionPage({ params }: PromotionPageProps) {
     <>
       <Header theme={'white'} business={false}/>
       <PromotionComponent/>
-      <ContactForm theme = {'white'}/>
+      <ContactForm theme = "light"/>
       <Footer theme={'white'}/>
     </>
   );

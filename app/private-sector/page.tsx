@@ -200,7 +200,7 @@ const PrivateSectorPage: React.FC = () => {
                 </section>
             </main>
             <WaterText theme={'white'}/>
-            <ContactForm theme = {'white'}/>
+            <ContactForm theme = "light"/>
             <Footer theme={'white'}/>
         </>
     );

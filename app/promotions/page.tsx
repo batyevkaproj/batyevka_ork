@@ -17,7 +17,7 @@ export default function Home() {
       <Header theme={'white'} business={false}/>
       <Promotions/>
       <WaterText theme={'white'}/>
-      <ContactForm theme = {'white'}/>
+      <ContactForm theme = "light"/>
       <Footer theme={'white'}/> 
     </div>
   );

@@ -92,7 +92,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         currentCategory={currentCategory}
       />
     </main>
-          <ContactForm theme = {'white'}/>
+          <ContactForm theme = "light"/>
       <Footer theme={'white'}/>
     </div>
   );

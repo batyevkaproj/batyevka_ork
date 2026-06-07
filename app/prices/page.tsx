@@ -17,7 +17,7 @@ export default function Home() {
       <AdditionalOptions theme={'white'}/>
       <TarifsCountInfo theme={"white"}/>
       <WaterText theme={'white'}/>
-      <ContactForm theme = {'white'}/>
+      <ContactForm theme = "light"/>
       <Footer theme={'white'}/>
     </div>
   );
