@@ -163,7 +163,14 @@ export const RequestConnectionModal = () => {
                         Заявка на підключення
                     </DialogTitle>
                     <DialogDescription className="flex flex-col items-center text-[16px] mt-[15px] font-light text-white">
-                        <p>{data?.speed} {data?.measure} - {data?.price} грн/міс</p>
+                        {/* Pre-filled address badge — passed from coverage map */}
+                        {(data?.prefilledStreet || data?.prefilledHouse) && (
+                            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#DC662D]/20 border border-[#DC662D]/40 text-[#DC662D] text-sm font-semibold mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                                {data.prefilledStreet && `вул. ${data.prefilledStreet}`}{data.prefilledHouse && `, ${data.prefilledHouse}`}
+                            </div>
+                        )}
+                        {data?.speed && <p>{data?.speed} {data?.measure} - {data?.price} грн/міс</p>}
                         {data?.hasStaticIp && (
                             <p className="text-[#56AABF]">+ Статичний IP</p>
                         )}

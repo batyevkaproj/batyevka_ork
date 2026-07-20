@@ -20,9 +20,25 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/uk/:path*',   // match /uk and anything under it
-        destination: '/',       // redirect to root
-        permanent: true,        // use 308 redirect (SEO friendly)
+        source: '/uk/:path*',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
+
+  // Prevent browser from caching HTML pages and JS chunks in dev —
+  // eliminates the "Cannot find module './XXXX.js'" 404 after server restart.
+  async headers() {
+    const isDev = process.env.NODE_ENV === 'development';
+    if (!isDev) return [];
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, must-revalidate' },
+          { key: 'Pragma',        value: 'no-cache' },
+        ],
       },
     ];
   },

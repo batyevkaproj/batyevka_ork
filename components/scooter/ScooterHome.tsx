@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import SpeedometerGauge from './SpeedometerGauge';
 
 import {
     REAL_IP_PRICE_physic as REAL_IP_PRICE,
@@ -90,6 +91,122 @@ const freeChannelsGroups = [
     { category: "Блогери", channels: ["Кухня", "Подорожі", "Розваги", "Риболовля", "Чоловіче хобі", "Б'юті-блог", "Будівництво та ремонт", "Тварини", "Музичний", "World of Tanks", "Minecraft", "Лайфстайл", "Пізнавальний", "Авто/Мото", "Рукоділля", "Сад і город", "Українське", "Сім'я Каті та Макса", "Кулінарія", "Кухня UA", "Авто/Мото UA", "Залипальне", "Serginio Fishing", "Спортивний", "Життя у лісі", "Рецепти Алли Ковальчук", "Гід техніки", "[M] Standup", "Футбольний", "[M] Goods from AliExpress", "Ньюспалм", "Євген Клопотенко", "[M] Книгарня"] },
     { category: "Освіта, Подкасти та Інше", channels: ["Історія без міфів", "Креативна практика", "Forbes", "Блог Економічний", "[M] Цивільна підготовка", "[M] Подкасти", "[M] Подкасти The Ukrainians", "[M] Розмови про кіно", "[M] Колекція Радіо Культура", "[M] Поезія", "[М] Укрліт", "Надія", "ICTV HD", "Інтер HD", "1+1 Марафон HD", "Milady TELEVISION", "Дніпро ТV HD", "BTQ", "Караван TV", "Наталі", "ТЮСО", "АРМІЯ ТБ", "Товари з AliExpress", "Твій ТВ", "Капучино TV", "КОНКУРЕНТ. УКРАЇНА", "ДІМ+", "PROVENCE", "fashion", "BIKINI18"] }
 ];
+
+// ============================================================
+// SpeedGaugeSection — Картка тарифу "3 Гік" з вбудованим спідометром
+// ============================================================
+interface SpeedGaugeSectionProps {
+    onOpen: () => void;
+    freeChannelsGroups: { category: string; channels: string[] }[];
+}
+
+const SpeedGaugeSection: React.FC<SpeedGaugeSectionProps> = ({ onOpen, freeChannelsGroups }) => {
+    return (
+        <section className="py-12">
+            <div className="flex justify-center px-2 md:px-0">
+                <article className="rounded-[32px] overflow-hidden flex flex-col md:flex-row w-full max-w-[980px] bg-white border border-[#DC662D] shadow-2xl ring-1 ring-[#DC662D]">
+
+                    {/* Ліва частина: заголовок + ціна → спідометр → кнопка */}
+                    <div className="w-full md:w-[45%] bg-gray-50/50 p-6 md:p-8 flex flex-col items-center border-b md:border-b-0 md:border-r border-gray-100">
+
+                        {/* ── БЛОК 1: Бейджі + технологія + ЦІНА (єдина воронка вгорі) ── */}
+                        <div className="w-full mb-3">
+                            <div className="flex flex-wrap items-center gap-2 mb-1">
+                                <span className="bg-[#DC662D] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-sm flex-shrink-0">Хіт продажу</span>
+                                <span className="bg-[#DC662D]/10 text-[#DC662D] text-[12px] font-extrabold px-3 py-1.5 rounded-full border border-[#DC662D]/25 flex-shrink-0">«3 Гік»</span>
+                            </div>
+                            <span className="text-gray-400 font-medium text-xs ml-0.5">XGS-PON технологія</span>
+                            {/* Ціна — одразу під технологією */}
+                            <p className="text-5xl md:text-6xl font-black text-[#DC662D] mt-2 leading-none">
+                                379<span className="text-xl font-bold text-[#5F6061]"> грн/міс</span>
+                            </p>
+                        </div>
+
+                        {/* ── БЛОК 2: Спідометр ── */}
+                        <div className="w-full">
+                            <SpeedometerGauge />
+                        </div>
+
+                        {/* ── БЛОК 3: Кнопка ── */}
+                        <button
+                            onClick={onOpen}
+                            className="w-full text-center bg-[#DC662D] hover:bg-[#c45a27] text-white font-bold text-lg py-4 px-4 rounded-xl transition-colors shadow-sm"
+                        >
+                            Замовити (залишилось 20)
+                        </button>
+                    </div>
+
+                    {/* Права частина: буліти + TV + випадайки */}
+                    <div className="w-full md:w-[55%] p-8 md:p-10 flex flex-col">
+                        <ul className="space-y-2.5 text-[#5F6061] font-medium text-base mb-6">
+                            <li className="flex items-center gap-3"><CheckIcon /> 100% оптика XGS-PON у квартиру</li>
+                            <li className="flex items-center gap-3"><CheckIcon /> Безлімітний трафік</li>
+                            <li className="flex items-center gap-3"><CheckIcon /> Симетричний канал</li>
+                            <li className="flex items-center gap-3"><CheckIcon /> Пінг менше 2 мс</li>
+                            <li className="flex items-center gap-3"><CheckIcon /> Працює без світла понад 100 годин</li>
+                        </ul>
+
+                        {/* Одна TV-випадайка (UX-фікс: прибране дублювання) */}
+                        <details className="w-full group bg-white border border-[#5984B2]/30 rounded-xl overflow-hidden mb-4">
+                            <summary className="font-bold p-4 bg-[#f0f5fa] hover:bg-[#e1edf7] cursor-pointer flex justify-between items-center text-[#5984B2] select-none transition-colors">
+                                <div className="flex items-center gap-3">
+                                    <TvIconBlue />
+                                    <span className="text-sm">Безкоштовне ТБ (200+ каналів) вже у тарифі</span>
+                                </div>
+                                <ChevronDownIcon />
+                            </summary>
+                            <div className="p-6 max-h-[320px] overflow-y-auto border-t border-[#5984B2]/20 bg-white channel-scroll">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    {freeChannelsGroups.map((cat, idx) => (
+                                        <div key={idx}>
+                                            <h5 className="font-bold text-[#DC662D] text-[11px] mb-3 uppercase tracking-widest border-b border-gray-100 pb-1">{cat.category}</h5>
+                                            <ul className="text-xs text-gray-500 space-y-2">
+                                                {cat.channels.map((ch, i) => (
+                                                    <li key={i} className="leading-snug flex items-start gap-2">
+                                                        <span className="text-gray-300 font-bold">•</span>
+                                                        <span>{ch}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </details>
+
+                        {/* Вартість підключення (перенесена з лівої колонки) */}
+                        <div className="bg-orange-50 rounded-xl p-5 mb-3 flex flex-col items-center justify-center text-center border border-orange-100">
+                            <span className="text-[#5F6061] font-bold mb-1">Вартість підключення:</span>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-gray-400 line-through font-medium">1499 грн</span>
+                                <span className="text-3xl font-black text-[#DC662D]">500 грн*</span>
+                            </div>
+                        </div>
+
+                        {/* Виноска підключення */}
+                        <p className="text-xs text-gray-400 mb-5 leading-relaxed text-center px-4">
+                            *Вартість підключення 500 грн діє за умови оплати авансу за 6 місяців.
+                        </p>
+
+                        {/* Деталі тарифу */}
+                        <details className="w-full group bg-white border border-gray-200 rounded-xl overflow-hidden mt-auto">
+                            <summary className="font-bold p-4 bg-gray-50 hover:bg-gray-100 cursor-pointer flex justify-between items-center text-[#5F6061] select-none transition-colors">
+                                <span className="text-sm">Детальніше про тариф «3 Гік»</span>
+                                <ChevronDownIcon />
+                            </summary>
+                            <div className="p-5 border-t border-gray-200 bg-white">
+                                <p className="text-gray-700 mb-4 text-sm leading-relaxed">Тариф «3 Гік» — це наш безкомпромісний флагман на базі технології 10G-PON. Відчуйте справжню свободу: симетричний канал (швидкість віддачі дорівнює завантаженню), пінг менше 2 мс для ідеального геймінгу, миттєве завантаження важкого контенту та стабільна робота всіх смарт-пристроїв у будинку одночасно. Жодних урізань швидкості чи прихованих лімітів у години пік. А завдяки резервуванню магістралей, ваш інтернет працюватиме понад 100 годин навіть під час найтриваліших блекаутів.</p>
+                                <div className="bg-gray-50 p-3 rounded-lg border border-gray-100 text-[11px] leading-tight text-gray-500 mt-2">
+                                    Публічна оферта: Оптичний термінал (ONU), фірмова оптична розетка, патч-корд та заведений у квартиру оптоволоконний кабель є неподільною власністю Провайдера Batyevka.NET. Абонент сплачує виключно за монтажні роботи з підключення. Використання нашої кабельної інфраструктури для підключення до інших провайдерів категорично заборонено! У разі припинення користування послугами, обладнання підлягає обов'язковому поверненню Провайдеру протягом 15 днів. Тариф призначений виключно для домашнього використання (без комерції). Оплата послуг означає вашу безумовну згоду з цими умовами.
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </article>
+            </div>
+        </section>
+    );
+};
 
 const BatyevkaLandingPage: React.FC = () => {
     const { onOpen } = useModal();
@@ -191,7 +308,7 @@ const BatyevkaLandingPage: React.FC = () => {
                 "@type": "FAQPage",
                 "mainEntity": [
                     { "@type": "Question", "name": "Як швидко відбувається підключення?", "acceptedAnswer": { "@type": "Answer", "text": "Зазвичай, підключення займає 1-3 робочі дні з моменту подачі заявки. Наш майстер узгодить з вами зручний час." } },
-                    { "@type": "Question", "name": "Чи можна замовити статичну IP-адресу?", "acceptedAnswer": { "@type": "Answer", "text": "Так, ви можете замовити послугу постійної зовнішньої IP-адреси. Вартість підключення — 200 грн разово, щомісячна плата — 60 грн." } },
+                    { "@type": "Question", "name": "Чи можна замовити статичну IP-адресу?", "acceptedAnswer": { "@type": "Answer", "text": "Так, ви можете замовити послугу постійної зовнішньої IP-адреси. Вартість підключення — 100 грн разово, щомісячна плата — 50 грн." } },
                     { "@type": "Question", "name": "Що робити, якщо зник інтернет?", "acceptedAnswer": { "@type": "Answer", "text": "Спочатку перезавантажте ваш роутер. Термінал вимикати необов'язково." } }
                 ]
             }
@@ -248,9 +365,17 @@ const BatyevkaLandingPage: React.FC = () => {
                         </h1>
                         
                         <div className="max-w-4xl mx-auto mb-12">
-                            <p className="text-lg md:text-xl text-[#5F6061] mb-10 leading-relaxed">
+                            <p className="text-lg md:text-xl text-[#5F6061] mb-6 leading-relaxed">
                                 <span className="text-[#DC662D] font-extrabold">Batyevka</span><span className="text-[#333333] font-extrabold">.NET</span> — технологічний лідер та ваш надійний інтернет-провайдер у Солом'янському районі Києва. Ми заводимо 100% оптику безпосередньо у квартиру за передовими технологіями GPON та XGS-PON. Наші абоненти користуються інтернетом без жодних прихованих лімітів на обсяг трафіку чи урізання швидкості. Відчуйте безкомпромісну стабільність, симетричний канал та нульовий пінг для будь-яких завдань.
                             </p>
+
+                            {/* Підзаголовок — акцент на енергонезалежність */}
+                            <div className="flex items-center justify-center gap-3 mb-8 px-4 py-3 bg-[#eaf5ef] border border-[#51B18B]/30 rounded-2xl max-w-2xl mx-auto">
+                                <svg className="w-5 h-5 text-[#51B18B] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.917L12 22l9-1.083A12.02 12.02 0 0021 7.984a11.955 11.955 0 01-4.382-3.001z" /></svg>
+                                <p className="text-sm md:text-base text-[#51B18B] font-semibold leading-snug">
+                                    Гарантована робота інтернету до 100 годин без світла завдяки резервуванню магістральних вузлів.
+                                </p>
+                            </div>
                             
                             {/* Преміальна плашка "Енергонезалежність" */}
                             <div className="bg-[#fcfbfe] border border-gray-200/80 rounded-[28px] p-6 md:p-8 shadow-sm relative overflow-hidden text-left flex flex-col md:flex-row gap-6 items-start hover:shadow-md transition-shadow">
@@ -274,101 +399,8 @@ const BatyevkaLandingPage: React.FC = () => {
                         </button>
                     </section>
 
-                    {/* ----- БЛОК 2. ФЛАГМАНСЬКИЙ ТАРИФ (Широка горизонтальна картка) ----- */}
-                    <section className="py-12">
-                        <div className="flex justify-center px-2 md:px-0">
-                            <article
-                                onClick={() => handleTariffClick(1)}
-                                className={`rounded-[32px] overflow-hidden flex flex-col md:flex-row w-full max-w-[950px] transition-all duration-300 cursor-pointer bg-white border ${
-                                    selectedTariff === 1
-                                    ? 'border-[#DC662D] shadow-2xl ring-1 ring-[#DC662D]'
-                                    : 'border-gray-200 shadow-md hover:shadow-xl'
-                                }`}
-                            >
-                                {/* Ліва частина: Ціна і Кнопка */}
-                                <div className="w-full md:w-[40%] bg-gray-50/50 p-8 md:p-10 flex flex-col justify-center border-b md:border-b-0 md:border-r border-gray-100 relative">
-                                    <span className="absolute top-6 left-8 bg-[#DC662D] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-sm">Хіт продажу</span>
-                                    
-                                    <div className="mt-8">
-                                        <h3 className="text-3xl md:text-4xl font-extrabold mb-1 text-[#5F6061]">1 Гбіт/с</h3>
-                                        <span className="text-gray-400 font-medium text-sm block mb-6">GPON технологія</span>
-                                        <p className="text-6xl md:text-7xl font-black text-[#DC662D] mb-8">250<span className="text-xl font-bold text-[#5F6061]"> грн/міс</span></p>
-                                        <button
-                                            onClick={(e) => { e.stopPropagation(); handleOpenModalGeneral(); }}
-                                            className="w-full text-center bg-[#DC662D] hover:bg-[#c45a27] text-white font-bold text-lg py-4 px-4 rounded-xl transition-colors shadow-sm"
-                                        >
-                                            Залишити заявку
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                {/* Права частина: Переваги і Випадайка з каналами */}
-                                <div className="w-full md:w-[60%] p-8 md:p-10 flex flex-col">
-                                    <ul className="space-y-4 text-[#5F6061] font-medium text-base mb-8">
-                                        <li className="flex items-center gap-3">
-                                            <CheckIcon /> 100% оптика безпосередньо у квартиру
-                                        </li>
-                                        <li className="flex items-center gap-3">
-                                            <CheckIcon /> Безлімітний трафік без урізань
-                                        </li>
-                                        <li className="flex items-center gap-3">
-                                            <CheckIcon /> Гарантована робота без світла
-                                        </li>
-                                    </ul>
-
-                                    <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                                        <div className="flex-1 bg-[#eaf5ef] p-4 rounded-2xl border border-[#51B18B]/20 flex items-start gap-3">
-                                            <div className="mt-0.5"><CheckIcon /></div>
-                                            <p className="font-bold text-[#51B18B] text-sm leading-snug">Постійна регулярна ціна назавжди</p>
-                                        </div>
-                                        <div className="flex-1 bg-[#f0f5fa] p-4 rounded-2xl border border-[#5984B2]/20 flex items-start gap-3">
-                                            <div className="mt-0.5"><TvIconBlue /></div>
-                                            <p className="font-bold text-[#5984B2] text-sm leading-snug">Безкоштовне ТБ (202 кан.) вже у тарифі</p>
-                                        </div>
-                                    </div>
-                                    
-                                    {/* Випадайка Деталі */}
-                                    <details className="w-full group bg-white border border-gray-200 rounded-xl overflow-hidden mb-4" onClick={(e) => e.stopPropagation()}>
-                                        <summary className="font-bold p-4 bg-gray-50 hover:bg-gray-100 cursor-pointer flex justify-between items-center text-[#5F6061] select-none transition-colors">
-                                            <span className="text-sm">Детальніше про тариф</span>
-                                            <ChevronDownIcon />
-                                        </summary>
-                                        <div className="p-5 text-sm text-[#5F6061] border-t border-gray-200 leading-relaxed bg-white">
-                                            Це акційний тариф для нових абонентів. Пропозиція діє за умови подачі заявки до 30 вересня. Спеціальна ціна 250 грн/міс фіксується як ваша постійна регулярна абонплата на весь час користування послугами. Вартість підключення — 299 грн.
-                                        </div>
-                                    </details>
-
-                                    {/* Випадайка Канали */}
-                                    <details className="w-full group bg-white border border-[#5984B2]/30 rounded-xl overflow-hidden mt-auto" onClick={(e) => e.stopPropagation()}>
-                                        <summary className="font-bold p-4 bg-[#f0f5fa] hover:bg-[#e1edf7] cursor-pointer flex justify-between items-center text-[#5984B2] select-none transition-colors">
-                                            <div className="flex items-center gap-3">
-                                                <TvIconBlue />
-                                                <span className="text-sm">Список каналів Безкоштовного ТБ (202)</span>
-                                            </div>
-                                            <ChevronDownIcon />
-                                        </summary>
-                                        <div className="p-6 max-h-[350px] overflow-y-auto border-t border-[#5984B2]/20 bg-white channel-scroll">
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                                {freeChannelsGroups.map((cat, idx) => (
-                                                    <div key={idx}>
-                                                        <h5 className="font-bold text-[#DC662D] text-[11px] mb-3 uppercase tracking-widest border-b border-gray-100 pb-1">{cat.category}</h5>
-                                                        <ul className="text-xs text-gray-500 space-y-2">
-                                                            {cat.channels.map((ch, i) => (
-                                                                <li key={i} className="leading-snug flex items-start gap-2">
-                                                                    <span className="text-gray-300 font-bold">•</span> 
-                                                                    <span>{ch}</span>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </details>
-                                </div>
-                            </article>
-                        </div>
-                    </section>
+                    {/* ----- БЛОК 2. ФЛАГМАНСЬКИЙ ТАРИФ — 3 ГІК (XGS-PON) ----- */}
+                    <SpeedGaugeSection onOpen={handleOpenModalGeneral} freeChannelsGroups={freeChannelsGroups} />
 
                     {/* ----- БЛОК 3. ПЕРЕВАГИ ----- */}
                     <section className="py-16">
@@ -396,7 +428,7 @@ const BatyevkaLandingPage: React.FC = () => {
                         </div>
                     </section>
 
-                    {/* ----- БЛОК 4. XGS-PON ТАРИФИ ----- */}
+                    {/* ----- БЛОК 4. XGS-PON ТАРИФИ (Decoy Effect: 1 Гбіт — базовий мінімум) ----- */}
                     <section className="py-20 bg-[#fcfbfe] rounded-[3rem] border border-gray-100 px-4">
                         <div className="text-center mb-16 max-w-3xl mx-auto">
                             <h2 className="text-3xl md:text-5xl font-extrabold text-[#5F6061] mb-6">Надшвидкісні тарифи XGS-PON</h2>
@@ -404,11 +436,17 @@ const BatyevkaLandingPage: React.FC = () => {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1200px] mx-auto text-left">
-                            {/* 3 ГБІТ */}
-                            <article onClick={() => handleTariffClick(3)} className={`bg-white rounded-[32px] cursor-pointer transition-all border flex flex-col overflow-hidden ${selectedTariff === 3 ? 'border-[#5F6061] shadow-2xl transform md:-translate-y-2 ring-1 ring-[#5F6061]' : 'border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1'}`}>
-                                <div className={`p-8 border-b border-gray-100 ${selectedTariff === 3 ? 'bg-gray-50/50' : 'bg-white'}`}>
-                                    <h3 className="text-2xl font-bold mb-3 text-[#5F6061]">3 Гбіт/с</h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">500<span className="text-lg font-bold text-[#5F6061]"> грн/міс</span></p>
+
+                            {/* ---- КАРТКА 1: 1 Гбіт/с Акційний (мас-маркет) ---- */}
+                            <article onClick={() => setSelectedTariff(1)} className="bg-white rounded-[32px] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col overflow-hidden cursor-pointer">
+                                <div className="p-8 border-b border-gray-100 bg-white">
+                                    <span className="inline-block bg-[#51B18B]/10 text-[#51B18B] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg mb-2">Акційний</span>
+                                    <h3 className="text-5xl font-extrabold mb-4 text-[#5F6061] leading-none">1<span className="text-2xl font-bold text-[#5F6061] ml-1">Гбіт/с</span></h3>
+                                    <div className="flex items-baseline gap-2 flex-wrap">
+                                        <p className="text-4xl font-extrabold text-[#DC662D]">150<span className="text-lg font-bold text-[#5F6061]"> грн/міс</span></p>
+                                        <span className="text-base text-gray-400 line-through">350 грн/міс</span>
+                                    </div>
+                                    <p className="text-xs text-gray-400 mt-1">Акційна ціна діє перші 12 місяців</p>
                                 </div>
                                 <div className="p-8 flex-grow">
                                     <ul className="space-y-4 text-[#5F6061] font-medium text-sm mb-8">
@@ -417,24 +455,31 @@ const BatyevkaLandingPage: React.FC = () => {
                                         <li className="flex items-center gap-3"><CheckIcon /> Відсутність лімітів</li>
                                         <li className="flex items-center gap-3"><CheckIcon /> Пінг для геймінгу &lt;2мс</li>
                                     </ul>
-                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 flex justify-between items-center">
+                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 flex justify-between items-center mb-4">
                                         <span className="text-gray-500 text-sm font-medium">Підключення:</span>
-                                        <span className="font-bold text-[#5F6061]">1999 грн</span>
+                                        <span className="font-bold text-[#5F6061]">299 грн</span>
                                     </div>
+                                    <button
+                                        onClick={handleOpenModalGeneral}
+                                        className="w-full bg-[#DC662D] hover:bg-[#c45a27] text-white font-bold text-base py-3 px-4 rounded-xl transition-colors shadow-sm"
+                                    >
+                                        Підключити
+                                    </button>
                                 </div>
-                                <div className={`p-6 mt-auto border-t transition-colors ${selectedTariff === 3 ? 'bg-[#eef4ff] border-[#5984B2]/20' : 'bg-gray-50 border-gray-100'}`}>
-                                    <p className={`text-sm font-bold flex items-center justify-center gap-2 ${selectedTariff === 3 ? 'text-[#5984B2]' : 'text-[#5F6061]'}`}>
+                                <div className="p-6 mt-auto border-t bg-gray-50 border-gray-100">
+                                    <p className="text-sm font-bold flex items-center justify-center gap-2 text-[#5F6061]">
                                         <TvIconBlue />
-                                        Національне ТБ вже у тарифі
+                                        Безкоштовне ТБ вже у тарифі
                                     </p>
                                 </div>
                             </article>
-                            
-                            {/* 5 ГБІТ */}
-                            <article onClick={() => handleTariffClick(5)} className={`bg-white rounded-[32px] cursor-pointer transition-all border flex flex-col overflow-hidden ${selectedTariff === 5 ? 'border-[#5F6061] shadow-2xl transform md:-translate-y-2 ring-1 ring-[#5F6061]' : 'border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1'}`}>
-                                <div className={`p-8 border-b border-gray-100 ${selectedTariff === 5 ? 'bg-gray-50/50' : 'bg-white'}`}>
-                                    <h3 className="text-2xl font-bold mb-3 text-[#5F6061]">5 Гбіт/с</h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">800<span className="text-lg font-bold text-[#5F6061]"> грн/міс</span></p>
+
+                            {/* ---- КАРТКА 2: 5 Гбіт/с ---- */}
+                            <article onClick={() => setSelectedTariff(5)} className="bg-white rounded-[32px] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col overflow-hidden cursor-pointer">
+                                <div className="p-8 border-b border-gray-100 bg-white">
+                                    <h3 className="text-5xl font-extrabold mb-4 text-[#5F6061] mt-[30px] leading-none">5<span className="text-2xl font-bold text-[#5F6061] ml-1">Гбіт/с</span></h3>
+                                    <p className="text-4xl font-extrabold text-[#DC662D]">550<span className="text-lg font-bold text-[#5F6061]"> грн/міс</span></p>
+                                    <p className="text-xs text-transparent mt-1 select-none pointer-events-none">Placeholder</p>
                                 </div>
                                 <div className="p-8 flex-grow">
                                     <ul className="space-y-4 text-[#5F6061] font-medium text-sm mb-8">
@@ -443,24 +488,35 @@ const BatyevkaLandingPage: React.FC = () => {
                                         <li className="flex items-center gap-3"><CheckIcon /> Відсутність лімітів</li>
                                         <li className="flex items-center gap-3"><CheckIcon /> Пінг для геймінгу &lt;2мс</li>
                                     </ul>
-                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 flex justify-between items-center">
-                                        <span className="text-gray-500 text-sm font-medium">Підключення:</span>
-                                        <span className="font-bold text-[#5F6061]">4999 грн</span>
+                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 mb-2">
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-gray-500 text-sm font-medium">Підключення:</span>
+                                            <span className="font-bold text-[#5F6061]">1499 грн</span>
+                                        </div>
+                                        <p className="text-xs text-gray-400 text-right mt-1">При оплаті за 6 міс — 999 грн</p>
                                     </div>
+                                    <button
+                                        onClick={handleOpenModalGeneral}
+                                        className="w-full bg-[#DC662D] hover:bg-[#c45a27] text-white font-bold text-base py-3 px-4 rounded-xl transition-colors shadow-sm mt-4"
+                                    >
+                                        Підключити
+                                    </button>
                                 </div>
-                                <div className={`p-6 mt-auto border-t transition-colors ${selectedTariff === 5 ? 'bg-[#eef4ff] border-[#5984B2]/20' : 'bg-gray-50 border-gray-100'}`}>
-                                    <p className={`text-sm font-bold flex items-center justify-center gap-2 ${selectedTariff === 5 ? 'text-[#5984B2]' : 'text-[#5F6061]'}`}>
+                                <div className="p-6 mt-auto border-t bg-gray-50 border-gray-100">
+                                    <p className="text-sm font-bold flex items-center justify-center gap-2 text-[#5F6061]">
                                         <TvIconBlue />
                                         ТБ Легка вже у тарифі
                                     </p>
                                 </div>
                             </article>
 
-                            {/* 10 ГБІТ */}
-                            <article onClick={() => handleTariffClick(10)} className={`bg-white rounded-[32px] cursor-pointer transition-all border flex flex-col overflow-hidden ${selectedTariff === 10 ? 'border-[#5F6061] shadow-2xl transform md:-translate-y-2 ring-1 ring-[#5F6061]' : 'border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1'}`}>
-                                <div className={`p-8 border-b border-gray-100 ${selectedTariff === 10 ? 'bg-gray-50/50' : 'bg-white'}`}>
-                                    <h3 className="text-2xl font-bold mb-3 text-[#5F6061]">10 Гбіт/с</h3>
+                            {/* ---- КАРТКА 3: 10 VIP-Гік (якір) ---- */}
+                            <article onClick={() => setSelectedTariff(10)} className="bg-white rounded-[32px] border border-[#DC662D]/40 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col overflow-hidden cursor-pointer">
+                                <div className="p-8 border-b border-gray-100 bg-white relative">
+                                    <span className="inline-block bg-[#DC662D]/10 text-[#DC662D] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg mb-2">VIP-Гік</span>
+                                    <h3 className="text-5xl font-extrabold mb-4 text-[#5F6061] leading-none">10<span className="text-2xl font-bold text-[#5F6061] ml-1">Гбіт/с</span></h3>
                                     <p className="text-4xl font-extrabold text-[#DC662D]">2000<span className="text-lg font-bold text-[#5F6061]"> грн/міс</span></p>
+                                    <p className="text-xs text-gray-400 mt-1">Перші 3 міс — акційна ціна 1399 грн/міс</p>
                                 </div>
                                 <div className="p-8 flex-grow">
                                     <ul className="space-y-4 text-[#5F6061] font-medium text-sm mb-8">
@@ -469,21 +525,35 @@ const BatyevkaLandingPage: React.FC = () => {
                                         <li className="flex items-center gap-3"><CheckIcon /> Відсутність лімітів</li>
                                         <li className="flex items-center gap-3"><CheckIcon /> Пінг для геймінгу &lt;2мс</li>
                                     </ul>
-                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 flex justify-between items-center">
-                                        <span className="text-gray-500 text-sm font-medium">Підключення:</span>
-                                        <span className="font-bold text-[#5F6061]">6999 грн</span>
+                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 mb-2">
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-gray-500 text-sm font-medium">Підключення:</span>
+                                            <span className="font-bold text-[#5F6061]">2499 грн</span>
+                                        </div>
+                                        <p className="text-xs text-gray-400 text-right mt-1">При оплаті за рік — підключення 999 грн</p>
                                     </div>
+                                    <button
+                                        onClick={handleOpenModalGeneral}
+                                        className="w-full bg-[#DC662D] hover:bg-[#c45a27] text-white font-bold text-base py-3 px-4 rounded-xl transition-colors shadow-sm mt-4"
+                                    >
+                                        Підключити
+                                    </button>
                                 </div>
-                                <div className={`p-6 mt-auto border-t transition-colors ${selectedTariff === 10 ? 'bg-[#eef4ff] border-[#5984B2]/20' : 'bg-gray-50 border-gray-100'}`}>
-                                    <p className={`text-sm font-bold flex items-center justify-center gap-2 ${selectedTariff === 10 ? 'text-[#5984B2]' : 'text-[#5F6061]'}`}>
+                                <div className="p-6 mt-auto border-t bg-[#eef4ff] border-[#5984B2]/20">
+                                    <p className="text-sm font-bold flex items-center justify-center gap-2 text-[#5984B2]">
                                         <TvIconBlue />
                                         ТБ Оптимальна вже у тарифі
                                     </p>
                                 </div>
                             </article>
                         </div>
-                        
-                        <div className="text-center mt-12">
+
+                        {/* Юридичний текст про ONU — БЛОК 4 ТЗ */}
+                        <p className="text-center text-xs text-gray-400 mt-8 max-w-2xl mx-auto leading-relaxed">
+                            *Оптичні термінали (ONU) надаються у безкоштовне користування. Вони залишаються власністю Провайдера та підлягають поверненню.
+                        </p>
+
+                        <div className="text-center mt-6">
                             <Link href="/xgspon" className="inline-block text-[#5F6061] font-bold text-base hover:text-[#DC662D] hover:underline underline-offset-4 transition-all">
                                 Дізнатись більше про технологію →
                             </Link>
@@ -623,6 +693,41 @@ const BatyevkaLandingPage: React.FC = () => {
                                 </summary>
                                 <p className="mt-4 pt-4 border-t border-gray-100 text-[#5F6061] text-sm leading-relaxed">Спочатку перезавантажте ваш роутер. Термінал вимикати необов'язково. Якщо це не допомогло, зверніться до нашої технічної підтримки.</p>
                             </details>
+                            <details className="bg-white border border-gray-200/80 rounded-2xl p-6 cursor-pointer group shadow-sm hover:shadow-md transition-shadow">
+                                <summary className="font-bold text-lg text-[#5F6061] flex justify-between items-center outline-none select-none">
+                                    Як заживити інтернет під час відключень світла (блекауту)?
+                                    <ChevronDownIcon />
+                                </summary>
+                                <p className="mt-4 pt-4 border-t border-gray-100 text-[#5F6061] text-sm leading-relaxed">Наша мережа повністю зарезервована і працює без світла понад 100 годин. У квартирі вам достатньо заживити лише два пристрої: ваш Wi-Fi роутер та наш оптичний термінал (ONU). Найпростіший спосіб — використати звичайний павербанк та спеціальні кабелі-перетворювачі з USB на DC (на 9V або 12V, залежно від вашого обладнання). Також чудово підійдуть зарядні станції або міні-ДБЖ (UPS) для роутерів.</p>
+                            </details>
+                            <details className="bg-white border border-gray-200/80 rounded-2xl p-6 cursor-pointer group shadow-sm hover:shadow-md transition-shadow">
+                                <summary className="font-bold text-lg text-[#5F6061] flex justify-between items-center outline-none select-none">
+                                    Як відбувається процес підключення та монтажу у квартирі?
+                                    <ChevronDownIcon />
+                                </summary>
+                                <p className="mt-4 pt-4 border-t border-gray-100 text-[#5F6061] text-sm leading-relaxed">Ми виконуємо преміальний естетичний монтаж. Оптичний кабель заводиться у квартиру максимально акуратно, а отвір обов'язково закривається нашою фірмовою оптичною розеткою. Жодних висячих дротів чи мотків кабелю під ногами. Оптичний термінал (ONU) монтується на стіну «розетка в розетку» поруч із вашим домашнім обладнанням.</p>
+                            </details>
+                            <details className="bg-white border border-gray-200/80 rounded-2xl p-6 cursor-pointer group shadow-sm hover:shadow-md transition-shadow">
+                                <summary className="font-bold text-lg text-[#5F6061] flex justify-between items-center outline-none select-none">
+                                    Чи можна використовувати домашні тарифи для бізнесу?
+                                    <ChevronDownIcon />
+                                </summary>
+                                <p className="mt-4 pt-4 border-t border-gray-100 text-[#5F6061] text-sm leading-relaxed">Ні, тарифи лінійки XGS-PON та GPON призначені виключно для домашнього використання. Для потреб бізнесу, офісів, магазинів та HoReCa у нас діють спеціалізовані B2B-рішення з виділеною пріоритетною підтримкою, гарантованою смугою пропускання та статичними IP-адресами.</p>
+                            </details>
+                            <details className="bg-white border border-gray-200/80 rounded-2xl p-6 cursor-pointer group shadow-sm hover:shadow-md transition-shadow">
+                                <summary className="font-bold text-lg text-[#5F6061] flex justify-between items-center outline-none select-none">
+                                    Чи можуть діючі абоненти перейти на тарифи 10G-PON?
+                                    <ChevronDownIcon />
+                                </summary>
+                                <p className="mt-4 pt-4 border-t border-gray-100 text-[#5F6061] text-sm leading-relaxed">Так, ми радо допоможемо вам перейти на нові преміальні тарифи. Для цього необхідно замовити послугу перепідключення: наш майстер замінить ваше застаріле обладнання на новий 10G-PON термінал, який надається у користування на весь період дії договору. Зверніть увагу: все обладнання (ONU), кабель та оптична розетка є виключною власністю Batyevka.NET і надаються абоненту лише на час користування послугами.</p>
+                            </details>
+                            <details className="bg-white border border-gray-200/80 rounded-2xl p-6 cursor-pointer group shadow-sm hover:shadow-md transition-shadow">
+                                <summary className="font-bold text-lg text-[#5F6061] flex justify-between items-center outline-none select-none">
+                                    Чи можу я використовувати кабель Batyevka.NET для підключення іншого провайдера?
+                                    <ChevronDownIcon />
+                                </summary>
+                                <p className="mt-4 pt-4 border-t border-gray-100 text-[#5F6061] text-sm leading-relaxed">Ні, це категорично заборонено. Весь оптичний кабель, заведений у квартиру, є нашою власністю та частиною технічної інфраструктури компанії. Його використання для послуг інших операторів є несанкціонованим втручанням. У разі спроби перепідключення на іншого провайдера або виявлення нецільового використання нашої лінії, ми залишаємо за собою право демонтувати нашу лінію та вилучити належне нам обладнання.</p>
+                            </details>
                         </div>
                     </section>
 
@@ -644,8 +749,8 @@ const BatyevkaLandingPage: React.FC = () => {
                         <div className="max-w-5xl mx-auto text-left bg-white border border-gray-200 rounded-3xl p-8 md:p-12 shadow-sm">
                             <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#5F6061]">Batyevka.NET — ваш надійний інтернет-провайдер у Києві</h2>
                             <div className="leading-loose space-y-6 text-gray-600 text-base">
-                                <p>Шукаєте стабільний, справді безлімітний та швидкий інтернет у Солом'янському районі? Batyevka.NET пропонує підключення за передовими оптичними технологіями GPON та XGS-PON. Ми заводимо персональний оптоволоконний кабель безпосередньо у вашу квартиру, що гарантує безкомпромісну швидкість до 10 Гбіт/с та симетричний канал без урізань і прихованих лімітів.</p>
-                                <p>Наша головна перевага — надійна енергонезалежність. Завдяки промисловому резервуванню магістральних вузлів, наші абоненти залишаються онлайн до 120 годин під час найважчих блекаутів. Вам достатньо лише мати павербанк для вашого роутера. Підключайтеся вже сьогодні, беріть участь в акціях для нових абонентів та насолоджуйтесь інтерактивним телебаченням MEGOGO і преміальним сервісом від лідера району!</p>
+                                <p className="mb-3">Batyevka.NET — ваш надійний інтернет-провайдер у Солом'янському районі Києва (Батиєва гора та прилеглі масиви). Ми пропонуємо преміальне підключення за передовими оптичними технологіями 10G-PON (XGS-PON) та GPON. Ми — технологічний лідер, який виконує ювелірний монтаж: оптоволокно заводиться у квартиру максимально акуратно, встановлюється фірмова оптична розетка — жодного павутиння кабелів у під'їздах чи висячих дротів під ногами.</p>
+                                <p>Наша головна перевага — справжня енергонезалежність. Завдяки промисловому резервуванню магістральних вузлів, наші абоненти залишаються онлайн до 100 годин під час найважчих блекаутів — достатньо лише заживити від павербанка ваш домашній роутер та наш термінал. Підключайтеся вже сьогодні та відчуйте безкомпромісну симетричну швидкість до 10 Гбіт/с, нульовий пінг та якісне інтерактивне телебачення MEGOGO!</p>
                             </div>
                         </div>
                     </section>

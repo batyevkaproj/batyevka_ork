@@ -1,717 +1,657 @@
-// app/coverage-map/page.tsx
-
 "use client";
 
-import React, { useState } from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
+import React, { useState, useMemo, useRef, useEffect, useCallback, Component, type ReactNode } from 'react';
 import dynamic from 'next/dynamic';
-import { Search } from 'lucide-react';
-import type { LatLngExpression } from 'leaflet'; // <--- КРОК 1: ІМПОРТУЄМО ТИП
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useModal } from '@/hooks/use-modal-store';
+import { coverageAddresses, type CoverageAddress, type TechType } from '@/app/data/coverageAddresses';
+import {
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+} from 'recharts';
 
-// --- Повний список адрес покриття ---
-const coverageAddresses = [
-    {
-        "street": "Азовська",
-        "buildings": []
-    },
-    {
-        "street": "Амосова Миколи",
-        "buildings": [
-            "2",
-            "4"
-        ]
-    },
-    {
-        "street": "Артема",
-        "buildings": [
-            "11"
-        ]
-    },
-    {
-        "street": "Барки Василя",
-        "buildings": [
-            "5"
-        ]
-    },
-    {
-        "street": "Білгородська",
-        "buildings": [
-            "14"
-        ]
-    },
-    {
-        "street": "Вузівська",
-        "buildings": [
-            "3",
-            "4",
-            "4а",
-            "5"
-        ]
-    },
-    {
-        "street": "Гаріна Бориса",
-        "buildings": [
-            "51",
-            "53",
-            "68а"
-        ]
-    },
-    {
-        "street": "Головка Андрія",
-        "buildings": [
-            "1",
-            "4",
-            "6",
-            "12",
-            "14",
-            "25",
-            "27",
-            "29",
-            "31"
-        ]
-    },
-    {
-        "street": "Городня",
-        "buildings": [
-            "3",
-            "7",
-            "13",
-            "32",
-            "38",
-            "40"
-        ]
-    },
-    {
-        "street": "Громової Уляни",
-        "buildings": []
-    },
-    {
-        "street": "Докучаєвська",
-        "buildings": [
-            "11",
-            "16",
-            "18а"
-        ]
-    },
-    {
-        "street": "Донска",
-        "buildings": []
-    },
-    {
-        "street": "Донской переулок",
-        "buildings": []
-    },
-    {
-        "street": "Енергетиків",
-        "buildings": []
-    },
-    {
-        "street": "Енергетиків провулок",
-        "buildings": [
-            "1"
-        ]
-    },
-    {
-        "street": "Ернста Федора",
-        "buildings": [
-            "2",
-            "6",
-            "8",
-            "12"
-        ]
-    },
-    {
-        "street": "Жмеринська",
-        "buildings": []
-    },
-    {
-        "street": "Здолбунівська",
-        "buildings": []
-    },
-    {
-        "street": "Зерових Братів",
-        "buildings": [
-            "14/1",
-            "14/18",
-            "14/3",
-            "14б",
-            "16",
-            "19",
-            "21",
-            "23",
-            "25"
-        ]
-    },
-    {
-        "street": "Златопільська",
-        "buildings": [
-            "3",
-            "4к"
-        ]
-    },
-    {
-        "street": "Кавказька",
-        "buildings": [
-            "7",
-            "9",
-            "11",
-            "12",
-            "13"
-        ]
-    },
-    {
-        "street": "Кадетський Гай",
-        "buildings": [
-            "3",
-            "6а",
-            "7",
-            "9",
-            "11"
-        ]
-    },
-    {
-        "street": "Кишинівська",
-        "buildings": []
-    },
-    {
-        "street": "Кільцева дорога",
-        "buildings": []
-    },
-    {
-        "street": "Клінічна",
-        "buildings": [
-            "17",
-            "17/1",
-            "21/19",
-            "23/25",
-            "25"
-        ]
-    },
-    {
-        "street": "Кобылянской Ольги",
-        "buildings": []
-    },
-    {
-        "street": "Космодем'янської Зої",
-        "buildings": [
-            "18",
-            "22"
-        ]
-    },
-    {
-        "street": "Кривоноса Максима",
-        "buildings": [
-            "15",
-            "17",
-            "19",
-            "29"
-        ]
-    },
-    {
-        "street": "Кудряшова",
-        "buildings": [
-            "2",
-            "3",
-            "5",
-            "5а",
-            "6",
-            "7",
-            "7б",
-            "16",
-            "18",
-            "20",
-            "20б",
-            "20г",
-            "75"
-        ]
-    },
-    {
-        "street": "Кучмин Яр",
-        "buildings": []
-    },
-    {
-        "street": "Липківського Василя",
-        "buildings": [
-            "3",
-            "5",
-            "7",
-            "9",
-            "11",
-            "13",
-            "15",
-            "17",
-            "19",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "27/5",
-            "37",
-            "37а",
-            "40",
-            "43",
-            "45"
-        ]
-    },
-    {
-        "street": "Лінійна",
-        "buildings": [
-            "17"
-        ]
-    },
-    {
-        "street": "Лобановського Валерія проспект",
-        "buildings": [
-            "4",
-            "4/1",
-            "4б",
-            "4в",
-            "4г",
-            "4ж",
-            "5а",
-            "6а",
-            "6в",
-            "6г",
-            "6д",
-            "9/1",
-            "10",
-            "12",
-            "14",
-            "17",
-            "18",
-            "23",
-            "25",
-            "27",
-            "29",
-            "31",
-            "33",
-            "35",
-            "37",
-            "39/1",
-            "39/2",
-            "41",
-            "51",
-            "53",
-            "55",
-            "57",
-            "61"
-        ]
-    },
-    {
-        "street": "Мацієвича Левка",
-        "buildings": []
-    },
-    {
-        "street": "Монтажників",
-        "buildings": []
-    },
-    {
-        "street": "Народна",
-        "buildings": []
-    },
-    {
-        "street": "Народный переулок",
-        "buildings": []
-    },
-    {
-        "street": "Неходи Івана",
-        "buildings": [
-            "3",
-            "5",
-            "7",
-            "8",
-            "10"
-        ]
-    },
-    {
-        "street": "Нечуй-Левицкого",
-        "buildings": []
-    },
-    {
-        "street": "Нововокзальна",
-        "buildings": [
-            "8",
-            "19",
-            "21",
-            "53"
-        ]
-    },
-    {
-        "street": "Озерна",
-        "buildings": [
-            "7",
-            "9",
-            "12а"
-        ]
-    },
-    {
-        "street": "Олексіївська",
-        "buildings": [
-            "3",
-            "3а",
-            "5",
-            "11"
-        ]
-    },
-    {
-        "street": "Освіти",
-        "buildings": [
-            "3а",
-            "14а"
-        ]
-    },
-    {
-        "street": "Палладіна Академіка проспект",
-        "buildings": []
-    },
-    {
-        "street": "Пироговського Олександра",
-        "buildings": [
-            "3",
-            "4",
-            "6",
-            "8",
-            "18",
-            "19",
-            "19/2",
-            "19/3",
-            "19/4",
-            "19/6",
-            "16а",
-            "19к.8"
-        ]
-    },
-    {
-        "street": "Повітрофлотський проспект",
-        "buildings": [
-            "58"
-        ]
-    },
-    {
-        "street": "Преображенська",
-        "buildings": [
-            "8",
-            "8б",
-            "10/17",
-            "12a",
-            "14",
-            "16",
-            "19/2",
-            "21",
-            "22/9",
-            "23",
-            "23а",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "37",
-            "39/8",
-            "40"
-        ]
-    },
-    {
-        "street": "Привітна",
-        "buildings": []
-    },
-    {
-        "street": "Прирічна",
-        "buildings": []
-    },
-    {
-        "street": "Проценко Людмили",
-        "buildings": [
-            "2",
-            "4",
-            "6",
-            "8"
-        ]
-    },
-    {
-        "street": "Пулюя Івана",
-        "buildings": [
-            "1",
-            "1а",
-            "1б",
-            "2",
-            "3",
-            "5",
-            "5а",
-            "5б"
-        ]
-    },
-    {
-        "street": "Радченка Петра",
-        "buildings": [
-            "4",
-            "6",
-            "8",
-            "12",
-            "14"
-        ]
-    },
-    {
-        "street": "Ратушного Романа",
-        "buildings": [
-            "2",
-            "2/4",
-            "3",
-            "4",
-            "5",
-            "6",
-            "9",
-            "9а",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "21",
-            "21а",
-            "23",
-            "25а",
-            "27",
-            "29",
-            "29а",
-            "31",
-            "33",
-            "35а",
-            "37",
-            "39",
-            "41",
-            "41а"
-        ]
-    },
-    {
-        "street": "Роздільна",
-        "buildings": [
-            "1",
-            "3",
-            "5"
-        ]
-    },
-    {
-        "street": "Семенівська",
-        "buildings": [
-            "9",
-            "11",
-            "13"
-        ]
-    },
-    {
-        "street": "Сім'ї Житецьких",
-        "buildings": []
-    },
-    {
-        "street": "Скрипника Мстислава Патріарха",
-        "buildings": [
-            "7",
-            "9",
-            "11",
-            "13",
-            "15",
-            "40"
-        ]
-    },
-    {
-        "street": "Солом'янська",
-        "buildings": [
-            "14",
-            "16",
-            "16б",
-            "20а",
-            "21",
-            "22",
-            "23",
-            "24",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-            "32",
-            "33",
-            "34",
-            "35",
-            "36",
-            "37",
-            "38",
-            "39",
-            "41",
-            "41/2",
-            "41к2"
-        ]
-    },
-    {
-        "street": "Стадіонна",
-        "buildings": [
-            "6",
-            "14",
-            "16/6"
-        ]
-    },
-    {
-        "street": "Тополева",
-        "buildings": [
-            "4/8"
-        ]
-    },
-    {
-        "street": "Ушинського",
-        "buildings": [
-            "1"
-        ]
-    },
-    {
-        "street": "Шаповала Генерала",
-        "buildings": [
-            "2",
-            "2а"
-        ]
-    },
-    {
-        "street": "Яновського Феофіла",
-        "buildings": [
-            "1",
-            "1а",
-            "2"
-        ]
-    },
-    {
-        "street": "Яслинська",
-        "buildings": []
+// ─── Error boundary — catches Leaflet hydration crashes ─────────────────────────
+class MapErrorBoundary extends Component<{children: ReactNode}, {hasError: boolean}> {
+  constructor(props: {children: ReactNode}) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(err: Error) { console.warn('[MapErrorBoundary] caught:', err.message); }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ width: '100%', height: 700, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#f9f9f9', borderRadius: 24, gap: 12 }}>
+          <p className="text-[#5F6061] font-medium text-sm">Виникла помилка завантаження карти.</p>
+          <button
+            className="px-6 py-2.5 bg-[#DC662D] text-white rounded-full font-bold text-sm hover:bg-[#c85825] transition-colors"
+            onClick={() => this.setState({ hasError: false })}>
+            Спробувати ще раз
+          </button>
+        </div>
+      );
     }
-];
+    return this.props.children;
+  }
+}
 
-// --- Координати полігонів, що визначають зони покриття ---
-// <--- КРОК 2: ПРИЗНАЧАЄМО ІМПОРТОВАНИЙ ТИП ---
-const coverageAreas: LatLngExpression[][] = [
-  // --- Полігон №1: Основна зона (Солом'янка, вул. Липківського, Протасів Яр) ---
-  [
-    // Починаємо біля Солом'янської площі
-    [50.4360, 30.4795],
-    // Йдемо на схід, щоб охопити Протасів Яр та вул. Амосова
-    [50.4345, 30.4900], 
-    [50.4310, 30.4985], // Глибоко в Протасовому Яру
-    [50.4275, 30.4960], // Південна частина зони вул. Амосова
-    // Рухаємось на південь вздовж вул. Солом'янської
-    [50.4240, 30.4720],
-    // Західна межа біля Севастопольської площі (не заходячи на Чоколівку)
-    [50.4235, 30.4650], 
-    // Повертаємось на північ вздовж Повітрофлотського проспекту та вул. Преображенської
-    [50.4325, 30.4680],
-    [50.4355, 30.4740],
-    // Замикаємо полігон
-    [50.4360, 30.4795]
-  ],
 
-  // --- Полігон №2: Залізничний масив (вул. Шаповала, Кудряшова, Нововокзальна) ---
-  [
-    [50.4400, 30.4710], // вул. Шаповала
-    [50.4425, 30.4800], // Перетин з вул. Липківського
-    [50.4380, 30.4830], // Південна частина біля залізниці
-    [50.4355, 30.4735], // вул. Нововокзальна
-    [50.4400, 30.4710]
-  ],
-
-  // --- Полігон №3: Район "Кадетський Гай" (залишається без змін) ---
-  [
-    // Охоплюємо вулиці Пулюя, Ернста, Кадетський Гай
-    [50.4150, 30.4550],
-    [50.4180, 30.4600],
-    [50.4140, 30.4680],
-    [50.4110, 30.4620],
-    [50.4150, 30.4550]
-  ]
-];
-// --- Динамічний імпорт карти ---
-const DynamicMap = dynamic(() => import('@/components/CoverageMap'), {
-  ssr: false
+// ─── SSR-safe map ─────────────────────────────────────────────────────────────
+const DynamicMap = dynamic(() => import('@/components/CoverageMapClient'), {
+  ssr: false,
+  loading: () => (
+    <div style={{ width: '100%', height: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f9f9f9', borderRadius: 24 }}>
+      <div className="flex flex-col items-center gap-3">
+        <div className="w-12 h-12 border-4 border-[#DC662D] border-t-transparent rounded-full animate-spin" />
+        <p className="text-sm text-[#5F6061] font-medium">Завантаження карти…</p>
+      </div>
+    </div>
+  ),
 });
 
-const CoverageMapPage: React.FC = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-
-    const filteredAddresses = searchTerm.length < 2
-        ? coverageAddresses
-        : coverageAddresses.map(group => {
-            const matchingBuildings = group.buildings.filter(building =>
-                `${group.street.toLowerCase()} ${building}`.includes(searchTerm.toLowerCase())
-            );
-            if (group.street.toLowerCase().includes(searchTerm.toLowerCase()) || matchingBuildings.length > 0) {
-                return { ...group, buildings: matchingBuildings.length > 0 ? matchingBuildings : group.buildings };
-            }
-            return null;
-        }).filter(Boolean);
-
-    return (
-        <>
-        <Header theme={'white'} business={false}/>
-            <Head>
-                <title>Карта покриття — Batyevka.NET</title>
-                <meta name="description" content="Перевірте, чи доступний наш інтернет за вашою адресою. Інтерактивна карта покриття мережі Batyevka.NET." />
-            </Head>
-            <main className="container mx-auto px-4 py-8 md:py-12">
-                <div className="text-center mb-8">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-[#1E293B]">
-                        Карта покриття
-                    </h1>
-                    <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-                        Перевірте, чи підключений ваш будинок до нашої мережі. Введіть назву вулиці та номер будинку, щоб знайти свою адресу.
-                    </p>
-                </div>
-
-                <div className="max-w-2xl mx-auto mb-8 relative">
-                    <input
-                        type="text"
-                        placeholder="Введіть вулицю та номер будинку (напр., Антонова 5)"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full px-5 py-4 pr-12 text-lg bg-white border-2 border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#DC662D] transition-shadow"
-                    />
-                    <Search className="absolute top-1/2 right-5 -translate-y-1/2 w-6 h-6 text-gray-400" />
-                </div>
-
-                <div className="h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-lg border border-gray-200 mb-12">
-                   {/* Тепер тут не буде помилки, оскільки типи збігаються */}
-                   <DynamicMap coverageAreas={coverageAreas} />
-                </div>
-                
-                <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-                        {searchTerm ? 'Результати пошуку' : 'Список підключених будинків'}
-                    </h2>
-                    {filteredAddresses.length > 0 ? (
-                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
-                            {filteredAddresses.map((group, index) => group && (
-                                <div key={index}>
-                                    <h3 className="text-lg font-semibold text-[#DC662D] mb-2">{group.street}</h3>
-                                    <p className="text-gray-600 leading-relaxed">
-                                        {group.buildings.join(', ')}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <p className="text-center text-gray-500 py-8">
-                            На жаль, за вашим запитом нічого не знайдено.
-                        </p>
-                    )}
-                </div>
-            </main>
-
-            <Footer theme={'white'}/>
-        </>
-    );
+// ─── Brand config ─────────────────────────────────────────────────────────────
+const TECH_COLORS: Record<TechType, string> = {
+  'XGS-PON': '#8B6CB0',
+  'GPON':    '#56AABF',
+  'PLANNED': '#9CA3AF',
 };
 
-export default CoverageMapPage;
+// ─── Traffic data generator ───────────────────────────────────────────────────
+function generateTrafficData(points: number, peakGbps: number, seed: number) {
+  // Use seed to get a unique-per-address curve
+  const rng = (n: number) => {
+    const x = Math.sin(seed + n) * 10000;
+    return x - Math.floor(x);
+  };
+  return Array.from({ length: points }, (_, i) => {
+    const morning = Math.exp(-((i - 9)  ** 2) / 18) * 0.55;
+    const evening = Math.exp(-((i - 20) ** 2) / 12) * 1.0;
+    const base = 0.1;
+    const raw = (base + morning + evening) * peakGbps;
+    const noise = (rng(i) - 0.5) * 0.08 * peakGbps;
+    return {
+      label: `${String(i).padStart(2, '0')}:00`,
+      value: parseFloat(Math.max(0.03, raw + noise).toFixed(2)),
+    };
+  });
+}
+
+// Random free capacity between 6.0 and 9.5
+function randomFreeCapacity(seed: number): string {
+  const x = Math.sin(seed * 7.3) * 10000;
+  const rand = x - Math.floor(x);
+  return (6.0 + rand * 3.5).toFixed(1);
+}
+
+const TRAFFIC_TABS = [
+  { id: 'day',   label: 'день',   points: 24 },
+  { id: 'week',  label: 'тиждень', points: 7  },
+  { id: 'month', label: 'місяць',  points: 30 },
+  { id: 'year',  label: 'рік',     points: 12 },
+];
+
+// ─── Autocomplete input ────────────────────────────────────────────────────────
+function AutocompleteInput({ value, onChange, options, placeholder, disabled = false }: {
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+  placeholder: string;
+  disabled?: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const filtered = useMemo(
+    () => options.filter(o => o.toLowerCase().includes(value.toLowerCase())).slice(0, 40),
+    [options, value],
+  );
+  useEffect(() => {
+    const h = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener('mousedown', h);
+    return () => document.removeEventListener('mousedown', h);
+  }, []);
+  return (
+    <div ref={ref} className="relative flex-1">
+      <input
+        type="text"
+        value={value}
+        disabled={disabled}
+        placeholder={placeholder}
+        onChange={e => { onChange(e.target.value); setOpen(true); }}
+        onFocus={() => setOpen(true)}
+        className="w-full px-5 py-3.5 rounded-full border-2 border-gray-200 text-[#5F6061] text-sm font-medium
+                   bg-white focus:outline-none focus:border-[#DC662D] transition-colors shadow-sm
+                   disabled:opacity-50 disabled:cursor-not-allowed"
+      />
+      {open && filtered.length > 0 && (
+        <ul className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-2xl shadow-xl z-[500]
+                       max-h-52 overflow-y-auto text-sm text-[#5F6061]">
+          {filtered.map(opt => (
+            <li key={opt} className="px-5 py-2.5 hover:bg-orange-50 hover:text-[#DC662D] cursor-pointer transition-colors first:rounded-t-2xl last:rounded-b-2xl font-medium"
+              onMouseDown={() => { onChange(opt); setOpen(false); }}>
+              {opt}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+// ─── Legend SVGs ──────────────────────────────────────────────────────────────
+const PinSVG = ({ color }: { color: string }) => (
+  <svg width="16" height="22" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+    <path d="M14 0C6.268 0 0 6.268 0 14c0 9.333 14 22 14 22S28 23.333 28 14C28 6.268 21.732 0 14 0z" fill={color}/>
+    <circle cx="14" cy="14" r="5" fill="white" opacity="0.9"/>
+  </svg>
+);
+const ClusterSVG = () => {
+  const R = 18; const r = 11; const cx = 22;
+  const dash = (2 * Math.PI * R / 6) - 3;
+  return (
+    <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+      <circle cx={cx} cy={cx} r={R} fill="none" stroke="#DC662D" strokeWidth="2.5"
+        strokeDasharray={`${dash} 3`} strokeLinecap="round" opacity="0.7"/>
+      <circle cx={cx} cy={cx} r={r} fill="#DC662D"/>
+      <text x={cx} y={cx+1} textAnchor="middle" dominantBaseline="middle" fill="white"
+        fontFamily="Montserrat,sans-serif" fontWeight="700" fontSize="8">12</text>
+    </svg>
+  );
+};
+
+// ─── Dynamic Sidebar CTA ──────────────────────────────────────────────────────
+type SidebarState = 'default' | 'covered' | 'not-covered';
+
+function SidebarCTA({ state, tech, onConnect }: { state: SidebarState; tech?: TechType; onConnect: () => void }) {
+  if (state === 'covered' && tech) return (
+    <div className="bg-[#F4F2F2] rounded-3xl p-7 shadow-sm">
+      <p className="text-[#DC662D] font-bold text-xl">Batyevka.NET</p>
+      <div className="mt-3 flex items-center gap-2">
+        <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
+        <span className="text-green-600 text-xs font-bold">Покриття є!</span>
+      </div>
+      <h2 className="text-[#5F6061] font-bold text-base mt-3 leading-snug">
+        Чудові новини! Ваша адреса підключена до нашої енергонезалежної мережі.
+      </h2>
+      <p className="text-sm mt-2 text-[#5F6061]/80">
+        Доступна технологія:{' '}
+        <span style={{ color: TECH_COLORS[tech], fontWeight: 700 }}>{tech}</span>
+      </p>
+      <button onClick={onConnect} className="w-full mt-5 py-3.5 bg-[#DC662D] text-white rounded-full font-bold text-sm hover:bg-[#c85825] transition-colors shadow-md shadow-orange-200 active:scale-[0.98]">
+        Замовити підключення
+      </button>
+    </div>
+  );
+  if (state === 'not-covered') return (
+    <div className="bg-[#F4F2F2] rounded-3xl p-7 shadow-sm">
+      <p className="text-[#DC662D] font-bold text-xl">Batyevka.NET</p>
+      <div className="mt-3 flex items-center gap-2">
+        <span className="w-2.5 h-2.5 rounded-full bg-gray-400 flex-shrink-0" />
+        <span className="text-gray-500 text-xs font-bold">Покриття відсутнє</span>
+      </div>
+      <h2 className="text-[#5F6061] font-bold text-base mt-3 leading-snug">
+        На жаль, за цією адресою поки немає нашого покриття.
+      </h2>
+      <p className="text-sm mt-2 text-[#5F6061]/80 leading-relaxed">
+        Але ми активно розбудовуємо мережу. Залиште заявку, і ми першими повідомимо вас про можливість підключення!
+      </p>
+      <button onClick={onConnect} className="w-full mt-5 py-3.5 bg-[#5F6061] text-white rounded-full font-bold text-sm hover:bg-[#444] transition-colors shadow-sm active:scale-[0.98]">
+        Залишити заявку
+      </button>
+    </div>
+  );
+  return (
+    <div className="bg-[#F4F2F2] rounded-3xl p-7 shadow-sm">
+      <p className="text-[#DC662D] font-bold text-xl">Batyevka.NET</p>
+      <h2 className="text-[#5F6061] font-bold text-base mt-4 leading-snug">
+        Шановні абоненти, наша мережа активно розвивається
+      </h2>
+      <p className="text-[#5F6061] text-sm mt-3 leading-relaxed opacity-80">
+        Вкажіть свою адресу, щоб перевірити можливість підключення у Вашому будинку.
+      </p>
+      <button onClick={onConnect} className="w-full mt-6 py-3.5 bg-[#DC662D] text-white rounded-full font-bold text-sm hover:bg-[#c85825] transition-colors shadow-md shadow-orange-200 active:scale-[0.98]">
+        Підключити
+      </button>
+    </div>
+  );
+}
+
+// ─── Tariff card data ─────────────────────────────────────────────────────────
+const TARIFF_PLANS = [
+  {
+    name:      '1 Гбіт/с Акційний',
+    speed:     '1 000 Мбіт/с',
+    price:     '150',
+    priceNote: 'перші 12 міс., далі 350 грн/міс',
+    badge:     '🎁 Акція',
+    desc:      'Симетричний гігабіт за акційною ціною — найвигідніша пропозиція для старту.',
+    features:  [
+      'Симетричний канал 1000 Мбіт/с',
+      'Енергонезалежність > 100 годин',
+      'Безкоштовне ТБ (200+ каналів)',
+      'Підключення: 299 грн',
+    ],
+  },
+  {
+    name:      '3 Гік',
+    speed:     '3 000 Мбіт/с',
+    price:     '379',
+    priceNote: 'Флагманський тариф для сучасного дому',
+    badge:     '🔥 Хіт',
+    desc:      'Ідеально для великих родин і роботи з дому. Максимальна стабільність під час блекаутів.',
+    features:  [
+      'Симетричний канал 3000 Мбіт/с',
+      'Енергонезалежність > 100 годин',
+      'Безкоштовне ТБ (200+ каналів)',
+      'Підключення: 500 грн (за умови оплати за 6 міс.)',
+    ],
+    highlight: true,
+  },
+  {
+    name:      '5 Гбіт/с',
+    speed:     '5 000 Мбіт/с',
+    price:     '550',
+    priceNote: 'Для IT-спеціалістів та великих родин',
+    badge:     '🚀 Топ',
+    desc:      'Для IT-спеціалістів, геймерів і сімей з кількома 4K-потоками одночасно.',
+    features:  [
+      'Симетричний канал 5000 Мбіт/с',
+      'Енергонезалежність > 100 годин',
+      'Пакет ТБ «Легка» у подарунок',
+      'Підключення: 999 грн (за умови оплати за 6 міс.)',
+    ],
+  },
+];
+
+// ─── Main page ────────────────────────────────────────────────────────────────
+export default function CoverageMapPage() {
+  const { onOpen } = useModal();
+
+  const [activeTab,    setActiveTab]    = useState('day');
+  const [streetInput,  setStreetInput]  = useState('');
+  const [houseInput,   setHouseInput]   = useState('');
+  const [sidebarState, setSidebarState] = useState<SidebarState>('default');
+  const [activeTech,   setActiveTech]   = useState<TechType | undefined>(undefined);
+  const [activeAddr,   setActiveAddr]   = useState<CoverageAddress | null>(null);
+  const [trafficData,  setTrafficData]  = useState<{label:string;value:number}[]>([]);
+  const [freeCapacity, setFreeCapacity] = useState('8.4');
+  const [graphPeak,    setGraphPeak]    = useState(1.0);
+
+  const streets = useMemo(() => Array.from(new Set(coverageAddresses.map(a => a.street))).sort(), []);
+  const houses  = useMemo(() => {
+    if (!streetInput) return [];
+    const matched = coverageAddresses.filter(a => a.street.toLowerCase() === streetInput.toLowerCase());
+    return Array.from(new Set(matched.map(a => a.house))).sort((a, b) => a.localeCompare(b, 'uk'));
+  }, [streetInput]);
+
+  // ── Regenerate graph whenever address or tab changes ──────────────────────
+  useEffect(() => {
+    const seed = activeAddr ? activeAddr.id : 0;
+    const tab  = TRAFFIC_TABS.find(t => t.id === activeTab)!;
+    setTrafficData(generateTrafficData(tab.points, graphPeak, seed));
+    setFreeCapacity(randomFreeCapacity(seed + tab.points));
+  }, [activeAddr, activeTab, graphPeak]);
+
+  // ── On house confirm → check coverage ─────────────────────────────────────
+  useEffect(() => {
+    if (!houseInput || !streetInput) { setSidebarState('default'); setActiveTech(undefined); setActiveAddr(null); return; }
+    const found = coverageAddresses.find(
+      a => a.street.toLowerCase() === streetInput.toLowerCase()
+        && a.house.toLowerCase()  === houseInput.toLowerCase(),
+    );
+    if (found) {
+      setSidebarState('covered');
+      setActiveTech(found.techType);
+      setActiveAddr(found);
+      setGraphPeak(found.techType === 'XGS-PON' ? 2.0 : 1.0);
+    } else {
+      setSidebarState('not-covered');
+      setActiveTech(undefined);
+      setActiveAddr(null);
+      setGraphPeak(1.0);
+    }
+  }, [streetInput, houseInput]);
+
+  // ── Map callbacks ─────────────────────────────────────────────────────────
+  const handleMarkerClick = useCallback((addr: CoverageAddress) => {
+    setStreetInput(addr.street);
+    setHouseInput(addr.house);
+    setSidebarState('covered');
+    setActiveTech(addr.techType);
+    setActiveAddr(addr);
+    setGraphPeak(addr.techType === 'XGS-PON' ? 2.0 : 1.0);
+  }, []);
+
+  // ── Open modal with pre-filled address data ───────────────────────────────
+  const handleConnectRequest = useCallback((addr?: CoverageAddress) => {
+    const street = addr?.street ?? streetInput;
+    const house  = addr?.house  ?? houseInput;
+    onOpen('request-connection', {
+      prefilledStreet: street,
+      prefilledHouse:  house,
+      type: addr?.techType ?? 'XGS-PON',
+    });
+  }, [onOpen, streetInput, houseInput]);
+
+  // ── Graph stats ───────────────────────────────────────────────────────────
+  const graphStats = useMemo(() => {
+    if (!trafficData.length) return { max: 0, min: 0, avg: 0 };
+    const vals = trafficData.map(d => d.value);
+    const max  = Math.max(...vals);
+    const min  = Math.min(...vals);
+    const avg  = vals.reduce((a, b) => a + b, 0) / vals.length;
+    return { max: max.toFixed(2), min: min.toFixed(2), avg: avg.toFixed(2) };
+  }, [trafficData]);
+
+  const maxGbps = graphPeak === 2.0 ? 2 : 1;
+
+  return (
+    <>
+      <Header theme="white" business={false} />
+
+      <main className="bg-white min-h-screen">
+
+        {/* JSON-LD — InternetServiceProvider schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'InternetServiceProvider',
+            name: 'Batyevka.NET',
+            url: 'https://batyevka.net',
+            logo: 'https://batyevka.net/logo.svg',
+            description: 'Енергонезалежний інтернет-провайдер за технологією XGS-PON у Соломʼянському районі Києва.',
+            areaServed: {
+              '@type': 'Place',
+              name: 'Соломʼянський район, Київ, Україна',
+            },
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Київ',
+              addressRegion: 'Київська область',
+              addressCountry: 'UA',
+            },
+            hasOfferCatalog: {
+              '@type': 'OfferCatalog',
+              name: 'Тарифні плани Batyevka.NET',
+              itemListElement: [
+                { '@type': 'Offer', name: '1 Гбіт/с Акційний', price: '150', priceCurrency: 'UAH' },
+                { '@type': 'Offer', name: '3 Гік',               price: '379', priceCurrency: 'UAH' },
+                { '@type': 'Offer', name: '5 Гбіт/с',             price: '550', priceCurrency: 'UAH' },
+              ],
+            },
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '4.9',
+              reviewCount: '312',
+            },
+          }) }}
+        />
+
+        <div className="max-w-[1600px] w-full mx-auto px-4 md:px-8 mt-10 pb-8">
+
+          {/* ── Header ── */}
+          <div className="text-center mb-8">
+            {/* Breadcrumbs */}
+            <nav aria-label="Breadcrumb" className="text-sm text-[#5F6061]/60 font-medium mb-4 flex items-center gap-2 justify-center">
+              <a href="/" className="hover:text-[#DC662D] transition-colors">Головна</a>
+              <span>/</span>
+              <a href="/b2c" className="hover:text-[#DC662D] transition-colors">Абоненту</a>
+              <span>/</span>
+              <span className="text-[#DC662D]">Карта покриття</span>
+            </nav>
+            <h1 className="text-4xl font-bold text-[#5F6061] mb-2">Карта покриття</h1>
+            <p className="text-gray-500 text-base">Взнайте, чи є можливість підключення за Вашою адресою</p>
+          </div>
+
+          {/* ── Autocomplete Search ── */}
+          <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-6">
+            <AutocompleteInput
+              value={streetInput}
+              onChange={v => { setStreetInput(v); setHouseInput(''); setSidebarState('default'); }}
+              options={streets}
+              placeholder="🔍 Введіть вулицю…"
+            />
+            <AutocompleteInput
+              value={houseInput}
+              onChange={setHouseInput}
+              options={houses}
+              placeholder="Будинок"
+              disabled={houses.length === 0 && !streetInput}
+            />
+            {sidebarState === 'covered' && activeTech && (
+              <div className="flex items-center gap-2 px-5 py-3 rounded-full text-sm font-bold flex-shrink-0"
+                style={{ background: TECH_COLORS[activeTech] + '18', color: TECH_COLORS[activeTech], border: `1.5px solid ${TECH_COLORS[activeTech]}44` }}>
+                ✓ {activeTech}
+              </div>
+            )}
+          </div>
+
+          {/* ── 2-column grid ── */}
+          <div className="grid lg:grid-cols-12 gap-6 mt-6">
+
+            {/* Map */}
+            <div className="lg:col-span-8 xl:col-span-9">
+              <div className="rounded-3xl overflow-hidden shadow-xl shadow-gray-200/60 border border-gray-100" style={{ height: 700 }}>
+                <MapErrorBoundary>
+                  <DynamicMap onMarkerClick={handleMarkerClick} onConnectRequest={handleConnectRequest} />
+                </MapErrorBoundary>
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-4 xl:col-span-3 flex flex-col gap-5">
+
+              <SidebarCTA state={sidebarState} tech={activeTech} onConnect={() => handleConnectRequest()} />
+
+              {/* Traffic graph widget */}
+              <div className="bg-[#F4F2F2] rounded-3xl p-6 shadow-sm flex-1">
+                <h3 className="text-[#5F6061] font-bold text-sm leading-snug">
+                  Спожитий трафік у будинку
+                </h3>
+                {/* Marketing metric */}
+                <div className="mt-2 mb-4 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
+                  <span className="text-green-600 text-xs font-semibold">
+                    Вільний канал: ~{freeCapacity} Гбіт/с
+                  </span>
+                </div>
+
+                {/* Tabs */}
+                <div className="flex gap-1 mb-4">
+                  {TRAFFIC_TABS.map(t => (
+                    <button key={t.id} onClick={() => setActiveTab(t.id)}
+                      className={`flex-1 text-[11px] py-1.5 rounded-full font-semibold transition-all
+                        ${activeTab === t.id ? 'bg-[#DC662D] text-white shadow-sm' : 'text-[#5F6061]/60 hover:text-[#5F6061]'}`}>
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Chart */}
+                <div style={{ width: '100%', height: 175 }}>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={trafficData} margin={{ top: 4, right: 4, bottom: 0, left: -18 }}>
+                      <defs>
+                        <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%"  stopColor="#DC662D" stopOpacity={0.25}/>
+                          <stop offset="95%" stopColor="#DC662D" stopOpacity={0.02}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e0dede" vertical={false}/>
+                      <XAxis dataKey="label" tick={{ fontSize: 9, fill: '#9CA3AF', fontFamily: 'Montserrat,sans-serif' }}
+                        tickLine={false} axisLine={false} interval={activeTab === 'day' ? 5 : 0}/>
+                      <YAxis tick={{ fontSize: 9, fill: '#9CA3AF', fontFamily: 'Montserrat,sans-serif' }}
+                        tickLine={false} axisLine={false}
+                        tickFormatter={v => `${v}Г`} domain={[0, maxGbps]}/>
+                      <Tooltip
+                        contentStyle={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 12, fontFamily: 'Montserrat,sans-serif', fontSize: 12, padding: '6px 12px' }}
+                        formatter={v => [`${v} Гбіт/с`, 'Навантаження']}
+                        labelStyle={{ fontWeight: 700, color: '#5F6061' }}
+                        cursor={{ stroke: '#DC662D', strokeWidth: 1, strokeDasharray: '4 2' }}
+                      />
+                      <Area type="monotone" dataKey="value" stroke="#DC662D" strokeWidth={2.5}
+                        fill="url(#tg)" dot={false}
+                        activeDot={{ r: 5, fill: '#DC662D', stroke: 'white', strokeWidth: 2 }}/>
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
+
+                {/* Bottom stats */}
+                <div className="mt-3 pt-3 border-t border-gray-200 flex justify-between text-[10px] text-gray-400 font-semibold">
+                  <span>Макс: <span className="text-[#DC662D]">{graphStats.max} Г</span></span>
+                  <span>Сер:  <span className="text-[#5F6061]">{graphStats.avg} Г</span></span>
+                  <span>Мін:  <span className="text-gray-300">{graphStats.min} Г</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Legend ── */}
+          <div className="mt-5 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-[#5F6061]">
+            <span className="font-semibold text-xs text-gray-400 uppercase tracking-wide">Позначення:</span>
+            <div className="flex items-center gap-2"><PinSVG color="#8B6CB0" /><span className="font-medium">XGS-PON — до 10 Гбіт/с</span></div>
+            <div className="flex items-center gap-2"><PinSVG color="#56AABF" /><span className="font-medium">GPON — до 1 Гбіт/с</span></div>
+            <div className="flex items-center gap-2"><PinSVG color="#9CA3AF" /><span className="font-medium">В планах — за заявкою</span></div>
+            <div className="flex items-center gap-2"><ClusterSVG /><span className="font-medium">Група будинків</span></div>
+          </div>
+
+        </div>{/* /container */}
+
+        {/* ══════════════════════════════════════════════════════════════════════
+            TARIFF CARDS SECTION
+        ══════════════════════════════════════════════════════════════════════ */}
+        <section className="max-w-[1400px] mx-auto px-4 md:px-8">
+          <h2 className="text-3xl font-bold text-center mt-16 mb-8 text-[#5F6061]">
+            Рекомендовані тарифи для вашої адреси
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {TARIFF_PLANS.map((plan) => (
+              <div key={plan.name}
+                className={`bg-[#F4F2F2] rounded-3xl p-8 flex flex-col relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${plan.highlight ? 'ring-2 ring-[#DC662D] shadow-lg shadow-orange-100' : 'shadow-sm'}`}>
+                {plan.badge && (
+                  <div className="absolute top-6 right-6 bg-[#DC662D] text-white text-xs font-bold px-3 py-1 rounded-full">
+                    {plan.badge}
+                  </div>
+                )}
+                <p className="text-[#DC662D] font-bold text-sm mb-1 uppercase tracking-wide">Тариф</p>
+                <h3 className="text-[#5F6061] font-extrabold text-3xl mb-1">{plan.name}</h3>
+                <div className="flex items-end gap-1 mb-1">
+                  <span className="text-[#DC662D] font-extrabold text-4xl">{plan.price}</span>
+                  <span className="text-[#5F6061]/60 text-sm mb-1">грн/міс</span>
+                </div>
+                {plan.priceNote && (
+                  <p className="text-[#5F6061]/50 text-xs mb-5 leading-snug">{plan.priceNote}</p>
+                )}
+                <p className="text-[#5F6061]/70 text-sm mb-6 leading-relaxed">{plan.desc}</p>
+                <ul className="space-y-2.5 mb-8 flex-1">
+                  {plan.features.map(f => (
+                    <li key={f} className="flex items-center gap-2.5 text-sm text-[#5F6061]">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="#DC662D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => handleConnectRequest()}
+                  className="w-full py-3.5 bg-[#DC662D] text-white rounded-full font-bold text-sm hover:bg-[#c85825] transition-colors shadow-md shadow-orange-200 active:scale-[0.98]">
+                  Хочу цей тариф
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════════════════════
+            SEO ARTICLE — MASSIVE LONG-READ (v3)
+        ══════════════════════════════════════════════════════════════════════ */}
+        <section className="max-w-4xl mx-auto px-4 md:px-8 text-[#5F6061] mt-16 mb-24 space-y-6">
+
+          <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-800">
+            Як перевірити можливість підключення до провайдера Batyevka.NET за адресою
+          </h2>
+          <p className="leading-relaxed">
+            Якщо вам потрібен перевірений, надійний та енергонезалежний інтернет-провайдер за адресою у Києві
+            (Солом&apos;янський район), та ви прагнете отримати актуальну інформацію без дзвінків і очікування,
+            скористайтесь нашим сервісом. Карта покриття на сайті Batyevka.NET створена для швидкої та зручної перевірки
+            доступності послуг. Достатньо ввести назву вулиці та номер вашого будинку або знайти свою локацію
+            безпосередньо на мапі, і система відразу покаже покриття інтернету за адресою та можливі
+            варіанти підключення (XGS-PON або GPON).
+          </p>
+
+          <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-800">
+            Переваги енергонезалежного інтернету від Batyevka.NET
+          </h2>
+          <p className="leading-relaxed">
+            Вибираючи провайдера, користувач насамперед оцінює найважливіші критерії, як-от стабільність, швидкість
+            і доступність у своєму будинку під час блекаутів. Саме тому наша карта покриття інтернет-провайдера
+            дозволяє відразу зрозуміти, чи доступні послуги енергонезалежного інтернету за конкретною
+            адресою та які умови підключення пропонуються.
+          </p>
+          <p className="leading-relaxed">
+            Batyevka.NET пропонує преміальні рішення, які зручно використовувати щодня як для роботи,
+            так і для дому. Завдяки сучасній інфраструктурі на базі технології XGS-PON забезпечується швидкісний
+            інтернет до 10 Гбіт/с без просідань швидкості навіть у години пікового навантаження.
+            Це особливо важливо для відеодзвінків, стримінгу та онлайн-ігор.
+          </p>
+          <ul className="list-disc pl-6 space-y-2 leading-relaxed">
+            <li>
+              <strong>абсолютна автономність</strong> завдяки потужним акумуляторам LiFePO4 на вузлах (понад 100 годин без світла);
+            </li>
+            <li>стабільна доступність інтернету в Солом&apos;янському районі та постійне розширення мережі;</li>
+            <li>широка зона покриття, яку можна перевірити за допомогою зручної інтерактивної карти на сайті;</li>
+            <li>
+              <strong>ювелірний монтаж</strong>: жодних мотків кабелю по під&apos;їзду, акуратне заведення оптики у квартиру
+              та фірмова розетка;
+            </li>
+            <li>гнучкі тарифи, адаптовані під різні потреби користувачів (від 1 Гбіт/с до 10 Гбіт/с).</li>
+          </ul>
+          <p className="leading-relaxed">
+            Окрему увагу приділено інфраструктурі в районах Києва (Батиєва Гора,
+            Олександрівська Слобідка), де мережа вже охоплює значну частину житлових
+            і комерційних будівель.
+          </p>
+
+          <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-800">
+            Як підключити інтернет за адресою
+          </h2>
+          <p className="leading-relaxed">
+            Щоб підключити послуги інтернет-провайдера за адресою, достатньо зробити декілька простих кроків:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 leading-relaxed">
+            <li>скористатися картою інтернет-покриття, вибравши потрібну адресу;</li>
+            <li>якщо підключення доступне – залишити заявку онлайн або зателефонувати за номером гарячої лінії;</li>
+            <li>у разі відсутності адреси у списку також подати заявку для уточнення (в планах);</li>
+            <li>дочекатися дзвінка фахівця, який перевірить технічну можливість підключення;</li>
+            <li>узгодити деталі – тариф, обладнання та зручний час прибуття майстра для монтажу.</li>
+          </ul>
+
+          <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-800">
+            Покриття інтернету в Україні та захист інфраструктури
+          </h2>
+          <p className="leading-relaxed">
+            Покриття інтернету залежить від конкретного міста, району та технічної інфраструктури.
+            Зверніть увагу: карта інтернет-покриття, представлена на цій сторінці, актуальна для
+            Солом&apos;янського району міста Києва. Такий підхід допомагає швидко визначити, чи доступні
+            послуги провайдера за вашою адресою, а потім вибрати оптимальне рішення без зайвих витрат часу.
+          </p>
+          <div className="bg-[#F4F2F2] p-7 rounded-2xl border border-gray-200">
+            <p className="text-sm leading-relaxed">
+              <strong>Зверніть увагу:</strong> Оптичний термінал (ONU), патч-корд та оптична розетка є
+              власністю Batyevka.NET. Клієнт оплачує лише роботу з монтажу. Використання нашої
+              інфраструктури для підключення до інших провайдерів <strong>суворо заборонено!</strong>
+            </p>
+          </div>
+
+        </section>
+
+      </main>
+
+      <Footer theme="white" />
+    </>
+  );
+}
