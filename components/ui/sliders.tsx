@@ -159,6 +159,9 @@ export type TarifsSliderType = {
 export function TarifsSliderMobile({ setSpeed, speed }: TarifsSliderType) {
   const [val, setVal] = useState<number>(speed ?? UTP_SPEEDS[0].value);
 
+  // Тримаємо повзунок у синхроні з тарифом, обраним ззовні
+  useEffect(() => { setVal(speed); }, [speed]);
+
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
@@ -200,6 +203,8 @@ export function TarifsSliderMobile({ setSpeed, speed }: TarifsSliderType) {
 export function TarifsSliderMobileGPON({ setSpeed, speed }: TarifsSliderType) {
   const [val, setVal] = useState<number>(speed ?? GPON_SPEEDS[0].value);
 
+  useEffect(() => { setVal(speed); }, [speed]);
+
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
@@ -240,6 +245,8 @@ export function TarifsSliderMobileGPON({ setSpeed, speed }: TarifsSliderType) {
 
 export function TarifsSlider({ setSpeed, speed }: TarifsSliderType) {
   const [val, setVal] = useState<number>(speed ?? MIN);
+
+  useEffect(() => { setVal(speed); }, [speed]);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);
@@ -280,6 +287,8 @@ export function TarifsSlider({ setSpeed, speed }: TarifsSliderType) {
 
 export function TarifsSliderGPON({ setSpeed, speed }: TarifsSliderType) {
   const [val, setVal] = useState<number>(speed);
+
+  useEffect(() => { setVal(speed); }, [speed]);
   const handleChange = (_: Event, newValue: number | number[]) => {
     setVal(newValue as number);
     setSpeed(newValue as number);

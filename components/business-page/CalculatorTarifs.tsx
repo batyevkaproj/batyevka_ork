@@ -80,9 +80,6 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [internetBasePrice, setInternetBasePrice] = useState<number>(0);
     const [totalPrice, setTotalPrice] = useState<number>(0);
 
-    // Пакет, який абонент обрав вручну (null — жодного разу не чіпав повзунок ТБ)
-    const [manualTvBundle, setManualTvBundle] = useState<number | null>(null);
-
     const { toast } = useToast();
     const { onOpen } = useModal();
 
@@ -104,14 +101,13 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         }
     },[isTarifsSwitch, XGS_DEFAULT_SPEED]);
 
-    // ТБ-пакет іде за тарифом: піднімається до включеного у тариф і опускається
-    // назад, коли повертаємось на нижчу швидкість. Ручний вибір абонента лишається.
+    // ТБ-пакет завжди йде за тарифом: піднявся на 10 Гбіт — Оптимальна,
+    // повернувся на нижчу швидкість — повзунок MEGOGO опускається разом із ним
     useEffect(() => {
         if (!isTVChecked) return;
 
-        const minBundle = getIncludedTvBundle(selectedSpeedItem.mbps);
-        setTvBundle(Math.max(minBundle, manualTvBundle ?? 0));
-    },[selectedSpeedItem, isTVChecked, manualTvBundle]);
+        setTvBundle(getIncludedTvBundle(selectedSpeedItem.mbps));
+    },[selectedSpeedItem, isTVChecked]);
 
     // Основна логіка перерахунку цін
     useEffect(() => {
@@ -173,9 +169,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         }
     };
 
-    // Клік по повзунку MEGOGO — це вже свідомий вибір абонента
+    // Абонент може підняти пакет вручну; наступна зміна тарифу знову його вирівняє
     const handleTvBundleSelect = (bundle: number) => {
-        setManualTvBundle(bundle);
         setTvBundle(bundle);
     };
 
