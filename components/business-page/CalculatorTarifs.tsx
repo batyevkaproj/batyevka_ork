@@ -41,8 +41,7 @@ import MobileMonthsSelect from './MobileMonthsSelect';
 const getIncludedTvBundle = (mbps: number) => {
     if (mbps >= 10000) return 3; // Оптимальна (3)
     if (mbps >= 5000)  return 2; // Легка (2)
-    if (mbps >= 3000)  return 1; // Національне (1)
-    return 0;                    // Безкоштовне (0)
+    return 0;                    // Безкоштовне (0) — 3 Гбіт/с включно
 };
 const getMegogoPrice = (bundleId: number) => {
     const bundle = MEGOGO_BUNDLES?.find(b => b.value === bundleId);
@@ -81,7 +80,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [internetBasePrice, setInternetBasePrice] = useState<number>(0);
     const [totalPrice, setTotalPrice] = useState<number>(0);
 
-    const[lastActiveTvBundle, setLastActiveTvBundle] = useState<number>(0);
+    // Пакет, який абонент обрав вручну (null — жодного разу не чіпав повзунок ТБ)
+    const [manualTvBundle, setManualTvBundle] = useState<number | null>(null);
 
     const { toast } = useToast();
     const { onOpen } = useModal();
@@ -104,14 +104,14 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         }
     },[isTarifsSwitch, XGS_DEFAULT_SPEED]);
 
-    // Контроль мінімального ТБ-пакету, що вже включений у тариф
+    // ТБ-пакет іде за тарифом: піднімається до включеного у тариф і опускається
+    // назад, коли повертаємось на нижчу швидкість. Ручний вибір абонента лишається.
     useEffect(() => {
-        const minBundle = getIncludedTvBundle(selectedSpeedItem.mbps);
+        if (!isTVChecked) return;
 
-        if (isTVChecked && tvBundle < minBundle) {
-            setTvBundle(minBundle);
-        }
-    },[selectedSpeedItem, isTVChecked, tvBundle]);
+        const minBundle = getIncludedTvBundle(selectedSpeedItem.mbps);
+        setTvBundle(Math.max(minBundle, manualTvBundle ?? 0));
+    },[selectedSpeedItem, isTVChecked, manualTvBundle]);
 
     // Основна логіка перерахунку цін
     useEffect(() => {
@@ -167,17 +167,16 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         const newState = !isTVChecked;
         setTVChecker(newState);
 
-        if (newState) {
-            const minBundle = getIncludedTvBundle(selectedSpeedItem.mbps);
-
-            // Відновлюємо попередньо обраний пакет (або ставимо мінімальний включений)
-            setTvBundle(Math.max(lastActiveTvBundle === 0 ? 0 : lastActiveTvBundle, minBundle));
-        } else {
-            if (tvBundle !== 0) {
-                setLastActiveTvBundle(tvBundle);
-            }
+        // Увімкнення поверне пакет через ефект вище, вимкнення — обнуляє
+        if (!newState) {
             setTvBundle(0);
         }
+    };
+
+    // Клік по повзунку MEGOGO — це вже свідомий вибір абонента
+    const handleTvBundleSelect = (bundle: number) => {
+        setManualTvBundle(bundle);
+        setTvBundle(bundle);
     };
 
     const prepareOrderData = () => {
@@ -280,10 +279,10 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                             <>
                                 <p className={`font-bold min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px] min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:mt-[15px] max-[680px]:flex max-[680px]:justify-center max-[680px]:text-center`}>Обери передплату MEGOGO</p>
                                 <div className="min-[3644px]:mt-[60px] mt-[40px] max-[2377px]:mt-[30px] max-[680px]:hidden">
-                                    <MegogoSlider disableSwap={true} outerSetter={setTvBundle} outer={tvBundle} isEnabled={isTVChecked} />
+                                    <MegogoSlider disableSwap={true} outerSetter={handleTvBundleSelect} outer={tvBundle} isEnabled={isTVChecked} />
                                 </div>
                             </>
-                            <MegogoSliderMobile selectedBundle={tvBundle} onBundleSelect={setTvBundle} isEnabled={isTVChecked} />
+                            <MegogoSliderMobile selectedBundle={tvBundle} onBundleSelect={handleTvBundleSelect} isEnabled={isTVChecked} />
 
                             <div className="flex items-center min-[3644px]:gap-[39px] gap-[26px] max-[2377px]:gap-[20px] min-[3644px]:mt-[110px] mt-[71px] max-[2377px]:mt-[53px] max-[680px]:hidden">
                                 <RegularSwitch switchState={setIPChecker} state={isIPChecked} />

@@ -65,7 +65,6 @@ const BatyevkaLandingPage: React.FC = () => {
     // Визначаємо рівень (індекс) пакету, який вже включений в обраний тариф
     const getIncludedMegogoLevel = (tariffId: number | null) => {
         if (tariffId === 1) return 0; // 1 Гбіт/с -> 'free' (індекс 0)
-        if (tariffId === 2) return 1; // 3 Гбіт/с -> 'national' (індекс 1)
         if (tariffId === 3) return 2; // 5 Гбіт/с -> 'light' (індекс 2)
         return 0; // Якщо тариф не обрано, включено тільки безкоштовне
     };
@@ -155,7 +154,6 @@ const BatyevkaLandingPage: React.FC = () => {
         
         // Зв'язуємо клік на MEGOGO з відповідним тарифом
         if (megogoId === 'free') setSelectedTariff(1);
-        else if (megogoId === 'national') setSelectedTariff(2);
         else if (megogoId === 'light') setSelectedTariff(3);
         // Якщо вибрано більший пакет, залишаємо поточний тариф
     };
@@ -269,7 +267,7 @@ const BatyevkaLandingPage: React.FC = () => {
 
                             {/* --- ТАРИФ 2 --- */}
                             <article 
-                                onClick={() => handleTariffClick(2, 'national')}
+                                onClick={() => handleTariffClick(2, 'free')}
                                 className={`p-6 rounded-lg flex flex-col transition-all duration-300 cursor-pointer relative ${
                                     selectedTariff === 2 
                                     ? 'ring-2 ring-[#DC662D] shadow-2xl transform md:scale-105 z-10 bg-white border-transparent' 
@@ -285,9 +283,9 @@ const BatyevkaLandingPage: React.FC = () => {
                                     <p className="text-xs text-gray-500 mb-2">При передплаті: 6 міс — 999 грн · рік — 499 грн</p>
                                     <p 
                                         className="text-sm font-bold text-[#5984B2] hover:text-[#DC662D] transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
-                                        onClick={(e) => handleMegogoLinkClick(e, 'national', 2)}
+                                        onClick={(e) => handleMegogoLinkClick(e, 'free', 2)}
                                     >
-                                        + MEGOGO Нац ТБ (300+ каналів)
+                                        + MEGOGO Безкоштовне ТБ (200+ каналів)
                                     </p>
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">

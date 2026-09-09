@@ -32,10 +32,9 @@ const XgsPonPage: React.FC = () => {
 
     // Визначаємо рівень (індекс) пакету, який вже включений в обраний тариф
     const getIncludedMegogoLevel = (tariffId: number | null) => {
-        if (tariffId === 3) return 1;  // 3 Гбіт/с -> 'national' (індекс 1)
         if (tariffId === 5) return 2;  // 5 Гбіт/с -> 'light' (індекс 2)
         if (tariffId === 10) return 3; // 10 Гбіт/с -> 'optimal' (індекс 3)
-        return 0; // Якщо тариф не обрано або інший тариф, включено тільки безкоштовне
+        return 0; // 3 Гбіт/с та інші — включено тільки безкоштовне ТБ
     };
 
     const scrollToCTA = () => {
@@ -98,7 +97,7 @@ const XgsPonPage: React.FC = () => {
         setSelectedMegogo(megogoId);
         
         // Зв'язуємо клік на MEGOGO з відповідним тарифом
-        if (megogoId === 'national') setSelectedTariff(3);
+        if (megogoId === 'free') setSelectedTariff(3);
         else if (megogoId === 'light') setSelectedTariff(5);
         else if (megogoId === 'optimal') setSelectedTariff(10);
     };
@@ -171,7 +170,7 @@ const XgsPonPage: React.FC = () => {
                             
                             {/* --- ТАРИФ 3 Гбіт/с --- */}
                             <article 
-                                onClick={() => handleTariffClick(3, 'national')}
+                                onClick={() => handleTariffClick(3, 'free')}
                                 className={`p-6 rounded-lg flex flex-col transition-all duration-300 cursor-pointer relative ${
                                     selectedTariff === 3 
                                     ? 'ring-2 ring-[#DC662D] shadow-2xl transform md:scale-105 z-10 bg-white border-transparent' 
@@ -186,9 +185,9 @@ const XgsPonPage: React.FC = () => {
                                     <p className="text-xs text-gray-500 mb-2">При передплаті: 6 міс — 999 грн · рік — 499 грн</p>
                                     <p 
                                         className="text-sm font-bold text-[#5984B2] hover:text-[#DC662D] transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
-                                        onClick={(e) => handleMegogoLinkClick(e, 'national', 3)}
+                                        onClick={(e) => handleMegogoLinkClick(e, 'free', 3)}
                                     >
-                                        + MEGOGO Нац ТБ
+                                        + MEGOGO Безкоштовне ТБ
                                     </p>
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">

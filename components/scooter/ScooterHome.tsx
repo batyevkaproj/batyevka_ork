@@ -132,7 +132,7 @@ const SpeedGaugeSection: React.FC<SpeedGaugeSectionProps> = ({ onOpen, freeChann
                             onClick={onOpen}
                             className="w-full text-center bg-[#DC662D] hover:bg-[#c45a27] text-white font-bold text-lg py-4 px-4 rounded-xl transition-colors shadow-sm"
                         >
-                            Замовити (залишилось 20)
+                            Замовити (залишилось 17)
                         </button>
                     </div>
 
@@ -242,7 +242,7 @@ const BatyevkaLandingPage: React.FC = () => {
     const isMegogoIncluded = (megogoId: string, tariffSpeedId: number | null) => {
         if (!tariffSpeedId) return false;
         if (tariffSpeedId === 1 && megogoId === 'free') return true;
-        if (tariffSpeedId === 3 && (megogoId === 'free' || megogoId === 'national')) return true;
+        if (tariffSpeedId === 3 && megogoId === 'free') return true;
         if (tariffSpeedId === 5 && (megogoId === 'free' || megogoId === 'national' || megogoId === 'light')) return true;
         if (tariffSpeedId === 10 && (megogoId === 'free' || megogoId === 'national' || megogoId === 'light' || megogoId === 'optimal')) return true;
         return false;
