@@ -181,8 +181,9 @@ const XgsPonPage: React.FC = () => {
                                 <div className="flex-grow">
                                     <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">XGS-PON</span>
                                     <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">3 Гбіт/с</h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">500<span className="text-xl font-bold"> грн/міс</span></p>
-                                    <p className="text-sm font-bold mb-2 text-[#51B18B]">Підключення — 2999 грн</p>
+                                    <p className="text-4xl font-extrabold text-[#DC662D]">379<span className="text-xl font-bold"> грн/міс</span></p>
+                                    <p className="text-sm font-bold text-[#51B18B]">Підключення — 1499 грн</p>
+                                    <p className="text-xs text-gray-500 mb-2">При передплаті: 6 міс — 999 грн · рік — 499 грн</p>
                                     <p 
                                         className="text-sm font-bold text-[#5984B2] hover:text-[#DC662D] transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
                                         onClick={(e) => handleMegogoLinkClick(e, 'national', 3)}
@@ -192,7 +193,7 @@ const XgsPonPage: React.FC = () => {
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">
                                     <button 
-                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(3, 'Гбіт', 500, 2999, 'XGS-PON'); }}
+                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(3, 'Гбіт', 379, 1499, 'XGS-PON'); }}
                                         className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                                     >
                                         Залишити заявку
@@ -213,7 +214,8 @@ const XgsPonPage: React.FC = () => {
                                     <span className="inline-block bg-white/20 text-white text-xs font-bold px-2 py-1 rounded-full mb-2">XGS-PON</span>
                                     <h3 className="text-2xl font-bold mb-2">5 Гбіт/с</h3>
                                     <p className="text-4xl font-extrabold text-[#DC662D]">800<span className="text-xl font-bold"> грн/міс</span></p>
-                                    <p className="text-sm font-bold mb-2">Підключення — 5999 грн</p>
+                                    <p className="text-sm font-bold">Підключення — 1999 грн</p>
+                                    <p className="text-xs text-white/70 mb-2">При передплаті: 6 міс — 999 грн · рік — 499 грн</p>
                                     <p 
                                         className="text-sm font-bold text-white/90 hover:text-white transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
                                         onClick={(e) => handleMegogoLinkClick(e, 'light', 5)}
@@ -223,7 +225,7 @@ const XgsPonPage: React.FC = () => {
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">
                                     <button 
-                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(5, 'Гбіт', 800, 5999, 'XGS-PON'); }}
+                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(5, 'Гбіт', 800, 1999, 'XGS-PON'); }}
                                         className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                                     >
                                         Залишити заявку
@@ -244,7 +246,8 @@ const XgsPonPage: React.FC = () => {
                                     <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">XGS-PON</span>
                                     <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">10 Гбіт/с</h3>
                                     <p className="text-4xl font-extrabold text-[#DC662D]">2000<span className="text-xl font-bold"> грн/міс</span></p>
-                                    <p className="text-sm font-bold mb-2 text-[#51B18B]">Підключення — 5999 грн</p>
+                                    <p className="text-sm font-bold text-[#51B18B]">Підключення — 2499 грн</p>
+                                    <p className="text-xs text-gray-500 mb-2">При передплаті: 6 міс — 1499 грн · рік — 499 грн</p>
                                     <p 
                                         className="text-sm font-bold text-[#5984B2] hover:text-[#DC662D] transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
                                         onClick={(e) => handleMegogoLinkClick(e, 'optimal', 10)}
@@ -254,7 +257,7 @@ const XgsPonPage: React.FC = () => {
                                 </div>
                                 <div className="mt-auto space-y-2 pt-4 relative z-20">
                                     <button 
-                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(10, 'Гбіт', 2000, 5999, 'XGS-PON'); }}
+                                        onClick={(e) => { e.stopPropagation(); handleOpenModalForTariff(10, 'Гбіт', 2000, 2499, 'XGS-PON'); }}
                                         className="w-full block text-center bg-[#DC662D] hover:bg-opacity-90 text-white font-bold py-2 px-4 rounded-lg transition-colors"
                                     >
                                         Залишити заявку
@@ -301,7 +304,7 @@ const XgsPonPage: React.FC = () => {
                         <p className="mb-6 max-w-xl mx-auto text-gray-600">Залиште заявку, і наш менеджер зв&apos;яжеться з вами протягом 15 хвилин, щоб обговорити деталі підключення за технологією XGS-PON.</p>
                         
                         <button 
-                            onClick={() => handleOpenModalForTariff(10, "Гбіт", 2000, 5999, "XGS-PON")}
+                            onClick={() => handleOpenModalForTariff(10, "Гбіт", 2000, 2499, "XGS-PON")}
                             className="bg-[#DC662D] text-white font-bold text-lg py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-[#DC662D]/30"
                         >
                             Підключитись до 10G

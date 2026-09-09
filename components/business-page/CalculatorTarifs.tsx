@@ -6,12 +6,10 @@ import {
     GPON_SPEEDS,
     UTP_SPEEDS,
     REAL_IP_PRICE_physic as REAL_IP_PRICE,
-    ONT_model
+    ONT_model,
+    isXgsPon
 } from "@/constants/internet_speeds";
-import {
-    UTP_SETUP_PRICES,
-    GPON_SETUP_PRICES
-} from "@/constants/setup_prices";
+import { getSetupPrice } from "@/constants/setup_prices";
 import { ROUTER_PRICE } from '@/constants/router_price';
 import { MEGOGO_BUNDLES } from '@/constants/slider';
 import { MONTHS } from '@/constants/slider';
@@ -40,12 +38,11 @@ import { Button } from '@/components/ui/button';
 import MobileMonthsSelect from './MobileMonthsSelect';
 
 // Допоміжні функції для визначення включених пакетів та цін
-const getIncludedTvBundle = (speed: number) => {
-    if (speed === 1) return 0;  // Безкоштовне (0)
-    if (speed === 3) return 1;  // Національне (1)
-    if (speed === 5) return 2;  // Легка (2)
-    if (speed === 10) return 3; // Оптимальна (3)
-    return 0;
+const getIncludedTvBundle = (mbps: number) => {
+    if (mbps >= 10000) return 3; // Оптимальна (3)
+    if (mbps >= 5000)  return 2; // Легка (2)
+    if (mbps >= 3000)  return 1; // Національне (1)
+    return 0;                    // Безкоштовне (0)
 };
 const getMegogoPrice = (bundleId: number) => {
     const bundle = MEGOGO_BUNDLES?.find(b => b.value === bundleId);
@@ -60,11 +57,11 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [isTarifsSwitch, setTarifsSwitch] = useState<boolean>(true);
 
     const XGS_DEFAULT_SPEED = useMemo(
-        () => GPON_SPEEDS.find(s => s.speed === 5)?.value ?? 5,[]
+        () => GPON_SPEEDS.find(s => s.mbps === 5000)?.value ?? GPON_SPEEDS[0].value,[]
     );
 
     const UTP_DEFAULT_SPEED = useMemo(
-        () => UTP_SPEEDS.find(s => s.speed === 1)?.value ?? 1, []
+        () => UTP_SPEEDS.find(s => s.mbps === 1000)?.value ?? UTP_SPEEDS[0].value, []
     );
 
     const[speedUtp, setSpeedUtp] = useState<number>(UTP_DEFAULT_SPEED);
@@ -89,6 +86,17 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const { toast } = useToast();
     const { onOpen } = useModal();
 
+    // Обраний тариф — єдине джерело правди для цін, ТБ-пакета та заявки
+    const selectedSpeedItem = useMemo(
+        () => (isTarifsSwitch
+            ? UTP_SPEEDS.find(i => i.value === speedUtp)
+            : GPON_SPEEDS.find(i => i.value === speedGpon)) ?? UTP_SPEEDS[0],
+        [isTarifsSwitch, speedUtp, speedGpon]
+    );
+
+    // Технологія — від обраної швидкості: 3 Гбіт/с і вище працюють на XGS-PON
+    const isXgs = isXgsPon(selectedSpeedItem.mbps);
+
     // Скидання швидкості XGS-PON на дефолтну при перемиканні технології
     useEffect(() => {
         if (!isTarifsSwitch) {
@@ -98,48 +106,25 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
     // Контроль мінімального ТБ-пакету, що вже включений у тариф
     useEffect(() => {
-        const speed = isTarifsSwitch
-            ? (UTP_SPEEDS.find(v => v.value === speedUtp)?.speed ?? 1)
-            : (GPON_SPEEDS.find(v => v.value === speedGpon)?.speed ?? 5);
-
-        const minBundle = getIncludedTvBundle(speed);
+        const minBundle = getIncludedTvBundle(selectedSpeedItem.mbps);
 
         if (isTVChecked && tvBundle < minBundle) {
             setTvBundle(minBundle);
         }
-    },[speedUtp, speedGpon, isTarifsSwitch, isTVChecked]);
+    },[selectedSpeedItem, isTVChecked, tvBundle]);
 
     // Основна логіка перерахунку цін
     useEffect(() => {
-        const speed = isTarifsSwitch
-            ? (UTP_SPEEDS.find(i => i.value === speedUtp)?.speed ?? 1)
-            : (GPON_SPEEDS.find(i => i.value === speedGpon)?.speed ?? 5);
+        const { mbps } = selectedSpeedItem;
 
-        // 1. Інтернет ціна (відповідно до нових тарифів з лендінгу)
-        let newInternetPrice = 0;
-        if (isTarifsSwitch) {
-            // Ціни абонплати для G-PON
-            if (speed === 300 || speed === 0.3) newInternetPrice = 325; // Оновлено для 300 Мбіт
-            else if (speed === 1) newInternetPrice = 350;
-            else if (speed === 3) newInternetPrice = 500;
-            else if (speed === 5) newInternetPrice = 800;
-            else newInternetPrice = UTP_SPEEDS.find(i => i.value === speedUtp)?.price ?? 0;
-        } else {
-            // Ціни абонплати для XGS-PON
-            if (speed === 300 || speed === 0.3) newInternetPrice = 325; 
-            else if (speed === 1) newInternetPrice = 350;
-            else if (speed === 3) newInternetPrice = 500;       
-            else if (speed === 5) newInternetPrice = 800;  
-            else if (speed === 10) newInternetPrice = 2000;
-            else newInternetPrice = GPON_SPEEDS.find(i => i.value === speedGpon)?.price ?? 0;
-        }
-
+        // 1. Абонплата за інтернет — з тарифної шкали
+        const newInternetPrice = selectedSpeedItem.price;
         setInternetBasePrice(newInternetPrice);
 
         // 2. ТБ ціна (доплата за вищий пакет або 0, якщо обрано базовий для тарифу)
         let newTvPrice = 0;
         if (isTVChecked) {
-            const includedBundleId = getIncludedTvBundle(speed);
+            const includedBundleId = getIncludedTvBundle(mbps);
 
             if (tvBundle === includedBundleId) {
                 // Якщо обрано пакет, що вже включений у тариф (бандл) — ТБ безкоштовне (0 грн)
@@ -152,41 +137,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
         const newIpPrice = isIPChecked ? REAL_IP_PRICE : 0;
 
-        // 3. ЦІНА ПІДКЛЮЧЕННЯ (SETUP PRICE)
-        let newSetupPrice = 1500; // Базова ціна за замовчуванням
-
-        if (prepaidMonths === 1) {
-            // Якщо оплата за 1 місяць (повна вартість підключення, без знижок)
-            if (isTarifsSwitch) {
-                if (speed === 300 || speed === 0.3) {
-                    newSetupPrice = 299;  // Дефолтна ціна підключення (прирівняно до 1 Гбіт/с)
-                } else if (speed === 1) {
-                    newSetupPrice = 299;  // G-PON 1 Гбіт/с
-                } else if (speed === 3) {
-                    newSetupPrice = 2999; // G-PON 3 Гбіт/с
-                } else if (speed === 5) {
-                    newSetupPrice = 5999; // G-PON 5 Гбіт/с
-                }
-            } else {
-                if (speed === 3) {
-                    newSetupPrice = 2999; // XGS-PON 3 Гбіт/с
-                } else if (speed === 5) {
-                    newSetupPrice = 5999; // XGS-PON 5 Гбіт/с
-                } else if (speed === 10) {
-                    newSetupPrice = 5999; // XGS-PON 10 Гбіт/с
-                }
-            }
-        } else {
-            // Якщо обрано оплату авансом (3, 6, 12 міс) — беремо акційну ціну підключення з констант
-            const advancePrice = (isTarifsSwitch ? UTP_SETUP_PRICES : GPON_SETUP_PRICES)
-                .find(t => prepaidMonths == t.months)?.price;
-
-            if (advancePrice !== undefined) {
-                newSetupPrice = advancePrice;
-            } else {
-                newSetupPrice = 0; // Якщо ціни немає в масиві, ставимо 0
-            }
-        }
+        // 3. Ціна підключення — залежить від швидкості та строку передплати
+        let newSetupPrice = getSetupPrice(mbps, prepaidMonths);
 
         // Додаткова вартість за налаштування статичної IP-адреси
         if (isIPChecked) {
@@ -204,9 +156,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         setTotalPrice(newInternetPrice + newTvPrice + newIpPrice);
 
     },[
-        isTarifsSwitch,
-        speedUtp,
-        speedGpon,
+        selectedSpeedItem,
         isTVChecked,
         tvBundle,
         isIPChecked,
@@ -218,10 +168,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         setTVChecker(newState);
 
         if (newState) {
-            const speed = isTarifsSwitch
-                ? (UTP_SPEEDS.find(i => i.value === speedUtp)?.speed ?? 1)
-                : (GPON_SPEEDS.find(i => i.value === speedGpon)?.speed ?? 5);
-            const minBundle = getIncludedTvBundle(speed);
+            const minBundle = getIncludedTvBundle(selectedSpeedItem.mbps);
 
             // Відновлюємо попередньо обраний пакет (або ставимо мінімальний включений)
             setTvBundle(Math.max(lastActiveTvBundle === 0 ? 0 : lastActiveTvBundle, minBundle));
@@ -234,9 +181,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     };
 
     const prepareOrderData = () => {
-        const selectedSpeed = isTarifsSwitch
-            ? UTP_SPEEDS.find(i => i.value === speedUtp)
-            : GPON_SPEEDS.find(i => i.value === speedGpon);
+        const selectedSpeed = selectedSpeedItem;
 
         const tvPackage = isTVChecked && tvBundle ? {
             id: tvBundle,
@@ -245,7 +190,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         } : undefined;
 
         const orderData: OrderDataProps = {
-            internetType: isTarifsSwitch ? "G-PON" : "XGS-PON",
+            internetType: isXgs ? "XGS-PON" : "G-PON",
             internetSpeed: selectedSpeed?.speed || 0,
             internetMeasure: selectedSpeed?.measure || 'мбіт',
             internetPrice: internetBasePrice,
@@ -261,7 +206,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
             totalMonthlyPrice: totalPrice,
 
             additionalInfo:[
-                `${isTarifsSwitch ? 'G-PON' : 'XGS-PON'} ${selectedSpeed?.speed} ${selectedSpeed?.measure}`,
+                `${isXgs ? 'XGS-PON' : 'G-PON'} ${selectedSpeed?.speed} ${selectedSpeed?.measure}`,
                 isTVChecked ? `ТВ пакет: ${TVinfo[tvBundle].name}` : 'Без ТВ',
                 isIPChecked ? 'Зі статичною IP-адресою' : 'Без статичної IP-адреси',
                 `Передплата на ${prepaidMonths} місяців`,
@@ -372,8 +317,8 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                 </div>
 
                                 <div className="flex items-center justify-between border-b-[2px] border-[#F4F2F2] border-solid min-[3644px]:pb-[20px] pb-[13px] max-[2377px]:pb-[10px]">
-                                    <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />{!isTarifsSwitch ? 'ONU XGS-PON' : 'ONU  EG8010H'}</span></h1>
-                                    <h1 className="opacity-[0.5] max-[680px]:hidden">{!isTarifsSwitch ? 'ONU XGS-PON' : 'ONU  EG8010H'}</h1>
+                                    <h1>* Оптичний термінал <span className={`opacity-[0.5] min-[681px]:hidden relative left-[13px]`}><br />{isXgs ? ONT_model : 'ONU  EG8010H'}</span></h1>
+                                    <h1 className="opacity-[0.5] max-[680px]:hidden">{isXgs ? ONT_model : 'ONU  EG8010H'}</h1>
                                     <h1 className="opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">безкоштовна оренда</h1>
                                 </div>
 
@@ -384,16 +329,16 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                                     </div>
                                     <h1 className="items-center justify-center text-center max-[680px]:hidden">
                                         <span className="opacity-[0.5]">
-                                            {!isTarifsSwitch ? '' : 'MERCUSYS MR80X'}
+                                            {isXgs ? '' : 'MERCUSYS MR80X'}
                                         </span>
                                     </h1>
                                     <h1 className="max-[680px]:text-end opacity-[0.5] min-[3644px]:text-[48px] min-[3644px]:leading-[60px] text-[32px] leading-[40px] max-[2377px]:text-[24px] max-[2377px]:leading-[30px]">
-                                        {!isTarifsSwitch ? 'Договірна ціна' : `${routerPrice} грн.`}
+                                        {isXgs ? 'Договірна ціна' : `${routerPrice} грн.`}
                                     </h1>
                                     <p className="row-start-3 col-span-2 opacity-[0.5] min-[681px]:hidden relative left-[13px] mt-[-24px]">
                                         <br />
                                         <span className="opacity-[0.5]">
-                                            {!isTarifsSwitch ? '' : <>MERCUSYS <br />MR80X</>}
+                                            {isXgs ? '' : <>MERCUSYS <br />MR80X</>}
                                         </span>
                                     </p>
                                 </div>
@@ -403,7 +348,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
 
                     <div>
                         <div className="col-span-1 col-start-2 max-[1800px]:col-start-1 flex justify-center min-[3644px]:h-[1272px] h-[848px] max-[2377px]:h-[648px] min-[3644px]:gap-[12px] gap-[10px] max-[2377px]:gap-[8px] max-[780px]:hidden">
-                            <InternetBlock speedItem={(isTarifsSwitch ? UTP_SPEEDS.find(item => item.value === speedUtp) : GPON_SPEEDS.find(item => item.value === speedGpon)) ?? GPON_SPEEDS[0]} />
+                            <InternetBlock speedItem={selectedSpeedItem} />
                             <div className={`${TVinfo[tvBundle].show ? '' : 'opacity-[0.4]'} min-[3644px]:text-[120px] min-[3644px]:leading-[120px] text-[80px] leading-[80px] max-[2377px]:text-[60px] max-[2377px]:leading-[60px] font-bold text-[#5F6061] flex items-center`}>
                                 <p>+</p>
                             </div>

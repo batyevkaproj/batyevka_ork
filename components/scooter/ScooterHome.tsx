@@ -179,13 +179,13 @@ const SpeedGaugeSection: React.FC<SpeedGaugeSectionProps> = ({ onOpen, freeChann
                             <span className="text-[#5F6061] font-bold mb-1">Вартість підключення:</span>
                             <div className="flex items-baseline gap-2">
                                 <span className="text-gray-400 line-through font-medium">1499 грн</span>
-                                <span className="text-3xl font-black text-[#DC662D]">500 грн*</span>
+                                <span className="text-3xl font-black text-[#DC662D]">499 грн*</span>
                             </div>
                         </div>
 
                         {/* Виноска підключення */}
                         <p className="text-xs text-gray-400 mb-5 leading-relaxed text-center px-4">
-                            *Вартість підключення 500 грн діє за умови оплати авансу за 6 місяців.
+                            *Вартість підключення 499 грн діє за умови оплати авансу за 12 місяців. При оплаті за 6 місяців — 999 грн.
                         </p>
 
                         {/* Деталі тарифу */}
@@ -455,9 +455,12 @@ const BatyevkaLandingPage: React.FC = () => {
                                         <li className="flex items-center gap-3"><CheckIcon /> Відсутність лімітів</li>
                                         <li className="flex items-center gap-3"><CheckIcon /> Пінг для геймінгу &lt;2мс</li>
                                     </ul>
-                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 flex justify-between items-center mb-4">
-                                        <span className="text-gray-500 text-sm font-medium">Підключення:</span>
-                                        <span className="font-bold text-[#5F6061]">299 грн</span>
+                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 mb-4">
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-gray-500 text-sm font-medium">Підключення:</span>
+                                            <span className="font-bold text-[#5F6061]">350 грн</span>
+                                        </div>
+                                        <p className="text-xs text-gray-400 text-right mt-1">При передплаті від 6 міс — безкоштовно</p>
                                     </div>
                                     <button
                                         onClick={handleOpenModalGeneral}
@@ -478,7 +481,7 @@ const BatyevkaLandingPage: React.FC = () => {
                             <article onClick={() => setSelectedTariff(5)} className="bg-white rounded-[32px] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col overflow-hidden cursor-pointer">
                                 <div className="p-8 border-b border-gray-100 bg-white">
                                     <h3 className="text-5xl font-extrabold mb-4 text-[#5F6061] mt-[30px] leading-none">5<span className="text-2xl font-bold text-[#5F6061] ml-1">Гбіт/с</span></h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">550<span className="text-lg font-bold text-[#5F6061]"> грн/міс</span></p>
+                                    <p className="text-4xl font-extrabold text-[#DC662D]">800<span className="text-lg font-bold text-[#5F6061]"> грн/міс</span></p>
                                     <p className="text-xs text-transparent mt-1 select-none pointer-events-none">Placeholder</p>
                                 </div>
                                 <div className="p-8 flex-grow">
@@ -491,9 +494,9 @@ const BatyevkaLandingPage: React.FC = () => {
                                     <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 mb-2">
                                         <div className="flex justify-between items-center">
                                             <span className="text-gray-500 text-sm font-medium">Підключення:</span>
-                                            <span className="font-bold text-[#5F6061]">1499 грн</span>
+                                            <span className="font-bold text-[#5F6061]">1999 грн</span>
                                         </div>
-                                        <p className="text-xs text-gray-400 text-right mt-1">При оплаті за 6 міс — 999 грн</p>
+                                        <p className="text-xs text-gray-400 text-right mt-1">6 міс — 999 грн · рік — 499 грн</p>
                                     </div>
                                     <button
                                         onClick={handleOpenModalGeneral}
@@ -530,7 +533,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                             <span className="text-gray-500 text-sm font-medium">Підключення:</span>
                                             <span className="font-bold text-[#5F6061]">2499 грн</span>
                                         </div>
-                                        <p className="text-xs text-gray-400 text-right mt-1">При оплаті за рік — підключення 999 грн</p>
+                                        <p className="text-xs text-gray-400 text-right mt-1">6 міс — 1499 грн · рік — 499 грн</p>
                                     </div>
                                     <button
                                         onClick={handleOpenModalGeneral}

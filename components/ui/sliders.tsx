@@ -22,6 +22,10 @@ import StyledSlider from '@/components/StyledSlider';
 import StyledSliderMobile from '@/components/StyledSliderMobile';
 
 const marks_GPON = GPON_SPEEDS.map(item => ({ value: item.value }));
+
+// На мобільних місця мало — скорочуємо "100 Мбіт" до "100Мб", "1 Гбіт" до "1Гб"
+const shortLabel = (item: { speed: number, measure: string }) =>
+  `${item.speed}${item.measure === 'Мбіт' ? 'Мб' : 'Гб'}`;
 const marks_UTP = UTP_SPEEDS.map(item => ({ value: item.value }));
 
 export function MegogoSlider({ outerSetter, outer, isEnabled }: MegogoSliderType) {
@@ -174,20 +178,18 @@ export function TarifsSliderMobile({ setSpeed, speed }: TarifsSliderType) {
         value={val}
         step={null}
         marks={marks}
-        min={0}
+        min={UTP_SPEEDS[0].value}
         max={UTP_SPEEDS[UTP_SPEEDS.length - 1].value}
         onChange={handleChange}
       />
-      <div className="flex justify-between font-bold leading-[22px] text-[18px] relative top-[-11px]">
+      <div className="flex justify-between font-bold leading-[22px] text-[14px] max-[400px]:text-[12px] relative top-[-11px] px-[8px]">
         {UTP_SPEEDS.map((speed, index) => (
           <button
             key={index}
-            className={`${val === speed.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'} 
-              ${index === 0 ? 'ml-[10%]' : ''} 
-              ${index === UTP_SPEEDS.length - 1 ? 'mr-[10%]' : ''}`}
+            className={`whitespace-nowrap ${val === speed.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
             onClick={() => handleButtonClick(speed.value)}
           >
-            {speed.speed} {speed.measure}
+            {shortLabel(speed)}
           </button>
         ))}
       </div>
@@ -217,20 +219,18 @@ export function TarifsSliderMobileGPON({ setSpeed, speed }: TarifsSliderType) {
         value={val}
         step={null}
         marks={marks}
-        min={0}
+        min={GPON_SPEEDS[0].value}
         max={GPON_SPEEDS[GPON_SPEEDS.length - 1].value}
         onChange={handleChange}
       />
-      <div className="flex justify-between flex-wrap font-bold leading-[22px] text-[18px] relative top-[-11px]">
+      <div className="flex justify-between font-bold leading-[22px] text-[14px] max-[400px]:text-[12px] relative top-[-11px] px-[8px]">
         {GPON_SPEEDS.map((speed, index) => (
           <button
             key={index}
-            className={`${val === speed.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}
-              ${index === 0 ? 'ml-[5%]' : ''}
-              ${index === GPON_SPEEDS.length - 1 ? 'mr-[5%]' : ''}`}
+            className={`whitespace-nowrap ${val === speed.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
             onClick={() => handleButtonClick(speed.value)}
           >
-            {speed.speed} {speed.measure}
+            {shortLabel(speed)}
           </button>
         ))}
       </div>
@@ -254,20 +254,21 @@ export function TarifsSlider({ setSpeed, speed }: TarifsSliderType) {
 
   return (
     <div>
-      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
+      <div className="flex justify-between font-bold max-[2377px]:leading-[22px] max-[2377px]:text-[18px] max-[1000px]:text-[16px] leading-[28px] text-[24px] min-[3644px]:leading-[42px] min-[3644px]:text-[36px] relative top-[0px]">
         {UTP_SPEEDS.map((mark, index) => (
           <button
             key={index}
-            className={`${val === mark.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
+            className={`whitespace-nowrap ${val === mark.value ? 'text-[#5F6061]' : 'text-[#BDBDBD]'}`}
             onClick={() => handleButtonClick(mark.value)}
           >
             {`${mark.speed} ${mark.measure}`}
           </button>
         ))}</div>
       <StyledSlider
-        defaultValue={1}
+        defaultValue={UTP_SPEEDS[0].value}
         step={null}
         marks={marks_UTP}
+        min={UTP_SPEEDS[0].value}
         max={UTP_SPEEDS[maxIndex].value}
         value={val}
         aria-label="Default"
@@ -306,9 +307,10 @@ export function TarifsSliderGPON({ setSpeed, speed }: TarifsSliderType) {
       </div>
       <span className='hidden'>{val}</span>
       <StyledSlider
-        defaultValue={2}
+        defaultValue={GPON_SPEEDS[0].value}
         step={null}
         marks={marks_GPON}
+        min={GPON_SPEEDS[0].value}
         max={GPON_SPEEDS[last_index].value}
         value={val}
         aria-label="Default"

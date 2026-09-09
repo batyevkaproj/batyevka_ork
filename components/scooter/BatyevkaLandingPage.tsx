@@ -239,9 +239,10 @@ const BatyevkaLandingPage: React.FC = () => {
                                 <div className="flex-grow">
                                     <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">G-PON</span>
                                     <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">1 Гбіт/с</h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">250<span className="text-xl font-bold"> грн/міс</span></p>
+                                    <p className="text-4xl font-extrabold text-[#DC662D]">350<span className="text-xl font-bold"> грн/міс</span></p>
                                     <p className="text-sm text-[#5F6061] mb-4">регулярна ціна</p>
-                                    <p className="text-sm font-bold mb-2 text-[#51B18B]">Підключення — 299 грн</p>
+                                    <p className="text-sm font-bold text-[#51B18B]">Підключення — 350 грн</p>
+                                    <p className="text-xs text-gray-500 mb-2">При передплаті від 6 міс — безкоштовно</p>
                                     <p 
                                         className="text-sm font-bold text-[#5984B2] hover:text-[#DC662D] transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
                                         onClick={(e) => handleMegogoLinkClick(e, 'free', 1)}
@@ -278,9 +279,10 @@ const BatyevkaLandingPage: React.FC = () => {
                                 <div className="flex-grow">
                                     <span className="inline-block bg-[#5984B2]/20 text-[#5984B2] text-xs font-bold px-2 py-1 rounded-full mb-2">XGS-PON</span>
                                     <h3 className="text-2xl font-bold mb-2 text-[#5F6061]">3 Гбіт/с</h3>
-                                    <p className="text-4xl font-extrabold text-[#DC662D]">500<span className="text-xl font-bold"> грн/міс</span></p>
+                                    <p className="text-4xl font-extrabold text-[#DC662D]">379<span className="text-xl font-bold"> грн/міс</span></p>
                                     <p className="text-sm text-[#5F6061] mb-4">регулярна ціна</p>
-                                    <p className="text-sm font-bold mb-2 text-[#51B18B]">Підключення — 2999 грн</p>
+                                    <p className="text-sm font-bold text-[#51B18B]">Підключення — 1499 грн</p>
+                                    <p className="text-xs text-gray-500 mb-2">При передплаті: 6 міс — 999 грн · рік — 499 грн</p>
                                     <p 
                                         className="text-sm font-bold text-[#5984B2] hover:text-[#DC662D] transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
                                         onClick={(e) => handleMegogoLinkClick(e, 'national', 2)}
@@ -319,7 +321,8 @@ const BatyevkaLandingPage: React.FC = () => {
                                     <h3 className="text-2xl font-bold mb-2">5 Гбіт/с</h3>
                                     <p className="text-4xl font-extrabold text-[#DC662D]">800<span className="text-xl font-bold"> грн/міс</span></p>
                                     <p className="text-sm text-white/90 mb-4">регулярна ціна</p>
-                                    <p className="text-sm font-bold mb-2">Підключення — 5999 грн</p>
+                                    <p className="text-sm font-bold">Підключення — 1999 грн</p>
+                                    <p className="text-xs text-white/70 mb-2">При передплаті: 6 міс — 999 грн · рік — 499 грн</p>
                                     <p 
                                         className="text-sm font-bold text-white/90 hover:text-white transition-colors underline decoration-dashed underline-offset-4 relative z-20 inline-block"
                                         onClick={(e) => handleMegogoLinkClick(e, 'light', 3)}
@@ -361,7 +364,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                 </div>
                             </div>
 
-                            <p className="text-sm mb-6"><span className="font-bold">Вартість підключення до тарифів XGS-PON:</span> 5999 грн.</p>
+                            <p className="text-sm mb-6"><span className="font-bold">Вартість підключення до тарифів XGS-PON:</span> 3 Гбіт — 1499 грн, 5 Гбіт — 1999 грн, 10 Гбіт — 2499 грн. При передплаті наперед — дешевше.</p>
                             <Link href="/xgspon" className="bg-[#5F6061] hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-lg transition-colors">Дізнатись більше</Link>
                         </div>
                     </section>
