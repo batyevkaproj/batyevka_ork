@@ -75,3 +75,37 @@
     @apply bg-background text-foreground;
   }
 }
+/* ── Публічний договір: текст редакції (components/dogovir/ContractDocument) ── */
+@layer components {
+  .dogovir-body {
+    @apply text-[15px] leading-relaxed text-[#5F6061];
+  }
+  .dogovir-body > p:first-child {
+    @apply mb-8;
+  }
+  .dogovir-body section + section {
+    @apply mt-10;
+  }
+  .dogovir-body h2 {
+    @apply mb-4 text-lg md:text-xl font-extrabold text-[#5F6061];
+  }
+  .dogovir-body p {
+    @apply mb-2;
+  }
+  .dogovir-body ol {
+    @apply list-none p-0 space-y-2;
+  }
+  .dogovir-body ol ol,
+  .dogovir-body ol ul {
+    @apply mt-2 pl-4 md:pl-6 space-y-1.5;
+  }
+  .dogovir-body ul {
+    @apply list-disc pl-5;
+  }
+  .dogovir-body li > p {
+    @apply mt-2;
+  }
+  .dogovir-body .dogovir-num {
+    @apply font-bold;
+  }
+}

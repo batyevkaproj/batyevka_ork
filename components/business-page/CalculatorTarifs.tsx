@@ -73,12 +73,6 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
     const [tvBundle, setTvBundle] = useState<number>(0);
 
     const[prepaidMonths, setPrepaidMonths] = useState<number>(1);
-    const[setupPrice, setSetupPrice] = useState<number>(1500);
-    const[routerPrice, setRouterPrice] = useState<number>(1799);
-
-    // Зберігаємо базову ціну інтернету для передачі у заявку
-    const [internetBasePrice, setInternetBasePrice] = useState<number>(0);
-    const [totalPrice, setTotalPrice] = useState<number>(0);
 
     const { toast } = useToast();
     const { onOpen } = useModal();
@@ -109,55 +103,34 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
         setTvBundle(getIncludedTvBundle(selectedSpeedItem.mbps));
     },[selectedSpeedItem, isTVChecked]);
 
-    // Основна логіка перерахунку цін
-    useEffect(() => {
+    // Ціни рахуються одразу під час рендеру, а не в ефекті — інакше сервер віддавав
+    // у HTML заглушки (підключення 1500 грн), доки в браузері не запускався JS
+    const { internetBasePrice, setupPrice, routerPrice, totalPrice } = useMemo(() => {
         const { mbps } = selectedSpeedItem;
 
         // 1. Абонплата за інтернет — з тарифної шкали
-        const newInternetPrice = selectedSpeedItem.price;
-        setInternetBasePrice(newInternetPrice);
+        const internetPrice = selectedSpeedItem.price;
 
-        // 2. ТБ ціна (доплата за вищий пакет або 0, якщо обрано базовий для тарифу)
-        let newTvPrice = 0;
-        if (isTVChecked) {
-            const includedBundleId = getIncludedTvBundle(mbps);
+        // 2. ТБ: пакет, включений у тариф, — 0 грн; будь-який інший — повна вартість пакета
+        const tvPrice = isTVChecked && tvBundle !== getIncludedTvBundle(mbps)
+            ? getMegogoPrice(tvBundle)
+            : 0;
 
-            if (tvBundle === includedBundleId) {
-                // Якщо обрано пакет, що вже включений у тариф (бандл) — ТБ безкоштовне (0 грн)
-                newTvPrice = 0;
-            } else {
-                // Якщо обрано будь-який інший пакет — додаємо його ПОВНУ вартість, без жодних мінусів
-                newTvPrice = getMegogoPrice(tvBundle);
-            }
-        }
+        const ipPrice = isIPChecked ? REAL_IP_PRICE : 0;
 
-        const newIpPrice = isIPChecked ? REAL_IP_PRICE : 0;
+        // 3. Підключення — за швидкістю та строком передплати (+100 грн активація статичної IP)
+        const setup = getSetupPrice(mbps, prepaidMonths) + (isIPChecked ? 100 : 0);
 
-        // 3. Ціна підключення — залежить від швидкості та строку передплати
-        let newSetupPrice = getSetupPrice(mbps, prepaidMonths);
+        // 4. Роутер
+        const router = ROUTER_PRICE.find(t => prepaidMonths == t.months)?.price ?? 3000;
 
-        // Додаткова вартість за налаштування статичної IP-адреси
-        if (isIPChecked) {
-            newSetupPrice += 100;
-        }
-
-        setSetupPrice(newSetupPrice);
-
-        // 4. Ціна роутера
-        const newRouterPrice = ROUTER_PRICE
-            .find(t => prepaidMonths == t.months)?.price ?? 3000;
-        setRouterPrice(newRouterPrice);
-
-        // 5. Загальна ціна за місяць
-        setTotalPrice(newInternetPrice + newTvPrice + newIpPrice);
-
-    },[
-        selectedSpeedItem,
-        isTVChecked,
-        tvBundle,
-        isIPChecked,
-        prepaidMonths
-    ]);
+        return {
+            internetBasePrice: internetPrice,
+            setupPrice: setup,
+            routerPrice: router,
+            totalPrice: internetPrice + tvPrice + ipPrice,
+        };
+    }, [selectedSpeedItem, isTVChecked, tvBundle, isIPChecked, prepaidMonths]);
 
     const handleTVswitch = () => {
         const newState = !isTVChecked;
@@ -341,7 +314,7 @@ const CalculatorTarifs = ({ theme }: ThemeProps) => {
                     </div>
 
                     <div>
-                        <div className="col-span-1 col-start-2 max-[1800px]:col-start-1 flex justify-center min-[3644px]:h-[1272px] h-[848px] max-[2377px]:h-[648px] min-[3644px]:gap-[12px] gap-[10px] max-[2377px]:gap-[8px] max-[780px]:hidden">
+                        <div className="col-span-1 col-start-2 max-[1800px]:col-start-1 flex justify-center min-[3644px]:min-h-[1272px] min-h-[848px] max-[2377px]:min-h-[648px] min-[3644px]:gap-[12px] gap-[10px] max-[2377px]:gap-[8px] max-[780px]:hidden">
                             <InternetBlock speedItem={selectedSpeedItem} />
                             <div className={`${TVinfo[tvBundle].show ? '' : 'opacity-[0.4]'} min-[3644px]:text-[120px] min-[3644px]:leading-[120px] text-[80px] leading-[80px] max-[2377px]:text-[60px] max-[2377px]:leading-[60px] font-bold text-[#5F6061] flex items-center`}>
                                 <p>+</p>

@@ -23,16 +23,16 @@ import {
 const Tarifs = () => {
 
     const TARIFF_SIMPLE: TariffProps[] = [
-        { id: 1, price: 499, speed: '100 Мегабіт', promotion: true, nonPromoPrice: 799, checked: false, type: 'G-PON', setupPrice: 2599 },
-        { id: 2, price: 799, speed: '300 Мегабіт', promotion: true, nonPromoPrice: 1299, checked: false, type: 'G-PON', setupPrice: 2599 },
-        { id: 3, price: 999, speed: '1000 Мегабіт', promotion: true, nonPromoPrice: 1599, checked: false, type: 'G-PON', setupPrice: 2599 }
+        { id: 1, price: 499, speed: '100 Мегабіт', promotion: true, nonPromoPrice: 799, checked: false, type: 'G-PON', setupPrice: 3200 },
+        { id: 2, price: 799, speed: '300 Мегабіт', promotion: true, nonPromoPrice: 1299, checked: false, type: 'G-PON', setupPrice: 3200 },
+        { id: 3, price: 999, speed: '1000 Мегабіт', promotion: true, nonPromoPrice: 1599, checked: false, type: 'G-PON', setupPrice: 3200 }
 
     ];
 
     const TARIFF_PREMIUM: TariffProps[] = [
-        { id: 1, price: 999, speed: '1 Гбіт', promotion: true, nonPromoPrice: 1599, checked: false, type: 'XGS-PON', setupPrice: 14999 },
-        { id: 2, price: 1999, speed: '2,5 Гбіт', promotion: true, nonPromoPrice: 2999, checked: false, type: 'XGS-PON', setupPrice: 14999 },
-        { id: 3, price: 2999, speed: '5 Гбіт', promotion: true, nonPromoPrice: 3999, checked: false, type: 'XGS-PON', setupPrice: 14999 }
+        { id: 1, price: 999, speed: '1 Гбіт', promotion: true, nonPromoPrice: 1599, checked: false, type: 'XGS-PON', setupPrice: 7999 },
+        { id: 2, price: 1999, speed: '2,5 Гбіт', promotion: true, nonPromoPrice: 2999, checked: false, type: 'XGS-PON', setupPrice: 7999 },
+        { id: 3, price: 2999, speed: '5 Гбіт', promotion: true, nonPromoPrice: 3999, checked: false, type: 'XGS-PON', setupPrice: 7999 }
     ];
 
     return (
@@ -46,7 +46,7 @@ const Tarifs = () => {
                     <h1 className="text-center flex items-center justify-center">Підключаємо ОПТИЧНИМ кабелем G-PON  -  Інтернет без світла</h1>
                 </div>
                 <div className="pt-[24px] min-[3644px]:pt-[36px] max-[2377px]:pt-[18px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
-                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">2 599</span>грн.</h1>
+                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">3 200</span>грн.</h1>
                 </div>
 
 
@@ -69,7 +69,7 @@ const Tarifs = () => {
                     <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо ОПТИЧНИМ кабелем G-PON  -  Інтернет без світла</h1>
                 </div>
                 <div className=" text-[24px] leading-[36px] font-bold text-white flex justify-center pt-[18px]">
-                    <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[10px] text-[42px]">2 599</span>грн</h1>
+                    <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[10px] text-[42px]">3 200</span>грн</h1>
                 </div>
 
                 <div className="flex justify-center box-border pt-[40px] mx-[35px]">
@@ -100,7 +100,7 @@ const Tarifs = () => {
                     <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо ОПТИЧНИМ кабелем G-PON  -  Інтернет без світла</h1>
                 </div>
                 <div className="text-[16px] leading-[22px] font-bold text-white flex justify-center mt-[5px] mx-[20px]">
-                    <h1 className="text-center align-bottom z-10">Всього за<span className=" text-[#56AABF] leading-[22px] px-[6px] text-[32px]">2 599</span>грн</h1>
+                    <h1 className="text-center align-bottom z-10">Всього за<span className=" text-[#56AABF] leading-[22px] px-[6px] text-[32px]">3 200</span>грн</h1>
                 </div>
 
                 {
@@ -123,7 +123,7 @@ const Tarifs = () => {
                     <h1 className="text-center flex items-center justify-center z-10">Підключаємо ОПТИЧНИМ волокном по технології XGS-PON</h1>
                 </div>
                 <div className="pt-[24px] min-[3644px]:pt-[36px] max-[2377px]:pt-[18px] font-bold text-white flex justify-center min-[3644px]:mb-[117px] mb-[78px] max-[2377px]:mb-[60px]">
-                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">14 999</span>грн.</h1>
+                    <h1 className="text-center min-[3644px]:text-[48px] min-[3644px]:leading-[66px] text-[32px] leading-[44px] max-[2377px]:text-[24px] max-[2377px]:leading-[36px] align-bottom">Всього за<span className=" text-[#56AABF] px-[6px] min-[3644px]:text-[82px] min-[3644px]:leading-[82px] text-[55px] leading-[50px] max-[2377px]:text-[42px] max-[2377px]:text-[36px]">7 999</span>грн.</h1>
                 </div>
                 <div className="flex justify-center box-border max-[2377px]:gap-[40px] max-[1600px]:gap-[30px] gap-[52px] min-[3644px]:gap-[78px]">
 
@@ -147,7 +147,7 @@ const Tarifs = () => {
                     <h1 className="text-center w-[913px] flex items-center justify-center z-10">Підключаємо ОПТИЧНИМ волокном по технології XGS-PON</h1>
                 </div>
                 <div className="text-[24px] leading-[36px] font-bold text-white flex justify-center pt-[18px]">
-                    <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[10px] text-[42px]">14 999</span>грн</h1>
+                    <h1 className="text-center text-[24px] align-bottom">Всього за<span className=" text-[#56AABF] px-[10px] text-[42px]">7 999</span>грн</h1>
                 </div>
 
                 <div className="flex justify-center box-border pt-[40px] mx-[35px]">
@@ -177,7 +177,7 @@ const Tarifs = () => {
                     <h1 className="text-center w-[913px] flex items-center justify-center">Підключаємо ОПТИЧНИМ волокном по технології XGS-PON</h1>
                 </div>
                 <div className="text-[16px] leading-[22px] font-bold text-white flex justify-center mt-[5px] mx-[20px]">
-                    <h1 className="text-center align-bottom">всього за<span className=" text-[#56AABF] leading-[22px] px-[6px] text-[32px]">14 999</span>грн.</h1>
+                    <h1 className="text-center align-bottom">всього за<span className=" text-[#56AABF] leading-[22px] px-[6px] text-[32px]">7 999</span>грн.</h1>
                 </div>
 
                 {

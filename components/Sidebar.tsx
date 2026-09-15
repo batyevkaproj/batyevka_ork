@@ -132,7 +132,7 @@ const Sidebar = ({ variant = 'dark' }: SidebarProps) => {
                 </Link>
 
                 {showBlock && (
-                    <Link href={'business'} className="mt-[10px] hover:underline">
+                    <Link href={'/business'} className="mt-[10px] hover:underline">
                         <AccordionItem value="item-3">
                             <AccordionTrigger className={cn("h-[48px] flex items-center w-full hover:no-underline", isDark ? "bg-[#0E2D43] shadow-[0_4px_29px_0_#081925]" : "hover:bg-gray-50")}>
                                 <Image src={bc_orange} alt={'orange'} className="ml-[24px]"></Image>

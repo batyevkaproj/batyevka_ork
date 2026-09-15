@@ -29,7 +29,8 @@ export const GPON_SPEEDS: SpeedItemProps[] = [
 /** З 3 Гбіт/с і вище тариф працює на XGS-PON, нижче — на G-PON */
 export const isXgsPon = (mbps: number) => mbps >= 3000;
 
-export const REAL_IP_PRICE = 100;
-export const REAL_IP_PRICE_physic = 50;
+export const REAL_IP_PRICE = 100;          // бізнес, грн/міс
+export const REAL_IP_PRICE_physic = 50;    // фізособи, грн/міс
+export const REAL_IP_SETUP_PRICE = 100;    // разова активація статичної IP, грн
 
 export const ONT_model = 'ONU XGS-PON';

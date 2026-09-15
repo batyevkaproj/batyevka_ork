@@ -3,6 +3,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CalculatorTarifs from '@/components/business-page/CalculatorTarifs';
+import ConnectionInfo from '@/components/prices/ConnectionInfo';
 import AdditionalOptions from '@/components/business-page/AdditionalOptions';
 import TarifsCountInfo from '@/components/business-page/TarifsCountInfo';
 import WaterText from '@/components/business-page/WaterText';
@@ -14,6 +15,7 @@ export default function Home() {
     <div className={'min-w-[350px] bg-white'}>
       <Header theme={'white'} business={false}/>
       <CalculatorTarifs theme={'white'}/>
+      <ConnectionInfo />
       <AdditionalOptions theme={'white'}/>
       <TarifsCountInfo theme={"white"}/>
       <WaterText theme={'white'}/>

@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useModal } from '@/hooks/use-modal-store';
+import PromoCards from '@/components/promo/PromoCards';
+import { PROMO_OFFERS } from '@/constants/promotions';
 import { coverageAddresses, type CoverageAddress, type TechType } from '@/app/data/coverageAddresses';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -220,20 +222,6 @@ function SidebarCTA({ state, tech, onConnect }: { state: SidebarState; tech?: Te
 // ─── Tariff card data ─────────────────────────────────────────────────────────
 const TARIFF_PLANS = [
   {
-    name:      '1 Гбіт/с Акційний',
-    speed:     '1 000 Мбіт/с',
-    price:     '150',
-    priceNote: 'перші 12 міс., далі 350 грн/міс',
-    badge:     '🎁 Акція',
-    desc:      'Симетричний гігабіт за акційною ціною — найвигідніша пропозиція для старту.',
-    features:  [
-      'Симетричний канал 1000 Мбіт/с',
-      'Енергонезалежність > 100 годин',
-      'Безкоштовне ТБ (200+ каналів)',
-      'Підключення: 350 грн (від 6 міс. передплати — безкоштовно)',
-    ],
-  },
-  {
     name:      '3 Гік',
     speed:     '3 000 Мбіт/с',
     price:     '379',
@@ -376,7 +364,7 @@ export default function CoverageMapPage() {
               '@type': 'OfferCatalog',
               name: 'Тарифні плани Batyevka.NET',
               itemListElement: [
-                { '@type': 'Offer', name: '1 Гбіт/с Акційний', price: '150', priceCurrency: 'UAH' },
+                ...PROMO_OFFERS.map(o => ({ '@type': 'Offer', name: `${o.speed} — акція (${o.term})`, price: String(o.price), priceCurrency: 'UAH' })),
                 { '@type': 'Offer', name: '3 Гік',               price: '379', priceCurrency: 'UAH' },
                 { '@type': 'Offer', name: '5 Гбіт/с',             price: '800', priceCurrency: 'UAH' },
               ],
@@ -522,11 +510,15 @@ export default function CoverageMapPage() {
         {/* ══════════════════════════════════════════════════════════════════════
             TARIFF CARDS SECTION
         ══════════════════════════════════════════════════════════════════════ */}
+        <section className="max-w-[1400px] mx-auto px-4 md:px-8 mt-16">
+          <PromoCards onConnect={() => handleConnectRequest()} />
+        </section>
+
         <section className="max-w-[1400px] mx-auto px-4 md:px-8">
           <h2 className="text-3xl font-bold text-center mt-16 mb-8 text-[#5F6061]">
             Рекомендовані тарифи для вашої адреси
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-[900px] mx-auto">
             {TARIFF_PLANS.map((plan) => (
               <div key={plan.name}
                 className={`bg-[#F4F2F2] rounded-3xl p-8 flex flex-col relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${plan.highlight ? 'ring-2 ring-[#DC662D] shadow-lg shadow-orange-100' : 'shadow-sm'}`}>

@@ -55,7 +55,7 @@ const Footer = ({ theme }: ThemeProps) => {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="https://old.batyevka.net/uk/blog-dogovor"
+                  href="/publichnyi-dohovir"
                   className={`${linkColor} text-sm transition-colors block`}
                 >
                   Публічний договір
@@ -210,12 +210,12 @@ const Footer = ({ theme }: ThemeProps) => {
           </span>
           <span className={`text-xs ${subTextColor} text-center sm:text-right`}>
             Усі права захищені. Передплата послуг регулюється{' '}
-            <a
-              href="https://old.batyevka.net/uk/blog-dogovor"
+            <Link
+              href="/publichnyi-dohovir"
               className={`underline ${linkColor}`}
             >
               Публічним договором
-            </a>
+            </Link>
             .
           </span>
         </div>

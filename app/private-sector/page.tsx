@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { useModal } from '@/hooks/use-modal-store';
 import { useToast } from '@/hooks/use-toast';
 import { Wifi, Tv, Zap, ShieldCheck, HardDrive, HelpCircle } from 'lucide-react';
+import { REAL_IP_PRICE_physic } from '@/constants/internet_speeds';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/business-page/ContactForm';
@@ -184,15 +185,14 @@ const PrivateSectorPage: React.FC = () => {
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-800">Статична IP-адреса</h3>
                                     <p className="text-gray-600 mt-2">Ваша постійна адреса в Інтернеті для доступу до камер, серверів та інших пристроїв.</p>
-                                    <p className="mt-3 font-bold text-gray-700">150 грн/міс</p>
+                                    <p className="mt-3 font-bold text-gray-700">{REAL_IP_PRICE_physic} грн/міс</p>
                                 </div>
                             </div>
                              <div className="bg-gray-50/60 p-6 rounded-lg border flex items-start">
                                 <HelpCircle className="w-8 h-8 text-[#DC662D] mr-4 mt-1 flex-shrink-0" />
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-800">Виклик майстра</h3>
-                                    <p className="text-gray-600 mt-2">Діагностика та налаштування обладнання, усунення несправностей.</p>
-                                    <p className="mt-3 font-bold text-green-600">Безкоштовно</p>
+                                    <p className="text-gray-600 mt-2">Виклик майстра для усунення несправностей у мережі Batyevka.NET та заміни нашого обладнання — безкоштовно. Роботи у квартирі за вашим замовленням — за прайсом.</p>
                                 </div>
                             </div>
                         </div>

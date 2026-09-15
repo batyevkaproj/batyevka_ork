@@ -24,6 +24,13 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      // Короткий лінк для SMS і повідомлень у кабінеті — завжди на чинну редакцію договору.
+      // Не permanent: браузери не кешують його назавжди, тож ціль можна міняти.
+      {
+        source: '/dogovir',
+        destination: '/publichnyi-dohovir',
+        permanent: false,
+      },
     ];
   },
 

@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import SpeedometerGauge from './SpeedometerGauge';
+import PromoCards from '@/components/promo/PromoCards';
 
 import {
     REAL_IP_PRICE_physic as REAL_IP_PRICE,
@@ -308,7 +309,7 @@ const BatyevkaLandingPage: React.FC = () => {
                 "@type": "FAQPage",
                 "mainEntity": [
                     { "@type": "Question", "name": "Як швидко відбувається підключення?", "acceptedAnswer": { "@type": "Answer", "text": "Зазвичай, підключення займає 1-3 робочі дні з моменту подачі заявки. Наш майстер узгодить з вами зручний час." } },
-                    { "@type": "Question", "name": "Чи можна замовити статичну IP-адресу?", "acceptedAnswer": { "@type": "Answer", "text": "Так, ви можете замовити послугу постійної зовнішньої IP-адреси. Вартість підключення — 100 грн разово, щомісячна плата — 50 грн." } },
+                    { "@type": "Question", "name": "Чи можна замовити статичну IP-адресу?", "acceptedAnswer": { "@type": "Answer", "text": "Так, ви можете замовити послугу постійної зовнішньої IP-адреси. Активація — 100 грн разово, щомісячна плата — 50 грн." } },
                     { "@type": "Question", "name": "Що робити, якщо зник інтернет?", "acceptedAnswer": { "@type": "Answer", "text": "Спочатку перезавантажте ваш роутер. Термінал вимикати необов'язково." } }
                 ]
             }
@@ -423,59 +424,24 @@ const BatyevkaLandingPage: React.FC = () => {
                             <article className="bg-white p-8 rounded-3xl border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
                                 <SupportIcon />
                                 <h3 className="text-xl font-bold mb-3 text-[#5F6061]">Підтримка</h3>
-                                <p className="text-sm text-gray-500 leading-relaxed">Усі виклики майстра входять у вартість тарифу.</p>
+                                <p className="text-sm text-gray-500 leading-relaxed">Виклик майстра для усунення несправностей у мережі Batyevka.NET та заміни нашого обладнання — безкоштовно. Роботи у квартирі за вашим замовленням — за прайсом.</p>
                             </article>
                         </div>
                     </section>
 
-                    {/* ----- БЛОК 4. XGS-PON ТАРИФИ (Decoy Effect: 1 Гбіт — базовий мінімум) ----- */}
+                    {/* ----- АКЦІЙНІ ТАРИФИ — той самий блок, що й на карті покриття ----- */}
+                    <section className="py-16 px-4">
+                        <PromoCards onConnect={handleOpenModalGeneral} />
+                    </section>
+
+                    {/* ----- БЛОК 4. XGS-PON ТАРИФИ ----- */}
                     <section className="py-20 bg-[#fcfbfe] rounded-[3rem] border border-gray-100 px-4">
                         <div className="text-center mb-16 max-w-3xl mx-auto">
                             <h2 className="text-3xl md:text-5xl font-extrabold text-[#5F6061] mb-6">Надшвидкісні тарифи XGS-PON</h2>
                             <p className="text-[#5F6061] text-lg leading-relaxed">Для найвимогливіших завдань: професійного геймінгу, стрімінгу у 8K та роботи з великими обсягами даних. Симетричний канал (швидкість завантаження дорівнює швидкості віддачі).</p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1200px] mx-auto text-left">
-
-                            {/* ---- КАРТКА 1: 1 Гбіт/с Акційний (мас-маркет) ---- */}
-                            <article onClick={() => setSelectedTariff(1)} className="bg-white rounded-[32px] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col overflow-hidden cursor-pointer">
-                                <div className="p-8 border-b border-gray-100 bg-white">
-                                    <span className="inline-block bg-[#51B18B]/10 text-[#51B18B] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg mb-2">Акційний</span>
-                                    <h3 className="text-5xl font-extrabold mb-4 text-[#5F6061] leading-none">1<span className="text-2xl font-bold text-[#5F6061] ml-1">Гбіт/с</span></h3>
-                                    <div className="flex items-baseline gap-2 flex-wrap">
-                                        <p className="text-4xl font-extrabold text-[#DC662D]">150<span className="text-lg font-bold text-[#5F6061]"> грн/міс</span></p>
-                                        <span className="text-base text-gray-400 line-through">350 грн/міс</span>
-                                    </div>
-                                    <p className="text-xs text-gray-400 mt-1">Акційна ціна діє перші 12 місяців</p>
-                                </div>
-                                <div className="p-8 flex-grow">
-                                    <ul className="space-y-4 text-[#5F6061] font-medium text-sm mb-8">
-                                        <li className="flex items-center gap-3"><CheckIcon /> 100% Оптика у квартиру</li>
-                                        <li className="flex items-center gap-3"><CheckIcon /> Симетричний канал</li>
-                                        <li className="flex items-center gap-3"><CheckIcon /> Відсутність лімітів</li>
-                                        <li className="flex items-center gap-3"><CheckIcon /> Пінг для геймінгу &lt;2мс</li>
-                                    </ul>
-                                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 mb-4">
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-gray-500 text-sm font-medium">Підключення:</span>
-                                            <span className="font-bold text-[#5F6061]">350 грн</span>
-                                        </div>
-                                        <p className="text-xs text-gray-400 text-right mt-1">При передплаті від 6 міс — безкоштовно</p>
-                                    </div>
-                                    <button
-                                        onClick={handleOpenModalGeneral}
-                                        className="w-full bg-[#DC662D] hover:bg-[#c45a27] text-white font-bold text-base py-3 px-4 rounded-xl transition-colors shadow-sm"
-                                    >
-                                        Підключити
-                                    </button>
-                                </div>
-                                <div className="p-6 mt-auto border-t bg-gray-50 border-gray-100">
-                                    <p className="text-sm font-bold flex items-center justify-center gap-2 text-[#5F6061]">
-                                        <TvIconBlue />
-                                        Безкоштовне ТБ вже у тарифі
-                                    </p>
-                                </div>
-                            </article>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[820px] mx-auto text-left">
 
                             {/* ---- КАРТКА 2: 5 Гбіт/с ---- */}
                             <article onClick={() => setSelectedTariff(5)} className="bg-white rounded-[32px] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col overflow-hidden cursor-pointer">
@@ -687,7 +653,7 @@ const BatyevkaLandingPage: React.FC = () => {
                                     Чи можна замовити статичну IP-адресу?
                                     <ChevronDownIcon />
                                 </summary>
-                                <p className="mt-4 pt-4 border-t border-gray-100 text-[#5F6061] text-sm leading-relaxed">Так, ви можете замовити послугу постійної зовнішньої IP-адреси. Вартість підключення — 200 грн разово, щомісячна плата — 60 грн.</p>
+                                <p className="mt-4 pt-4 border-t border-gray-100 text-[#5F6061] text-sm leading-relaxed">Так, ви можете замовити послугу постійної зовнішньої IP-адреси. Активація — 100 грн разово, щомісячна плата — 50 грн.</p>
                             </details>
                             <details className="bg-white border border-gray-200/80 rounded-2xl p-6 cursor-pointer group shadow-sm hover:shadow-md transition-shadow">
                                 <summary className="font-bold text-lg text-[#5F6061] flex justify-between items-center outline-none select-none">
